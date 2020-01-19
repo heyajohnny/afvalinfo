@@ -25,8 +25,7 @@ Configuration.yaml:
       city: sliedrecht                 (required)
       postcode: 33361AB                (required)
       streetnumber: 1                  (required)
-      dateformat: '%d-%m'              (optional)
-      dateonly: 1                      (optional)
+      dateformat: '%d-%m-%Y'           (optional)
 """
 
 import voluptuous as vol
@@ -53,7 +52,6 @@ CONF_CITY = "city"
 CONF_POSTCODE = "postcode"
 CONF_STREET_NUMBER = "streetnumber"
 CONF_DATE_FORMAT = "dateformat"
-CONF_DATE_ONLY = "dateonly"
 
 SENSOR_PREFIX = "Afvalinfo "
 ATTR_LAST_UPDATE = "Last update"
@@ -75,19 +73,17 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Required(CONF_POSTCODE, default="3361AB"): cv.string,
         vol.Required(CONF_STREET_NUMBER, default="1"): cv.string,
         vol.Optional(CONF_DATE_FORMAT, default="%d-%m-%Y"): cv.string,
-        vol.Optional(CONF_DATE_ONLY, default=False): cv.boolean,
     }
 )
 
 
 def setup_platform(hass, config, add_entities, discovery_info=None):
-    _LOGGER.debug("Setup Afvalinfo retriever")
+    _LOGGER.debug("Setup Afvalinfo sensor")
 
     city = config.get(CONF_CITY)
     postcode = config.get(CONF_POSTCODE)
     street_number = config.get(CONF_STREET_NUMBER)
     date_format = config.get(CONF_DATE_FORMAT)
-    date_only = config.get(CONF_DATE_ONLY)
 
     try:
         data = AfvalinfoData(city, postcode, street_number)
@@ -103,7 +99,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
         if sensor_type not in SENSOR_TYPES:
             SENSOR_TYPES[sensor_type] = [sensor_type.title(), "", "mdi:recycle"]
 
-        entities.append(AfvalinfoSensor(data, sensor_type, date_format, date_only))
+        entities.append(AfvalinfoSensor(data, sensor_type, date_format))
 
     add_entities(entities)
 
@@ -145,7 +141,7 @@ class AfvalinfoData(object):
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
-        _LOGGER.debug("Updating Waste collection dates using scraper")
+        _LOGGER.debug("Updating Waste collection dates")
 
         try:
             suffix_url = self.postcode + ":" + self.street_number + "/"
@@ -158,6 +154,7 @@ class AfvalinfoData(object):
             ophaaldata = soup.find(id="ophaaldata")
 
             waste_dict = {}
+            #Place all possible values in the dictionary even if they are not necessary
             # find afvalstroom/3 = gft
             waste_dict["gft"] = self.get_date_from_afvalstroom(ophaaldata, 3)
             # find afvalstroom/7 = textiel
@@ -173,13 +170,11 @@ class AfvalinfoData(object):
             self.data = None
             return False
 
-
 class AfvalinfoSensor(Entity):
-    def __init__(self, data, sensor_type, date_format, date_only):
+    def __init__(self, data, sensor_type, date_format):
         self.data = data
         self.type = SENSOR_TYPES[sensor_type][0]
         self.date_format = date_format
-        self.date_only = date_only
         self._name = SENSOR_PREFIX + SENSOR_TYPES[sensor_type][0]
         self._unit = SENSOR_TYPES[sensor_type][1]
         self._icon = SENSOR_TYPES[sensor_type][2]
@@ -211,64 +206,26 @@ class AfvalinfoSensor(Entity):
         self.data.update()
         waste_data = self.data.data
 
-        _LOGGER.warning("waste_data")
+        """_LOGGER.warning("waste_data")
         _LOGGER.warning(waste_data)
         _LOGGER.warning("self.type")
-        _LOGGER.warning(self.type)
+        _LOGGER.warning(self.type)"""
 
         try:
             if waste_data:
                 if self.type in waste_data:
                     today = datetime.today()
 
-                    _LOGGER.warning("today")
-                    _LOGGER.warning(today)
-
-                    collection_date = self.get_next_collection(
-                        today, waste_data, self.type
-                    )
-
-                    _LOGGER.warning("collection_date")
-                    _LOGGER.warning(collection_date)
+                    collection_date = datetime.strptime(waste_data[self.type], "%Y-%m-%d").date()
 
                     if collection_date:
+                        # Set the values of the sensor
                         self._last_update = today.strftime("%d-%m-%Y %H:%M")
-                        date_diff = (collection_date - today.date()).days
-                        if self.date_only:
-                            if date_diff >= 0:
-                                self._state = collection_date.strftime(self.date_format)
-                        else:
-                            if date_diff >= 8:
-                                self._state = collection_date.strftime(self.date_format)
-                            elif date_diff > 1:
-                                self._state = collection_date.strftime(
-                                    "%A, " + self.date_format
-                                )
-                            elif date_diff == 1:
-                                self._state = collection_date.strftime(
-                                    "Tomorrow, " + self.date_format
-                                )
-                            elif date_diff == 0:
-                                self._state = collection_date.strftime(
-                                    "Today, " + self.date_format
-                                )
-                            else:
-                                self._state = None
-                                self._hidden = True
+                        self._state = collection_date.strftime(self.date_format)
                     else:
-                        self._state = None
-                        self._hidden = True
+                        raise ValueError()
                 else:
-                    self._state = None
-                    self._hidden = True
+                    raise ValueError()
         except ValueError:
             self._state = None
             self._hidden = True
-
-    @staticmethod
-    def get_next_collection(today, waste_dict, fraction):
-        next_collection_date = None
-        collection_date = datetime.strptime(waste_dict[fraction], "%Y-%m-%d").date()
-        if collection_date >= today.date():
-            next_collection_date = collection_date
-        return next_collection_date
