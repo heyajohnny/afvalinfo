@@ -11,9 +11,10 @@ Currently supported cities:
 - sliedrecht
 
 resources options:
-- restafval (afvalstroom 92)
-- papier    (afvalstroom 87)
 - gft       (afvalstroom 3)
+- textiel   (afvalstroom 7)
+- papier    (afvalstroom 87)
+- restafval (afvalstroom 92)
 
 Example config:
 Configuration.yaml:
@@ -21,7 +22,6 @@ Configuration.yaml:
     - platform: afvalinfo
       resources:                       (at least 1 required)
         - restafval
-        - papier
       city: sliedrecht                 (required)
       postcode: 33361AB                (required)
       streetnumber: 1                  (required)
@@ -61,6 +61,10 @@ SENSOR_TYPES = {
     "papier": ["Oud Papier", "mdi:recycle"],
     "gft": ["GFT", "mdi:recycle"],
     "textiel": ["Textiel", "mdi:recycle"],
+}
+
+SENSOR_CITIES_TO_URL = {
+    "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/", "{0}:{1}/"]
 }
 
 MONTH_TO_NUMBER = {
@@ -142,17 +146,20 @@ class AfvalinfoData(object):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
-            suffix_url = self.postcode + ":" + self.street_number + "/"
-            url = "https://sliedrecht.afvalinfo.nl/adres/" + suffix_url
+            suffix_url = SENSOR_CITIES_TO_URL[self.city][1].format(
+                self.postcode, self.street_number
+            )
+            url = SENSOR_CITIES_TO_URL[self.city][0] + suffix_url
             req = urllib.request.Request(url=url)
             f = urllib.request.urlopen(req)
             html = f.read().decode("utf-8")
 
+            # Specific for Sliedrecht ToDo: split into seperate class for the specific city
             soup = BeautifulSoup(html, "html.parser")
             ophaaldata = soup.find(id="ophaaldata")
 
-            waste_dict = {}
             # Place all possible values in the dictionary even if they are not necessary
+            waste_dict = {}
             # find afvalstroom/3 = gft
             waste_dict["gft"] = self.get_date_from_afvalstroom(ophaaldata, 3)
             # find afvalstroom/7 = textiel
