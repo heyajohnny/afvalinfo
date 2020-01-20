@@ -5,7 +5,7 @@ Author: Johnny Visser
 Current Version: 0.0.1  20200112 - Initial Release
 
 Description:
-  Home Assistant sensor for Afvalinfo
+- Home Assistant sensor for Afvalinfo
 
 Currently supported cities:
 - sliedrecht
@@ -52,16 +52,30 @@ CONF_CITY = "city"
 CONF_POSTCODE = "postcode"
 CONF_STREET_NUMBER = "streetnumber"
 CONF_DATE_FORMAT = "dateformat"
-
 SENSOR_PREFIX = "Afvalinfo "
 ATTR_LAST_UPDATE = "Last update"
 ATTR_HIDDEN = "Hidden"
 
 SENSOR_TYPES = {
-    "restafval": ["restafval", "", "mdi:recycle"],
-    "papier": ["papier", "", "mdi:recycle"],
-    "gft": ["gft", "", "mdi:recycle"],
-    "textiel": ["textiel", "", "mdi:recycle"],
+    "restafval": ["Restafval", "mdi:recycle"],
+    "papier": ["Oud Papier", "mdi:recycle"],
+    "gft": ["GFT", "mdi:recycle"],
+    "textiel": ["Textiel", "mdi:recycle"],
+}
+
+MONTH_TO_NUMBER = {
+    "jan": "01",
+    "feb": "02",
+    "mrt": "03",
+    "apr": "04",
+    "mei": "05",
+    "jun": "06",
+    "jul": "07",
+    "aug": "08",
+    "sep": "09",
+    "okt": "10",
+    "nov": "11",
+    "dec": "12",
 }
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
@@ -111,27 +125,11 @@ class AfvalinfoData(object):
         self.postcode = postcode
         self.street_number = street_number
 
-    def month_to_number(self, argument):
-        return {
-            "jan": "01",
-            "feb": "02",
-            "mrt": "03",
-            "apr": "04",
-            "mei": "05",
-            "jun": "06",
-            "jul": "07",
-            "aug": "08",
-            "sep": "09",
-            "okt": "10",
-            "nov": "11",
-            "dec": "12",
-        }[argument]
-
     def get_date_from_afvalstroom(self, ophaaldata, afvalstroom):
         html = ophaaldata.find(href="/afvalstroom/" + str(afvalstroom))
         date = html.i.string[3:]
         day = date.split(" ")[0]
-        month = self.month_to_number(date.split(" ")[1])
+        month = MONTH_TO_NUMBER[date.split(" ")[1]]
         year = str(
             datetime.today().year
             if datetime.today().month <= int(month)
@@ -154,7 +152,7 @@ class AfvalinfoData(object):
             ophaaldata = soup.find(id="ophaaldata")
 
             waste_dict = {}
-            #Place all possible values in the dictionary even if they are not necessary
+            # Place all possible values in the dictionary even if they are not necessary
             # find afvalstroom/3 = gft
             waste_dict["gft"] = self.get_date_from_afvalstroom(ophaaldata, 3)
             # find afvalstroom/7 = textiel
@@ -170,17 +168,18 @@ class AfvalinfoData(object):
             self.data = None
             return False
 
+
 class AfvalinfoSensor(Entity):
     def __init__(self, data, sensor_type, date_format):
         self.data = data
-        self.type = SENSOR_TYPES[sensor_type][0]
         self.date_format = date_format
+        self.type = sensor_type
         self._name = SENSOR_PREFIX + SENSOR_TYPES[sensor_type][0]
-        self._unit = SENSOR_TYPES[sensor_type][1]
-        self._icon = SENSOR_TYPES[sensor_type][2]
+        self._icon = SENSOR_TYPES[sensor_type][1]
         self._hidden = False
         self._state = None
         self._last_update = None
+        self._unit = ""
 
     @property
     def name(self):
@@ -216,7 +215,9 @@ class AfvalinfoSensor(Entity):
                 if self.type in waste_data:
                     today = datetime.today()
 
-                    collection_date = datetime.strptime(waste_data[self.type], "%Y-%m-%d").date()
+                    collection_date = datetime.strptime(
+                        waste_data[self.type], "%Y-%m-%d"
+                    ).date()
 
                     if collection_date:
                         # Set the values of the sensor
