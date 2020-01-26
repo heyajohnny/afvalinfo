@@ -29,12 +29,24 @@ Configuration.yaml:
 """
 
 import voluptuous as vol
-import logging
 from datetime import datetime
-from datetime import timedelta
-from bs4 import BeautifulSoup
-import urllib.request
 import urllib.error
+from .const.const import (
+    MONTH_TO_NUMBER,
+    SENSOR_CITIES_TO_URL,
+    MIN_TIME_BETWEEN_UPDATES,
+    _LOGGER,
+    CONF_CITY,
+    CONF_POSTCODE,
+    CONF_STREET_NUMBER,
+    CONF_DATE_FORMAT,
+    SENSOR_PREFIX,
+    ATTR_LAST_UPDATE,
+    ATTR_HIDDEN,
+    SENSOR_TYPES,
+)
+
+from .city.sliedrecht import SliedrechtAfval
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv
@@ -43,44 +55,6 @@ from homeassistant.util import Throttle
 from homeassistant.helpers.entity import Entity
 
 REQUIREMENTS = ["BeautifulSoup4==4.7.0"]
-
-_LOGGER = logging.getLogger(__name__)
-
-MIN_TIME_BETWEEN_UPDATES = timedelta(hours=1)
-
-CONF_CITY = "city"
-CONF_POSTCODE = "postcode"
-CONF_STREET_NUMBER = "streetnumber"
-CONF_DATE_FORMAT = "dateformat"
-SENSOR_PREFIX = "Afvalinfo "
-ATTR_LAST_UPDATE = "Last update"
-ATTR_HIDDEN = "Hidden"
-
-SENSOR_TYPES = {
-    "restafval": ["Restafval", "mdi:recycle"],
-    "papier": ["Oud Papier", "mdi:recycle"],
-    "gft": ["GFT", "mdi:recycle"],
-    "textiel": ["Textiel", "mdi:recycle"],
-}
-
-SENSOR_CITIES_TO_URL = {
-    "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/", "{0}:{1}/"]
-}
-
-MONTH_TO_NUMBER = {
-    "jan": "01",
-    "feb": "02",
-    "mrt": "03",
-    "apr": "04",
-    "mei": "05",
-    "jun": "06",
-    "jul": "07",
-    "aug": "08",
-    "sep": "09",
-    "okt": "10",
-    "nov": "11",
-    "dec": "12",
-}
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     {
@@ -98,7 +72,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 def setup_platform(hass, config, add_entities, discovery_info=None):
     _LOGGER.debug("Setup Afvalinfo sensor")
 
-    city = config.get(CONF_CITY)
+    city = config.get(CONF_CITY).lower()
     postcode = config.get(CONF_POSTCODE)
     street_number = config.get(CONF_STREET_NUMBER)
     date_format = config.get(CONF_DATE_FORMAT)
@@ -129,51 +103,17 @@ class AfvalinfoData(object):
         self.postcode = postcode
         self.street_number = street_number
 
-    def get_date_from_afvalstroom(self, ophaaldata, afvalstroom):
-        html = ophaaldata.find(href="/afvalstroom/" + str(afvalstroom))
-        date = html.i.string[3:]
-        day = date.split(" ")[0]
-        month = MONTH_TO_NUMBER[date.split(" ")[1]]
-        year = str(
-            datetime.today().year
-            if datetime.today().month <= int(month)
-            else datetime.today().year + 1
-        )
-        return year + "-" + month + "-" + day
-
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
         _LOGGER.debug("Updating Waste collection dates")
 
-        try:
-            suffix_url = SENSOR_CITIES_TO_URL[self.city][1].format(
-                self.postcode, self.street_number
+        # try:
+        if self.city == "sliedrecht":
+            self.data = SliedrechtAfval().get_data(
+                self.city, self.postcode, self.street_number
             )
-            url = SENSOR_CITIES_TO_URL[self.city][0] + suffix_url
-            req = urllib.request.Request(url=url)
-            f = urllib.request.urlopen(req)
-            html = f.read().decode("utf-8")
-
-            # Specific for Sliedrecht ToDo: split into seperate class for the specific city
-            soup = BeautifulSoup(html, "html.parser")
-            ophaaldata = soup.find(id="ophaaldata")
-
-            # Place all possible values in the dictionary even if they are not necessary
-            waste_dict = {}
-            # find afvalstroom/3 = gft
-            waste_dict["gft"] = self.get_date_from_afvalstroom(ophaaldata, 3)
-            # find afvalstroom/7 = textiel
-            waste_dict["textiel"] = self.get_date_from_afvalstroom(ophaaldata, 7)
-            # find afvalstroom/87 = papier
-            waste_dict["papier"] = self.get_date_from_afvalstroom(ophaaldata, 87)
-            # find afvalstroom/92 = restafval
-            waste_dict["restafval"] = self.get_date_from_afvalstroom(ophaaldata, 92)
-
-            self.data = waste_dict
-        except urllib.error.URLError as exc:
-            _LOGGER.error("Error occurred while fetching data: %r", exc.reason)
-            self.data = None
-            return False
+            # _LOGGER.warning("self.data")
+            # _LOGGER.warning(self.data)
 
 
 class AfvalinfoSensor(Entity):
@@ -211,11 +151,6 @@ class AfvalinfoSensor(Entity):
     def update(self):
         self.data.update()
         waste_data = self.data.data
-
-        """_LOGGER.warning("waste_data")
-        _LOGGER.warning(waste_data)
-        _LOGGER.warning("self.type")
-        _LOGGER.warning(self.type)"""
 
         try:
             if waste_data:
