@@ -10,13 +10,31 @@ Description:
 - Home Assistant sensor for Afvalinfo
 
 Currently supported cities:
+- ameide
+- everdingen
+- hagestein
+- hei- en boeicop
+- hoef en haag
+- kedichem
+- leerbroek
+- leerdam
+- lexmond
+- meerkerk
+- nieuwland
+- oosterwijk
+- ossenwaard
+- schoonrewoerd
+- tienhoven aan de lek
+- vianen
+- zijderveld
 - sliedrecht
 
 resources options:
-- gft       (afvalstroom 3) Groente, Fruit en Tuinafval 
+- gft       (afvalstroom 3) Groente, Fruit en Tuinafval
 - textiel   (afvalstroom 7)
 - papier    (afvalstroom 87)
 - pbd       (afvalstroom 92) Plastic, Blik en Drinkpakken
+- restafval (not for sliedrecht)
 
 Example config:
 Configuration.yaml:
@@ -49,6 +67,7 @@ from .const.const import (
 )
 
 from .location.sliedrecht import SliedrechtAfval
+from .location.vijfheerenlanden import VijfheerenlandenAfval
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv
@@ -112,6 +131,28 @@ class AfvalinfoData(object):
         # try:
         if self.city == "sliedrecht":
             self.data = SliedrechtAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        if (
+            self.city == "ameide"
+            or self.city == "everdingen"
+            or self.city == "hagestein"
+            or self.city == "hei- en boeicop"
+            or self.city == "hoef en haag"
+            or self.city == "kedichem"
+            or self.city == "leerbroek"
+            or self.city == "leerdam"
+            or self.city == "lexmond"
+            or self.city == "meerkerk"
+            or self.city == "nieuwland"
+            or self.city == "oosterwijk"
+            or self.city == "ossenwaard"
+            or self.city == "schoonrewoerd"
+            or self.city == "tienhoven aan de lek"
+            or self.city == "vianen"
+            or self.city == "zijderveld"
+        ):
+            self.data = VijfheerenlandenAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
             # _LOGGER.warning("self.data")
