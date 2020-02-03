@@ -2,7 +2,9 @@
 """
 Sensor component for Afvalinfo
 Author: Johnny Visser
-Current Version: 0.0.1  20200112 - Initial Release
+
+Version: 0.0.1  20200112 - Initial Release
+Current Version: 0.0.2  20200203 - Changed restafval to pbd
 
 Description:
 - Home Assistant sensor for Afvalinfo
@@ -11,17 +13,17 @@ Currently supported cities:
 - sliedrecht
 
 resources options:
-- gft       (afvalstroom 3)
+- gft       (afvalstroom 3) Groente, Fruit en Tuinafval 
 - textiel   (afvalstroom 7)
 - papier    (afvalstroom 87)
-- restafval (afvalstroom 92)
+- pbd       (afvalstroom 92) Plastic, Blik en Drinkpakken
 
 Example config:
 Configuration.yaml:
   sensor:
     - platform: afvalinfo
       resources:                       (at least 1 required)
-        - restafval
+        - pbd
       city: sliedrecht                 (required)
       postcode: 33361AB                (required)
       streetnumber: 1                  (required)
@@ -46,7 +48,7 @@ from .const.const import (
     SENSOR_TYPES,
 )
 
-from .city.sliedrecht import SliedrechtAfval
+from .location.sliedrecht import SliedrechtAfval
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv

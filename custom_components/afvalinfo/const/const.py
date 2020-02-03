@@ -2,7 +2,7 @@ import logging
 from datetime import timedelta
 
 SENSOR_TYPES = {
-    "restafval": ["Restafval", "mdi:recycle"],
+    "pbd": ["PBD", "mdi:recycle"],
     "papier": ["Oud Papier", "mdi:recycle"],
     "gft": ["GFT", "mdi:recycle"],
     "textiel": ["Textiel", "mdi:recycle"],
@@ -34,13 +34,6 @@ CONF_DATE_FORMAT = "dateformat"
 SENSOR_PREFIX = "Afvalinfo "
 ATTR_LAST_UPDATE = "Last update"
 ATTR_HIDDEN = "Hidden"
-
-SENSOR_TYPES = {
-    "restafval": ["Restafval", "mdi:recycle"],
-    "papier": ["Oud Papier", "mdi:recycle"],
-    "gft": ["GFT", "mdi:recycle"],
-    "textiel": ["Textiel", "mdi:recycle"],
-}
 
 _LOGGER = logging.getLogger(__name__)
 

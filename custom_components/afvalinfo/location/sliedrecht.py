@@ -46,8 +46,8 @@ class SliedrechtAfval(object):
             waste_dict["textiel"] = self.get_date_from_afvalstroom(ophaaldata, 7)
             # find afvalstroom/87 = papier
             waste_dict["papier"] = self.get_date_from_afvalstroom(ophaaldata, 87)
-            # find afvalstroom/92 = restafval
-            waste_dict["restafval"] = self.get_date_from_afvalstroom(ophaaldata, 92)
+            # find afvalstroom/92 = pbd
+            waste_dict["pbd"] = self.get_date_from_afvalstroom(ophaaldata, 92)
 
             return waste_dict
         except urllib.error.URLError as exc:
