@@ -10,7 +10,7 @@ Example config:
   sensor:
     - platform: afvalinfo
       resources:                       (at least 1 required)
-        - restafval
+        - pbd
       city: sliedrecht                 (required)
       postcode: 33361AB                (required)
       streetnumber: 1                  (required)
@@ -18,10 +18,10 @@ Example config:
 ```
 
 Above example has 1 resource, but here is a complete list of available waste fractions:
-- gft
+- gft                                  (groente, fruit, tuinafval)
 - textiel
 - papier
-- restafval
+- pbd                                  (plastic, blik, drinkpakken)
 
 ### Date format
 ```yaml
