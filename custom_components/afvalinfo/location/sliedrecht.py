@@ -1,7 +1,6 @@
 from ..const.const import (
     MONTH_TO_NUMBER,
     SENSOR_CITIES_TO_URL,
-    MIN_TIME_BETWEEN_UPDATES,
     _LOGGER,
 )
 from datetime import datetime

@@ -2,15 +2,18 @@ import logging
 from datetime import timedelta
 
 SENSOR_TYPES = {
-    "pbd": ["PBD", "mdi:recycle"],
-    "papier": ["Oud Papier", "mdi:recycle"],
     "gft": ["GFT", "mdi:recycle"],
+    "papier": ["Oud Papier", "mdi:recycle"],
+    "pbd": ["PBD", "mdi:recycle"],
+    "restafval": ["Restafval", "mdi:recycle"],
     "textiel": ["Textiel", "mdi:recycle"],
 }
 
 SENSOR_CITIES_TO_URL = {
     "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/", "{0}:{1}/"]
 }
+
+SENSOR_CITIES_TO_COMPANY_CODE = {"vianen": ["942abcf6-3775-400d-ae5d-7380d728b23c"]}
 
 MONTH_TO_NUMBER = {
     "jan": "01",

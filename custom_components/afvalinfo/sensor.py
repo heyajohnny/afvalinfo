@@ -4,7 +4,8 @@ Sensor component for Afvalinfo
 Author: Johnny Visser
 
 Version: 0.0.1  20200112 - Initial Release
-Current Version: 0.0.2  20200203 - Changed restafval to pbd
+Version: 0.0.2  20200203 - Changed restafval to pbd
+Current Version: 0.0.3  20200205 - Added cities in Vijfheerenlanden
 
 Description:
 - Home Assistant sensor for Afvalinfo

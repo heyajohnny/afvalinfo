@@ -1,6 +1,29 @@
 ## Home Assisant sensor component for Sliedrecht Afvalinfo
 
-Provides Home Assistant sensors for the Dutch waste collector Sliedrecht Afvalinfo using a scraper.
+Provides Home Assistant sensors for the Dutch waste collectors in 
+- ameide
+- everdingen
+- hagestein
+- hei- en boeicop
+- hoef en haag
+- kedichem
+- leerbroek
+- leerdam
+- lexmond
+- meerkerk
+- nieuwland
+- oosterwijk
+- ossenwaard
+- schoonrewoerd
+- tienhoven aan de lek
+- vianen
+- zijderveld
+- sliedrecht
+
+### Add cities
+The code is designed to add new cities relatively easy. 
+Please create an issue in https://github.com/heyajohnny/afvalinfo/issues to request a new city.
+If there are any problems with the component, don't hesitate to create an issue here: https://github.com/heyajohnny/afvalinfo/issues
 
 ### Install:
 - Copy the files in the /custom_components/afvalinfo/ folder to: [homeassistant]/config/custom_components/afvalinfo/
@@ -19,9 +42,12 @@ Example config:
 
 Above example has 1 resource, but here is a complete list of available waste fractions:
 - gft                                  (groente, fruit, tuinafval)
-- textiel
 - papier
 - pbd                                  (plastic, blik, drinkpakken)
+- restafval			       (not for Sliedrecht)
+- textiel
+
+
 
 ### Date format
 ```yaml
@@ -37,6 +63,3 @@ If you wish to remove the year and the dashes and want to show the name of the m
 21 Sep
 ```
 
-### Add cities
-The code is designed to add new cities relatively easy. Please create an issue in
-https://github.com/heyajohnny/afvalinfo/issues to request a new city.
