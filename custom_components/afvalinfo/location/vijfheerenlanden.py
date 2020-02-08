@@ -1,5 +1,5 @@
 from ..const.const import (
-    SENSOR_CITIES_TO_COMPANY_CODE,
+    SENSOR_LOCATIONS_TO_COMPANY_CODE,
     _LOGGER,
 )
 
@@ -20,8 +20,8 @@ class VijfheerenlandenAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
 
-            # Get companyCode for this city
-            companyCode = SENSOR_CITIES_TO_COMPANY_CODE[city]
+            # Get companyCode for this location
+            companyCode = SENSOR_LOCATIONS_TO_COMPANY_CODE["vijfheerenlanden"]
 
             #######################################################
             # First request: get uniqueId and community

@@ -9,11 +9,16 @@ SENSOR_TYPES = {
     "textiel": ["Textiel", "mdi:recycle"],
 }
 
-SENSOR_CITIES_TO_URL = {
-    "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/", "{0}:{1}/"]
+SENSOR_LOCATIONS_TO_URL = {
+    "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/", "{0}:{1}/"],
+    "echtsusteren": [
+        "http://echt-susteren.deafvalapp.nl/calendar/kalender_sessie.jsp?land=NL&postcode={0}&straatId=&huisnr={1}/"
+    ],
 }
 
-SENSOR_CITIES_TO_COMPANY_CODE = {"vianen": ["942abcf6-3775-400d-ae5d-7380d728b23c"]}
+SENSOR_LOCATIONS_TO_COMPANY_CODE = {
+    "vijfheerenlanden": ["942abcf6-3775-400d-ae5d-7380d728b23c"]
+}
 
 MONTH_TO_NUMBER = {
     "jan": "01",

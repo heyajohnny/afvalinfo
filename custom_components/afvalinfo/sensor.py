@@ -5,7 +5,8 @@ Author: Johnny Visser
 
 Version: 0.0.1  20200112 - Initial Release
 Version: 0.0.2  20200203 - Changed restafval to pbd
-Current Version: 0.0.3  20200205 - Added cities in Vijfheerenlanden
+Version: 0.0.3  20200205 - Added cities in Vijfheerenlanden
+Version: 0.1.0  20200208 - Bug fix vijfheerenlanden + preperation for echtsusteren
 
 Description:
 - Home Assistant sensor for Afvalinfo
@@ -25,17 +26,28 @@ Currently supported cities:
 - oosterwijk
 - ossenwaard
 - schoonrewoerd
+- sliedrecht                        (does not support: restafval)
 - tienhoven aan de lek
 - vianen
 - zijderveld
-- sliedrecht
+
+Almost supported cities (work in progress):
+- dieteren                          (does not support: textiel, papier)
+- echt                              (does not support: textiel, papier)
+- koningsbosch                      (does not support: textiel, papier)
+- maria hoop                        (does not support: textiel, papier)
+- nieuwstadt                        (does not support: textiel, papier)
+- pey                               (does not support: textiel, papier)
+- roosteren                         (does not support: textiel, papier)
+- sint joost                        (does not support: textiel, papier)
+- susteren                          (does not support: textiel, papier)
 
 resources options:
-- gft       (afvalstroom 3) Groente, Fruit en Tuinafval
-- textiel   (afvalstroom 7)
-- papier    (afvalstroom 87)
-- pbd       (afvalstroom 92) Plastic, Blik en Drinkpakken
-- restafval (not for sliedrecht)
+- gft                               (Groente, Fruit en Tuinafval)
+- textiel
+- papier
+- pbd                               (Plastic, Blik en Drinkpakken)
+- restafval
 
 Example config:
 Configuration.yaml:
@@ -53,8 +65,6 @@ import voluptuous as vol
 from datetime import datetime
 import urllib.error
 from .const.const import (
-    MONTH_TO_NUMBER,
-    SENSOR_CITIES_TO_URL,
     MIN_TIME_BETWEEN_UPDATES,
     _LOGGER,
     CONF_CITY,
@@ -69,6 +79,7 @@ from .const.const import (
 
 from .location.sliedrecht import SliedrechtAfval
 from .location.vijfheerenlanden import VijfheerenlandenAfval
+from .location.echtsusteren import EchtSusterenAfval
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv
@@ -156,6 +167,21 @@ class AfvalinfoData(object):
             self.data = VijfheerenlandenAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
+        if (
+            self.city == "dieteren"
+            or self.city == "echt"
+            or self.city == "koningsbosch"
+            or self.city == "maria hoop"
+            or self.city == "nieuwstadt"
+            or self.city == "pey"
+            or self.city == "roosteren"
+            or self.city == "sint joost"
+            or self.city == "susteren"
+        ):
+            self.data = EchtSusterenAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+
             # _LOGGER.warning("self.data")
             # _LOGGER.warning(self.data)
 
