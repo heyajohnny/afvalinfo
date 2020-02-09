@@ -5,13 +5,19 @@ Author: Johnny Visser
 
 Version: 0.0.1  20200112 - Initial Release
 Version: 0.0.2  20200203 - Changed restafval to pbd
-Version: 0.0.3  20200205 - Added cities in Vijfheerenlanden
+Version: 0.0.3  20200205 - Added locations in Vijfheerenlanden
 Version: 0.1.0  20200208 - Bug fix vijfheerenlanden + preperation for echtsusteren
+Version: 0.1.1  20200209 - added locations in Echt-Susteren
 
 Description:
 - Home Assistant sensor for Afvalinfo
 
 Currently supported cities:
+
+--Sliedrecht
+- sliedrecht                        (does not support: restafval)
+
+--Vijfheerenlanden
 - ameide
 - everdingen
 - hagestein
@@ -26,12 +32,11 @@ Currently supported cities:
 - oosterwijk
 - ossenwaard
 - schoonrewoerd
-- sliedrecht                        (does not support: restafval)
 - tienhoven aan de lek
 - vianen
 - zijderveld
 
-Almost supported cities (work in progress):
+---Echt-Susteren
 - dieteren                          (does not support: textiel, papier)
 - echt                              (does not support: textiel, papier)
 - koningsbosch                      (does not support: textiel, papier)
@@ -42,12 +47,14 @@ Almost supported cities (work in progress):
 - sint joost                        (does not support: textiel, papier)
 - susteren                          (does not support: textiel, papier)
 
+
 resources options:
 - gft                               (Groente, Fruit en Tuinafval)
 - textiel
 - papier
 - pbd                               (Plastic, Blik en Drinkpakken)
 - restafval
+
 
 Example config:
 Configuration.yaml:

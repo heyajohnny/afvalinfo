@@ -8,50 +8,64 @@ from datetime import timedelta
 from bs4 import BeautifulSoup
 import urllib.request
 import urllib.error
+import http.cookiejar
 
 
 class EchtSusterenAfval(object):
-    """def get_date_from_afvalstroom(self, ophaaldata, afvalstroom):
-        html = ophaaldata.find(href="/afvalstroom/" + str(afvalstroom))
-        date = html.i.string[3:]
-        day = date.split(" ")[0]
-        month = MONTH_TO_NUMBER[date.split(" ")[1]]
+    def get_date_from_afvaltype(self, ophaaldata, afvaltype):
+        # get index of the <a> element, which is just before our <p> element with the date
+        searchString = afvaltype + "</a>"
+        i = str(ophaaldata).index(searchString) + len(searchString)
+
+        # get the <p> element with the date in it
+        date = BeautifulSoup(str(ophaaldata)[i:], "html.parser").find(
+            "p", {"class": "date"}
+        )
+        # get the content of <p>
+        date = date.string
+
+        day = date.split(" ")[1]
+        month = MONTH_TO_NUMBER[date.split(" ")[2]]
         year = str(
             datetime.today().year
             if datetime.today().month <= int(month)
             else datetime.today().year + 1
         )
-        return year + "-" + month + "-" + day"""
+        return year + "-" + month + "-" + day
 
     def get_data(self, city, postcode, street_number):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
+            # Storing cookies in cj variable
+            cj = http.cookiejar.CookieJar()
+
+            # Defining a handler for later http operations with cookies(cj).
+            op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
+
+            # first call to save cookie
             url = SENSOR_LOCATIONS_TO_URL["echtsusteren"][0].format(
                 postcode, street_number
             )
-            req = urllib.request.Request(url=url)
-            f = urllib.request.urlopen(req)
-            html = f.read().decode("utf-8")
+            res = op.open(url)
 
+            # second call to fetch data
+            res = op.open(SENSOR_LOCATIONS_TO_URL["echtsusteren"][1])
+            html = res.read().decode("utf-8")
             soup = BeautifulSoup(html, "html.parser")
-            ophaaldata = soup.find({"class": "ophaaldagen"})
-            _LOGGER.error(ophaaldata)
-
-            #ToDo: Save cookie and make request to
-            #http://echt-susteren.deafvalapp.nl/calendar/kalender_dashboard.jsp
+            ophaaldata = soup.find("div", {"class": "ophaaldagen"})
 
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
-            # find afvalstroom/3 = gft
-            """waste_dict["gft"] = self.get_date_from_afvalstroom(ophaaldata, 3)
-            # find afvalstroom/7 = textiel
-            waste_dict["textiel"] = self.get_date_from_afvalstroom(ophaaldata, 7)
-            # find afvalstroom/87 = papier
-            waste_dict["papier"] = self.get_date_from_afvalstroom(ophaaldata, 87)
-            # find afvalstroom/92 = pbd
-            waste_dict["pbd"] = self.get_date_from_afvalstroom(ophaaldata, 92)
-            """
+            # find gft
+            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, "GFT")
+            # find pbd / pmd
+            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PMD")
+            # find restafval
+            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "Rest")
+
+            _LOGGER.warning(waste_dict)
+
             return waste_dict
         except urllib.error.URLError as exc:
             _LOGGER.error("Error occurred while fetching data: %r", exc.reason)

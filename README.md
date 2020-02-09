@@ -1,6 +1,10 @@
-## Home Assisant sensor component for waste collectors in the Netherlands
+## Home Assistant sensor component for waste collectors in the Netherlands
 
 Provides Home Assistant sensors for the Dutch waste collectors in
+--Sliedrecht
+- sliedrecht                        (does not support: restafval)
+
+--Vijfheerenlanden
 - ameide
 - everdingen
 - hagestein
@@ -15,12 +19,11 @@ Provides Home Assistant sensors for the Dutch waste collectors in
 - oosterwijk
 - ossenwaard
 - schoonrewoerd
-- sliedrecht                        (does not support: restafval)
 - tienhoven aan de lek
 - vianen
 - zijderveld
 
-Almost supported cities (work in progress):
+--Echt-Susteren
 - dieteren                          (does not support: textiel, papier)
 - echt                              (does not support: textiel, papier)
 - koningsbosch                      (does not support: textiel, papier)

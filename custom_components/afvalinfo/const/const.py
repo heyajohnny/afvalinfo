@@ -12,7 +12,8 @@ SENSOR_TYPES = {
 SENSOR_LOCATIONS_TO_URL = {
     "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/", "{0}:{1}/"],
     "echtsusteren": [
-        "http://echt-susteren.deafvalapp.nl/calendar/kalender_sessie.jsp?land=NL&postcode={0}&straatId=&huisnr={1}/"
+        "http://echt-susteren.deafvalapp.nl/calendar/kalender_sessie.jsp?land=NL&postcode={0}&straatId=&huisnr={1}&huisnrtoev=",
+        "http://echt-susteren.deafvalapp.nl/calendar/kalender_dashboard.jsp",
     ],
 }
 
@@ -33,6 +34,18 @@ MONTH_TO_NUMBER = {
     "okt": "10",
     "nov": "11",
     "dec": "12",
+    "januari": "01",
+    "februari": "02",
+    "maart": "03",
+    "april": "04",
+    "mei": "05",
+    "juni": "06",
+    "juli": "07",
+    "augustus": "08",
+    "september": "09",
+    "oktober": "10",
+    "november": "11",
+    "december": "12",
 }
 
 CONF_CITY = "city"
