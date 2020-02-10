@@ -1,8 +1,31 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 
 Provides Home Assistant sensors for the Dutch waste collectors in
---Sliedrecht
-- sliedrecht                        (does not support: restafval)
+
+--Echt-Susteren                     (does not support: textiel, papier)
+- dieteren
+- echt
+- koningsbosch
+- maria hoop
+- nieuwstadt
+- pey
+- roosteren
+- sint joost
+- susteren
+
+--Sliedrecht                        (does not support: restafval)
+- sliedrecht
+
+--Twente Milieu                     (does not support: textiel)
+- almelo
+- borne
+- enschede
+- haaksbergen
+- hengelo
+- hof van twente
+- losser
+- oldenzaal
+- wierden
 
 --Vijfheerenlanden
 - ameide
@@ -22,17 +45,6 @@ Provides Home Assistant sensors for the Dutch waste collectors in
 - tienhoven aan de lek
 - vianen
 - zijderveld
-
---Echt-Susteren
-- dieteren                          (does not support: textiel, papier)
-- echt                              (does not support: textiel, papier)
-- koningsbosch                      (does not support: textiel, papier)
-- maria hoop                        (does not support: textiel, papier)
-- nieuwstadt                        (does not support: textiel, papier)
-- pey                               (does not support: textiel, papier)
-- roosteren                         (does not support: textiel, papier)
-- sint joost                        (does not support: textiel, papier)
-- susteren                          (does not support: textiel, papier)
 
 ### Add cities
 The code is designed to add new cities relatively easy.

@@ -7,15 +7,38 @@ Version: 0.0.1  20200112 - Initial Release
 Version: 0.0.2  20200203 - Changed restafval to pbd
 Version: 0.0.3  20200205 - Added locations in Vijfheerenlanden
 Version: 0.1.0  20200208 - Bug fix vijfheerenlanden + preperation for echtsusteren
-Version: 0.1.1  20200209 - added locations in Echt-Susteren
+Version: 0.1.1  20200209 - Added locations in Echt-Susteren
+Version: 0.1.2  20200210 - Added locations for Twente Milieu
 
 Description:
 - Home Assistant sensor for Afvalinfo
 
 Currently supported cities:
 
---Sliedrecht
-- sliedrecht                        (does not support: restafval)
+--Echt-Susteren                     (does not support: textiel, papier)
+- dieteren
+- echt
+- koningsbosch
+- maria hoop
+- nieuwstadt
+- pey
+- roosteren
+- sint joost
+- susteren
+
+--Sliedrecht                        (does not support: restafval)
+- sliedrecht
+
+--Twente Milieu                     (does not support: textiel)
+- almelo
+- borne
+- enschede
+- haaksbergen
+- hengelo
+- hof van twente
+- losser
+- oldenzaal
+- wierden
 
 --Vijfheerenlanden
 - ameide
@@ -35,18 +58,6 @@ Currently supported cities:
 - tienhoven aan de lek
 - vianen
 - zijderveld
-
----Echt-Susteren
-- dieteren                          (does not support: textiel, papier)
-- echt                              (does not support: textiel, papier)
-- koningsbosch                      (does not support: textiel, papier)
-- maria hoop                        (does not support: textiel, papier)
-- nieuwstadt                        (does not support: textiel, papier)
-- pey                               (does not support: textiel, papier)
-- roosteren                         (does not support: textiel, papier)
-- sint joost                        (does not support: textiel, papier)
-- susteren                          (does not support: textiel, papier)
-
 
 resources options:
 - gft                               (Groente, Fruit en Tuinafval)
@@ -87,6 +98,7 @@ from .const.const import (
 from .location.sliedrecht import SliedrechtAfval
 from .location.vijfheerenlanden import VijfheerenlandenAfval
 from .location.echtsusteren import EchtSusterenAfval
+from .location.twentemilieu import TwentemilieuAfval
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv
@@ -186,6 +198,20 @@ class AfvalinfoData(object):
             or self.city == "susteren"
         ):
             self.data = EchtSusterenAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        if (
+            self.city == "almelo"
+            or self.city == "borne"
+            or self.city == "enschede"
+            or self.city == "haaksbergen"
+            or self.city == "hengelo"
+            or self.city == "hof van twente"
+            or self.city == "losser"
+            or self.city == "oldenzaal"
+            or self.city == "wierden"
+        ):
+            self.data = TwentemilieuAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
 
