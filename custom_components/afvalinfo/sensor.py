@@ -9,6 +9,7 @@ Version: 0.0.3  20200205 - Added locations in Vijfheerenlanden
 Version: 0.1.0  20200208 - Bug fix vijfheerenlanden + preperation for echtsusteren
 Version: 0.1.1  20200209 - Added locations in Echt-Susteren
 Version: 0.1.2  20200210 - Added locations for Twente Milieu
+Version: 0.1.3  20200212 - Added option to limit the days to look into the future
 
 Description:
 - Home Assistant sensor for Afvalinfo
@@ -73,14 +74,16 @@ Configuration.yaml:
     - platform: afvalinfo
       resources:                       (at least 1 required)
         - pbd
-      city: sliedrecht                 (required)
-      postcode: 33361AB                (required)
-      streetnumber: 1                  (required)
-      dateformat: '%d-%m-%Y'           (optional)
+      city: sliedrecht                 (required, default = sliedrecht)
+      postcode: 33361AB                (required, default = 3361AB)
+      streetnumber: 1                  (required, default = 1)
+      dateformat: '%d-%m-%Y'           (optional, default = %d-%m-%Y) day-month-year
+      timespanindays: 365              (optional, default = 365) number of days to look into the future
 """
 
 import voluptuous as vol
-from datetime import datetime
+from datetime import datetime, date
+from dateutil.relativedelta import relativedelta
 import urllib.error
 from .const.const import (
     MIN_TIME_BETWEEN_UPDATES,
@@ -89,6 +92,7 @@ from .const.const import (
     CONF_POSTCODE,
     CONF_STREET_NUMBER,
     CONF_DATE_FORMAT,
+    CONF_TIMESPAN_IN_DAYS,
     SENSOR_PREFIX,
     ATTR_LAST_UPDATE,
     ATTR_HIDDEN,
@@ -116,7 +120,8 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Required(CONF_CITY, default="sliedrecht"): cv.string,
         vol.Required(CONF_POSTCODE, default="3361AB"): cv.string,
         vol.Required(CONF_STREET_NUMBER, default="1"): cv.string,
-        vol.Optional(CONF_DATE_FORMAT, default="%d-%m-%Y"): cv.string,
+        vol.Optional(CONF_DATE_FORMAT, default = "%d-%m-%Y"): cv.string,
+        vol.Optional(CONF_TIMESPAN_IN_DAYS, default = "365"): cv.string,
     }
 )
 
@@ -128,6 +133,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     postcode = config.get(CONF_POSTCODE)
     street_number = config.get(CONF_STREET_NUMBER)
     date_format = config.get(CONF_DATE_FORMAT)
+    timespan_in_days = config.get(CONF_TIMESPAN_IN_DAYS)
 
     try:
         data = AfvalinfoData(city, postcode, street_number)
@@ -143,7 +149,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
         if sensor_type not in SENSOR_TYPES:
             SENSOR_TYPES[sensor_type] = [sensor_type.title(), "", "mdi:recycle"]
 
-        entities.append(AfvalinfoSensor(data, sensor_type, date_format))
+        entities.append(AfvalinfoSensor(data, sensor_type, date_format, timespan_in_days))
 
     add_entities(entities)
 
@@ -220,10 +226,11 @@ class AfvalinfoData(object):
 
 
 class AfvalinfoSensor(Entity):
-    def __init__(self, data, sensor_type, date_format):
+    def __init__(self, data, sensor_type, date_format, timespan_in_days):
         self.data = data
-        self.date_format = date_format
         self.type = sensor_type
+        self.date_format = date_format
+        self.timespan_in_days = timespan_in_days
         self._name = SENSOR_PREFIX + SENSOR_TYPES[sensor_type][0]
         self._icon = SENSOR_TYPES[sensor_type][1]
         self._hidden = False
@@ -258,7 +265,7 @@ class AfvalinfoSensor(Entity):
         try:
             if waste_data:
                 if self.type in waste_data:
-                    today = datetime.today()
+                    today = date.today()
 
                     collection_date = datetime.strptime(
                         waste_data[self.type], "%Y-%m-%d"
@@ -267,7 +274,12 @@ class AfvalinfoSensor(Entity):
                     if collection_date:
                         # Set the values of the sensor
                         self._last_update = today.strftime("%d-%m-%Y %H:%M")
-                        self._state = collection_date.strftime(self.date_format)
+
+                        # Only show the value if the date is lesser than or equal to (today + timespan_in_days)
+                        if collection_date <= today + relativedelta(days=int(self.timespan_in_days)):
+                            self._state = collection_date.strftime(self.date_format)
+                        else:
+                            self._hidden = True
                     else:
                         raise ValueError()
                 else:
