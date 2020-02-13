@@ -46,6 +46,20 @@ Provides Home Assistant sensors for the Dutch waste collectors in:
 - vianen
 - zijderveld
 
+Not yet supported cities:
+
+--Westland                          (does not support: pbd, textiel)
+- de lier
+- s-gravenzande
+- honselersdijk
+- kwintsheul
+- maasdijk
+- monster
+- naaldwijk
+- poeldijk
+- ter heijde
+- wateringen
+
 ### Add cities
 The code is designed to add new cities relatively easy.
 Please create an issue in https://github.com/heyajohnny/afvalinfo/issues to request a new city.

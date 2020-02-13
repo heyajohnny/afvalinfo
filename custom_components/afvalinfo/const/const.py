@@ -10,11 +10,20 @@ SENSOR_TYPES = {
 }
 
 SENSOR_LOCATIONS_TO_URL = {
-    "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/", "{0}:{1}/"],
     "echtsusteren": [
         "http://echt-susteren.deafvalapp.nl/calendar/kalender_sessie.jsp?land=NL&postcode={0}&straatId=&huisnr={1}&huisnrtoev=",
         "http://echt-susteren.deafvalapp.nl/calendar/kalender_dashboard.jsp",
     ],
+    "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/", "{0}:{1}/"],
+    "twentemilieu": [
+        "https://wasteapi.2go-mobile.com/api/FetchAdress",
+        "https://wasteapi.2go-mobile.com/api/GetCalendar"
+    ],
+    "vijfheerenlanden": [
+        "https://wasteapi.ximmio.com/api/FetchAdress",
+        "https://wasteapi.ximmio.com/api/GetCalendar"
+    ],
+    "westland": ["ToDo"]
 }
 
 SENSOR_LOCATIONS_TO_COMPANY_CODE = {

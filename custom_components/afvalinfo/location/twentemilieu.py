@@ -1,5 +1,6 @@
 from ..const.const import (
     SENSOR_LOCATIONS_TO_COMPANY_CODE,
+    SENSOR_LOCATIONS_TO_URL,
     _LOGGER,
 )
 
@@ -25,7 +26,7 @@ class TwentemilieuAfval(object):
 
             #######################################################
             # First request: get uniqueId and community
-            API_ENDPOINT = "https://wasteapi.2go-mobile.com/api/FetchAdress"
+            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["twentemilieu"][0]
 
             data = {
                 "postCode": postcode,
@@ -42,7 +43,7 @@ class TwentemilieuAfval(object):
 
             #######################################################
             # Secpnd request: get the dates
-            API_ENDPOINT = "https://wasteapi.2go-mobile.com/api/GetCalendar"
+            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["twentemilieu"][1]
 
             today = date.today()
             todayNextYear = today + relativedelta(years=1)

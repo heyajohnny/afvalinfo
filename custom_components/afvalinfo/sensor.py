@@ -10,6 +10,7 @@ Version: 0.1.0  20200208 - Bug fix vijfheerenlanden + preperation for echtsuster
 Version: 0.1.1  20200209 - Added locations in Echt-Susteren
 Version: 0.1.2  20200210 - Added locations for Twente Milieu
 Version: 0.1.3  20200212 - Added option to limit the days to look into the future
+Version: 0.1.4  20200213 - Small refactoring of some code + preperation for westland
 
 Description:
 - Home Assistant sensor for Afvalinfo
@@ -60,6 +61,21 @@ Currently supported cities:
 - vianen
 - zijderveld
 
+
+Not yet supported cities:
+
+--Westland                          (does not support: pbd, textiel)
+- de lier
+- s-gravenzande
+- honselersdijk
+- kwintsheul
+- maasdijk
+- monster
+- naaldwijk
+- poeldijk
+- ter heijde
+- wateringen
+
 resources options:
 - gft                               (Groente, Fruit en Tuinafval)
 - textiel
@@ -103,6 +119,7 @@ from .location.sliedrecht import SliedrechtAfval
 from .location.vijfheerenlanden import VijfheerenlandenAfval
 from .location.echtsusteren import EchtSusterenAfval
 from .location.twentemilieu import TwentemilieuAfval
+from .location.westland import WestlandAfval
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv
@@ -218,6 +235,21 @@ class AfvalinfoData(object):
             or self.city == "wierden"
         ):
             self.data = TwentemilieuAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        if (
+            self.city == "de lier"
+            or self.city == "s-gravenzande"
+            or self.city == "honselersdijk"
+            or self.city == "kwintsheul"
+            or self.city == "maasdijk"
+            or self.city == "monster"
+            or self.city == "naaldwijk"
+            or self.city == "poeldijk"
+            or self.city == "ter heijde"
+            or self.city == "wateringen"
+        ):
+            self.data = WestlandAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
 

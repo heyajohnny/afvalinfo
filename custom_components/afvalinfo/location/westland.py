@@ -13,7 +13,7 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 
 
-class VijfheerenlandenAfval(object):
+class WestlandAfval(object):
     def get_data(self, city, postcode, street_number):
         _LOGGER.debug("Updating Waste collection dates")
 
