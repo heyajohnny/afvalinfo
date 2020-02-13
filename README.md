@@ -46,8 +46,6 @@ Provides Home Assistant sensors for the Dutch waste collectors in:
 - vianen
 - zijderveld
 
-Not yet supported cities:
-
 --Westland                          (does not support: pbd, textiel)
 - de lier
 - s-gravenzande

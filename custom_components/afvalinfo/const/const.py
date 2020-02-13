@@ -23,7 +23,7 @@ SENSOR_LOCATIONS_TO_URL = {
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"
     ],
-    "westland": ["ToDo"]
+    "westland": ["https://huisvuilkalender.gemeentewestland.nl/huisvuilkalender/Huisvuilkalender/get-huisvuilkalender-ajax"]
 }
 
 SENSOR_LOCATIONS_TO_COMPANY_CODE = {
@@ -31,6 +31,7 @@ SENSOR_LOCATIONS_TO_COMPANY_CODE = {
     "twentemilieu": ["8d97bb56-5afd-4cbc-a651-b4f7314264b4"],
     # ToDo: "hellendoorn": ["24434f5b-7244-412b-9306-3a2bd1e22bc1"],
     # ToDo: "acv": ["f8e2844a-095e-48f9-9f98-71fceb51d2c3"],
+    #ACV = Ede, Renkum, Renswoude, Veenendaal, Wageningen
 }
 
 MONTH_TO_NUMBER = {

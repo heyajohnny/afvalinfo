@@ -42,7 +42,7 @@ class TwentemilieuAfval(object):
             community = r.json()["dataList"][0]["Community"]
 
             #######################################################
-            # Secpnd request: get the dates
+            # Second request: get the dates
             API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["twentemilieu"][1]
 
             today = date.today()

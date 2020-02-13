@@ -6,11 +6,12 @@ Author: Johnny Visser
 Version: 0.0.1  20200112 - Initial Release
 Version: 0.0.2  20200203 - Changed restafval to pbd
 Version: 0.0.3  20200205 - Added locations in Vijfheerenlanden
-Version: 0.1.0  20200208 - Bug fix vijfheerenlanden + preperation for echtsusteren
+Version: 0.1.0  20200208 - Bug fix vijfheerenlanden + preperation for Echt-Susteren
 Version: 0.1.1  20200209 - Added locations in Echt-Susteren
 Version: 0.1.2  20200210 - Added locations for Twente Milieu
 Version: 0.1.3  20200212 - Added option to limit the days to look into the future
-Version: 0.1.4  20200213 - Small refactoring of some code + preperation for westland
+Version: 0.1.4  20200213 - Small refactoring of some code + preperation for Westland
+Version: 0.1.5  20200213 - Added locations for Westland
 
 Description:
 - Home Assistant sensor for Afvalinfo
@@ -61,9 +62,6 @@ Currently supported cities:
 - vianen
 - zijderveld
 
-
-Not yet supported cities:
-
 --Westland                          (does not support: pbd, textiel)
 - de lier
 - s-gravenzande
@@ -78,10 +76,10 @@ Not yet supported cities:
 
 resources options:
 - gft                               (Groente, Fruit en Tuinafval)
-- textiel
 - papier
 - pbd                               (Plastic, Blik en Drinkpakken)
 - restafval
+- textiel
 
 
 Example config:
