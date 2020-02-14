@@ -26,10 +26,13 @@ class WestlandAfval(object):
         # get the value of the span
         date = date.string
 
-        day = date.split(" ")[1]
-        month = MONTH_TO_NUMBER[date.split(" ")[2]]
-        year = date.split(" ")[3]
-        return year + "-" + month + "-" + day
+        try:
+            day = date.split(" ")[1]
+            month = MONTH_TO_NUMBER[date.split(" ")[2]]
+            year = date.split(" ")[3]
+            return year + "-" + month + "-" + day
+        except:
+            return ""
 
     def get_data(self, city, postcode, street_number):
         _LOGGER.debug("Updating Waste collection dates")
