@@ -67,10 +67,10 @@ CONF_STREET_NUMBER = "streetnumber"
 CONF_DATE_FORMAT = "dateformat"
 CONF_TIMESPAN_IN_DAYS = "timespanindays"
 SENSOR_PREFIX = "Afvalinfo "
-ATTR_LAST_UPDATE = "Last update"
-ATTR_HIDDEN = "Hidden"
-ATTR_IS_COLLECTION_TODAY = "Is collection today?"
-ATTR_DAYS_UNTIL_COLLECTION_DATE = "Days until collection date"
+ATTR_LAST_UPDATE = "last_update"
+ATTR_HIDDEN = "hidden"
+ATTR_IS_COLLECTION_DATE_TODAY = "is_collection_date_today"
+ATTR_DAYS_UNTIL_COLLECTION_DATE = "days_until_collection_date"
 
 _LOGGER = logging.getLogger(__name__)
 

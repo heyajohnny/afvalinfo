@@ -15,6 +15,7 @@ Version: 0.1.5  20200213 - Added locations for Westland
 Version: 0.1.6  20200214 - Bug fix for empty values in Westland
 Version: 0.2.0  20200216 - Bug fix for multiple spaces in Westland (and all the other locations)
                            + extra attributes: Is collection today? and Days until collection
+Version: 0.2.1  20200216 - Changed some attribute naming
 """
 
 import voluptuous as vol
@@ -33,7 +34,7 @@ from .const.const import (
     ATTR_LAST_UPDATE,
     ATTR_HIDDEN,
     ATTR_DAYS_UNTIL_COLLECTION_DATE,
-    ATTR_IS_COLLECTION_TODAY,
+    ATTR_IS_COLLECTION_DATE_TODAY,
     SENSOR_TYPES,
 )
 
@@ -191,7 +192,7 @@ class AfvalinfoSensor(Entity):
         self._state = None
         self._last_update = None
         self._days_until_collection_date = None
-        self._is_collection_today = False
+        self._is_collection_date_today = False
         self._unit = ""
 
     @property
@@ -208,7 +209,7 @@ class AfvalinfoSensor(Entity):
 
     @property
     def device_state_attributes(self):
-        return {ATTR_LAST_UPDATE: self._last_update, ATTR_HIDDEN: self._hidden, ATTR_DAYS_UNTIL_COLLECTION_DATE: self._days_until_collection_date, ATTR_IS_COLLECTION_TODAY: self._is_collection_today}
+        return {ATTR_LAST_UPDATE: self._last_update, ATTR_HIDDEN: self._hidden, ATTR_DAYS_UNTIL_COLLECTION_DATE: self._days_until_collection_date, ATTR_IS_COLLECTION_DATE_TODAY: self._is_collection_date_today}
 
     @property
     def unit_of_measurement(self):
@@ -232,7 +233,7 @@ class AfvalinfoSensor(Entity):
                         self._last_update = today.strftime("%d-%m-%Y %H:%M")
 
                         # Is the collection date today?
-                        self._is_collection_today = today == collection_date
+                        self._is_collection_date_today = today == collection_date
 
                         # Days until collection date
                         delta = collection_date - today

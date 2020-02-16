@@ -106,6 +106,6 @@ dateformat: 2
 
 ### Attributes
 There are 3 important attributes:
--Days until collection date.    This will return the number of days between today and the collection date.
--Is collection today.           This will return true if the collection date is today and false if the collection date is not today.
--Hidden.                        This will return true on error or if the date is outside of range of the 'timespanindays' value. On any other occasion it will return true.
+-days_until_collection_date.    This will return the number of days between today and the collection date.
+-is_collection_date_today.      This will return true if the collection date is today and false if the collection date is not today.
+-hidden.                        This will return true on error or if the date is outside of range of the 'timespanindays' value. On any other occasion it will return true.
