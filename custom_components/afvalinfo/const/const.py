@@ -69,6 +69,8 @@ CONF_TIMESPAN_IN_DAYS = "timespanindays"
 SENSOR_PREFIX = "Afvalinfo "
 ATTR_LAST_UPDATE = "Last update"
 ATTR_HIDDEN = "Hidden"
+ATTR_IS_COLLECTION_TODAY = "Is collection today?"
+ATTR_DAYS_UNTIL_COLLECTION_DATE = "Days until collection date"
 
 _LOGGER = logging.getLogger(__name__)
 

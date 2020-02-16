@@ -24,8 +24,8 @@ class EchtSusterenAfval(object):
         # get the content of <p>
         date = date.string
 
-        day = date.split(" ")[1]
-        month = MONTH_TO_NUMBER[date.split(" ")[2]]
+        day = date.split()[1]
+        month = MONTH_TO_NUMBER[date.split()[2]]
         year = str(
             datetime.today().year
             if datetime.today().month <= int(month)

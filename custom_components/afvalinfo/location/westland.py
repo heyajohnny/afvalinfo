@@ -27,9 +27,9 @@ class WestlandAfval(object):
         date = date.string
 
         try:
-            day = date.split(" ")[1]
-            month = MONTH_TO_NUMBER[date.split(" ")[2]]
-            year = date.split(" ")[3]
+            day = date.split()[1]
+            month = MONTH_TO_NUMBER[date.split()[2]]
+            year = date.split()[3]
             return year + "-" + month + "-" + day
         except:
             return ""

@@ -86,8 +86,6 @@ Above example has 1 resource, but here is a complete list of available waste fra
 - restafval
 - textiel
 
-
-
 ### Date format
 ```yaml
 dateformat:
@@ -105,3 +103,9 @@ If you only want to see data 2 days ahead of today. You can do it using the time
 ```yaml
 dateformat: 2
 ```
+
+### Attributes
+There are 3 important attributes:
+-Days until collection date.    This will return the number of days between today and the collection date.
+-Is collection today.           This will return true if the collection date is today and false if the collection date is not today.
+-Hidden.                        This will return true on error or if the date is outside of range of the 'timespanindays' value. On any other occasion it will return true.

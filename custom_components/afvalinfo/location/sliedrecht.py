@@ -14,8 +14,8 @@ class SliedrechtAfval(object):
     def get_date_from_afvalstroom(self, ophaaldata, afvalstroom):
         html = ophaaldata.find(href="/afvalstroom/" + str(afvalstroom))
         date = html.i.string[3:]
-        day = date.split(" ")[0]
-        month = MONTH_TO_NUMBER[date.split(" ")[1]]
+        day = date.split()[0]
+        month = MONTH_TO_NUMBER[date.split()[1]]
         year = str(
             datetime.today().year
             if datetime.today().month <= int(month)
