@@ -2,61 +2,28 @@
 
 Provides Home Assistant sensors for the Dutch waste collectors in:
 
---Echt-Susteren                     (does not support: textiel, papier)
-- dieteren
-- echt
-- koningsbosch
-- maria hoop
-- nieuwstadt
-- pey
-- roosteren
-- sint joost
-- susteren
+--Boekel, Boxmeer, Buren, Cuijk, Culemborg, Echt-Susteren, Geldermalsen, Grave, Helmond
+(does not support: textiel and in some places also not papier)
+- asch, beers, beugen, beusichem, boekel, boxmeer, buren, buurmalsen, cuijk, culemborg, dieteren,
+echt, eck en wiel, erichem, geldermalsen, grave, groeningen, haps, helmond, holthees, ingen,
+kapel-avezaath, katwijk, kerk-avezaath, koningsbosch, lienden, linden, maashees, maria hoop, maurik,
+nieuwstadt, oeffelt, ommeren, overloon, pey, ravenswaaij, rijkevoort, rijswijk, roosteren, sambeek,
+sint agatha, sint joost, susteren, vianen, vierlingsbeek, vortum-mullem, zoelen, zoelmond
 
 --Sliedrecht                        (does not support: restafval)
 - sliedrecht
 
 --Twente Milieu                     (does not support: textiel)
-- almelo
-- borne
-- enschede
-- haaksbergen
-- hengelo
-- hof van twente
-- losser
-- oldenzaal
-- wierden
+- almelo, borne, enschede, haaksbergen, hengelo, hof van twente, losser, oldenzaal, wierden
 
 --Vijfheerenlanden
-- ameide
-- everdingen
-- hagestein
-- hei- en boeicop
-- hoef en haag
-- kedichem
-- leerbroek
-- leerdam
-- lexmond
-- meerkerk
-- nieuwland
-- oosterwijk
-- ossenwaard
-- schoonrewoerd
-- tienhoven aan de lek
-- vianen
-- zijderveld
+- ameide, everdingen, hagestein, hei- en boeicop, hoef en haag, kedichem, leerbroek, leerdam,
+lexmond, meerkerk, nieuwland, oosterwijk, ossenwaard, schoonrewoerd, tienhoven aan de lek,
+vianen, zijderveld
 
 --Westland                          (does not support: pbd, textiel)
-- de lier
-- s-gravenzande
-- honselersdijk
-- kwintsheul
-- maasdijk
-- monster
-- naaldwijk
-- poeldijk
-- ter heijde
-- wateringen
+- de lier, s-gravenzande, honselersdijk, kwintsheul, maasdijk, monster, naaldwijk, poeldijk,
+ter heijde, wateringen
 
 ### Add cities
 The code is designed to add new cities relatively easy.

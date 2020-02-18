@@ -16,6 +16,7 @@ Version: 0.1.6  20200214 - Bug fix for empty values in Westland
 Version: 0.2.0  20200216 - Bug fix for multiple spaces in Westland (and all the other locations)
                            + extra attributes: Is collection today? and Days until collection
 Version: 0.2.1  20200216 - Changed some attribute naming
+Version: 0.2.2  20200218 - Added locations for DeAfvalApp
 """
 
 import voluptuous as vol
@@ -40,7 +41,7 @@ from .const.const import (
 
 from .location.sliedrecht import SliedrechtAfval
 from .location.vijfheerenlanden import VijfheerenlandenAfval
-from .location.echtsusteren import EchtSusterenAfval
+from .location.deafvalapp import DeAfvalAppAfval
 from .location.twentemilieu import TwentemilieuAfval
 from .location.westland import WestlandAfval
 
@@ -133,17 +134,69 @@ class AfvalinfoData(object):
                 self.city, self.postcode, self.street_number
             )
         if (
-            self.city == "dieteren"
+            self.city == "asch"
+            or self.city == "beers"
+            or self.city == "beugen"
+            or self.city == "beusichem"
+            or self.city == "boekel"
+            or self.city == "boxmeer"
+            or self.city == "buren"
+            or self.city == "buurmalsen"
+            or self.city == "cuijk"
+            or self.city == "culemborg"
+            or self.city == "dieteren"
             or self.city == "echt"
+            or self.city == "eck en wiel"
+            or self.city == "erichem"
+            or self.city == "geldermalsen"
+            or self.city == "grave"
+            or self.city == "groeningen"
+            or self.city == "haps"
+            or self.city == "helmond"
+            or self.city == "holthees"
+            or self.city == "ingen"
+            or self.city == "kapel-avezaath"
+            or self.city == "katwijk"
+            or self.city == "kerk-avezaath"
             or self.city == "koningsbosch"
+            or self.city == "lienden"
+            or self.city == "linden"
+            or self.city == "maashees"
             or self.city == "maria hoop"
+            or self.city == "maurik"
             or self.city == "nieuwstadt"
+            or self.city == "oeffelt"
+            or self.city == "ommeren"
+            or self.city == "overloon"
             or self.city == "pey"
+            or self.city == "ravenswaaij"
+            or self.city == "rijkevoort"
+            or self.city == "rijswijk"
             or self.city == "roosteren"
+            or self.city == "sambeek"
+            or self.city == "sint agatha"
             or self.city == "sint joost"
             or self.city == "susteren"
+            or self.city == "vianen"
+            or self.city == "vierlingsbeek"
+            or self.city == "vortum-mullem"
+            or self.city == "zoelen"
+            or self.city == "zoelmond"
+
+            """ToDo: add the cities from the gemeenten
+            Lingewaal
+            Maasdriel
+            Mill en Sint Hubert
+            Neder-Betuwe
+            Neerijnen
+            Sint Anthonis
+            Son en Breugel
+            Terneuzen
+            Tiel
+            West Maas en Waal
+            Zaltbommel"""
         ):
-            self.data = EchtSusterenAfval().get_data(
+            self.data = DeAfvalAppAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         if (

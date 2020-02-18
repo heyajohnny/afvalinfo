@@ -11,27 +11,30 @@ import urllib.error
 import http.cookiejar
 
 
-class EchtSusterenAfval(object):
+class DeAfvalAppAfval(object):
     def get_date_from_afvaltype(self, ophaaldata, afvaltype):
-        # get index of the <a> element, which is just before our <p> element with the date
-        searchString = afvaltype + "</a>"
-        i = str(ophaaldata).index(searchString) + len(searchString)
+        try:
+            # get index of the <a> element, which is just before our <p> element with the date
+            searchString = "=" + afvaltype + "\">"
+            i = str(ophaaldata).index(searchString) + len(searchString)
 
-        # get the <p> element with the date in it
-        date = BeautifulSoup(str(ophaaldata)[i:], "html.parser").find(
-            "p", {"class": "date"}
-        )
-        # get the content of <p>
-        date = date.string
+            # get the <p> element with the date in it
+            date = BeautifulSoup(str(ophaaldata)[i:], "html.parser").find(
+                "p", {"class": "date"}
+            )
+            # get the content of <p>
+            date = date.string
 
-        day = date.split()[1]
-        month = MONTH_TO_NUMBER[date.split()[2]]
-        year = str(
-            datetime.today().year
-            if datetime.today().month <= int(month)
-            else datetime.today().year + 1
-        )
-        return year + "-" + month + "-" + day
+            day = date.split()[1]
+            month = MONTH_TO_NUMBER[date.split()[2]]
+            year = str(
+                datetime.today().year
+                if datetime.today().month <= int(month)
+                else datetime.today().year + 1
+            )
+            return year + "-" + month + "-" + day
+        except:
+            return ""
 
     def get_data(self, city, postcode, street_number):
         _LOGGER.debug("Updating Waste collection dates")
@@ -44,13 +47,13 @@ class EchtSusterenAfval(object):
             op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
 
             # first call to save cookie
-            url = SENSOR_LOCATIONS_TO_URL["echtsusteren"][0].format(
+            url = SENSOR_LOCATIONS_TO_URL["deafvalapp"][0].format(
                 postcode, street_number
             )
             res = op.open(url)
 
             # second call to fetch data
-            res = op.open(SENSOR_LOCATIONS_TO_URL["echtsusteren"][1])
+            res = op.open(SENSOR_LOCATIONS_TO_URL["deafvalapp"][1])
             html = res.read().decode("utf-8")
             soup = BeautifulSoup(html, "html.parser")
             ophaaldata = soup.find("div", {"class": "ophaaldagen"})
@@ -59,12 +62,12 @@ class EchtSusterenAfval(object):
             waste_dict = {}
             # find gft
             waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, "GFT")
+            # find papiers
+            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, "PAPIER")
             # find pbd / pmd
             waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PMD")
             # find restafval
-            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "Rest")
-
-            _LOGGER.warning(waste_dict)
+            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "REST")
 
             return waste_dict
         except urllib.error.URLError as exc:

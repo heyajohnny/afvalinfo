@@ -10,9 +10,9 @@ SENSOR_TYPES = {
 }
 
 SENSOR_LOCATIONS_TO_URL = {
-    "echtsusteren": [
-        "http://echt-susteren.deafvalapp.nl/calendar/kalender_sessie.jsp?land=NL&postcode={0}&straatId=&huisnr={1}&huisnrtoev=",
-        "http://echt-susteren.deafvalapp.nl/calendar/kalender_dashboard.jsp",
+    "deafvalapp": [
+        "http://www.deafvalapp.nl/calendar/kalender_sessie.jsp?land=NL&postcode={0}&straatId=&huisnr={1}&huisnrtoev=",
+        "http://www.deafvalapp.nl/calendar/kalender_dashboard.jsp",
     ],
     "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/", "{0}:{1}/"],
     "twentemilieu": [
