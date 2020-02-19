@@ -2,13 +2,8 @@
 
 Provides Home Assistant sensors for the Dutch waste collectors in:
 
---Boekel, Boxmeer, Buren, Cuijk, Culemborg, Echt-Susteren, Geldermalsen, Grave, Helmond
-(does not support: textiel and in some places also not papier)
-- asch, beers, beugen, beusichem, boekel, boxmeer, buren, buurmalsen, cuijk, culemborg, dieteren,
-echt, eck en wiel, erichem, geldermalsen, grave, groeningen, haps, helmond, holthees, ingen,
-kapel-avezaath, katwijk, kerk-avezaath, koningsbosch, lienden, linden, maashees, maria hoop, maurik,
-nieuwstadt, oeffelt, ommeren, overloon, pey, ravenswaaij, rijkevoort, rijswijk, roosteren, sambeek,
-sint agatha, sint joost, susteren, vianen, vierlingsbeek, vortum-mullem, zoelen, zoelmond
+--Boekel, Boxmeer, Buren, Cuijk, Culemborg, Echt-Susteren, Geldermalsen, Grave, Helmond, Lingewaal, Maasdriel, Mill en Sint Hubert, Neder-Betuwe, Neerijnen, Sint Anthonis, Son en Breugel, Terneuzen, Tiel, West Maas en Waal, Zaltbommel (does not support: textiel and in some places also not papier)
+- aalst, alem, alphen, altforst, ammerzoden, appeltern, asperen, asch, axel, beers, beneden-leeuwen, beugen, beusichem, biervliet, boekel, boven-leeuwen, boxmeer, brakel, bruchem, buren, buurmalsen, cuijk, culemborg, delwijnen, dieteren, dodewaard, dreumel, echt, echteld, eck en wiel, erichem, est, gameren, geldermalsen, grave, groeningen, haaften, haps, hedel, heerewaarden, heesselt, hellouw, helmond, herwijnen, heukelem, hoek, hoenzadriel, holthees, hurwenen, ijzendoorn, ingen, kapel-avezaath, katwijk, kerk-avezaath, kerkdriel, kerkwijk, koewacht, koningsbosch, landhorst, langenboom, ledeacker, lienden, linden, maasbommel, maashees, maria hoop, maurik, mill, nederhemert-noord, nederhemert-zuid, neerijnen, nieuwaal, nieuwstadt, ochten, oeffelt, ommeren, ophemert, opheusden, opijnen, oploo, overloon, overslag, pey, philippine, poederoijen, ravenswaaij, rijkevoort, rijswijk, roosteren, rossum, sambeek, sas van gent, sint agatha, sint anthonis, sint hubert, sint joost, sluiskil, son en breugel, spijk, spui, stevensbeek, susteren, terneuzen, tiel, tuil, varik, velddriel, vierlingsbeek, vortum-mullem, vuren, waardenburg, wadenoijen, wamel, wanroij, well, wellseind, westerbeek, westdorpe, wilbertoord, zaamslag, zaltbommel, zoelen, zoelmond, zuiddorpe, zuilichem
 
 --Sliedrecht                        (does not support: restafval)
 - sliedrecht

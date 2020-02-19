@@ -16,7 +16,8 @@ Version: 0.1.6  20200214 - Bug fix for empty values in Westland
 Version: 0.2.0  20200216 - Bug fix for multiple spaces in Westland (and all the other locations)
                            + extra attributes: Is collection today? and Days until collection
 Version: 0.2.1  20200216 - Changed some attribute naming
-Version: 0.2.2  20200218 - Added locations for DeAfvalApp
+Version: 0.2.2  20200218 - Added some locations for DeAfvalApp
+Version: 0.2.3  20200219 - Refactor + added all the locations for DeAfvalApp
 """
 
 import voluptuous as vol
@@ -70,10 +71,10 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 def setup_platform(hass, config, add_entities, discovery_info=None):
     _LOGGER.debug("Setup Afvalinfo sensor")
 
-    city = config.get(CONF_CITY).lower()
-    postcode = config.get(CONF_POSTCODE)
+    city = config.get(CONF_CITY).lower().strip()
+    postcode = config.get(CONF_POSTCODE).strip()
     street_number = config.get(CONF_STREET_NUMBER)
-    date_format = config.get(CONF_DATE_FORMAT)
+    date_format = config.get(CONF_DATE_FORMAT).strip()
     timespan_in_days = config.get(CONF_TIMESPAN_IN_DAYS)
 
     try:
@@ -107,124 +108,33 @@ class AfvalinfoData(object):
         _LOGGER.debug("Updating Waste collection dates")
 
         # try:
-        if self.city == "sliedrecht":
+        sliedrecht = ["sliedrecht"]
+        if self.city in sliedrecht:
             self.data = SliedrechtAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        if (
-            self.city == "ameide"
-            or self.city == "everdingen"
-            or self.city == "hagestein"
-            or self.city == "hei- en boeicop"
-            or self.city == "hoef en haag"
-            or self.city == "kedichem"
-            or self.city == "leerbroek"
-            or self.city == "leerdam"
-            or self.city == "lexmond"
-            or self.city == "meerkerk"
-            or self.city == "nieuwland"
-            or self.city == "oosterwijk"
-            or self.city == "ossenwaard"
-            or self.city == "schoonrewoerd"
-            or self.city == "tienhoven aan de lek"
-            or self.city == "vianen"
-            or self.city == "zijderveld"
-        ):
+        vijfheerenlanden = ["ameide", "everdingen", "hagestein", "hei- en boeicop", "hoef en haag", "kedichem", "leerbroek", "leerdam", "lexmond", "meerkerk", "nieuwland", "oosterwijk", "ossenwaard", "schoonrewoerd", "tienhoven aan de lek", "vianen", "zijderveld"]
+        if self.city in vijfheerenlanden:
             self.data = VijfheerenlandenAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        if (
-            self.city == "asch"
-            or self.city == "beers"
-            or self.city == "beugen"
-            or self.city == "beusichem"
-            or self.city == "boekel"
-            or self.city == "boxmeer"
-            or self.city == "buren"
-            or self.city == "buurmalsen"
-            or self.city == "cuijk"
-            or self.city == "culemborg"
-            or self.city == "dieteren"
-            or self.city == "echt"
-            or self.city == "eck en wiel"
-            or self.city == "erichem"
-            or self.city == "geldermalsen"
-            or self.city == "grave"
-            or self.city == "groeningen"
-            or self.city == "haps"
-            or self.city == "helmond"
-            or self.city == "holthees"
-            or self.city == "ingen"
-            or self.city == "kapel-avezaath"
-            or self.city == "katwijk"
-            or self.city == "kerk-avezaath"
-            or self.city == "koningsbosch"
-            or self.city == "lienden"
-            or self.city == "linden"
-            or self.city == "maashees"
-            or self.city == "maria hoop"
-            or self.city == "maurik"
-            or self.city == "nieuwstadt"
-            or self.city == "oeffelt"
-            or self.city == "ommeren"
-            or self.city == "overloon"
-            or self.city == "pey"
-            or self.city == "ravenswaaij"
-            or self.city == "rijkevoort"
-            or self.city == "rijswijk"
-            or self.city == "roosteren"
-            or self.city == "sambeek"
-            or self.city == "sint agatha"
-            or self.city == "sint joost"
-            or self.city == "susteren"
-            or self.city == "vianen"
-            or self.city == "vierlingsbeek"
-            or self.city == "vortum-mullem"
-            or self.city == "zoelen"
-            or self.city == "zoelmond"
-
-            """ToDo: add the cities from the gemeenten
-            Lingewaal
-            Maasdriel
-            Mill en Sint Hubert
-            Neder-Betuwe
-            Neerijnen
-            Sint Anthonis
-            Son en Breugel
-            Terneuzen
-            Tiel
-            West Maas en Waal
-            Zaltbommel"""
-        ):
+        deafvalapp = ["aalst", "alem", "alphen", "altforst", "ammerzoden", "appeltern", "asperen", "asch", "axel", "beers", "beneden-leeuwen", "beugen", "beusichem", "biervliet", "boekel", "boven-leeuwen", "boxmeer", "brakel", "bruchem", "buren", "buurmalsen", "cuijk",
+        "culemborg", "delwijnen", "dieteren", "dodewaard", "dreumel", "echt", "echteld", "eck en wiel", "erichem", "est", "gameren", "geldermalsen", "grave", "groeningen", "haaften", "haps", "hedel", "heerewaarden", "heesselt", "hellouw", "helmond", "herwijnen", "heukelem",
+        "hoek", "hoenzadriel", "holthees", "hurwenen", "ijzendoorn", "ingen", "kapel-avezaath", "katwijk", "kerk-avezaath", "kerkdriel", "kerkwijk", "koewacht", "koningsbosch", "landhorst", "langenboom", "ledeacker", "lienden", "linden", "maasbommel", "maashees", "maria hoop",
+        "maurik", "mill", "nederhemert-noord", "nederhemert-zuid", "neerijnen", "nieuwaal", "nieuwstadt", "ochten", "oeffelt", "ommeren", "ophemert", "opheusden", "opijnen", "oploo", "overloon", "overslag", "pey", "philippine", "poederoijen", "ravenswaaij", "rijkevoort", "rijswijk",
+        "roosteren", "rossum", "sambeek", "sas van gent", "sint agatha", "sint anthonis", "sint hubert", "sint joost", "sluiskil", "son en breugel", "spijk", "spui", "stevensbeek", "susteren", "terneuzen", "tiel", "tuil", "varik", "velddriel", "vierlingsbeek", "vortum-mullem",
+        "vuren", "waardenburg", "wadenoijen", "wamel", "wanroij", "well", "wellseind", "westerbeek", "westdorpe", "wilbertoord", "zaamslag", "zaltbommel", "zoelen", "zoelmond", "zuiddorpe", "zuilichem"]
+        if self.city in deafvalapp:
             self.data = DeAfvalAppAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        if (
-            self.city == "almelo"
-            or self.city == "borne"
-            or self.city == "enschede"
-            or self.city == "haaksbergen"
-            or self.city == "hengelo"
-            or self.city == "hof van twente"
-            or self.city == "losser"
-            or self.city == "oldenzaal"
-            or self.city == "wierden"
-        ):
+        twentemilieu = ["almelo", "borne", "enschede", "haaksbergen", "hengelo", "hof van twente", "losser", "oldenzaal", "wierden"]
+        if self.city in twentemilieu:
             self.data = TwentemilieuAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        if (
-            self.city == "de lier"
-            or self.city == "s-gravenzande"
-            or self.city == "honselersdijk"
-            or self.city == "kwintsheul"
-            or self.city == "maasdijk"
-            or self.city == "monster"
-            or self.city == "naaldwijk"
-            or self.city == "poeldijk"
-            or self.city == "ter heijde"
-            or self.city == "wateringen"
-        ):
+        westland = ["de lier", "s-gravenzande", "honselersdijk", "kwintsheul", "maasdijk", "monster", "naaldwijk", "poeldijk", "ter heijde", "wateringen"]
+        if self.city in westland:
             self.data = WestlandAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
