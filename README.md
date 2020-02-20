@@ -1,7 +1,7 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 
-If you like my work, please buy me a coffee. This will keep me awake :) 
 <a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
+If you like my work, please buy me a coffee. This will keep me awake :) 
 
 Provides Home Assistant sensors for the Dutch waste collectors in:
 
