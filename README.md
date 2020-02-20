@@ -1,25 +1,26 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 
-<a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
 If you like my work, please buy me a coffee. This will keep me awake :) 
 
-Provides Home Assistant sensors for the Dutch waste collectors in:
+<a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
 
---Boekel, Boxmeer, Buren, Cuijk, Culemborg, Echt-Susteren, Geldermalsen, Grave, Helmond, Lingewaal, Maasdriel, Mill en Sint Hubert, Neder-Betuwe, Neerijnen, Sint Anthonis, Son en Breugel, Terneuzen, Tiel, West Maas en Waal, Zaltbommel (does not support: textiel and in some places also not papier)
+#### Provides Home Assistant sensors for the Dutch waste collectors in:
+
+##### --Boekel, Boxmeer, Buren, Cuijk, Culemborg, Echt-Susteren, Geldermalsen, Grave, Helmond, Lingewaal, Maasdriel, Mill en Sint Hubert, Neder-Betuwe, Neerijnen, Sint Anthonis, Son en Breugel, Terneuzen, Tiel, West Maas en Waal, Zaltbommel (does not support: textiel and in some places also not papier)
 - aalst, alem, alphen, altforst, ammerzoden, appeltern, asperen, asch, axel, beers, beneden-leeuwen, beugen, beusichem, biervliet, boekel, boven-leeuwen, boxmeer, brakel, bruchem, buren, buurmalsen, cuijk, culemborg, delwijnen, dieteren, dodewaard, dreumel, echt, echteld, eck en wiel, erichem, est, gameren, geldermalsen, grave, groeningen, haaften, haps, hedel, heerewaarden, heesselt, hellouw, helmond, herwijnen, heukelem, hoek, hoenzadriel, holthees, hurwenen, ijzendoorn, ingen, kapel-avezaath, katwijk, kerk-avezaath, kerkdriel, kerkwijk, koewacht, koningsbosch, landhorst, langenboom, ledeacker, lienden, linden, maasbommel, maashees, maria hoop, maurik, mill, nederhemert-noord, nederhemert-zuid, neerijnen, nieuwaal, nieuwstadt, ochten, oeffelt, ommeren, ophemert, opheusden, opijnen, oploo, overloon, overslag, pey, philippine, poederoijen, ravenswaaij, rijkevoort, rijswijk, roosteren, rossum, sambeek, sas van gent, sint agatha, sint anthonis, sint hubert, sint joost, sluiskil, son en breugel, spijk, spui, stevensbeek, susteren, terneuzen, tiel, tuil, varik, velddriel, vierlingsbeek, vortum-mullem, vuren, waardenburg, wadenoijen, wamel, wanroij, well, wellseind, westerbeek, westdorpe, wilbertoord, zaamslag, zaltbommel, zoelen, zoelmond, zuiddorpe, zuilichem
 
---Sliedrecht                        (does not support: restafval)
+##### --Sliedrecht                        (does not support: restafval)
 - sliedrecht
 
---Twente Milieu                     (does not support: textiel)
+##### --Twente Milieu                     (does not support: textiel)
 - almelo, borne, enschede, haaksbergen, hengelo, hof van twente, losser, oldenzaal, wierden
 
---Vijfheerenlanden
+##### --Vijfheerenlanden
 - ameide, everdingen, hagestein, hei- en boeicop, hoef en haag, kedichem, leerbroek, leerdam,
 lexmond, meerkerk, nieuwland, oosterwijk, ossenwaard, schoonrewoerd, tienhoven aan de lek,
 vianen, zijderveld
 
---Westland                          (does not support: pbd, textiel)
+##### --Westland                          (does not support: pbd, textiel)
 - de lier, s-gravenzande, honselersdijk, kwintsheul, maasdijk, monster, naaldwijk, poeldijk,
 ter heijde, wateringen
 
