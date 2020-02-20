@@ -1,6 +1,7 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 
-If you like my work, please buy me a coffee. This will keep me awake :) <a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
+If you like my work, please buy me a coffee. This will keep me awake :) 
+<a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
 
 Provides Home Assistant sensors for the Dutch waste collectors in:
 
@@ -65,7 +66,7 @@ timespanindays:
 ```
 If you only want to see data 2 days ahead of today. You can do it using the timespanindays option. (The default value is 365 days)
 ```yaml
-dateformat: 2
+timespanindays: 2
 ```
 
 ### Attributes
