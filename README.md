@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 
-If you like my work, please buy me a coffee. This will keep me awake :) 
+If you like my work, please buy me a coffee. This will keep me awake :)
 
 <a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
 
@@ -19,6 +19,9 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 - ameide, everdingen, hagestein, hei- en boeicop, hoef en haag, kedichem, leerbroek, leerdam,
 lexmond, meerkerk, nieuwland, oosterwijk, ossenwaard, schoonrewoerd, tienhoven aan de lek,
 vianen, zijderveld
+
+##### --Westerkwartier                    (does not support: pbd)
+- aduard, boerakker, briltil, de wilp, den ham, den horn, doezum, enumatil, ezinge,feerwerd, garnwerd, grijpskerk, grootegast, jonkersvaart, kommerzijl, kornhorn,lauwerzijl, leek, lettelbert, lucaswolde, lutjegast, marum, midwolde, niebert, niehove, niekerk, niezijl, noordhorn, noordwijk, nuis, oldehove, oldekerk, oostwold, opende, pieterzijl, saaksum, sebaldeburen, tolbert, visvliet, zevenhuizen, zuidhorn
 
 ##### --Westland                          (does not support: pbd, textiel)
 - de lier, s-gravenzande, honselersdijk, kwintsheul, maasdijk, monster, naaldwijk, poeldijk,

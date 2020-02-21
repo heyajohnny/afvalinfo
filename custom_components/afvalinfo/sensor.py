@@ -18,6 +18,7 @@ Version: 0.2.0  20200216 - Bug fix for multiple spaces in Westland (and all the 
 Version: 0.2.1  20200216 - Changed some attribute naming
 Version: 0.2.2  20200218 - Added some locations for DeAfvalApp
 Version: 0.2.3  20200219 - Refactor + added all the locations for DeAfvalApp
+Version: 0.2.4  20200221 - Added locations for Westerkwartier
 """
 
 import voluptuous as vol
@@ -44,6 +45,7 @@ from .location.sliedrecht import SliedrechtAfval
 from .location.vijfheerenlanden import VijfheerenlandenAfval
 from .location.deafvalapp import DeAfvalAppAfval
 from .location.twentemilieu import TwentemilieuAfval
+from .location.westerkwartier import WesterkwartierAfval
 from .location.westland import WestlandAfval
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
@@ -131,6 +133,12 @@ class AfvalinfoData(object):
         twentemilieu = ["almelo", "borne", "enschede", "haaksbergen", "hengelo", "hof van twente", "losser", "oldenzaal", "wierden"]
         if self.city in twentemilieu:
             self.data = TwentemilieuAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        westerkwartier = ["aduard", "boerakker", "briltil", "de wilp", "den ham", "den horn", "doezum", "enumatil", "ezinge,feerwerd", "garnwerd", "grijpskerk", "grootegast", "jonkersvaart", "kommerzijl", "kornhorn,lauwerzijl", "leek", "lettelbert", "lucaswolde", "lutjegast",
+        "marum", "midwolde", "niebert", "niehove", "niekerk", "niezijl", "noordhorn", "noordwijk", "nuis", "oldehove", "oldekerk", "oostwold", "opende", "pieterzijl", "saaksum", "sebaldeburen", "tolbert", "visvliet", "zevenhuizen", "zuidhorn"]
+        if self.city in westerkwartier:
+            self.data = WesterkwartierAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         westland = ["de lier", "s-gravenzande", "honselersdijk", "kwintsheul", "maasdijk", "monster", "naaldwijk", "poeldijk", "ter heijde", "wateringen"]
