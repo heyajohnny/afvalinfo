@@ -19,6 +19,7 @@ Version: 0.2.1  20200216 - Changed some attribute naming
 Version: 0.2.2  20200218 - Added some locations for DeAfvalApp
 Version: 0.2.3  20200219 - Refactor + added all the locations for DeAfvalApp
 Version: 0.2.4  20200221 - Added locations for Westerkwartier
+Version: 0.2.5  20200221 - Added locations for Rova
 """
 
 import voluptuous as vol
@@ -47,6 +48,7 @@ from .location.deafvalapp import DeAfvalAppAfval
 from .location.twentemilieu import TwentemilieuAfval
 from .location.westerkwartier import WesterkwartierAfval
 from .location.westland import WestlandAfval
+from .location.rova import RovaAfval
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv
@@ -109,17 +111,6 @@ class AfvalinfoData(object):
     def update(self):
         _LOGGER.debug("Updating Waste collection dates")
 
-        # try:
-        sliedrecht = ["sliedrecht"]
-        if self.city in sliedrecht:
-            self.data = SliedrechtAfval().get_data(
-                self.city, self.postcode, self.street_number
-            )
-        vijfheerenlanden = ["ameide", "everdingen", "hagestein", "hei- en boeicop", "hoef en haag", "kedichem", "leerbroek", "leerdam", "lexmond", "meerkerk", "nieuwland", "oosterwijk", "ossenwaard", "schoonrewoerd", "tienhoven aan de lek", "vianen", "zijderveld"]
-        if self.city in vijfheerenlanden:
-            self.data = VijfheerenlandenAfval().get_data(
-                self.city, self.postcode, self.street_number
-            )
         deafvalapp = ["aalst", "alem", "alphen", "altforst", "ammerzoden", "appeltern", "asperen", "asch", "axel", "beers", "beneden-leeuwen", "beugen", "beusichem", "biervliet", "boekel", "boven-leeuwen", "boxmeer", "brakel", "bruchem", "buren", "buurmalsen", "cuijk",
         "culemborg", "delwijnen", "dieteren", "dodewaard", "dreumel", "echt", "echteld", "eck en wiel", "erichem", "est", "gameren", "geldermalsen", "grave", "groeningen", "haaften", "haps", "hedel", "heerewaarden", "heesselt", "hellouw", "helmond", "herwijnen", "heukelem",
         "hoek", "hoenzadriel", "holthees", "hurwenen", "ijzendoorn", "ingen", "kapel-avezaath", "katwijk", "kerk-avezaath", "kerkdriel", "kerkwijk", "koewacht", "koningsbosch", "landhorst", "langenboom", "ledeacker", "lienden", "linden", "maasbommel", "maashees", "maria hoop",
@@ -130,9 +121,37 @@ class AfvalinfoData(object):
             self.data = DeAfvalAppAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
+        rova = ["aalten", "agelo", "albergen", "amersfoort", "ane", "anerveen", "anevelde", "ankum", "archem en nieuwebrug", "arrien", "arrierveld", "baarlo", "baars", "balkbrug", "barlo", "barsbeek", "basse", "basserveld", "beekdorp", "beerze", "beerzerveld", "belt-schutsloot",
+        "bergentheim", "berghum", "besthmen", "blankenham", "blauwe hand", "blokzijl", "boschoord", "bredevoort", "breklenkamp", "brinkheurne", "broekhuizen", "broekland", "brucht", "bruchterveld", "bruinehaar", "bunschoten-spakenburg", "collendoorn", "corle", "dale", "dalfsen",
+        "dalfserveld", "dalmsholte", "dalmsholte", "darp", "de bult", "de heurne", "de klosse", "de kolk", "de krim", "de leijen", "de lichtmis", "de marshoek", "de meele", "de pol", "de pollen", "dedemsvaart", "den ham", "den hulst", "den velde", "denekamp", "deurningen", "diever",
+        "dieverbrug", "diffelen", "dinxperlo", "dinxterveen", "doldersum", "doosje", "dulder", "dwarsgracht", "dwingeloo", "eefsele", "eemdijk", "eemster", "eerde", "eesveen", "emsland", "engeland", "fleringen", "frederiksoord", "gammelke", "geerdijk", "geesteren", "geeuwenbrug",
+        "genemuiden", "gerner", "giethmen", "giethoorn", "gramsbergen", "groenlo", "haarle", "haart heurne", "halfweg", "hamingen", "harbrinkhoek", "hardenberg", "harreveld", "hasselt", "havelte", "havelterberg", "heemserveen", "heerde", "heeten", "heetveld", "heino", "henxel",
+        "hessum", "het stift", "hezingen", "holt", "holtheme", "holthone", "hoogengraven en stegeren", "hoogenweg", "hoonhorst", "huppel", "ijhorst", "ijsselham", "ijzerlo", "jonen", "junne", "kadoelen", "kalenberg", "kallenkote", "kloosterhaar", "kloosterhaar", "kluinhaar",
+        "kotten", "kuinre", "laag zuthem", "langeveen", "lankhorst", "lattrop-breklenkamp", "leeuwte", "leggeloo", "lemele", "lemelerveld", "lemselo", "lenthe", "leusenerveld", "lhee", "lheebroek", "lichtenvoorde", "lierderholthuis", "lievelde", "lintelo", "loozen", "lutten",
+        "luttenberg", "mander", "manderveen", "mariaparochie", "marienberg", "marienheem", "marienvelde", "marijenkampen", "marle", "mastenbroek", "meddo", "millingen", "miste", "moespot", "molenhoek", "muggenbeet", "nederland", "nieuw heeten", "nieuwleusen", "nijensleek", "nijstad",
+        "nutter", "oldemarkt", "olst", "ommen", "ommerkanaal en ommerbosch", "ommerschans", "ommerveld", "onna", "ootmarsum", "ossenzijl", "oud ootmarsum", "oudleusen", "oudleusenerveld", "paasloo", "punthorst", "raalte", "radewijk", "ratum", "rechteren", "reutum", "rheeze",
+        "rheezerveen", "ronduite", "rossum", "rotbrink", "rouveen", "ruitenveen", "saasveld", "scheerwolde", "schuinesloot", "sibculo", "sibculo", "sint jansklooster", "slagharen", "slennebroek", "slingenberg", "staphorst", "steenwijk", "steenwijkerwold", "stegeren", "stegerveld",
+        "strenkhaar", "t klooster", "tilligte", "tubbergen", "tuk", "uffelte", "urk", "varsen", "vasse", "venebrugge", "vilsteren", "vinkenbuurt", "vledder", "vledderveen", "vollenhove", "volthe", "vragender", "vriezenveen", "vroomshoop", "wanneperveen", "wapse", "wapserveen",
+        "weerselo", "weitemanslanden", "welsum", "welsum", "wesepe", "westeinde", "westerhaar-vriezenveensewijk", "westerhoeven", "westerhuizingerveld", "wetering", "wijhe", "wilhelminaoord", "willemsoord", "winterswijk", "witharen", "witte paarden", "wittelte", "woold", "woudenberg",
+        "zeesse", "zieuwent", "zorgvlied", "zuideinde", "zuidveen", "zwartsluis", "zwolle"]
+        if self.city in rova:
+            self.data = RovaAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        # try:
+        sliedrecht = ["sliedrecht"]
+        if self.city in sliedrecht:
+            self.data = SliedrechtAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
         twentemilieu = ["almelo", "borne", "enschede", "haaksbergen", "hengelo", "hof van twente", "losser", "oldenzaal", "wierden"]
         if self.city in twentemilieu:
             self.data = TwentemilieuAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        vijfheerenlanden = ["ameide", "everdingen", "hagestein", "hei- en boeicop", "hoef en haag", "kedichem", "leerbroek", "leerdam", "lexmond", "meerkerk", "nieuwland", "oosterwijk", "ossenwaard", "schoonrewoerd", "tienhoven aan de lek", "vianen", "zijderveld"]
+        if self.city in vijfheerenlanden:
+            self.data = VijfheerenlandenAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         westerkwartier = ["aduard", "boerakker", "briltil", "de wilp", "den ham", "den horn", "doezum", "enumatil", "ezinge,feerwerd", "garnwerd", "grijpskerk", "grootegast", "jonkersvaart", "kommerzijl", "kornhorn,lauwerzijl", "leek", "lettelbert", "lucaswolde", "lutjegast",
@@ -146,7 +165,6 @@ class AfvalinfoData(object):
             self.data = WestlandAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-
             # _LOGGER.warning("self.data")
             # _LOGGER.warning(self.data)
 
