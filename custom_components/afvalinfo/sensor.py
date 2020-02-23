@@ -20,6 +20,8 @@ Version: 0.2.2  20200218 - Added some locations for DeAfvalApp
 Version: 0.2.3  20200219 - Refactor + added all the locations for DeAfvalApp
 Version: 0.2.4  20200221 - Added locations for Westerkwartier
 Version: 0.2.5  20200221 - Added locations for Rova
+Version: 0.2.6  20200223 - Added Almere
+ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
 """
 
 import voluptuous as vol
@@ -49,6 +51,7 @@ from .location.twentemilieu import TwentemilieuAfval
 from .location.westerkwartier import WesterkwartierAfval
 from .location.westland import WestlandAfval
 from .location.rova import RovaAfval
+from .location.almere import AlmereAfval
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv
@@ -111,6 +114,11 @@ class AfvalinfoData(object):
     def update(self):
         _LOGGER.debug("Updating Waste collection dates")
 
+        almere = ["almere"]
+        if self.city in almere:
+            self.data = AlmereAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
         deafvalapp = ["aalst", "alem", "alphen", "altforst", "ammerzoden", "appeltern", "asperen", "asch", "axel", "beers", "beneden-leeuwen", "beugen", "beusichem", "biervliet", "boekel", "boven-leeuwen", "boxmeer", "brakel", "bruchem", "buren", "buurmalsen", "cuijk",
         "culemborg", "delwijnen", "dieteren", "dodewaard", "dreumel", "echt", "echteld", "eck en wiel", "erichem", "est", "gameren", "geldermalsen", "grave", "groeningen", "haaften", "haps", "hedel", "heerewaarden", "heesselt", "hellouw", "helmond", "herwijnen", "heukelem",
         "hoek", "hoenzadriel", "holthees", "hurwenen", "ijzendoorn", "ingen", "kapel-avezaath", "katwijk", "kerk-avezaath", "kerkdriel", "kerkwijk", "koewacht", "koningsbosch", "landhorst", "langenboom", "ledeacker", "lienden", "linden", "maasbommel", "maashees", "maria hoop",
