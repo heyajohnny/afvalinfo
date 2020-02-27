@@ -21,6 +21,7 @@ Version: 0.2.3  20200219 - Refactor + added all the locations for DeAfvalApp
 Version: 0.2.4  20200221 - Added locations for Westerkwartier
 Version: 0.2.5  20200221 - Added locations for Rova
 Version: 0.2.6  20200223 - Added Almere
+Version: 0.2.7  20200227 - Bugfix for updating sensor which has no date anymore
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
 """
 
@@ -219,25 +220,23 @@ class AfvalinfoSensor(Entity):
         try:
             if waste_data:
                 if self.type in waste_data:
-                    today = date.today()
-
                     collection_date = datetime.strptime(
                         waste_data[self.type], "%Y-%m-%d"
                     ).date()
 
                     if collection_date:
                         # Set the values of the sensor
-                        self._last_update = today.strftime("%d-%m-%Y %H:%M")
+                        self._last_update = date.today().strftime("%d-%m-%Y %H:%M")
 
                         # Is the collection date today?
-                        self._is_collection_date_today = today == collection_date
+                        self._is_collection_date_today = date.today() == collection_date
 
                         # Days until collection date
-                        delta = collection_date - today
+                        delta = collection_date - date.today()
                         self._days_until_collection_date = delta.days
 
                         # Only show the value if the date is lesser than or equal to (today + timespan_in_days)
-                        if collection_date <= today + relativedelta(days=int(self.timespan_in_days)):
+                        if collection_date <= date.today() + relativedelta(days=int(self.timespan_in_days)):
                             self._state = collection_date.strftime(self.date_format)
                         else:
                             self._hidden = True
@@ -245,6 +244,11 @@ class AfvalinfoSensor(Entity):
                         raise ValueError()
                 else:
                     raise ValueError()
+            else:
+                raise ValueError()
         except ValueError:
             self._state = None
             self._hidden = True
+            self._days_until_collection_date = None
+            self._is_collection_date_today = False
+            self._last_update = date.today().strftime("%d-%m-%Y %H:%M")
