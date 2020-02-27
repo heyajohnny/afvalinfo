@@ -22,6 +22,9 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 ##### --Twente Milieu                     (does not support: textiel)
 - almelo, borne, enschede, haaksbergen, hengelo, hof van twente, losser, oldenzaal, wierden
 
+##### --Venlo                             (does not support: papier, textiel)
+- arcen, belfeld, lomm, steyl, tegelen, velden, venlo
+
 ##### --Vijfheerenlanden
 - ameide, everdingen, hagestein, hei- en boeicop, hoef en haag, kedichem, leerbroek, leerdam,
 lexmond, meerkerk, nieuwland, oosterwijk, ossenwaard, schoonrewoerd, tienhoven aan de lek,

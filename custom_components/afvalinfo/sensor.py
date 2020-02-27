@@ -22,6 +22,7 @@ Version: 0.2.4  20200221 - Added locations for Westerkwartier
 Version: 0.2.5  20200221 - Added locations for Rova
 Version: 0.2.6  20200223 - Added Almere
 Version: 0.2.7  20200227 - Bugfix for updating sensor which has no date anymore
+Version: 0.2.8  20200227 - Added Venlo
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
 """
 
@@ -53,6 +54,7 @@ from .location.westerkwartier import WesterkwartierAfval
 from .location.westland import WestlandAfval
 from .location.rova import RovaAfval
 from .location.almere import AlmereAfval
+from .location.venlo import VenloAfval
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv
@@ -156,6 +158,11 @@ class AfvalinfoData(object):
         twentemilieu = ["almelo", "borne", "enschede", "haaksbergen", "hengelo", "hof van twente", "losser", "oldenzaal", "wierden"]
         if self.city in twentemilieu:
             self.data = TwentemilieuAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        venlo = ["arcen", "belfeld", "lomm", "steyl", "tegelen", "velden", "venlo"]
+        if self.city in venlo:
+            self.data = VenloAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         vijfheerenlanden = ["ameide", "everdingen", "hagestein", "hei- en boeicop", "hoef en haag", "kedichem", "leerbroek", "leerdam", "lexmond", "meerkerk", "nieuwland", "oosterwijk", "ossenwaard", "schoonrewoerd", "tienhoven aan de lek", "vianen", "zijderveld"]
