@@ -24,6 +24,7 @@ Version: 0.2.6  20200223 - Added Almere
 Version: 0.2.7  20200227 - Bugfix for updating sensor which has no date anymore
 Version: 0.2.8  20200227 - Added Venlo
 Version: 0.2.9  20200227 - Preperation for HVC
+Version: 0.2.10 20200229 - Added HVC
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
 """
 

@@ -1,17 +1,12 @@
 from ..const.const import (
-    SENSOR_LOCATIONS_TO_COMPANY_CODE,
     SENSOR_LOCATIONS_TO_URL,
     _LOGGER,
 )
 
-from datetime import datetime
-from datetime import date
+from datetime import datetime, date
 import urllib.request
 import urllib.error
 import requests
-
-from dateutil.relativedelta import relativedelta
-
 
 class HvcAfval(object):
     def get_data(self, city, postcode, street_number):
@@ -21,62 +16,41 @@ class HvcAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
 
-            # Get companyCode for this location
-            companyCode = SENSOR_LOCATIONS_TO_COMPANY_CODE["vijfheerenlanden"]
+            # First request: get bagid
+            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["hvc"][0].format(
+                postcode, street_number
+            )
+            r = requests.get(url=API_ENDPOINT)
+            bagid = r.json()[0]["bagid"]
 
-            #######################################################
-            # First request: get uniqueId and community
-            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["vijfheerenlanden"][0]
-
-            data = {
-                "postCode": postcode,
-                "houseNumber": street_number,
-                "companyCode": companyCode,
-            }
-
-            # sending post request and saving response as response object
-            r = requests.post(url=API_ENDPOINT, data=data)
-
-            # extracting response json
-            uniqueId = r.json()["dataList"][0]["UniqueId"]
-            community = r.json()["dataList"][0]["Community"]
-
-            #######################################################
             # Second request: get the dates
-            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["vijfheerenlanden"][1]
-
-            today = date.today()
-            todayNextYear = today + relativedelta(years=1)
-
-            data = {
-                "companyCode": companyCode,
-                "startDate": today,
-                "endDate": todayNextYear,
-                "community": community,
-                "uniqueAddressID": uniqueId,
-            }
-
-            r = requests.post(url=API_ENDPOINT, data=data)
-
-            dataList = r.json()["dataList"]
+            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["hvc"][1].format(
+                bagid, date.today().year
+            )
+            r = requests.get(url=API_ENDPOINT)
+            dataList = r.json()
 
             for data in dataList:
-                # pickupType 0 = restafval
-                if data["pickupType"] == 0:
-                    waste_dict["restafval"] = data["pickupDates"][0].split("T")[0]
-                # pickupType 1 = gft
-                if data["pickupType"] == 1:
-                    waste_dict["gft"] = data["pickupDates"][0].split("T")[0]
-                # pickupType 2 = papier
-                if data["pickupType"] == 2:
-                    waste_dict["papier"] = data["pickupDates"][0].split("T")[0]
-                # pickupType 4 = textiel
-                if data["pickupType"] == 4:
-                    waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
-                # pickupType 10 = pbd
-                if data["pickupType"] == 10:
-                    waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
-
+                # afvalstroom_id 2 = restafval
+                if data["afvalstroom_id"] == 2:
+                    if(not "restafval" in waste_dict and datetime.strptime(data["ophaaldatum"], "%Y-%m-%d").date() >= date.today()):
+                        waste_dict["restafval"] = data["ophaaldatum"]
+                # afvalstroom_id 3 = papier
+                if data["afvalstroom_id"] == 3:
+                    if(not "papier" in waste_dict and datetime.strptime(data["ophaaldatum"], "%Y-%m-%d").date() >= date.today()):
+                        waste_dict["papier"] = data["ophaaldatum"]
+                # afvalstroom_id 5 = gft
+                if data["afvalstroom_id"] == 5:
+                    if(not "gft" in waste_dict and datetime.strptime(data["ophaaldatum"], "%Y-%m-%d").date() >= date.today()):
+                        waste_dict["gft"] = data["ophaaldatum"]
+               # afvalstroom_id 6 = pbd
+                if data["afvalstroom_id"] == 6:
+                    if(not "pbd" in waste_dict and datetime.strptime(data["ophaaldatum"], "%Y-%m-%d").date() >= date.today()):
+                        waste_dict["pbd"] = data["ophaaldatum"]
+                # afvalstroom_id 8 = textiel
+                if data["afvalstroom_id"] == 8:
+                    if(not "textiel" in waste_dict and datetime.strptime(data["ophaaldatum"], "%Y-%m-%d").date() >= date.today()):
+                        waste_dict["textiel"] = data["ophaaldatum"]
             return waste_dict
         except urllib.error.URLError as exc:
             _LOGGER.error("Error occurred while fetching data: %r", exc.reason)

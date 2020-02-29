@@ -17,6 +17,7 @@ SENSOR_LOCATIONS_TO_URL = {
         "http://www.deafvalapp.nl/calendar/kalender_sessie.jsp?land=NL&postcode={0}&straatId=&huisnr={1}&huisnrtoev=",
         "http://www.deafvalapp.nl/calendar/kalender_dashboard.jsp",
     ],
+    "hvc": ["https://inzamelkalender.hvcgroep.nl/adressen/{0}:{1}", "https://inzamelkalender.hvcgroep.nl/rest/adressen/{0}/kalender/{1}"],
     "rova": ["http://afvalkalender.rova.nl/nl/{0}/{1}/"],
     "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/", "{0}:{1}/"],
     "twentemilieu": [
