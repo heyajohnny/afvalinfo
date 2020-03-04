@@ -10,7 +10,7 @@ import urllib.request
 import urllib.error
 
 
-class SliedrechtAfval(object):
+class AlkmaarAfval(object):
     def get_date_from_afvaltype(self, ophaaldata, afvaltype):
         html = ophaaldata.find(href="/afvalstroom/" + str(afvaltype))
         date = html.i.string[3:]
@@ -39,14 +39,12 @@ class SliedrechtAfval(object):
 
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
-            # find afvalstroom/3 = gft
-            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 3)
-            # find afvalstroom/7 = textiel
-            waste_dict["textiel"] = self.get_date_from_afvaltype(ophaaldata, 7)
-            # find afvalstroom/87 = papier
-            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 87)
-            # find afvalstroom/92 = pbd
-            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 92)
+            # find afvalstroom/4 = gft
+            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 4)
+            # find afvalstroom/5 = papier
+            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 5)
+            # find afvalstroom/3 = pbd
+            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 3)
 
             return waste_dict
         except urllib.error.URLError as exc:

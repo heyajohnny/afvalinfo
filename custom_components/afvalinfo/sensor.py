@@ -26,6 +26,7 @@ Version: 0.2.8  20200227 - Added Venlo
 Version: 0.2.9  20200227 - Preperation for HVC
 Version: 0.2.10 20200229 - Added HVC
 Version: 0.2.11 20200304 - Fix for Westland. Some postcodes also needed a huisnummer
+Version: 0.2.12 20200304 - Added Alkmaar
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
 """
 
@@ -59,6 +60,7 @@ from .location.rova import RovaAfval
 from .location.almere import AlmereAfval
 from .location.venlo import VenloAfval
 from .location.hvc import HvcAfval
+from .location.alkmaar import AlkmaarAfval
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv
@@ -120,7 +122,11 @@ class AfvalinfoData(object):
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
         _LOGGER.debug("Updating Waste collection dates")
-
+        alkmaar = ["alkmaar"]
+        if self.city in alkmaar:
+            self.data = AlkmaarAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
         almere = ["almere"]
         if self.city in almere:
             self.data = AlmereAfval().get_data(

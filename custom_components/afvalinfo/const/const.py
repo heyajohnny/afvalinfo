@@ -10,6 +10,7 @@ SENSOR_TYPES = {
 }
 
 SENSOR_LOCATIONS_TO_URL = {
+    "alkmaar": ["https://inzamelkalender.stadswerk072.nl/adres/{0}:{1}"],
     "almere": [
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],
@@ -19,7 +20,7 @@ SENSOR_LOCATIONS_TO_URL = {
     ],
     "hvc": ["https://inzamelkalender.hvcgroep.nl/adressen/{0}:{1}", "https://inzamelkalender.hvcgroep.nl/rest/adressen/{0}/kalender/{1}"],
     "rova": ["http://afvalkalender.rova.nl/nl/{0}/{1}/"],
-    "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/", "{0}:{1}/"],
+    "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/{0}:{1}"],
     "twentemilieu": [
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"
