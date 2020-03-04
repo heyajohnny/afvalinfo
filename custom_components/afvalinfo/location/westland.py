@@ -52,7 +52,8 @@ class WestlandAfval(object):
 
             data = {
                 "postcode": postcode,
-                "query": ""
+                "query": "",
+                "huisnummer": street_number
             }
 
             # Make a request. do not check certificate (verify=False), of you do verify, it fails
