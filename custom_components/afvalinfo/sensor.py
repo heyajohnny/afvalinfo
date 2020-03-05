@@ -27,6 +27,7 @@ Version: 0.2.9  20200227 - Preperation for HVC
 Version: 0.2.10 20200229 - Added HVC
 Version: 0.2.11 20200304 - Fix for Westland. Some postcodes also needed a huisnummer
 Version: 0.2.12 20200304 - Added Alkmaar
+Version: 0.2.13 20200305 - Added Alphen aan den Rijn
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
 """
 
@@ -61,6 +62,7 @@ from .location.almere import AlmereAfval
 from .location.venlo import VenloAfval
 from .location.hvc import HvcAfval
 from .location.alkmaar import AlkmaarAfval
+from .location.alphenaandenrijn import AlphenAanDenRijnAfval
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv
@@ -122,7 +124,7 @@ class AfvalinfoData(object):
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
         _LOGGER.debug("Updating Waste collection dates")
-        alkmaar = ["alkmaar"]
+        alkmaar = ["alkmaar", "driehuizen", "graft", "grootschermer", "koedijk", "markenbinnen", "noordeinde", "oost-graftdijk", "oterleek", "oudorp", "de rijp", "schermerhorn", "starnmeer", "stompetoren", "ursem", "west-graftdijk", "zuidschermer"]
         if self.city in alkmaar:
             self.data = AlkmaarAfval().get_data(
                 self.city, self.postcode, self.street_number
@@ -130,6 +132,11 @@ class AfvalinfoData(object):
         almere = ["almere"]
         if self.city in almere:
             self.data = AlmereAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        alphenaandenrijn = ["aarlanderveen", "alphen aan den rijn", "benthuizen", "boskoop", "hazerswoude-dorp", "hazerswoude-rijndijk", "koudekerk aan den rijn", "zwammerdam"]
+        if self.city in alphenaandenrijn:
+            self.data = AlphenAanDenRijnAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         deafvalapp = ["aalst", "alem", "alphen", "altforst", "ammerzoden", "appeltern", "asch", "asperen", "axel", "beers", "beneden-leeuwen", "beugen", "beusichem", "biervliet", "boekel", "boven-leeuwen", "boxmeer", "brakel", "bruchem", "buren", "buurmalsen", "cuijk", "culemborg", "delwijnen",

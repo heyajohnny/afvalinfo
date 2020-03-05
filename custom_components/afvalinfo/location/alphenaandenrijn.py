@@ -10,7 +10,7 @@ import urllib.request
 import urllib.error
 
 
-class AlkmaarAfval(object):
+class AlphenAanDenRijnAfval(object):
     def get_date_from_afvaltype(self, ophaaldata, afvaltype):
         html = ophaaldata.find(href="/afvalstroom/" + str(afvaltype))
         date = html.i.string[3:]
@@ -27,7 +27,7 @@ class AlkmaarAfval(object):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
-            url = SENSOR_LOCATIONS_TO_URL["alkmaar"][0].format(
+            url = SENSOR_LOCATIONS_TO_URL["alphenaandenrijn"][0].format(
                 postcode, street_number
             )
             req = urllib.request.Request(url=url)
@@ -39,12 +39,14 @@ class AlkmaarAfval(object):
 
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
-            # find afvalstroom/4 = gft
-            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 4)
-            # find afvalstroom/5 = papier
-            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 5)
-            # find afvalstroom/3 = pbd
-            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 3)
+            # find afvalstroom/112 = gft
+            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 112)
+            # find afvalstroom/87 = papier
+            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 87)
+            # find afvalstroom/113 = pbd
+            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 113)
+            # find afvalstroom/101 = restafval
+            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 101)
 
             return waste_dict
         except urllib.error.URLError as exc:
