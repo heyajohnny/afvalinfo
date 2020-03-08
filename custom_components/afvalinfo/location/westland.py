@@ -17,21 +17,22 @@ from dateutil.relativedelta import relativedelta
 
 class WestlandAfval(object):
     def get_date_from_afvaltype(self, html, afvaltype):
-        tag = BeautifulSoup(html, "html.parser").find(
-            "li", {"class": afvaltype}
-        )
-        date = BeautifulSoup(str(tag), "html.parser").find(
-            "span", {"class": "text dag"}
-        )
-        # get the value of the span
-        date = date.string
-
         try:
+            tag = BeautifulSoup(html, "html.parser").find(
+                "li", {"class": afvaltype}
+            )
+            date = BeautifulSoup(str(tag), "html.parser").find(
+                "span", {"class": "text dag"}
+            )
+            # get the value of the span
+            date = date.string
+
             day = date.split()[1]
             month = MONTH_TO_NUMBER[date.split()[2]]
             year = date.split()[3]
             return year + "-" + month + "-" + day
-        except:
+        except Exception as exc:
+            _LOGGER.error("Error occurred while splitting data: %r", exc)
             return ""
 
     def get_data(self, city, postcode, street_number):

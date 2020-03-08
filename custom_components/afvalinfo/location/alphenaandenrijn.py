@@ -12,16 +12,20 @@ import urllib.error
 
 class AlphenAanDenRijnAfval(object):
     def get_date_from_afvaltype(self, ophaaldata, afvaltype):
-        html = ophaaldata.find(href="/afvalstroom/" + str(afvaltype))
-        date = html.i.string[3:]
-        day = date.split()[0]
-        month = MONTH_TO_NUMBER[date.split()[1]]
-        year = str(
-            datetime.today().year
-            if datetime.today().month <= int(month)
-            else datetime.today().year + 1
-        )
-        return year + "-" + month + "-" + day
+        try:
+            html = ophaaldata.find(href="/afvalstroom/" + str(afvaltype))
+            date = html.i.string[3:]
+            day = date.split()[0]
+            month = MONTH_TO_NUMBER[date.split()[1]]
+            year = str(
+                datetime.today().year
+                if datetime.today().month <= int(month)
+                else datetime.today().year + 1
+            )
+            return year + "-" + month + "-" + day
+        except Exception as exc:
+            _LOGGER.error("Error occurred while splitting data: %r", exc)
+            return ""
 
     def get_data(self, city, postcode, street_number):
         _LOGGER.debug("Updating Waste collection dates")

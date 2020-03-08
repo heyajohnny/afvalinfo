@@ -11,28 +11,32 @@ import urllib.error
 
 class VenloAfval(object):
     def get_date_from_afvaltype(self, tableRows, afvaltype):
-        for row in tableRows:
-            garbageDate = row.find("td")
-            garbageType = row.find("span")
-            if garbageDate and garbageType:
-                garbageDate = row.find("td").string
-                garbageType = row.find("span").string
+        try:
+            for row in tableRows:
+                garbageDate = row.find("td")
+                garbageType = row.find("span")
+                if garbageDate and garbageType:
+                    garbageDate = row.find("td").string
+                    garbageType = row.find("span").string
 
-                #Does the afvaltype match...
-                if garbageType == afvaltype:
-                    day = garbageDate.split()[1]
-                    month = MONTH_TO_NUMBER[garbageDate.split()[2]]
-                    year = str(
-                        datetime.today().year
-                        if datetime.today().month <= int(month)
-                        else datetime.today().year + 1
-                    )
-                    garbageDate = year + "-" + month + "-" + day
+                    #Does the afvaltype match...
+                    if garbageType == afvaltype:
+                        day = garbageDate.split()[1]
+                        month = MONTH_TO_NUMBER[garbageDate.split()[2]]
+                        year = str(
+                            datetime.today().year
+                            if datetime.today().month <= int(month)
+                            else datetime.today().year + 1
+                        )
+                        garbageDate = year + "-" + month + "-" + day
 
-                    if datetime.strptime(garbageDate, '%Y-%m-%d').date() >= date.today():
-                        return garbageDate
-        # if nothing was found
-        return ""
+                        if datetime.strptime(garbageDate, '%Y-%m-%d').date() >= date.today():
+                            return garbageDate
+            # if nothing was found
+            return ""
+        except Exception as exc:
+            _LOGGER.error("Error occurred while splitting data: %r", exc)
+            return ""
 
     def get_data(self, city, postcode, street_number):
         _LOGGER.debug("Updating Waste collection dates")
