@@ -29,6 +29,8 @@ Version: 0.2.11 20200304 - Fix for Westland. Some postcodes also needed a huisnu
 Version: 0.2.12 20200304 - Added Alkmaar
 Version: 0.2.13 20200305 - Added Alphen aan den Rijn
 Version: 0.2.14 20200305 - Preperation for MijnAfvalWijzer
+Version: 0.2.14 20200308 - Added some locations for MijnAfvalWijzer
+ToDo: Add more locations for MijnAfvalWijzer
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
 """
 
@@ -168,7 +170,7 @@ class AfvalinfoData(object):
             self.data = HvcAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        mijnafvalwijzer = ["de meern", "haarzuilens", "utrecht", "vleuten"]
+        mijnafvalwijzer = ["de meern", "haarzuilens", "utrecht", "vleuten", "werkendam"]
         if self.city in mijnafvalwijzer:
             self.data = MijnAfvalWijzerAfval().get_data(
                 self.city, self.postcode, self.street_number

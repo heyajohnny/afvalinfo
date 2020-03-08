@@ -11,17 +11,32 @@ import urllib.error
 
 
 class MijnAfvalWijzerAfval(object):
-    def get_date_from_afvaltype(self, ophaaldata, afvaltype):
-        html = ophaaldata.find(href="/afvalstroom/" + str(afvaltype))
-        date = html.i.string[3:]
-        day = date.split()[0]
-        month = MONTH_TO_NUMBER[date.split()[1]]
-        year = str(
-            datetime.today().year
-            if datetime.today().month <= int(month)
-            else datetime.today().year + 1
-        )
-        return year + "-" + month + "-" + day
+    def get_date_from_afvaltype(self, html, afvaltype):
+        try:
+            results = html.findAll("p", {"class": afvaltype})
+
+            for result in results:
+                date = result.find("span", {"class": "span-line-break"})
+
+                # get the value of the span
+                date = date.string
+
+                day = date.split()[1]
+                month = MONTH_TO_NUMBER[date.split()[2]]
+                # the year is always this year because it's a 'jaaroverzicht'
+                year = datetime.today().year
+
+                if int(month) >= datetime.today().month:
+                    if int(month) == datetime.today().month:
+                        if int(day) >= datetime.today().day:
+                            return str(year) + "-" + str(month) + "-" + str(day)
+                    else:
+                        return str(year) + "-" + str(month) + "-" + str(day)
+            # if nothing was found
+            return ""
+        except Exception as exc:
+            _LOGGER.error("Error occurred while splitting data: %r", exc)
+            return ""
 
     def get_data(self, city, postcode, street_number):
         _LOGGER.debug("Updating Waste collection dates")
@@ -34,22 +49,22 @@ class MijnAfvalWijzerAfval(object):
             f = urllib.request.urlopen(req)
             html = f.read().decode("utf-8")
 
+            soup = BeautifulSoup(html, "html.parser")
+            jaaroverzicht = soup.find(id="jaaroverzicht")
+
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
 
-            _LOGGER.warning("mijnafvalwijzer")
-            _LOGGER.warning(html)
-
-            """soup = BeautifulSoup(html, "html.parser")
-            ophaaldata = soup.find(id="ophaaldata")
-
-
-            # find afvalstroom/4 = gft
-            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 4)
-            # find afvalstroom/5 = papier
-            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 5)
-            # find afvalstroom/3 = pbd
-            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 3)"""
+            # find gft
+            waste_dict["gft"] = self.get_date_from_afvaltype(jaaroverzicht, "gft")
+            # find papier
+            waste_dict["papier"] = self.get_date_from_afvaltype(jaaroverzicht, "papier")
+            # find pbd. In some locations it's 'pd' and in other locations it's 'pmb'
+            waste_dict["pbd"] = self.get_date_from_afvaltype(jaaroverzicht, "pd")
+            if len(waste_dict["pbd"]) == 0:
+                waste_dict["pbd"] = self.get_date_from_afvaltype(jaaroverzicht, "pmd")
+            # find restafval
+            waste_dict["restafval"] = self.get_date_from_afvaltype(jaaroverzicht, "restafval")
 
             return waste_dict
         except urllib.error.URLError as exc:

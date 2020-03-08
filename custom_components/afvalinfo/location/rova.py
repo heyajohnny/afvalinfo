@@ -63,14 +63,14 @@ class RovaAfval(object):
             waste_dict["gft"] = self.get_date_from_afvaltype(res, "gft")
             # find restafval
             waste_dict["restafval"] = self.get_date_from_afvaltype(res, "restafval")
-            # find pbd
-            waste_dict["pbd"] = self.get_date_from_afvaltype(res, "pmd")
+            # find pbd. In some locations it's 'pd' and in other locations it's 'pmb'
+            waste_dict["pbd"] = self.get_date_from_afvaltype(res, "pd")
+            if len(waste_dict["pbd"]) == 0:
+                waste_dict["pbd"] = self.get_date_from_afvaltype(res, "pmd")
             # find papier
             waste_dict["papier"] = self.get_date_from_afvaltype(res, "papier")
             # find textiel
             waste_dict["textiel"] = self.get_date_from_afvaltype(res, "textiel")
-
-            _LOGGER.warning(waste_dict)
 
             return waste_dict
         except urllib.error.URLError as exc:
