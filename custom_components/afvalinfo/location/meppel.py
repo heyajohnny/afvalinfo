@@ -12,7 +12,7 @@ import requests
 from dateutil.relativedelta import relativedelta
 
 
-class TwentemilieuAfval(object):
+class MeppelAfval(object):
     def get_data(self, city, postcode, street_number):
         _LOGGER.debug("Updating Waste collection dates")
 
@@ -21,11 +21,11 @@ class TwentemilieuAfval(object):
             waste_dict = {}
 
             # Get companyCode for this location
-            companyCode = SENSOR_LOCATIONS_TO_COMPANY_CODE["twentemilieu"]
+            companyCode = SENSOR_LOCATIONS_TO_COMPANY_CODE["meppel"]
 
             #######################################################
             # First request: get uniqueId and community
-            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["twentemilieu"][0]
+            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["meppel"][0]
 
             data = {
                 "postCode": postcode,
@@ -60,18 +60,18 @@ class TwentemilieuAfval(object):
             dataList = r.json()["dataList"]
 
             for data in dataList:
-                # _pickupTypeText = "GREY"
-                if data["_pickupTypeText"] == "GREY":
-                    waste_dict["restafval"] = data["pickupDates"][0].split("T")[0]
                 # _pickupTypeText = "GREEN"
                 if data["_pickupTypeText"] == "GREEN":
                     waste_dict["gft"] = data["pickupDates"][0].split("T")[0]
                 # _pickupTypeText = "PAPER"
                 if data["_pickupTypeText"] == "PAPER":
                     waste_dict["papier"] = data["pickupDates"][0].split("T")[0]
-                # _pickupTypeText = "PACKAGES"
-                if data["_pickupTypeText"] == "PACKAGES":
+                # _pickupTypeText = "PLASTIC"
+                if data["_pickupTypeText"] == "PLASTIC":
                     waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
+                # _pickupTypeText = "VET" contains also 'textiel', so it will be categorized under textiel
+                if data["_pickupTypeText"] == "VET":
+                    waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
 
             return waste_dict
         except urllib.error.URLError as exc:

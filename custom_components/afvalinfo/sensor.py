@@ -30,6 +30,7 @@ Version: 0.2.12 20200304 - Added Alkmaar
 Version: 0.2.13 20200305 - Added Alphen aan den Rijn
 Version: 0.2.14 20200305 - Preperation for MijnAfvalWijzer
 Version: 0.2.14 20200308 - Added some locations for MijnAfvalWijzer
+Version: 0.2.15 20200308 - Added Meppel
 ToDo: Add more locations for MijnAfvalWijzer
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
 """
@@ -67,6 +68,7 @@ from .location.hvc import HvcAfval
 from .location.alkmaar import AlkmaarAfval
 from .location.alphenaandenrijn import AlphenAanDenRijnAfval
 from .location.mijnafvalwijzer import MijnAfvalWijzerAfval
+from .location.meppel import MeppelAfval
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv
@@ -168,6 +170,11 @@ class AfvalinfoData(object):
         "woudmeer", "zaandam", "zaandijk", "zandburen", "zandwerven", "zanegeest", "zeewolde", "zijbelhuizen", "zijdewind", "zijpersluis", "zittend", "zuid-spierdijk", "zuidermeer", "zwaag", "zwijndrecht"]
         if self.city in hvc:
             self.data = HvcAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        meppel = ["broekhuizen", "de schiphorst", "havelterberg", "kolderveen", "kolderveense bovenboer", "meppel", "nijentap", "nijeveen", "nijeveense bovenboer", "rogat"]
+        if self.city in meppel:
+            self.data = MeppelAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         mijnafvalwijzer = ["de meern", "haarzuilens", "utrecht", "vleuten", "werkendam"]

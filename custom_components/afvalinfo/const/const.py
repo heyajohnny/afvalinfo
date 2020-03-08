@@ -21,6 +21,9 @@ SENSOR_LOCATIONS_TO_URL = {
     ],
     "hvc": ["https://inzamelkalender.hvcgroep.nl/adressen/{0}:{1}", "https://inzamelkalender.hvcgroep.nl/rest/adressen/{0}/kalender/{1}"],
     "mijnafvalwijzer": ["https://www.mijnafvalwijzer.nl/nl/{0}/{1}/"],
+    "meppel": [
+        "https://wasteapi.ximmio.com/api/FetchAdress",
+        "https://wasteapi.ximmio.com/api/GetCalendar"],
     "rova": ["http://afvalkalender.rova.nl/nl/{0}/{1}/"],
     "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/{0}:{1}"],
     "twentemilieu": [
@@ -39,7 +42,8 @@ SENSOR_LOCATIONS_TO_URL = {
 SENSOR_LOCATIONS_TO_COMPANY_CODE = {
     "vijfheerenlanden": ["942abcf6-3775-400d-ae5d-7380d728b23c"],
     "twentemilieu": ["8d97bb56-5afd-4cbc-a651-b4f7314264b4"],
-    "almere": ["53d8db94-7945-42fd-9742-9bbc71dbe4c1"]
+    "almere": ["53d8db94-7945-42fd-9742-9bbc71dbe4c1"],
+    "meppel": ["b7a594c7-2490-4413-88f9-94749a3ec62a"]
     # ToDo: "hellendoorn": ["24434f5b-7244-412b-9306-3a2bd1e22bc1"],
     # ToDo: "acv": ["f8e2844a-095e-48f9-9f98-71fceb51d2c3"],
     #ACV = Ede, Renkum, Renswoude, Veenendaal, Wageningen

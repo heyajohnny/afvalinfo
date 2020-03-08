@@ -4,8 +4,7 @@ from ..const.const import (
     _LOGGER,
 )
 
-from datetime import datetime
-from datetime import date
+from datetime import datetime, date
 import urllib.request
 import urllib.error
 import requests
