@@ -66,6 +66,8 @@ class DeAfvalAppAfval(object):
             waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, "PAPIER")
             # find pbd / pmd
             waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PMD")
+            if len(waste_dict["pbd"]) == 0:
+                waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PLASTIC")
             # find restafval
             waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "REST")
 

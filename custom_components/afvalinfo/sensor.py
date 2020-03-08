@@ -32,6 +32,7 @@ Version: 0.2.14 20200305 - Preperation for MijnAfvalWijzer
 Version: 0.2.14 20200308 - Added some locations for MijnAfvalWijzer
 Version: 0.2.15 20200308 - Added Meppel
 Version: 0.2.16 20200308 - Extra error checking for BeautifulSoup stuff
+Version: 0.2.17 20200308 - Fix for some locations in DeAfvalApp. PMD is in some locations PLASTIC
 ToDo: Add more locations for MijnAfvalWijzer
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
 """
