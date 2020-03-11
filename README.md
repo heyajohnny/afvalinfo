@@ -64,6 +64,7 @@ Example config:
     - platform: afvalinfo
       resources:                       (at least 1 required)
         - pbd
+        - trash_type_today
       city: sliedrecht                 (required, default = sliedrecht)
       postcode: 33361AB                (required, default = 3361AB)
       streetnumber: 1                  (required, default = 1)
@@ -71,12 +72,18 @@ Example config:
       timespanindays: 365              (optional, default = 365) number of days to look into the future
 ```
 
-Above example has 1 resource, but here is a complete list of available waste fractions:
+Above example has 1 normal resource and one special resource. Here is a complete list of available waste fractions:
 - gft                                  (groente, fruit, tuinafval)
 - papier
 - pbd                                  (plastic, blik, drinkpakken)
 - restafval
 - textiel
+
+Here is a complete list of special resources. To make these resources work, you also need to specify one or more of the normal resources from above.
+So if you only specify -pbd and -trash_type_today under your resources, you will only get a result if the trash type 'pbd' has the same date as today.
+These resources will return one or more (seperated with a space) of the following results (gft, papier, pbd, restafval, textiel).
+- trash_type_today                     (only gives a result if minimal one of the normal resources dates is today)
+- trash_type_tomorrow                  (only gives a result if minimal one of the normal resources dates is tomorrow)
 
 ### Date format
 ```yaml
@@ -98,6 +105,6 @@ timespanindays: 2
 
 ### Attributes
 There are 3 important attributes:
--days_until_collection_date.    This will return the number of days between today and the collection date.
--is_collection_date_today.      This will return true if the collection date is today and false if the collection date is not today.
--hidden.                        This will return true on error or if the date is outside of range of the 'timespanindays' value. On any other occasion it will return true.
+- days_until_collection_date.    This will return the number of days between today and the collection date.
+- is_collection_date_today.      This will return true if the collection date is today and false if the collection date is not today.
+- hidden.                        This will return true on error or if the date is outside of range of the 'timespanindays' value. On any other occasion it will return true.

@@ -7,6 +7,8 @@ SENSOR_TYPES = {
     "pbd": ["PBD", "mdi:recycle"],
     "restafval": ["Restafval", "mdi:recycle"],
     "textiel": ["Textiel", "mdi:recycle"],
+    "trash_type_today": ["Today", "mdi:recycle"],
+    "trash_type_tomorrow": ["Tomorrow", "mdi:recycle"]
 }
 
 SENSOR_LOCATIONS_TO_URL = {

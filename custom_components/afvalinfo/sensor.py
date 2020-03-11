@@ -3,42 +3,12 @@
 Sensor component for Afvalinfo
 Author: Johnny Visser
 
-Version: 0.0.1  20200112 - Initial Release
-Version: 0.0.2  20200203 - Changed restafval to pbd
-Version: 0.0.3  20200205 - Added locations in Vijfheerenlanden
-Version: 0.1.0  20200208 - Bug fix vijfheerenlanden + preperation for Echt-Susteren
-Version: 0.1.1  20200209 - Added locations in Echt-Susteren
-Version: 0.1.2  20200210 - Added locations for Twente Milieu
-Version: 0.1.3  20200212 - Added option to limit the days to look into the future
-Version: 0.1.4  20200213 - Small refactoring of some code + preperation for Westland
-Version: 0.1.5  20200213 - Added locations for Westland
-Version: 0.1.6  20200214 - Bug fix for empty values in Westland
-Version: 0.2.0  20200216 - Bug fix for multiple spaces in Westland (and all the other locations)
-                           + extra attributes: Is collection today? and Days until collection
-Version: 0.2.1  20200216 - Changed some attribute naming
-Version: 0.2.2  20200218 - Added some locations for DeAfvalApp
-Version: 0.2.3  20200219 - Refactor + added all the locations for DeAfvalApp
-Version: 0.2.4  20200221 - Added locations for Westerkwartier
-Version: 0.2.5  20200221 - Added locations for Rova
-Version: 0.2.6  20200223 - Added Almere
-Version: 0.2.7  20200227 - Bugfix for updating sensor which has no date anymore
-Version: 0.2.8  20200227 - Added Venlo
-Version: 0.2.9  20200227 - Preperation for HVC
-Version: 0.2.10 20200229 - Added HVC
-Version: 0.2.11 20200304 - Fix for Westland. Some postcodes also needed a huisnummer
-Version: 0.2.12 20200304 - Added Alkmaar
-Version: 0.2.13 20200305 - Added Alphen aan den Rijn
-Version: 0.2.14 20200305 - Preperation for MijnAfvalWijzer
-Version: 0.2.14 20200308 - Added some locations for MijnAfvalWijzer
-Version: 0.2.15 20200308 - Added Meppel
-Version: 0.2.16 20200308 - Extra error checking for BeautifulSoup stuff
-Version: 0.2.17 20200308 - Fix for some locations in DeAfvalApp. PMD is in some locations PLASTIC
 ToDo: Add more locations for MijnAfvalWijzer
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
 """
 
 import voluptuous as vol
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from dateutil.relativedelta import relativedelta
 import urllib.error
 from .const.const import (
@@ -71,6 +41,9 @@ from .location.alkmaar import AlkmaarAfval
 from .location.alphenaandenrijn import AlphenAanDenRijnAfval
 from .location.mijnafvalwijzer import MijnAfvalWijzerAfval
 from .location.meppel import MeppelAfval
+
+from .sensortomorrow import AfvalInfoTomorrowSensor
+from .sensortoday import AfvalInfoTodaySensor
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv
@@ -114,10 +87,20 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     for resource in config[CONF_RESOURCES]:
         sensor_type = resource.lower()
 
-        if sensor_type not in SENSOR_TYPES:
-            SENSOR_TYPES[sensor_type] = [sensor_type.title(), "", "mdi:recycle"]
-
+        #if sensor_type not in SENSOR_TYPES:
+        #    SENSOR_TYPES[sensor_type] = [sensor_type.title(), "", "mdi:recycle"]
         entities.append(AfvalinfoSensor(data, sensor_type, date_format, timespan_in_days))
+
+    #Add sensor -trash_type_today
+    if sensor_type.title() == "Trash_Type_Today":
+        today = AfvalInfoTodaySensor(data, sensor_type, date_format, entities)
+        if today.state != None:
+            entities.append(today)
+    #Add sensor -trash_type_tomorrow
+    if sensor_type.title() == "Trash_Type_Tomorrow":
+        tomorrow = AfvalInfoTomorrowSensor(data, sensor_type, date_format, entities)
+        if tomorrow.state != None:
+            entities.append(tomorrow)
 
     add_entities(entities)
 
@@ -232,9 +215,6 @@ class AfvalinfoData(object):
             self.data = WestlandAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-            # _LOGGER.warning("self.data")
-            # _LOGGER.warning(self.data)
-
 
 class AfvalinfoSensor(Entity):
     def __init__(self, data, sensor_type, date_format, timespan_in_days):
@@ -249,7 +229,6 @@ class AfvalinfoSensor(Entity):
         self._last_update = None
         self._days_until_collection_date = None
         self._is_collection_date_today = False
-        self._unit = ""
 
     @property
     def name(self):
@@ -266,10 +245,6 @@ class AfvalinfoSensor(Entity):
     @property
     def device_state_attributes(self):
         return {ATTR_LAST_UPDATE: self._last_update, ATTR_HIDDEN: self._hidden, ATTR_DAYS_UNTIL_COLLECTION_DATE: self._days_until_collection_date, ATTR_IS_COLLECTION_DATE_TODAY: self._is_collection_date_today}
-
-    @property
-    def unit_of_measurement(self):
-        return self._unit
 
     def update(self):
         self.data.update()

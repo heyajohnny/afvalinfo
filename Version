@@ -1,0 +1,31 @@
+Version: 0.0.1  20200112 - Initial Release
+Version: 0.0.2  20200203 - Changed restafval to pbd
+Version: 0.0.3  20200205 - Added locations in Vijfheerenlanden
+Version: 0.1.0  20200208 - Bug fix vijfheerenlanden + preperation for Echt-Susteren
+Version: 0.1.1  20200209 - Added locations in Echt-Susteren
+Version: 0.1.2  20200210 - Added locations for Twente Milieu
+Version: 0.1.3  20200212 - Added option to limit the days to look into the future
+Version: 0.1.4  20200213 - Small refactoring of some code + preperation for Westland
+Version: 0.1.5  20200213 - Added locations for Westland
+Version: 0.1.6  20200214 - Bug fix for empty values in Westland
+Version: 0.2.0  20200216 - Bug fix for multiple spaces in Westland (and all the other locations)
+                           + extra attributes: Is collection today? and Days until collection
+Version: 0.2.1  20200216 - Changed some attribute naming
+Version: 0.2.2  20200218 - Added some locations for DeAfvalApp
+Version: 0.2.3  20200219 - Refactor + added all the locations for DeAfvalApp
+Version: 0.2.4  20200221 - Added locations for Westerkwartier
+Version: 0.2.5  20200221 - Added locations for Rova
+Version: 0.2.6  20200223 - Added Almere
+Version: 0.2.7  20200227 - Bugfix for updating sensor which has no date anymore
+Version: 0.2.8  20200227 - Added Venlo
+Version: 0.2.9  20200227 - Preperation for HVC
+Version: 0.2.10 20200229 - Added HVC
+Version: 0.2.11 20200304 - Fix for Westland. Some postcodes also needed a huisnummer
+Version: 0.2.12 20200304 - Added Alkmaar
+Version: 0.2.13 20200305 - Added Alphen aan den Rijn
+Version: 0.2.14 20200305 - Preperation for MijnAfvalWijzer
+Version: 0.2.14 20200308 - Added some locations for MijnAfvalWijzer
+Version: 0.2.15 20200308 - Added Meppel
+Version: 0.2.16 20200308 - Extra error checking for BeautifulSoup stuff
+Version: 0.2.17 20200308 - Fix for some locations in DeAfvalApp. PMD is in some locations PLASTIC
+Version: 0.3.0  20200311 - Added sensors trash_type_today and trash_type_tomorrow
