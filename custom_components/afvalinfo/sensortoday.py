@@ -41,6 +41,5 @@ class AfvalInfoTodaySensor(Entity):
         self._state = ""  # reset the state
         today = date.today().strftime(self.date_format)
         for entity in self._entities:
-            _LOGGER.warning(entity.name)
             if entity.state == today:
                 self._state = (self._state + " " + entity.name.split()[1]).strip().lower()
