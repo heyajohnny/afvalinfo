@@ -80,7 +80,18 @@ Above example has 1 normal resource and one special resource. Here is a complete
 - textiel
 
 Here is a complete list of special resources. To make these resources work, you also need to specify one or more of the normal resources from above.
-So if you only specify -pbd and -trash_type_today under your resources, you will only get a result if the trash type 'pbd' has the same date as today.
+So if you only specify -pbd and -trash_type_today under your resources, you will only get a result if the trash type 'pbd' has the same date as today. If you also want to know if -gft has the same date as today, you also need to specify - gft under resources, as shown below.
+```Configuration.yaml:
+  sensor:
+    - platform: afvalinfo
+      resources:                       
+        - pbd
+        - gft
+        - trash_type_today
+      city: sliedrecht                 
+      postcode: 33361AB                
+      streetnumber: 1                  
+```
 These resources will return one or more (seperated with a space) of the following results (gft, papier, pbd, restafval, textiel).
 - trash_type_today                     (only gives a result if minimal one of the normal resources dates is today)
 - trash_type_tomorrow                  (only gives a result if minimal one of the normal resources dates is tomorrow)
