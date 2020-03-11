@@ -45,7 +45,7 @@ aagtdorp, aartswoud, abbekerkeweere, abbestede, alblasserdam, anna paulowna, ass
 - ameide, everdingen, hagestein, hei- en boeicop, hoef en haag, kedichem, leerbroek, leerdam, lexmond, meerkerk, nieuwland, oosterwijk, ossenwaard, schoonrewoerd, tienhoven aan de lek, vianen, zijderveld
 
 ##### --Westerkwartier                    (does not support: pbd)
-- aduard, boerakker, briltil, de wilp, den ham, den horn, doezum, enumatil, ezinge, feerwerd, garnwerd, grijpskerk, grootegast, jonkersvaart, kommerzijl, kornhorn, lauwerzijl, leek, lettelbert, lucaswolde, lutjegast, marum, midwolde, niebert, niehove, niekerk, niezijl, noordhorn, noordwijk, nuis, oldehove, oldekerk, oostwold, opende, pieterzijl, saaksum, sebaldeburen, tolbert, visvliet, zevenhuizen, zuidhorn
+- aduard, boerakker, briltil, de wilp, den ham_, den horn, doezum, enumatil, ezinge, feerwerd, garnwerd, grijpskerk, grootegast, jonkersvaart, kommerzijl, kornhorn, lauwerzijl, leek, lettelbert, lucaswolde, lutjegast, marum, midwolde, niebert, niehove, niekerk, niezijl, noordhorn, noordwijk, nuis, oldehove, oldekerk, oostwold, opende, pieterzijl, saaksum, sebaldeburen, tolbert, visvliet, zevenhuizen, zuidhorn
 
 ##### --Westland                          (does not support: pbd, textiel)
 - de lier, honselersdijk, kwintsheul, maasdijk, monster, naaldwijk, poeldijk, s-gravenzande, ter heijde, wateringen
