@@ -26,6 +26,9 @@ SENSOR_LOCATIONS_TO_URL = {
     "meppel": [
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],
+    "nissewaard": [
+        "https://wasteapi.ximmio.com/api/FetchAdress",
+        "https://wasteapi.ximmio.com/api/GetCalendar"],
     "rova": ["http://afvalkalender.rova.nl/nl/{0}/{1}/"],
     "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/{0}:{1}"],
     "twentemilieu": [
@@ -45,10 +48,14 @@ SENSOR_LOCATIONS_TO_COMPANY_CODE = {
     "vijfheerenlanden": ["942abcf6-3775-400d-ae5d-7380d728b23c"],
     "twentemilieu": ["8d97bb56-5afd-4cbc-a651-b4f7314264b4"],
     "almere": ["53d8db94-7945-42fd-9742-9bbc71dbe4c1"],
-    "meppel": ["b7a594c7-2490-4413-88f9-94749a3ec62a"]
+    "meppel": ["b7a594c7-2490-4413-88f9-94749a3ec62a"],
+    #nissewaard also known as reinis
+    "nissewaard": ["9dc25c8a-175a-4a41-b7a1-83f237a80b77"],
     # ToDo: "hellendoorn": ["24434f5b-7244-412b-9306-3a2bd1e22bc1"],
     # ToDo: "acv": ["f8e2844a-095e-48f9-9f98-71fceb51d2c3"],
     #ACV = Ede, Renkum, Renswoude, Veenendaal, Wageningen
+    #rotterdam
+    #barAfvalbeheer
 }
 
 MONTH_TO_NUMBER = {

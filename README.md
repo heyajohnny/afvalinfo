@@ -6,6 +6,9 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
 
+##### --Nissewaard
+- abbenbroek, beerenplaat, biert, geervliet, heenvliet, hekelingen, simonshaven, spijkenisse, tweede vlotbrug, zuidland
+
 ##### --Meppel
 - broekhuizen, de schiphorst, havelterberg, kolderveen, kolderveense bovenboer, meppel, nijentap, nijeveen, nijeveense bovenboer, rogat
 
@@ -84,13 +87,13 @@ So if you only specify -pbd and -trash_type_today under your resources, you will
 ```Configuration.yaml:
   sensor:
     - platform: afvalinfo
-      resources:                       
+      resources:
         - pbd
         - gft
         - trash_type_today
-      city: sliedrecht                 
-      postcode: 33361AB                
-      streetnumber: 1                  
+      city: sliedrecht
+      postcode: 33361AB
+      streetnumber: 1
 ```
 These resources will return one or more (seperated with a space) of the following results (gft, papier, pbd, restafval, textiel).
 - trash_type_today                     (only gives a result if minimal one of the normal resources dates is today)

@@ -41,6 +41,7 @@ from .location.alkmaar import AlkmaarAfval
 from .location.alphenaandenrijn import AlphenAanDenRijnAfval
 from .location.mijnafvalwijzer import MijnAfvalWijzerAfval
 from .location.meppel import MeppelAfval
+from .location.nissewaard import NissewaardAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -163,6 +164,11 @@ class AfvalinfoData(object):
         mijnafvalwijzer = ["de meern", "haarzuilens", "utrecht", "vleuten", "werkendam"]
         if self.city in mijnafvalwijzer:
             self.data = MijnAfvalWijzerAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        nissewaard = ["abbenbroek", "beerenplaat", "biert", "geervliet", "heenvliet", "hekelingen", "simonshaven", "spijkenisse", "tweede vlotbrug", "zuidland"]
+        if self.city in nissewaard:
+            self.data = NissewaardAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         rova = ["aalten", "agelo", "albergen", "amersfoort", "ane", "anerveen", "anevelde", "ankum", "archem en nieuwebrug", "arrien", "arrierveld", "baarlo", "baars", "balkbrug", "barlo", "barsbeek", "basse", "basserveld", "beekdorp", "beerze", "beerzerveld", "belt-schutsloot", "bergentheim",
