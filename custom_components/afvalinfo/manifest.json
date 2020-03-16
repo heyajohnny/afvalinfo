@@ -4,5 +4,5 @@
   "documentation": "https://github.com/heyajohnny/afvalinfo",
   "dependencies": [],
   "codeowners": ["@heyajohnny"],
-  "requirements": []
+  "requirements": ["bs4"]
 }
