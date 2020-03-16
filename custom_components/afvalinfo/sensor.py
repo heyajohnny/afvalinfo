@@ -42,6 +42,7 @@ from .location.alphenaandenrijn import AlphenAanDenRijnAfval
 from .location.mijnafvalwijzer import MijnAfvalWijzerAfval
 from .location.meppel import MeppelAfval
 from .location.nissewaard import NissewaardAfval
+from .location.meerlanden import MeerlandenAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -155,6 +156,13 @@ class AfvalinfoData(object):
         "zaandijk", "zandburen", "zandwerven", "zanegeest", "zeewolde", "zijbelhuizen", "zijdewind", "zijpersluis", "zittend", "zomerdijk", "zuid-spierdijk", "zuidermeer", "zwaag", "zwaagdijk-oost", "zwaagdijk-west", "zwijndrecht"]
         if self.city in hvc:
             self.data = HvcAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        meerlanden = ["aalsmeer", "aalsmeerderbrug", "abbenes", "aerdenhout", "badhoevedorp", "beinsdorp", "bennebroek", "bentveld", "bloemendaal aan zee", "bloemendaal", "boesingheliede", "buitenkaag", "burgerveen", "cruquius", "de klei", "de zilk", "diemen", "haarlemmerliede", "halfweg", "heemstede",
+        "hillegom", "hoofddorp", "kudelstaart", "langevelderslag", "leimuiderbrug", "lijnden", "lisse", "lisserbroek", "nieuw-vennep", "nieuwe meer", "nieuwebrug", "noordwijk aan zee", "noordwijk-binnen", "noordwijkerhout", "oud-diemen", "oude meer", "over-diemen", "overveen", "rijsenhout", "rozenburg",
+        "schiphol", "schiphol-rijk", "spaarndam", "stammerdijk", "vijfhuizen", "vogelenzang", "vrouwentroost", "weteringbrug", "zwaanshoek", "zwanenburg"]
+        if self.city in meerlanden:
+            self.data = MeerlandenAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         meppel = ["broekhuizen", "de schiphorst", "havelterberg", "kolderveen", "kolderveense bovenboer", "meppel", "nijentap", "nijeveen", "nijeveense bovenboer", "rogat"]

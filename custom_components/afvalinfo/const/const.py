@@ -23,6 +23,7 @@ SENSOR_LOCATIONS_TO_URL = {
     ],
     "hvc": ["https://inzamelkalender.hvcgroep.nl/adressen/{0}:{1}", "https://inzamelkalender.hvcgroep.nl/rest/adressen/{0}/kalender/{1}"],
     "mijnafvalwijzer": ["https://www.mijnafvalwijzer.nl/nl/{0}/{1}/"],
+    "meerlanden": ["https://afvalkalender.meerlanden.nl/adres/{0}:{1}"],
     "meppel": [
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],
