@@ -43,6 +43,7 @@ from .location.mijnafvalwijzer import MijnAfvalWijzerAfval
 from .location.meppel import MeppelAfval
 from .location.nissewaard import NissewaardAfval
 from .location.meerlanden import MeerlandenAfval
+from .location.suez import SuezAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -194,10 +195,14 @@ class AfvalinfoData(object):
             self.data = RovaAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        # try:
         sliedrecht = ["sliedrecht"]
         if self.city in sliedrecht:
             self.data = SliedrechtAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        suez = ["arnhem", "de praets", "deelen", "elden", "schaarsbergen", "t vlot", "terlet"]
+        if self.city in suez:
+            self.data = SuezAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         twentemilieu = ["almelo", "borne", "enschede", "haaksbergen", "hengelo", "hof van twente", "losser", "oldenzaal", "wierden"]

@@ -6,6 +6,9 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
 
+##### --(Suez) Arnhem
+- arnhem, de praets, deelen, elden, schaarsbergen, t vlot, terlet
+
 ##### --(Meerlanden) Aalsmeer, Bloemendaal, Diemen, Haarlemmermeer, Heemstede, Hillegom, Lisse, Noordwijk
 - aalsmeer, aalsmeerderbrug, abbenes, aerdenhout, badhoevedorp, beinsdorp, bennebroek, bentveld, bloemendaal aan zee, bloemendaal, boesingheliede, buitenkaag, burgerveen, cruquius, de klei, de zilk, diemen, haarlemmerliede, halfweg, heemstede, hillegom, hoofddorp, kudelstaart, langevelderslag, leimuiderbrug, lijnden, lisse, lisserbroek, nieuw-vennep, nieuwe meer, nieuwebrug, noordwijk aan zee, noordwijk-binnen, noordwijkerhout, oud-diemen, oude meer, over-diemen, overveen, rijsenhout, rozenburg, schiphol, schiphol-rijk, spaarndam, stammerdijk, vijfhuizen, vogelenzang, vrouwentroost, weteringbrug, zwaanshoek, zwanenburg
 
