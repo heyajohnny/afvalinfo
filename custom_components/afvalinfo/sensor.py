@@ -169,7 +169,8 @@ class AfvalinfoData(object):
             self.data = MeppelAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        mijnafvalwijzer = ["de meern", "haarzuilens", "utrecht", "vleuten", "werkendam"]
+        mijnafvalwijzer = ["almkerk", "andel", "babylonienbroek", "broekhorn", "de meern", "de noord", "draai", "drongelen", "dussen", "eethen", "frik", "genderen", "giessen", "haarzuilens", "hank", "heerhugowaard", "kabel", "meeuwen", "nieuwendijk", "oudendijk", "pannekeet", "rijswijk", "sleeuwijk", "t kruis",
+        "uitwijk", "uppel", "utrecht", "veen", "veenhuizen", "verlaat", "vleuten", "waardhuizen", "werkendam", "wijk en aalburg", "woudrichem"]
         if self.city in mijnafvalwijzer:
             self.data = MijnAfvalWijzerAfval().get_data(
                 self.city, self.postcode, self.street_number
