@@ -30,6 +30,7 @@ SENSOR_LOCATIONS_TO_URL = {
     "nissewaard": [
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],
+    "omrin": ["https://www.omrin.nl/bij-mij-thuis/afval-regelen/afvalkalender"],
     "rova": ["http://afvalkalender.rova.nl/nl/{0}/{1}/"],
     "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/{0}:{1}"],
     "suez": ["https://inzamelwijzer.suez.nl/adres/{0}:{1}"],
