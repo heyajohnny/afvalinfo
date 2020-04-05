@@ -42,7 +42,7 @@ class MeppelAfval(object):
 
             #######################################################
             # Second request: get the dates
-            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["twentemilieu"][1]
+            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["meppel"][1]
 
             today = date.today()
             todayNextYear = today + relativedelta(years=1)

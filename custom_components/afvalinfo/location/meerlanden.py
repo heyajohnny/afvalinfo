@@ -1,59 +1,80 @@
 from ..const.const import (
-    MONTH_TO_NUMBER,
+    SENSOR_LOCATIONS_TO_COMPANY_CODE,
     SENSOR_LOCATIONS_TO_URL,
     _LOGGER,
 )
-from datetime import datetime
-from datetime import timedelta
-from bs4 import BeautifulSoup
+
+from datetime import datetime, date
 import urllib.request
 import urllib.error
+import requests
+
+from dateutil.relativedelta import relativedelta
 
 
 class MeerlandenAfval(object):
-    def get_date_from_afvaltype(self, ophaaldata, afvaltype):
-        try:
-            html = ophaaldata.find(href="/afvalstroom/" + str(afvaltype))
-            date = html.i.string[3:]
-            day = date.split()[0]
-            month = MONTH_TO_NUMBER[date.split()[1]]
-            year = str(
-                datetime.today().year
-                if datetime.today().month <= int(month)
-                else datetime.today().year + 1
-            )
-            return year + "-" + month + "-" + day
-        except Exception as exc:
-            _LOGGER.error("Error occurred while splitting data: %r", exc)
-            return ""
-
     def get_data(self, city, postcode, street_number):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
-            url = SENSOR_LOCATIONS_TO_URL["meerlanden"][0].format(
-                postcode, street_number
-            )
-            req = urllib.request.Request(url=url)
-            f = urllib.request.urlopen(req)
-            html = f.read().decode("utf-8")
-
-            soup = BeautifulSoup(html, "html.parser")
-            ophaaldata = soup.find(id="ophaaldata")
-
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
 
-            # find afvalstroom/1 = gft
-            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 1)
-            # find afvalstroom/2 = restafval
-            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 2)
-            # find afvalstroom/3 = papier
-            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 3)
-            # find afvalstroom/12 = textiel
-            waste_dict["textiel"] = self.get_date_from_afvaltype(ophaaldata, 12)
-            # find afvalstroom/816 = pbd
-            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 816)
+            # Get companyCode for this location
+            companyCode = SENSOR_LOCATIONS_TO_COMPANY_CODE["meerlanden"]
+
+            #######################################################
+            # First request: get uniqueId and community
+            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["meerlanden"][0]
+
+            data = {
+                "postCode": postcode,
+                "houseNumber": street_number,
+                "companyCode": companyCode,
+            }
+
+            # sending post request and saving response as response object
+            r = requests.post(url=API_ENDPOINT, data=data)
+
+            # extracting response json
+            uniqueId = r.json()["dataList"][0]["UniqueId"]
+            community = r.json()["dataList"][0]["Community"]
+
+            #######################################################
+            # Second request: get the dates
+            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["meerlanden"][1]
+
+            today = date.today()
+            todayNextYear = today + relativedelta(years=1)
+
+            data = {
+                "companyCode": companyCode,
+                "startDate": today,
+                "endDate": todayNextYear,
+                "community": community,
+                "uniqueAddressID": uniqueId,
+            }
+
+            r = requests.post(url=API_ENDPOINT, data=data)
+
+            dataList = r.json()["dataList"]
+
+            for data in dataList:
+                # _pickupTypeText = "GREEN"
+                if data["_pickupTypeText"] == "GREEN":
+                    waste_dict["gft"] = data["pickupDates"][0].split("T")[0]
+                # _pickupTypeText = "PAPER"
+                if data["_pickupTypeText"] == "PAPER":
+                    waste_dict["papier"] = data["pickupDates"][0].split("T")[0]
+                # _pickupTypeText = "GREY"
+                if data["_pickupTypeText"] == "GREY":
+                    waste_dict["restafval"] = data["pickupDates"][0].split("T")[0]
+                # _pickupTypeText = "PACKAGES"
+                if data["_pickupTypeText"] == "PACKAGES":
+                    waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
+                # _pickupTypeText = "TEXTILE"
+                if data["_pickupTypeText"] == "TEXTILE":
+                    waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
 
             return waste_dict
         except urllib.error.URLError as exc:

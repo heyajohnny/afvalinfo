@@ -23,7 +23,8 @@ SENSOR_LOCATIONS_TO_URL = {
     ],
     "hvc": ["https://inzamelkalender.hvcgroep.nl/adressen/{0}:{1}", "https://inzamelkalender.hvcgroep.nl/rest/adressen/{0}/kalender/{1}"],
     "mijnafvalwijzer": ["https://www.mijnafvalwijzer.nl/nl/{0}/{1}/"],
-    "meerlanden": ["https://afvalkalender.meerlanden.nl/adres/{0}:{1}"],
+    "meerlanden": ["https://wasteapi.ximmio.com/api/FetchAdress",
+        "https://wasteapi.ximmio.com/api/GetCalendar"],
     "meppel": [
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],
@@ -54,6 +55,7 @@ SENSOR_LOCATIONS_TO_COMPANY_CODE = {
     "meppel": ["b7a594c7-2490-4413-88f9-94749a3ec62a"],
     #nissewaard also known as reinis
     "nissewaard": ["9dc25c8a-175a-4a41-b7a1-83f237a80b77"],
+    "meerlanden": ["800bf8d7-6dd1-4490-ba9d-b419d6dc8a45"],
     # ToDo: "hellendoorn": ["24434f5b-7244-412b-9306-3a2bd1e22bc1"],
     # ToDo: "acv": ["f8e2844a-095e-48f9-9f98-71fceb51d2c3"],
     #ACV = Ede, Renkum, Renswoude, Veenendaal, Wageningen
