@@ -21,9 +21,9 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 ##### --Meppel
 - broekhuizen, de schiphorst, havelterberg, kolderveen, kolderveense bovenboer, meppel, nijentap, nijeveen, nijeveense bovenboer, rogat
 
-##### --(MijnAfvalWijzer) Altena, Heerhugowaard, Utrecht
+##### --(MijnAfvalWijzer) Altena, Heerhugowaard, Rheden, Utrecht
 ###### WARNING! Might not work well at the end of the year / beginning of the next year
-- almkerk, andel, babylonienbroek, broekhorn, de meern, de noord, draai, drongelen, dussen, eethen, frik, genderen, giessen, haarzuilens, hank, heerhugowaard, kabel, meeuwen, nieuwendijk, oudendijk, pannekeet, rijswijk, sleeuwijk, t kruis, uitwijk, uppel, utrecht, veen, veenhuizen, verlaat, vleuten, waardhuizen, werkendam, wijk en aalburg, woudrichem
+- almkerk, andel, babylonienbroek, broekhorn, de meern, de noord, de steeg, dieren, draai, drongelen, dussen, eethen, ellecom, frik, genderen, giessen, haarzuilens, hank, heerhugowaard, kabel, laag-soeren, meeuwen, nieuwendijk, oudendijk, pannekeet, rheden, rijswijk, sleeuwijk, spankeren, t kruis, uitwijk, uppel, utrecht, veen, veenhuizen, velp, verlaat, vleuten, waardhuizen, werkendam, wijk en aalburg, woudrichem
 
 ##### --(Rova) Aalten, Amersfoort, Bunschoten, Dalfsen, Dinkelland, Hardenberg, Heerde, Olst-Wijhe, Ommen, Oost Gelre, Raalte, Staphorst, Steenwijkerland, Tubbergen, Twenterand, Urk, Westerveld, Winterswijk, Woudenberg, Zwartewaterland, Zwolle
 ###### WARNING! Might not work well at the end of the year / beginning of the next year
