@@ -99,18 +99,46 @@ class OmrinAfval(object):
             except KeyError:
                 omrinNextYear = None
 
-            #restafval = sortibak
+            #restafval = Sortibak or Restafval
             waste_dict["restafval"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Sortibak")
             if omrinNextYear and len(waste_dict["restafval"]) == 0:
                 waste_dict["restafval"] = self.get_date_from_afvaltype(nextYear, omrinNextYear, "Sortibak")
-            #gft = biobak
+            if len(waste_dict["restafval"]) == 0:
+                waste_dict["restafval"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Restafval")
+            if omrinNextYear and len(waste_dict["restafval"]) == 0:
+                waste_dict["restafval"] = self.get_date_from_afvaltype(thisYear, omrinNextYear, "Restafval")
+            #gft = Biobak or Tuinafval or Extra Tuinafval
             waste_dict["gft"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Biobak")
             if omrinNextYear and len(waste_dict["gft"]) == 0:
                 waste_dict["gft"] = self.get_date_from_afvaltype(nextYear, omrinNextYear, "Biobak")
-            #papier = Oud papier en karton..
+            #see which one is earlier
+            if len(waste_dict["gft"]) == 0:
+                if len(waste_dict["gft"]) == 0:
+                    tuinafval = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Tuinafval")
+                if omrinNextYear and len(tuinafval) == 0:
+                    tuinafval = self.get_date_from_afvaltype(thisYear, omrinNextYear, "Tuinafval")
+                if len(waste_dict["gft"]) == 0:
+                    extratuinafval = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Extra Tuinafval")
+                if omrinNextYear and len(extratuinafval) == 0:
+                    extratuinafval = self.get_date_from_afvaltype(thisYear, omrinNextYear, "Extra Tuinafval")
+                if len(tuinafval) != 0 or len(extratuinafval) != 0:
+                    if len(tuinafval) != 0 and len(extratuinafval) == 0:
+                        waste_dict["gft"] = tuinafval
+                    if len(tuinafval) == 0 and len(extratuinafval) != 0:
+                        waste_dict["gft"] = extratuinafval
+                    if len(tuinafval) != 0 and len(extratuinafval) != 0:
+                        if tuinafval < extratuinafval:
+                            waste_dict["gft"] = tuinafval
+                        if extratuinafval < tuinafval:
+                            waste_dict["gft"] = extratuinafval
+            #papier = Oud papier en karton.. or Oud papier en karton
             waste_dict["papier"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Oud papier en karton..")
             if omrinNextYear and len(waste_dict["papier"]) == 0:
                 waste_dict["papier"] = self.get_date_from_afvaltype(nextYear, omrinNextYear, "Oud papier en karton..")
+            if len(waste_dict["papier"]) == 0:
+                waste_dict["papier"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Oud papier en karton")
+            if omrinNextYear and len(waste_dict["papier"]) == 0:
+                waste_dict["papier"] = self.get_date_from_afvaltype(thisYear, omrinNextYear, "Oud papier en karton")
             #textiel = textiel
             waste_dict["textiel"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Textiel")
             if omrinNextYear and len(waste_dict["textiel"]) == 0:
