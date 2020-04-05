@@ -45,6 +45,7 @@ from .location.nissewaard import NissewaardAfval
 from .location.meerlanden import MeerlandenAfval
 from .location.suez import SuezAfval
 from .location.omrin import OmrinAfval
+from .location.defriesemeren import DeFrieseMerenAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -138,6 +139,14 @@ class AfvalinfoData(object):
         "westdorpe", "westerbeek", "wilbertoord", "zaamslag", "zaltbommel", "zoelen", "zoelmond", "zuiddorpe", "zuilichem"]
         if self.city in deafvalapp:
             self.data = DeAfvalAppAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        defriesemeren = ["akmarijp", "bakhuizen", "balk", "ballingbuur", "bantega", "bargebek", "boornzwaag", "boornzwaag over de wielen", "brekkenpolder", "broek", "commissiepolle", "de bels", "de polle", "de rijlst", "delburen", "delfstrahuizen", "dijken", "doniaga", "echten", "echtenerbrug",
+        "eesterga", "elahuizen", "finkeburen", "follega", "goingarijp", "harich", "haskerhorne", "heide", "hooibergen", "huisterheide", "idskenhuizen", "joure", "kolderwolde", "langweer", "legemeer", "lemmer", "marderhoek", "mirns", "nieuw amerika", "nijehaske", "nijemirdum", "noed", "oldeouwer",
+        "onland", "oosterzee", "oudega", "oudehaske", "oudemirdum", "ouwster-nijega", "ouwsterhaule", "rijs", "rohel", "rotstergaast", "rotsterhaule", "rottum", "ruigahuizen", "scharsterbrug", "schoterzijl", "schouw", "sint nicolaasga", "sintjohannesga", "sloten", "snikzwaag", "sondel", "spannenburg",
+        "tacozijl", "terhorne", "terkaple", "teroele", "tjerkgaast", "trophorne", "vegelinsoord", "vierhuis", "vinkeburen", "vrisburen", "westend", "westerend-harich", "wijckel", "zevenbuurt"]
+        if self.city in defriesemeren:
+            self.data = DeFrieseMerenAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         hvc = ["aagtdorp", "aartswoud", "abbekerk", "abbekerkeweere", "abbestede", "alblasserdam", "andijk", "anna paulowna", "assendelft", "avendorp", "avenhorn", "baarsdorpermeer", "bangert", "bant", "barsingerhorn", "bartelsluis", "bennemeer", "benningbroek", "bergen", "bergen aan zee",

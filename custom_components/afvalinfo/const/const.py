@@ -21,6 +21,7 @@ SENSOR_LOCATIONS_TO_URL = {
         "http://www.deafvalapp.nl/calendar/kalender_sessie.jsp?land=NL&postcode={0}&straatId=&huisnr={1}&huisnrtoev=",
         "http://www.deafvalapp.nl/calendar/kalender_dashboard.jsp",
     ],
+    "defriesemeren": ["https://www.afvalalert.nl/kalender/{0}/{1}/?web=1"],
     "hvc": ["https://inzamelkalender.hvcgroep.nl/adressen/{0}:{1}", "https://inzamelkalender.hvcgroep.nl/rest/adressen/{0}/kalender/{1}"],
     "mijnafvalwijzer": ["https://www.mijnafvalwijzer.nl/nl/{0}/{1}/"],
     "meerlanden": ["https://wasteapi.ximmio.com/api/FetchAdress",
