@@ -40,6 +40,7 @@ SENSOR_LOCATIONS_TO_URL = {
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"
     ],
+    "veldhoven": ["https://www.veldhoven.nl/afvalkalender/{0}-{1}"],
     "venlo": ["https://www.venlo.nl/trash-removal-calendar/{0}/{1}"],
     "vijfheerenlanden": [
         "https://wasteapi.ximmio.com/api/FetchAdress",

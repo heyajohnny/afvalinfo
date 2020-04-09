@@ -46,6 +46,7 @@ from .location.meerlanden import MeerlandenAfval
 from .location.suez import SuezAfval
 from .location.omrin import OmrinAfval
 from .location.defriesemeren import DeFrieseMerenAfval
+from .location.veldhoven import VeldhovenAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -241,6 +242,11 @@ class AfvalinfoData(object):
         twentemilieu = ["almelo", "borne", "enschede", "haaksbergen", "hengelo", "hof van twente", "losser", "oldenzaal", "wierden"]
         if self.city in twentemilieu:
             self.data = TwentemilieuAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        veldhoven = ["veldhoven"]
+        if self.city in veldhoven:
+            self.data = VeldhovenAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         venlo = ["arcen", "belfeld", "lomm", "steyl", "tegelen", "velden", "venlo"]

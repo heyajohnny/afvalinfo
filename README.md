@@ -6,6 +6,9 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
 
+##### --Veldhoven
+- veldhoven
+
 ##### --(De Fryske Marren) De Friese Meren
 - akmarijp, bakhuizen, balk, ballingbuur, bantega, bargebek, boornzwaag, boornzwaag over de wielen, brekkenpolder, broek, commissiepolle, de bels, de polle, de rijlst, delburen, delfstrahuizen, dijken, doniaga, echten, echtenerbrug, eesterga, elahuizen, finkeburen, follega, goingarijp, harich, haskerhorne, heide, hooibergen, huisterheide, idskenhuizen, joure, kolderwolde, langweer, legemeer, lemmer, marderhoek, mirns, nieuw amerika, nijehaske, nijemirdum, noed, oldeouwer, onland, oosterzee, oudega, oudehaske, oudemirdum, ouwster-nijega, ouwsterhaule, rijs, rohel, rotstergaast, rotsterhaule, rottum, ruigahuizen, scharsterbrug, schoterzijl, schouw, sint nicolaasga, sintjohannesga, sloten, snikzwaag, sondel, spannenburg, tacozijl, terhorne, terkaple, teroele, tjerkgaast, trophorne, vegelinsoord, vierhuis, vinkeburen, vrisburen, westend, westerend-harich, wijckel, zevenbuurt
 
