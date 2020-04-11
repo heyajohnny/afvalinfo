@@ -93,14 +93,15 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
 
         #if sensor_type not in SENSOR_TYPES:
         #    SENSOR_TYPES[sensor_type] = [sensor_type.title(), "", "mdi:recycle"]
-        entities.append(AfvalinfoSensor(data, sensor_type, date_format, timespan_in_days))
+        if sensor_type.title().lower() != "trash_type_today" and sensor_type.title().lower() != "trash_type_tomorrow":
+            entities.append(AfvalinfoSensor(data, sensor_type, date_format, timespan_in_days))
 
         #Add sensor -trash_type_today
-        if sensor_type.title() == "Trash_Type_Today":
+        if sensor_type.title().lower() == "trash_type_today":
             today = AfvalInfoTodaySensor(data, sensor_type, date_format, entities)
             entities.append(today)
         #Add sensor -trash_type_tomorrow
-        if sensor_type.title() == "Trash_Type_Tomorrow":
+        if sensor_type.title().lower() == "trash_type_tomorrow":
             tomorrow = AfvalInfoTomorrowSensor(data, sensor_type, date_format, entities)
             entities.append(tomorrow)
 
