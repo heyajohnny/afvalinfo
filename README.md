@@ -6,6 +6,9 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
 
+##### --Venray
+- blitterswijck, castenray, geijsteren, heide, leunen, merselo, oirlo, oostrum, smakt, venray, veulen, vredepeel, wanssum, ysselsteyn
+
 ##### --Veldhoven
 - veldhoven
 

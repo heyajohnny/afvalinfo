@@ -47,6 +47,7 @@ from .location.suez import SuezAfval
 from .location.omrin import OmrinAfval
 from .location.defriesemeren import DeFrieseMerenAfval
 from .location.veldhoven import VeldhovenAfval
+from .location.venray import VenrayAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -253,6 +254,11 @@ class AfvalinfoData(object):
         venlo = ["arcen", "belfeld", "lomm", "steyl", "tegelen", "velden", "venlo"]
         if self.city in venlo:
             self.data = VenloAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        venray = ["blitterswijck", "castenray", "geijsteren", "heide", "leunen", "merselo", "oirlo", "oostrum", "smakt", "venray", "veulen", "vredepeel", "wanssum", "ysselsteyn"]
+        if self.city in venray:
+            self.data = VenrayAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         vijfheerenlanden = ["ameide", "everdingen", "hagestein", "hei- en boeicop", "hoef en haag", "kedichem", "leerbroek", "leerdam", "lexmond", "meerkerk", "nieuwland", "oosterwijk", "ossenwaard", "schoonrewoerd", "tienhoven aan de lek", "vianen", "zijderveld"]

@@ -24,7 +24,7 @@ class AlkmaarAfval(object):
             )
             return year + "-" + month + "-" + day
         except Exception as exc:
-            _LOGGER.error("Error occurred while splitting data: %r", exc)
+            _LOGGER.warning("Error occurred while splitting data: %r", exc)
             return ""
 
     def get_data(self, city, postcode, street_number):
