@@ -5,7 +5,8 @@ Author: Johnny Visser
 
 ToDo: Add more locations for MijnAfvalWijzer
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
-ToDo: Delete all the 'buurtschappen'
+ToDo: Delete all the 'buurtschappen' (in locations added before De Fryske Marren)
+ToDo: Add huisnummer toevoeging
 """
 
 import voluptuous as vol
@@ -50,6 +51,7 @@ from .location.defriesemeren import DeFrieseMerenAfval
 from .location.veldhoven import VeldhovenAfval
 from .location.venray import VenrayAfval
 from .location.gad import GadAfval
+from .location.zuidwestfriesland import ZuidWestFrieslandAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -286,6 +288,15 @@ class AfvalinfoData(object):
         westland = ["de lier", "honselersdijk", "kwintsheul", "maasdijk", "monster", "naaldwijk", "poeldijk", "s-gravenzande", "ter heijde", "wateringen"]
         if self.city in westland:
             self.data = WestlandAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        zuidwestfriesland = ["abbega", "allingawier", "arum", "blauwhuis", "bolsward", "bozum", "breezanddijk", "britswerd", "burgwerd", "cornwerd", "dedgum", "deersum", "edens", "exmorra", "ferwoude", "folsgare", "gaast", "gaastmeer", "gauw", "goënga", "greonterp",
+        "hartwerd", "heeg", "hemelum", "hennaard", "hichtum", "hidaard", "hieslum", "hindeloopen", "hommerts", "idsegahuizum", "idzega", "ijlst", "ijsbrechtum", "indijk", "heidenschap", "itens", "jutrijp", "kimswerd", "kornwerderzand", "koudum", "koufurderrige",
+        "kubaard", "loënga", "lollum", "longerhouw", "lutkewierum", "makkum", "molkwerum", "nijhuizum", "nijland", "offingawier", "oosterend", "oosterwierum", "oosthem", "oppenhuizen", "oudega", "parrega", "piaam", "pingjum", "poppingawier", "rauwerd", "rien", "roodhuis",
+        "sandfirden", "scharnegoutum", "schettens", "schraard", "sijbrandaburen", "smallebrugge", "sneek", "stavoren", "terzool", "tirns", "tjalhuizum", "tjerkwerd", "uitwellingerga", "waaxens", "warns", "westhem", "wieuwerd", "witmarsum", "wolsum", "wommels", "wons",
+        "workum", "woudsend", "ypecolsga", "zurich"]
+        if self.city in zuidwestfriesland:
+            self.data = ZuidWestFrieslandAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
 

@@ -6,6 +6,9 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
 
+##### --(Súdwest-Fryslân) Zuidwest-Friesland
+- abbega, allingawier, arum, blauwhuis, bolsward, bozum, breezanddijk, britswerd, burgwerd, cornwerd, dedgum, deersum, edens, exmorra, ferwoude, folsgare, gaast, gaastmeer, gauw, goënga, greonterp, hartwerd, heeg, hemelum, hennaard, hichtum, hidaard, hieslum, hindeloopen, hommerts, idsegahuizum, idzega, ijlst, ijsbrechtum, indijk, heidenschap, itens, jutrijp, kimswerd, kornwerderzand, koudum, koufurderrige, kubaard, loënga, lollum, longerhouw, lutkewierum, makkum, molkwerum, nijhuizum, nijland, offingawier, oosterend, oosterwierum, oosthem, oppenhuizen, oudega, parrega, piaam, pingjum, poppingawier, rauwerd, rien, roodhuis, sandfirden, scharnegoutum, schettens, schraard, sijbrandaburen, smallebrugge, sneek, stavoren, terzool, tirns, tjalhuizum, tjerkwerd, uitwellingerga, waaxens, warns, westhem, wieuwerd, witmarsum, wolsum, wommels, wons, workum, woudsend, ypecolsga, zurich
+
 ##### --(GAD) Hilversum
 - hilversum
 
