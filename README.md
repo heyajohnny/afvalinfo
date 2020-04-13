@@ -34,7 +34,7 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 - abbenbroek, geervliet, heenvliet, hekelingen, simonshaven, spijkenisse, zuidland
 
 ##### --Meppel
-- broekhuizen, de schiphorst, havelterberg, kolderveen, kolderveense bovenboer, meppel, nijentap, nijeveen, nijeveense bovenboer, rogat
+- havelterberg, kolderveen, meppel, nijeveen, rogat
 
 ##### --(MijnAfvalWijzer) Altena, Heerhugowaard, Rheden, Utrecht
 ###### WARNING! Might not work well at the end of the year / beginning of the next year
@@ -120,8 +120,8 @@ So if you only specify -pbd and -trash_type_today under your resources, you will
       streetnumber: 1
 ```
 These resources will return one or more (seperated with a space) of the following results (gft, papier, pbd, restafval, textiel).
-- trash_type_today                     (only gives a result if minimal one of the normal resources dates is today)
-- trash_type_tomorrow                  (only gives a result if minimal one of the normal resources dates is tomorrow)
+- trash_type_today                     (gives the result "none" if none of the normal resources dates is today)
+- trash_type_tomorrow                  (gives the result "none" if none of the normal resources dates is tomorrow)
 
 ### Date format
 ```yaml

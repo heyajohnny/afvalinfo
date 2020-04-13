@@ -43,3 +43,5 @@ class AfvalInfoTodaySensor(Entity):
         for entity in self._entities:
             if entity.state == today:
                 self._state = (self._state + " " + entity.name.split()[1]).strip().lower()
+        if self._state == "":
+            self._state = "none"

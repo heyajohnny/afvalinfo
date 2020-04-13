@@ -5,7 +5,7 @@ Author: Johnny Visser
 
 ToDo: Add more locations for MijnAfvalWijzer
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
-ToDo: Delete all the 'buurtschappen' (in locations added before Nissewaard)
+ToDo: Delete all the 'buurtschappen' (in locations added before Meppel)
 ToDo: Add huisnummer toevoeging
 """
 
@@ -186,7 +186,7 @@ class AfvalinfoData(object):
             self.data = MeerlandenAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        meppel = ["broekhuizen", "de schiphorst", "havelterberg", "kolderveen", "kolderveense bovenboer", "meppel", "nijentap", "nijeveen", "nijeveense bovenboer", "rogat"]
+        meppel = ["havelterberg", "kolderveen", "meppel", "nijeveen", "rogat"]
         if self.city in meppel:
             self.data = MeppelAfval().get_data(
                 self.city, self.postcode, self.street_number

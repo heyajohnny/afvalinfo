@@ -49,3 +49,5 @@ Version: 0.3.17 20200411 - Added Venray
 Version: 0.3.18 20200411 - Added Noardeast Fryslân
 Version: 0.3.19 20200413 - Added Hilversum (Gad)
 Version: 0.3.20 20200413 - Added (Zuidwest-Friesland) Súdwest-Fryslân
+Version: 0.3.21 20200413 - Changed result of empty today and tomorrow sensors to "none"
+                           + removed some buurtschappen
