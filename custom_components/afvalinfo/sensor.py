@@ -5,7 +5,7 @@ Author: Johnny Visser
 
 ToDo: Add more locations for MijnAfvalWijzer
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
-ToDo: Delete all the 'buurtschappen' (in locations added before De Fryske Marren)
+ToDo: Delete all the 'buurtschappen' (in locations added before Nissewaard)
 ToDo: Add huisnummer toevoeging
 """
 
@@ -179,9 +179,9 @@ class AfvalinfoData(object):
             self.data = HvcAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        meerlanden = ["aalsmeer", "aalsmeerderbrug", "abbenes", "aerdenhout", "badhoevedorp", "beinsdorp", "bennebroek", "bentveld", "bloemendaal aan zee", "bloemendaal", "boesingheliede", "buitenkaag", "burgerveen", "cruquius", "de klei", "de zilk", "diemen", "haarlemmerliede", "halfweg", "heemstede",
-        "hillegom", "hoofddorp", "kudelstaart", "langevelderslag", "leimuiderbrug", "lijnden", "lisse", "lisserbroek", "nieuw-vennep", "nieuwe meer", "nieuwebrug", "noordwijk aan zee", "noordwijk-binnen", "noordwijkerhout", "oud-diemen", "oude meer", "over-diemen", "overveen", "rijsenhout", "rozenburg",
-        "schiphol", "schiphol-rijk", "spaarndam", "stammerdijk", "vijfhuizen", "vogelenzang", "vrouwentroost", "weteringbrug", "zwaanshoek", "zwanenburg"]
+        meerlanden = ["aalsmeer", "aalsmeerderbrug", "abbenes", "aerdenhout", "badhoevedorp", "beinsdorp", "bennebroek", "bentveld", "bloemendaal", "bloemendaal aan zee", "boesingheliede", "buitenkaag", "burgerveen", "cruquius", "de zilk", "diemen", "haarlemmerliede", "halfweg", "heemstede", "hillegom",
+        "hoofddorp", "kudelstaart", "leimuiderbrug", "lijnden", "lisse", "lisserbroek", "nieuw-vennep", "noordwijk aan zee", "noordwijk-binnen", "noordwijkerhout", "oude meer", "overveen", "rijsenhout", "rozenburg", "schiphol", "schiphol-rijk", "spaarndam", "vijfhuizen", "vogelenzang", "weteringbrug",
+        "zwaanshoek", "zwanenburg"]
         if self.city in meerlanden:
             self.data = MeerlandenAfval().get_data(
                 self.city, self.postcode, self.street_number
@@ -197,33 +197,22 @@ class AfvalinfoData(object):
             self.data = MijnAfvalWijzerAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        nissewaard = ["abbenbroek", "beerenplaat", "biert", "geervliet", "heenvliet", "hekelingen", "simonshaven", "spijkenisse", "tweede vlotbrug", "zuidland"]
+        nissewaard = ["abbenbroek", "geervliet", "heenvliet", "hekelingen", "simonshaven", "spijkenisse", "zuidland"]
         if self.city in nissewaard:
             self.data = NissewaardAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        omrin = ["aalsum", "abbengawier", "achlum", "aegum", "aekinga", "akkrum", "allardsoog", "almenum", "angwier", "anjum", "anneburen", "appelscha", "arkens", "augsbuurt", "augustinusga", "baaiduinen", "baard", "baardburen", "baijum", "bakkeveen", "ballum", "barghiem", "barrum", "bartlehiem",
-        "beers", "beetgum", "beetgumermolen", "beetsterzwaag", "bekhof", "bentemaden", "bergum", "berlikum", "birstum", "blauwhuis", "blauwverlaat", "blesdijke", "blessum", "blije", "boekelte", "boekhorst", "boelenslaan", "boer", "boijl", "boksum", "bonkwerd", "bontebok", "bornwird", "bovenveld",
-        "brantgum", "britsum", "broeksterwâld", "brongerga", "buitenpost", "burdaard", "buren,buterheideveld", "burum", "buttinga", "buweklooster", "buwetille", "canada", "cornjum", "damwâld", "de blesse", "de blijnse", "de bult", "de drie romers", "de falom", "de hem", "de hoeve", "de joere",
-        "de kampen", "de knijpe", "de knolle", "de koelanden", "de kooten", "de laatste stuiver", "de monden", "de poelen", "de riete", "de vlaren", "de westereen", "deddingabuurt", "deinum", "dellewal", "dijkhuizen", "dijkshoek", "dijksterhuizen", "doijum", "dokkum", "domwier", "dongjum",
-        "donkerbroek", "drachten-azeven", "drie tolhekken", "driezum", "drogeham", "dronrijp", "ee", "eernewoude", "eestrum", "egypte", "elleboog", "elsloo", "engelum", "engwierum", "fatum", "feanwâlden", "ferwert", "finkum", "firdgum", "fochteloo", "fons", "formerum", "foudgum", "franeker",
-        "franjumerburen", "frankrijk", "friens", "frieschepalen", "garijp", "gerben allesverlaat", "gerkesklooster", "gersloot", "gersloot-polder", "giekerk", "giekerkerhoek", "ginnum", "gorredijk", "gotum", "goutum", "gracht", "groote bontekoe", "grouw", "halfweg", "hallum", "hamshorn",
-        "hamsterpein", "haneburen", "hanebuurt", "hantum", "hantumeruitburen", "hantumhuizen", "hardegarijp", "harkema", "harlingen", "haskerdijken", "hatsum", "haule", "haulerwijk", "hee", "heerenveen", "hegebeintum", "heidehuizen", "hempens", "hemrik", "hemrikerverlaat", "henshuizen",
-        "herbaijum", "het hooghout", "hezens", "hiaure", "hijlaard", "hijum", "hiltjemoeiswouden", "hitzum", "hoek", "hofland", "hollum", "holprijp", "holwerd", "hoogeduurswoude", "hoogzand", "hoorn", "hoornsterzwaag", "hoptille", "horne", "horp", "huins", "idaard", "ijslumburen", "iniaheide",
-        "irnsum", "jachtveld", "jannum", "janssenstichting", "jardinga", "jellum", "jelsum", "jislum", "jonkersland", "jorwerd", "jouswier", "jubbega", "kaard", "katlijk", "kie", "kiesterzijl", "kingmatille", "kinnum", "klazinga", "klein groningen", "kleinegeest", "klooster anjum", "klooster-lidlum",
-        "koehool", "koetille", "kollum", "kollumerpomp", "kollumerzwaag", "konijnenbuurt", "koningsbuurt", "kooibos", "kootstertille", "kortezwaag", "kortwoude", "koudenburg", "koum", "kuikhorne", "laagduurswoude", "laakwerd", "landerum", "langedijke", "langelille", "langezwaag", "leeuwarden", "lekkum",
-        "lichtaard", "lies", "lioessens", "lions", "lippenhuizen", "luidum", "luinjeberd", "lutjelollum", "lutkepost", "luxwoude", "makkinga", "mantgum", "marrum", "marssum", "marwird", "medhuizen", "menaldum", "meskenwier", "metslawier", "midlum", "midsburen", "midsland aan zee", "midsland",
-        "midsland-noord", "miedum", "mildam", "minnertsga", "moddergat", "molenend", "monniketille", "morra", "moskou", "munnekeburen", "munnekezeel", "munnekezijl", "naarderburen", "nanninga", "nes", "niawier", "nieuwe vaart", "nieuwebildtzijl", "nieuwebrug", "nieuwehorne", "nieuweschoot",
-        "nij altoenae", "nij beets", "nijeberkoop", "nijeholtpade", "nijeholtwolde", "nijelamer", "nijetrijne", "noordbergum", "noordend", "noordermeer", "noordwolde", "noordwolde-zuid", "oenkerk", "oldeberkoop", "oldeboorn", "oldeholtpade", "oldeholtwolde", "oldelamer", "oldetrijne", "olterterp",
-        "oosterbierum", "oosterboorn", "oosterend", "oosterlittens", "oostermeer", "oosternijkerk", "oosterstreek", "oosterwolde", "oosthoek", "oostrum", "ophuis", "opperkooten", "oranjewoud", "oud beets", "oude leije", "oude schouw", "oude willem", "oudebildtzijl", "oudehorne", "oudeschoot", "oudkerk",
-        "oudwoude", "overburen", "paesens", "pean", "peins", "peperga", "petersburg", "pietersbierum", "poelhuizen", "poppenhuizen", "prandinga", "quatrebras", "raard", "ravenswoud", "readtsjerk", "reitsum", "rewerd", "ried", "rijperkerk", "rijsberkampen", "rinsumageast", "rode dorp", "rohel", "rolbrug",
-        "rolpaal", "roodeschuur", "roordahuizum", "roptazijl", "salverd", "schalsum", "scherpenzeel", "schildum", "schillaard", "schingen", "schoterzijl", "schottelenburg", "schrappinga", "schrins", "schuilenburg", "schurega", "selmien", "sexbierum", "sibrandahûs", "siegerswoude", "sint annaparochie",
-        "sint jacobiparochie", "slappeterp", "slijkenburg", "snakkerburen", "sonnega", "sopsum", "sorremorre", "spanga", "spannum", "sparjebird", "spitsendijk", "stad niks", "steggerda", "stiens", "striep", "stroobos", "suameer", "suameerderheide", "suawoude", "surhuisterveen", "surhuizum",
-        "surhuizumer mieden", "swichum", "sythuizen", "t hoogezand", "tallum", "teerns", "teetlum", "ter idzard", "terband", "tergracht", "ternaard", "terwispel", "terwisscha", "tichelwerk", "tietjerk", "tijnje", "tjaard", "tjalleberd", "tjeintgum", "tjeppenboer", "tolsum", "triemen", "tritzum",
-        "tronde", "truurd", "tsienzerburen", "twijtel", "twijzel", "twijzelerheide", "tzum", "tzummarum", "uilesprong", "uitland", "ungabuurt", "ureterp aan de vaart", "ureterp", "veenklooster", "veenwoudsterwal", "veneburen", "venekoten", "vensterburen", "vierhuis", "vierhuizen", "vinkega",
-        "voorrijp", "voorwerk", "vosseburen", "vrouwbuurtstermolen", "vrouwenparochie", "waaxens", "wammerd", "war", "warfstermolen", "warga", "warniahuizen", "warstiens", "wartena", "waskemeer", "weakens", "weidum", "welgelegen", "welsrijp", "weper", "weperpolder", "west aan zee", "west-terschelling",
-        "westerend", "westergeest", "westhoek", "wetsens", "wiel", "wier", "wierum", "wieuwens", "wijnaldum", "wijngaarden", "wijnjeterpverlaat", "wijnjewoude", "wijns", "wijtgaard", "wildpad", "wildveld", "willemstad", "winsum", "wirdum", "witveen", "wolvega", "wâlterswâld", "wânswert", "zandhuizen",
-        "zevenhuizen", "zuiderburen", "zuiderend", "zuidhorn", "zwagerbosch", "zwarte haan", "zwartewegsend", "zweins"]
+        omrin = ["aalsum", "achlum", "aegum", "akkrum", "anjum", "appelscha", "augsbuurt", "augustinusga", "baaiduinen", "baard", "baijum", "bakkeveen", "ballum", "beers", "beetgum", "beetgumermolen", "beetsterzwaag", "bergum", "berlikum", "birdaard", "blesdijke", "blessum", "blija", "boelenslaan",
+        "boer", "boijl", "boksum", "bontebok", "bornwird", "brantgum", "britsum", "buitenpost", "buren", "burum", "cornjum", "de blesse", "de hoeve", "de knijpe", "deinum", "dokkum", "dongjum", "donkerbroek", "drachten-azeven", "drogeham", "dronrijp", "ee", "eernewoude", "eestrum", "elsloo", "engelum",
+        "engwierum", "ferwerd", "finkum", "firdgum", "fochteloo", "formerum", "foudgum", "franeker", "friens", "frieschepalen", "garijp", "genum", "gerkesklooster", "gersloot", "giekerk", "gorredijk", "goutum", "grouw", "hallum", "hantum", "hantumeruitburen", "hantumhuizen", "hardegarijp", "harkema",
+        "harlingen", "haskerdijken", "haule", "haulerwijk", "hee", "heerenveen", "hempens	hempus", "hemrik", "herbaijum", "hiaure", "hijlaard", "hijum", "hitzum", "hogebeintum", "hollum", "holwerd", "hoorn", "hoornsterzwaag", "huins", "idaard", "irnsum", "janum", "jellum", "jelsum", "jislum",
+        "jonkersland", "jorwerd", "jouswier", "jubbega", "kaard", "katlijk", "kinnum", "klooster-lidlum", "kollum", "kollumerpomp", "kollumerzwaag", "kootstertille", "landerum", "langedijke", "langelille", "langezwaag", "leeuwarden", "lekkum", "lichtaard", "lies", "lioessens", "lions", "lippenhuizen",
+        "luinjeberd", "luxwoude", "makkinga", "mantgum", "marrum", "marssum", "menaldum", "metslawier", "midlum", "midsland", "miedum", "mildam", "minnertsga", "moddergat", "molenend", "morra", "munnekeburen", "munnekezijl", "nes", "niawier", "nieuwebrug", "nieuwehorne", "nieuweschoot", "nij altoenae",
+        "nij beets", "nijeberkoop", "nijeholtpade", "nijeholtwolde", "nijelamer", "nijetrijne", "noordbergum", "noordwolde", "oenkerk", "oldeberkoop", "oldeboorn", "oldeholtpade", "oldeholtwolde", "oldelamer", "oldetrijne", "olterterp", "oosterbierum", "oosterend", "oosterlittens", "oostermeer",
+        "oosternijkerk", "oosterstreek", "oosterwolde", "oostrum", "oranjewoud", "oude leije", "oudebildtzijl", "oudehorne", "oudeschoot", "oudkerk", "oudwoude", "paesens", "peins", "peperga", "pietersbierum", "raard", "ravenswoud", "reitsum", "ried", "rijperkerk", "roordahuizum", "schalsum",
+        "scherpenzeel", "schingen", "sexbierum", "siegerswoude", "sint annaparochie", "sint jacobiparochie", "slappeterp", "slijkenburg", "snakkerburen", "sonnega", "spanga", "spannum", "steggerda", "stiens", "striep", "stroobos", "suameer", "suawoude", "surhuisterveen", "surhuizum", "swichum", "teerns",
+        "ter idzard", "terband", "ternaard", "terwispel", "tietjerk", "tijnje", "tjalleberd", "triemen", "twijzel", "twijzelerheide", "tzum", "tzummarum", "ureterp", "veenklooster", "vinkega", "vrouwenparochie", "waaxens", "wanswerd", "warfstermolen", "warga", "warstiens", "wartena", "waskemeer", "weidum",
+        "welsrijp", "west-terschelling", "westergeest", "westhoek", "wetsens", "wier", "wierum", "wijnaldum", "wijnjewoude", "wijns", "wijtgaard", "winsum", "wirdum", "wolvega", "zandhuizen", "zwagerbosch", "zweins"]
         if self.city in omrin:
             self.data = OmrinAfval().get_data(
                 self.city, self.postcode, self.street_number
@@ -249,7 +238,7 @@ class AfvalinfoData(object):
             self.data = SliedrechtAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        suez = ["arnhem", "de praets", "deelen", "elden", "schaarsbergen", "t vlot", "terlet"]
+        suez = ["arnhem", "elden", "schaarsbergen"]
         if self.city in suez:
             self.data = SuezAfval().get_data(
                 self.city, self.postcode, self.street_number
