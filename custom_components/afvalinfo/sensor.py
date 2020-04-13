@@ -5,7 +5,7 @@ Author: Johnny Visser
 
 ToDo: Add more locations for MijnAfvalWijzer
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
-ToDo: Delete all the 'buurtschappen' (in locations added before Meppel)
+ToDo: Delete all the 'buurtschappen' (in locations added before MijnAfvalWijzer)
 ToDo: Add huisnummer toevoeging
 """
 
@@ -191,8 +191,8 @@ class AfvalinfoData(object):
             self.data = MeppelAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        mijnafvalwijzer = ["almkerk", "andel", "babylonienbroek", "broekhorn", "de meern", "de noord", "de steeg", "dieren", "draai", "drongelen", "dussen", "eethen", "ellecom", "frik", "genderen", "giessen", "haarzuilens", "hank", "heerhugowaard", "kabel", "laag-soeren", "meeuwen", "nieuwendijk",
-        "oudendijk", "pannekeet", "rheden", "rijswijk", "sleeuwijk", "spankeren", "t kruis", "uitwijk", "uppel", "utrecht", "veen", "veenhuizen", "velp", "verlaat", "vleuten", "waardhuizen", "werkendam", "wijk en aalburg", "woudrichem"]
+        mijnafvalwijzer = ["almkerk", "andel", "babylonienbroek", "broekhorn", "de meern", "de noord", "de steeg", "dieren", "draai", "drongelen", "dussen", "eethen", "ellecom", "genderen", "giessen", "haarzuilens", "hank", "heerhugowaard", "laag-soeren", "meeuwen", "nieuwendijk",
+        "rheden", "rijswijk", "sleeuwijk", "spankeren", "uitwijk", "uppel", "utrecht", "veen", "veenhuizen", "velp", "verlaat", "vleuten", "waardhuizen", "werkendam", "wijk en aalburg", "woudrichem"]
         if self.city in mijnafvalwijzer:
             self.data = MijnAfvalWijzerAfval().get_data(
                 self.city, self.postcode, self.street_number
