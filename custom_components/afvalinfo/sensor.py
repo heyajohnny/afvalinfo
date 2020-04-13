@@ -49,6 +49,7 @@ from .location.omrin import OmrinAfval
 from .location.defriesemeren import DeFrieseMerenAfval
 from .location.veldhoven import VeldhovenAfval
 from .location.venray import VenrayAfval
+from .location.gad import GadAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -151,6 +152,11 @@ class AfvalinfoData(object):
         "tacozijl", "terhorne", "terkaple", "teroele", "tjerkgaast", "trophorne", "vegelinsoord", "vierhuis", "vinkeburen", "vrisburen", "westend", "westerend-harich", "wijckel", "zevenbuurt"]
         if self.city in defriesemeren:
             self.data = DeFrieseMerenAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        gad = ["hilversum"]
+        if self.city in gad:
+            self.data = GadAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         hvc = ["aagtdorp", "aartswoud", "abbekerk", "abbekerkeweere", "abbestede", "alblasserdam", "andijk", "anna paulowna", "assendelft", "avendorp", "avenhorn", "baarsdorpermeer", "bangert", "bant", "barsingerhorn", "bartelsluis", "bennemeer", "benningbroek", "bergen", "bergen aan zee",
