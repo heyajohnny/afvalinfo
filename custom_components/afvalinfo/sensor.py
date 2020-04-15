@@ -143,7 +143,7 @@ class AfvalinfoData(object):
         "heesselt", "hellouw", "helmond", "herwijnen", "heukelum", "hoek", "hoenzadriel", "holthees", "huize padua", "hurwenen", "ijzendoorn", "ingen", "kapel-avezaath", "katwijk", "kerk-avezaath", "kerkdriel", "kerkwijk", "kesteren", "koewacht", "koningsbosch", "landhorst", "langenboom",
         "ledeacker", "lienden", "linden", "maasbommel", "maashees", "maria hoop", "maurik", "meteren", "mill", "nederhemert-noord", "nederhemert-zuid", "neerijnen", "nieuwaal", "nieuwstadt", "ochten", "oeffelt", "ommeren", "ophemert", "opheusden", "opijnen", "oploo", "overloon", "overslag",
         "pey", "philippine", "poederoijen", "ravenswaaij", "rhenoy", "rijkevoort", "rijswijk", "roosteren", "rossum", "rumpt", "sambeek", "sas van gent", "sint agatha", "sint anthonis", "sint hubert", "sint joost", "sluiskil", "son", "spijk", "spui", "stevensbeek", "susteren", "terneuzen",
-        "tiel", "tricht", "tuil", "varik", "velddriel", "velp", "venhorst", "vianen", "vierlingsbeek", "vortum-mullem", "vuren", "waardenburg", "wamel", "wanroij", "well", "wellseind", "westdorpe", "westerbeek", "wilbertoord", "zaamslag", "zaltbommel", "zennewijnen", "zoelen", "zoelmond",
+        "tiel", "tricht", "tuil", "varik", "velddriel", "velp", "venhorst", "vierlingsbeek", "vortum-mullem", "vuren", "waardenburg", "wamel", "wanroij", "well", "wellseind", "westdorpe", "westerbeek", "wilbertoord", "zaamslag", "zaltbommel", "zennewijnen", "zoelen", "zoelmond",
         "zuiddorpe", "zuilichem"]
         if self.city in deafvalapp:
             self.data = DeAfvalAppAfval().get_data(
@@ -162,20 +162,14 @@ class AfvalinfoData(object):
             self.data = GadAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        hvc = ["aagtdorp", "aartswoud", "abbekerk", "abbekerkeweere", "abbestede", "alblasserdam", "andijk", "anna paulowna", "assendelft", "avendorp", "avenhorn", "baarsdorpermeer", "bangert", "bant", "barsingerhorn", "bartelsluis", "bennemeer", "benningbroek", "bergen", "bergen aan zee",
-        "bergermeer", "berkhout", "berkmeer", "beverwijk", "binnenwijzend", "bliekenbos", "blokdijk", "blokhuizen", "blokker", "bobeldijk", "bovenkarspel", "breezand", "bregtdorp", "broekerhaven", "broerdijk", "burgerbrug", "burgervlotbrug", "burghorn", "callantsoog", "camperduin", "catrijp",
-        "cornelissenwerf", "creil", "dam", "de bangert", "de banne", "de belt", "de bomen", "de buurt", "de buurt", "de dijken", "de elft", "de gest", "de goorn", "de hale", "de haukes", "de heid", "de hoelm", "de hout", "de hulk", "de kaag", "de kampen", "de kolk", "de leijen", "de normer",
-        "de snip", "de stolpen", "de strook", "de weed", "de weel", "de weere", "den helder", "den oever", "dijkstaal", "dirkshorn", "dordrecht", "driehuis", "duyncroft", "eenigenburg", "egmond aan den hoef", "egmond aan zee", "egmond-binnen", "egmondermeer", "emaus", "emmeloord", "engewormer",
-        "enkhuizen", "ens", "espel", "gelderse buurt", "gouwe", "groenveld", "groet", "groetpolder", "groote keeten", "grootebroek", "grootven", "grosthuizen", "grotewal", "hanedoes", "harderwijk", "hargen", "hargen aan zee", "haringhuizen", "hauwert", "heemskerk", "hem", "hemkewerf",
-        "hendrik-ido-ambacht", "hensbroek", "het hoogeland", "het korfwater", "het woud", "hippolytushoef", "hogebieren", "hollebalg", "hoogkarspel", "hoogwoud", "hoorn", "horn", "huiskebuurt", "ijmuiden", "jisp", "kalverdijk", "kathoek", "keinse", "keinsmerbrug", "kerkbuurt", "kerkbuurt",
-        "kleine sluis", "kolhorn", "koog aan de zaan", "koppershorn", "kraaienburg", "krabbendam", "kraggenburg", "kreil", "kreileroord", "krommenie", "lagedijk", "lagehoek", "lambertschaag", "langereis", "leekerweg", "leihoek", "lekermeer", "lelystad", "lutjebroek", "lutjekolhorn", "lutjewinkel",
-        "luttelgeest", "marknesse", "medemblik", "mennonietenbuurt", "middenmeer", "midwoud", "mientbrug", "moerbeek", "munnickaij", "munnikij", "nagele", "neck", "nes", "nibbixwoud", "nieuwe niedorp", "nieuwesluis", "noord-spierdijk", "noord-stroe", "noordburen", "noorddijk", "noorderbuurt",
-        "noordermeer", "obdam", "obdammerdijk", "onderdijk", "oosteinde", "oosterblokker", "oostergouw", "oosterklief", "oosterland", "oosterleek", "oosterwijzend", "oostknollendam", "oostmijzen", "oostwoud", "opmeer", "opperdoes", "oude niedorp", "oudendijk", "oudesluis", "oudijk", "papendrecht",
-        "paradijs", "petten", "poolland", "rinnegom", "rustenburg", "rutten", "santpoort-noord", "santpoort-zuid", "schagen", "schagerbrug", "schagerwaard", "scharwoude", "schellinkhout", "schokland", "schoorl", "schoorl aan zee", "schoorldam", "sijbekarspel", "sint maarten", "sint maartensbrug",
-        "sint maartensvlotbrug", "sint maartenszee", "slootdorp", "slootgaard", "smerp", "spaarndammerpolder", "spanbroek", "spierdijk", "spijkerboor", "spoorbuurt", "stolpervlotbrug", "stroe", "stroet", "t buurtje", "t rijpje", "t slot", "t veld", "t wad", "t westeinde", "t zand", "terdiek", "tersluis",
-        "tin", "tjallewal", "tolke", "tollebeek", "tuitjenhorn", "twisk", "ursem", "valkkoog", "van ewijcksluis", "vatrop", "veldhuis", "velsen-noord", "velsen-zuid", "velserbroek", "venhuizen", "vennik", "verlaat", "waarland", "wadway", "wadway", "warmenhuizen", "wateringskant", "wervershoof",
-        "westeinde", "westerbuurt", "westerklief", "westerland", "westerwijzend", "westknollendam", "westwoud", "westzaan", "wieringerwaard", "wieringerwerf", "wijdenes", "wijdewormer", "wijmers", "wijzend", "wimmenum", "winkel", "wogmeer", "wognum", "wormer", "wormerveer", "woudmeer", "zaandam",
-        "zaandijk", "zandburen", "zandwerven", "zanegeest", "zeewolde", "zijbelhuizen", "zijdewind", "zijpersluis", "zittend", "zomerdijk", "zuid-spierdijk", "zuidermeer", "zwaag", "zwaagdijk-oost", "zwaagdijk-west", "zwijndrecht"]
+        hvc = ["aagtdorp", "aartswoud", "abbekerk", "abbestede", "alblasserdam", "andijk", "anna paulowna", "assendelft", "bant", "barsingerhorn", "benningbroek", "bergen aan zee", "beverwijk", "blokdijk", "blokker", "bovenkarspel", "breezand", "bregtdorp", "burgerbrug", "burgervlotbrug", "callantsoog",
+        "camperduin", "catrijp", "creil", "de buurt", "de haukes", "de stolpen", "de strook", "de weere", "den helder", "den oever", "dirkshorn", "dordrecht", "driehuis", "eenigenburg", "egmond aan den hoef", "egmond aan zee", "egmond-binnen", "emmeloord", "enkhuizen", "ens", "espel", "gouwe", "groenveld",
+        "groet", "groote keeten", "grootebroek", "hargen", "haringhuizen", "hauwert", "heemskerk", "heerjansdam", "hem", "hendrik-ido-ambacht", "hippolytushoef", "hoogkarspel", "hoogwoud", "hoorn", "huisduinen", "ijmuiden", "julianadorp", "kalverdijk", "keinse", "kleine sluis", "kleine-lindt", "kolhorn",
+        "koog aan de zaan", "krabbendam", "kraggenburg", "kreil", "kreileroord", "krommenie", "lambertschaag", "lelystad", "lutjebroek", "lutjewinkel", "luttelgeest", "marknesse", "medemblik", "middenmeer", "midwoud", "moerbeek", "nagele", "nibbixwoud", "nieuwe niedorp", "nieuwesluis", "onderdijk",
+        "oosterblokker", "oosterdijk", "oosterklief", "oosterland", "oosterleek", "oostwoud", "opmeer", "opperdoes", "oude niedorp", "oudesluis", "papendrecht", "petten", "rinnegom", "rutten", "santpoort-noord", "santpoort-zuid", "schagen", "schagerbrug", "schellinkhout", "schokland", "schoorl",
+        "schoorldam", "schoorldam", "sijbekarspel", "sint maarten", "sint maartensbrug", "sint maartensvlotbrug", "sint maartenszee", "slootdorp", "smerp", "spaarndammerpolder", "spanbroek", "stroe", "stroet", "t rijpje", "t veld", "t zand", "terdiek", "tjallewal", "tolke", "tolke", "tollebeek",
+        "tuitjenhorn", "twisk", "valkkoog", "van ewijcksluis", "vatrop", "velsen", "velsen-noord", "velsen-zuid", "velserbroek", "venhuizen", "verlaat", "waarland", "wadway", "wadway", "warmenhuizen", "wervershoof", "westerklief", "westerland", "westknollendam", "westwoud", "westzaan", "wieringerwaard",
+        "wieringerwerf", "wijdenes", "wijk aan duin", "wijk aan zee", "wimmenum", "winkel", "wognum", "wormerveer", "zaandam", "zaandijk", "zandwerven", "zijdewind", "zwaag", "zwaagdijk-oost", "zwaagdijk-west", "zwijndrecht"]
         if self.city in hvc:
             self.data = HvcAfval().get_data(
                 self.city, self.postcode, self.street_number
@@ -240,7 +234,8 @@ class AfvalinfoData(object):
             self.data = SuezAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        twentemilieu = ["almelo", "borne", "enschede", "haaksbergen", "hengelo", "hof van twente", "losser", "oldenzaal", "wierden"]
+        twentemilieu = ["aadorp", "almelo", "ambt delden", "beckum", "bentelo", "beuningen", "boekelo", "borne", "bornerbroek", "buurse", "de lutte", "delden", "diepenheim", "enschede", "enter", "glane", "glanerbrug", "goor", "haaksbergen", "hengelo", "hengevelde",
+        "hertme", "lonneker", "losser", "mariaparochie", "markelo", "oldenzaal", "overdinkel", "st. isidorushoeve", "usselo", "wierden", "zenderen"]
         if self.city in twentemilieu:
             self.data = TwentemilieuAfval().get_data(
                 self.city, self.postcode, self.street_number
