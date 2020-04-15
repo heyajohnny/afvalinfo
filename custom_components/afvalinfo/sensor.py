@@ -5,7 +5,7 @@ Author: Johnny Visser
 
 ToDo: Add more locations for MijnAfvalWijzer
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
-ToDo: Delete all the 'buurtschappen' (in locations added before MijnAfvalWijzer)
+ToDo: Delete all the 'buurtschappen' (in locations added before Rova)
 ToDo: Add huisnummer toevoeging
 """
 
@@ -217,18 +217,14 @@ class AfvalinfoData(object):
             self.data = OmrinAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        rova = ["aalten", "agelo", "albergen", "amersfoort", "ane", "anerveen", "anevelde", "ankum", "archem en nieuwebrug", "arrien", "arrierveld", "baarlo", "baars", "balkbrug", "barlo", "barsbeek", "basse", "basserveld", "beekdorp", "beerze", "beerzerveld", "belt-schutsloot", "bergentheim",
-        "berghum", "besthmen", "blankenham", "blauwe hand", "blokzijl", "boschoord", "bredevoort", "breklenkamp", "brinkheurne", "broekhuizen", "broekland", "brucht", "bruchterveld", "bruinehaar", "bunschoten-spakenburg", "collendoorn", "corle", "dale", "dalfsen", "dalfserveld", "dalmsholte",
-        "darp", "de bult", "de heurne", "de klosse", "de kolk", "de krim", "de leijen", "de lichtmis", "de marshoek", "de meele", "de pol", "de pollen", "dedemsvaart", "den ham", "den hulst", "den velde", "denekamp", "deurningen", "diever", "dieverbrug", "diffelen", "dinxperlo", "dinxterveen",
-        "doldersum", "doosje", "dulder", "dwarsgracht", "dwingeloo", "eefsele", "eemdijk", "eemster", "eerde", "eesveen", "emsland", "engeland", "fleringen", "frederiksoord", "gammelke", "geerdijk", "geesteren", "geeuwenbrug", "genemuiden", "gerner", "giethmen", "giethoorn", "gramsbergen",
-        "groenlo", "haarle", "haart heurne", "halfweg", "hamingen", "harbrinkhoek", "hardenberg", "harreveld", "hasselt", "havelte", "havelterberg", "heemserveen", "heerde", "heeten", "heetveld", "heino", "henxel", "hessum", "het stift", "hezingen", "holt", "holtheme", "holthone",
-        "hoogengraven en stegeren", "hoogenweg", "hoonhorst", "huppel", "ijhorst", "ijsselham", "ijzerlo", "jonen", "junne", "kadoelen", "kalenberg", "kallenkote", "kloosterhaar", "kluinhaar", "kotten", "kuinre", "laag zuthem", "langeveen", "lankhorst", "lattrop-breklenkamp", "leeuwte",
-        "leggeloo", "lemele", "lemelerveld", "lemselo", "lenthe", "leusenerveld", "lhee", "lheebroek", "lichtenvoorde", "lierderholthuis", "lievelde", "lintelo", "loozen", "lutten", "luttenberg", "mander", "manderveen", "mariaparochie", "marienberg", "marienheem", "marienvelde",
-        "marijenkampen", "marle", "mastenbroek", "meddo", "millingen", "miste", "moespot", "molenhoek", "muggenbeet", "nederland", "nieuw heeten", "nieuwleusen", "nijensleek", "nijstad", "nutter", "oldemarkt", "olst", "ommen", "ommerkanaal en ommerbosch", "ommerschans", "ommerveld", "onna",
-        "ootmarsum", "ossenzijl", "oud ootmarsum", "oudleusen", "oudleusenerveld", "paasloo", "punthorst", "raalte", "radewijk", "ratum", "rechteren", "reutum", "rheeze", "rheezerveen", "ronduite", "rossum", "rotbrink", "rouveen", "ruitenveen", "saasveld", "scheerwolde", "schuinesloot",
-        "sibculo", "sint jansklooster", "slagharen", "slennebroek", "slingenberg", "staphorst", "steenwijk", "steenwijkerwold", "stegeren", "stegerveld", "strenkhaar", "t klooster", "tilligte", "tubbergen", "tuk", "uffelte", "urk", "varsen", "vasse", "venebrugge", "vilsteren", "vinkenbuurt",
-        "vledder", "vledderveen", "vollenhove", "volthe", "vragender", "vriezenveen", "vroomshoop", "wanneperveen", "wapse", "wapserveen", "weerselo", "weitemanslanden", "welsum", "wesepe", "westeinde", "westerhaar-vriezenveensewijk", "westerhoeven", "westerhuizingerveld", "wetering", "wijhe",
-        "wilhelminaoord", "willemsoord", "winterswijk", "witharen", "witte paarden", "wittelte", "woold", "woudenberg", "zeesse", "zieuwent", "zorgvlied", "zuideinde", "zuidveen", "zwartsluis", "zwolle"]
+        rova = ["aalten", "agelo", "albergen", "amersfoort", "ane", "anerveen", "anevelde", "ankum", "arrien", "baarlo", "baars", "balkbrug", "basse", "beerze", "beerzerveld", "belt-schutsloot", "bergentheim", "blankenham", "blokzijl", "boschoord", "bredevoort", "broekland", "brucht", "bruchterveld",
+        "bunschoten-spakenburg", "collendoorn", "dalfsen", "dalmsholte", "darp", "de bult", "de heurne", "de krim", "de pol", "dedemsvaart", "den ham", "den velde", "denekamp", "deurningen", "diever", "dieverbrug", "diffelen", "dinxperlo", "doldersum", "dwingeloo", "eemdijk", "eemster", "eesveen",
+        "fleringen", "frederiksoord", "geerdijk", "geesteren", "geeuwenbrug", "genemuiden", "giethmen", "giethoorn", "gramsbergen", "groenlo", "haarle", "harbrinkhoek", "hardenberg", "harreveld", "hasselt", "havelte", "havelterberg", "heemserveen", "heerde", "heeten", "heino", "hezingen", "holtheme",
+        "holthone", "hoogenweg", "hoogland", "hooglanderveen", "hoonhorst", "ijhorst", "ijsselham", "kalenberg", "kallenkote", "kloosterhaar", "kuinre", "laag zuthem", "langeveen", "lattrop-breklenkamp", "leggeloo", "lemele", "lemelerveld", "lhee", "lheebroek", "lichtenvoorde", "lierderholthuis", "lievelde",
+        "loozen", "lutten", "luttenberg", "mander", "manderveen", "mariaparochie", "marienvelde", "marijenkampen", "mariënberg", "mariënheem", "marle", "mastenbroek", "meddo", "nederland", "nieuw heeten", "nieuwleusen", "nijensleek", "nutter", "oldemarkt", "olst", "ommen", "onna", "ootmarsum", "ossenzijl",
+        "oud ootmarsum", "oudleusen", "paasloo", "punthorst", "raalte", "radewijk", "reutum", "rheeze", "rheezerveen", "rossum", "rouveen", "saasveld", "scheerwolde", "schuinesloot", "sibculo", "sint jansklooster", "slagharen", "staphorst", "steenwijk", "steenwijkerwold", "stegeren", "tilligte", "tubbergen",
+        "tuk", "uffelte", "urk", "vasse", "veessen", "venebrugge", "vilsteren", "vinkenbuurt", "vledder", "vledderveen", "vollenhove", "vorchten", "vragender", "vriezenveen", "vroomshoop", "wanneperveen", "wapenveld", "wapse", "wapserveen", "weerselo", "welsum", "wesepe", "westeinde", "westerhaar-vriezenveensewijk",
+        "wetering", "wijhe", "wilhelminaoord", "willemsoord", "winterswijk", "witharen", "witte paarden", "wittelte", "woudenberg", "zieuwent", "zorgvlied", "zuidveen", "zwartsluis", "zwolle"]
         if self.city in rova:
             self.data = RovaAfval().get_data(
                 self.city, self.postcode, self.street_number
