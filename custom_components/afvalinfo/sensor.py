@@ -5,7 +5,6 @@ Author: Johnny Visser
 
 ToDo: Add more locations for MijnAfvalWijzer
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
-ToDo: Delete all the 'buurtschappen' (in locations added before DeAfvalApp)
 ToDo: Add huisnummer toevoeging
 """
 
