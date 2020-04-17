@@ -52,3 +52,4 @@ Version: 0.3.20 20200413 - Added (Zuidwest-Friesland) Súdwest-Fryslân
 Version: 0.3.21 20200413 - Changed result of empty today and tomorrow sensors to "none"
                            + removed some buurtschappen
 Version: 0.3.22 20200414 - Added Rotterdam
+Version: 0.3.23 20200416 - Fix for Oud Papier in Today and Tomorrow sensor
