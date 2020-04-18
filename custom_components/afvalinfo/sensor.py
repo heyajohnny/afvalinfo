@@ -186,7 +186,7 @@ class AfvalinfoData(object):
                 self.city, self.postcode, self.street_number
             )
         mijnafvalwijzer = ["almkerk", "andel", "babylonienbroek", "broekhorn", "de meern", "de noord", "de steeg", "dieren", "draai", "drongelen", "dussen", "eethen", "ellecom", "genderen", "giessen", "haarzuilens", "hank", "heerhugowaard", "laag-soeren", "meeuwen", "nieuwendijk", "rotterdam",
-        "rheden", "rijswijk", "sleeuwijk", "spankeren", "uitwijk", "uppel", "utrecht", "veen", "veenhuizen", "velp", "verlaat", "vleuten", "waardhuizen", "werkendam", "wijk en aalburg", "woudrichem"]
+        "rheden", "roermond", "rijswijk", "sleeuwijk", "spankeren", "swalmen", "uitwijk", "uppel", "utrecht", "veen", "veenhuizen", "velp", "verlaat", "vleuten", "waardhuizen", "werkendam", "wijk en aalburg", "woudrichem"]
         if self.city in mijnafvalwijzer:
             self.data = MijnAfvalWijzerAfval().get_data(
                 self.city, self.postcode, self.street_number
