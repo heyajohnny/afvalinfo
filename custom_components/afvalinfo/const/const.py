@@ -17,6 +17,7 @@ SENSOR_LOCATIONS_TO_URL = {
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],
     "alphenaandenrijn": ["https://afvalkalender.alphenaandenrijn.nl/adres/{0}:{1}"],
+    "blink": ["https://mijnblink.nl/adres/{0}:{1}"],
     "deafvalapp": [
         "http://www.deafvalapp.nl/calendar/kalender_sessie.jsp?land=NL&postcode={0}&straatId=&huisnr={1}&huisnrtoev=",
         "http://www.deafvalapp.nl/calendar/kalender_dashboard.jsp",
