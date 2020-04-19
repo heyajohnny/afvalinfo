@@ -6,6 +6,9 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
 
+##### --(Spaarnelanden) Haarlem, Zandvoort
+- haarlem, spaarndam-west, zandvoort
+
 ##### --(Bar) Barendrecht, Albrandswaard, Ridderkerk
 - barendrecht, bolnes, oostendam, poortugaal, rhoon, ridderkerk
 

@@ -53,6 +53,7 @@ from .location.gad import GadAfval
 from .location.zuidwestfriesland import ZuidWestFrieslandAfval
 from .location.blink import BlinkAfval
 from .location.bar import BarAfval
+from .location.spaarnelanden import SpaarnelandenAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -239,6 +240,11 @@ class AfvalinfoData(object):
         sliedrecht = ["sliedrecht"]
         if self.city in sliedrecht:
             self.data = SliedrechtAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        spaarnelanden = ["haarlem", "spaarndam-west", "zandvoort"]
+        if self.city in spaarnelanden:
+            self.data = SpaarnelandenAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         suez = ["arnhem", "elden", "schaarsbergen"]
