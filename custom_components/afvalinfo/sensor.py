@@ -52,6 +52,7 @@ from .location.venray import VenrayAfval
 from .location.gad import GadAfval
 from .location.zuidwestfriesland import ZuidWestFrieslandAfval
 from .location.blink import BlinkAfval
+from .location.bar import BarAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -136,6 +137,11 @@ class AfvalinfoData(object):
         alphenaandenrijn = ["aarlanderveen", "alphen aan den rijn", "benthuizen", "boskoop", "hazerswoude-dorp", "hazerswoude-rijndijk", "koudekerk aan den rijn", "zwammerdam"]
         if self.city in alphenaandenrijn:
             self.data = AlphenAanDenRijnAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        bar = ["barendrecht", "bolnes", "oostendam", "poortugaal", "rhoon", "ridderkerk"]
+        if self.city in bar:
+            self.data = BarAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         blink = ["aarle-rixtel", "asten", "bakel", "beek en donk", "de mortel", "de rips", "deurne", "elsendorp", "gemert", "gerwen", "handel", "heeze", "helenaveen", "helmond", "heusden", "leende", "lierop", "lieshout", "liessel", "mariahout", "milheeze", "nederwetten", "neerkant", "nuenen",

@@ -17,6 +17,9 @@ SENSOR_LOCATIONS_TO_URL = {
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],
     "alphenaandenrijn": ["https://afvalkalender.alphenaandenrijn.nl/adres/{0}:{1}"],
+    "bar": [
+        "https://wasteapi.ximmio.com/api/FetchAdress",
+        "https://wasteapi.ximmio.com/api/GetCalendar"],
     "blink": ["https://mijnblink.nl/adres/{0}:{1}"],
     "deafvalapp": [
         "http://www.deafvalapp.nl/calendar/kalender_sessie.jsp?land=NL&postcode={0}&straatId=&huisnr={1}&huisnrtoev=",
@@ -62,11 +65,10 @@ SENSOR_LOCATIONS_TO_COMPANY_CODE = {
     #nissewaard also known as reinis
     "nissewaard": ["9dc25c8a-175a-4a41-b7a1-83f237a80b77"],
     "meerlanden": ["800bf8d7-6dd1-4490-ba9d-b419d6dc8a45"],
+    "bar": ["bb58e633-de14-4b2a-9941-5bc419f1c4b0"]
     # ToDo: "hellendoorn": ["24434f5b-7244-412b-9306-3a2bd1e22bc1"],
     # ToDo: "acv": ["f8e2844a-095e-48f9-9f98-71fceb51d2c3"],
     #ACV = Ede, Renkum, Renswoude, Veenendaal, Wageningen
-    #rotterdam
-    #barAfvalbeheer
 }
 
 MONTH_TO_NUMBER = {

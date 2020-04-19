@@ -6,6 +6,9 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
 
+##### --(Bar) Barendrecht, Albrandswaard, Ridderkerk
+- barendrecht, bolnes, oostendam, poortugaal, rhoon, ridderkerk
+
 ##### --(Blink) Asten, Deurne, Gemert-Bakel, Heeze-Leende, Helmond, Laarbeek, Nuenen, Someren
 - aarle-rixtel, asten, bakel, beek en donk, de mortel, de rips, deurne, elsendorp, gemert, gerwen, handel, heeze, helenaveen, helmond, heusden, leende, lierop, lieshout, liessel, mariahout, milheeze, nederwetten, neerkant, nuenen, ommel, someren, sterksel, vlierden
 
