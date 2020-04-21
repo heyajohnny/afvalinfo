@@ -54,6 +54,7 @@ from .location.zuidwestfriesland import ZuidWestFrieslandAfval
 from .location.blink import BlinkAfval
 from .location.bar import BarAfval
 from .location.spaarnelanden import SpaarnelandenAfval
+from .location.cyclus import CyclusAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -149,6 +150,13 @@ class AfvalinfoData(object):
         "ommel", "someren", "sterksel", "vlierden"]
         if self.city in blink:
             self.data = BlinkAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        cyclus = ["ammerstol", "bergambacht", "berkenwoude", "bodegraven", "de meije", "driebruggen", "gouda", "gouderak", "haastrecht", "hogebrug", "hoogmade", "kaag", "krimpen aan de lek", "lageweg", "langeraar", "leimuiden", "lekkerkerk", "linschoten", "moerkapelle", "montfoort", 
+        "moordrecht", "nieuwe wetering", "nieuwerbrug", "nieuwerkerk aan den ijssel", "nieuwkoop", "nieuwveen", "noordeinde", "noorden", "opperduit", "oud ade", "oude wetering", "ouderkerk aan den ijssel", "reeuwijk-brug", "reeuwijk-dorp", "rijnsaterwoude", "rijpwetering", "roelofarendsveen", 
+        "schoonhoven", "schuwacht", "sluipwijk", "stolwijk", "tempel", "ter aar", "vlist", "waarde", "waddinxveen", "willeskop", "willige langerak", "woerdense verlaat", "woubrugge", "zevenhoven", "zevenhuizen"]
+        if self.city in cyclus:
+            self.data = CyclusAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         deafvalapp = ["aalst", "acquoy", "alem", "alphen", "altforst", "ammerzoden", "appeltern", "asch", "asperen", "axel", "beers", "beesd", "beneden-leeuwen", "beugen", "beusichem", "biervliet", "boekel", "boven-leeuwen", "boxmeer", "brakel", "breugel", "bruchem", "buren", "buurmalsen",
