@@ -48,7 +48,7 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 ##### --Meppel
 - havelterberg, kolderveen, meppel, nijeveen, rogat
 
-##### --(MijnAfvalWijzer) Altena, Heerhugowaard, Rheden, Roermond, Utrecht
+##### --(MijnAfvalWijzer) Altena, Heerhugowaard, Rheden, Roermond, Rotterdam, Utrecht
 ###### WARNING! Might not work well at the end of the year / beginning of the next year
 - almkerk, andel, babylonienbroek, broekhorn, de meern, de noord, de steeg, dieren, draai, drongelen, dussen, eethen, ellecom, genderen, giessen, haarzuilens, hank, heerhugowaard, laag-soeren, meeuwen, nieuwendijk, rotterdam, rheden, roermond, rijswijk, sleeuwijk, spankeren, swalmen, uitwijk, uppel, utrecht, veen, veenhuizen, velp, verlaat, vleuten, waardhuizen, werkendam, wijk en aalburg, woudrichem
 
