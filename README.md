@@ -48,9 +48,9 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 ##### --Meppel
 - havelterberg, kolderveen, meppel, nijeveen, rogat
 
-##### --(MijnAfvalWijzer) Altena, Heerhugowaard, Rheden, Roermond, Rotterdam, Utrecht
+##### --(MijnAfvalWijzer) Altena, Amstelveen, Heerhugowaard, Leiderdorp, Rheden, Roermond, Rotterdam, Utrecht
 ###### WARNING! Might not work well at the end of the year / beginning of the next year
-- almkerk, andel, babylonienbroek, broekhorn, de meern, de noord, de steeg, dieren, draai, drongelen, dussen, eethen, ellecom, genderen, giessen, haarzuilens, hank, heerhugowaard, laag-soeren, meeuwen, nieuwendijk, rotterdam, rheden, roermond, rijswijk, sleeuwijk, spankeren, swalmen, uitwijk, uppel, utrecht, veen, veenhuizen, velp, verlaat, vleuten, waardhuizen, werkendam, wijk en aalburg, woudrichem
+- aerdt, almkerk, amstelveen, andel, angerlo, babberich, babylonienbroek, bahr, bevermeer, bingerden, broekhorn, de meern, de noord, de steeg, dieren, draai, drongelen, dussen, eethen, ellecom, genderen, giesbeek, giessen, haarzuilens, hank, heerhugowaard, herwen, laag-soeren, lathum, leiderdorp, lobith, meeuwen, nes aan de amstel, nieuwendijk, ooy, oud-zevenaar, pannerden, rheden, rijswijk, roermond, rotterdam, sleeuwijk, spankeren, spijk, swalmen, tolkamer, tuindorp, uitwijk, uppel, utrecht, veen, veenhuizen, velp, verlaat, vleuten, waardhuizen, werkendam, wijk en aalburg, woudrichem, zevenaar
 
 ##### --(Rova) Aalten, Amersfoort, Bunschoten, Dalfsen, Dinkelland, Hardenberg, Hattem, Heerde, Olst-Wijhe, Ommen, Oost Gelre, Raalte, Staphorst, Steenwijkerland, Tubbergen, Twenterand, Urk, Westerveld, Winterswijk, Woudenberg, Zwartewaterland, Zwolle
 ###### WARNING! Might not work well at the end of the year / beginning of the next year

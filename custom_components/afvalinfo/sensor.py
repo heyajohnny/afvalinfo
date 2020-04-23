@@ -5,8 +5,6 @@ Author: Johnny Visser
 
 ToDo: Add more locations for MijnAfvalWijzer
 Aa en Hunze,
-Altena,
-Amstelveen,
 Assen,
 Barneveld,
 Beek,
@@ -44,7 +42,6 @@ Kampen,
 Krimpen aan den IJssel,
 Lansingerland,
 Leiden,
-Leiderdorp,
 Leudal,
 Leusden,
 Loon op Zand,
@@ -65,7 +62,6 @@ Oude Pekela,
 Oudewater,
 Overbetuwe,
 Rhenen,
-Rijnwaarden-Zevenaar,
 Rijssen-Holten,
 Roerdalen,
 Roosendaal,
@@ -296,8 +292,9 @@ class AfvalinfoData(object):
             self.data = MeppelAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        mijnafvalwijzer = ["almkerk", "andel", "babylonienbroek", "broekhorn", "de meern", "de noord", "de steeg", "dieren", "draai", "drongelen", "dussen", "eethen", "ellecom", "genderen", "giessen", "haarzuilens", "hank", "heerhugowaard", "laag-soeren", "meeuwen", "nieuwendijk", "rotterdam",
-        "rheden", "roermond", "rijswijk", "sleeuwijk", "spankeren", "swalmen", "uitwijk", "uppel", "utrecht", "veen", "veenhuizen", "velp", "verlaat", "vleuten", "waardhuizen", "werkendam", "wijk en aalburg", "woudrichem"]
+        mijnafvalwijzer = ["aerdt", "almkerk", "amstelveen", "andel", "angerlo", "babberich", "babylonienbroek", "bahr", "bevermeer", "bingerden", "broekhorn", "de meern", "de noord", "de steeg", "dieren", "draai", "drongelen", "dussen", "eethen", "ellecom", "genderen", "giesbeek", "giessen", "haarzuilens",
+        "hank", "heerhugowaard", "herwen", "laag-soeren", "lathum", "leiderdorp", "lobith", "meeuwen", "nes aan de amstel", "nieuwendijk", "ooy", "oud-zevenaar", "pannerden", "rheden", "rijswijk", "roermond", "rotterdam", "sleeuwijk", "spankeren", "spijk", "swalmen", "tolkamer", "tuindorp", "uitwijk", "uppel",
+        "utrecht", "veen", "veenhuizen", "velp", "verlaat", "vleuten", "waardhuizen", "werkendam", "wijk en aalburg", "woudrichem", "zevenaar"]
         if self.city in mijnafvalwijzer:
             self.data = MijnAfvalWijzerAfval().get_data(
                 self.city, self.postcode, self.street_number
