@@ -4,7 +4,7 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 
 <a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
 
-Number of supported 'Gemeenten' in The Netherlands: 135 of 355 = 38%
+Number of supported 'Gemeenten' in The Netherlands: 148 of 355 = 41,7%
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
 
@@ -50,9 +50,9 @@ Number of supported 'Gemeenten' in The Netherlands: 135 of 355 = 38%
 ##### --Meppel
 - havelterberg, kolderveen, meppel, nijeveen, rogat
 
-##### --(MijnAfvalWijzer) Altena, Amstelveen, Heerhugowaard, Leiderdorp, Rheden, Roermond, Rotterdam, Utrecht
+##### --(MijnAfvalWijzer) AA en Hunze, Assen, Altena, Amstelveen, Barneveld, Beek, Beekdaelen, Beesel, Bergen op Zoom, Bernheze, Best, Borger-Odoorn, Boxtel, Breda, Brielle, Heerhugowaard, Leiderdorp, Rheden, Roermond, Rotterdam, Utrecht
 ###### WARNING! Might not work well at the end of the year / beginning of the next year
-- aerdt, almkerk, amstelveen, andel, angerlo, babberich, babylonienbroek, bahr, bevermeer, bingerden, broekhorn, de meern, de noord, de steeg, dieren, draai, drongelen, dussen, eethen, ellecom, genderen, giesbeek, giessen, haarzuilens, hank, heerhugowaard, herwen, laag-soeren, lathum, leiderdorp, lobith, meeuwen, nes aan de amstel, nieuwendijk, ooy, oud-zevenaar, pannerden, rheden, rijswijk, roermond, rotterdam, sleeuwijk, spankeren, spijk, swalmen, tolkamer, tuindorp, uitwijk, uppel, utrecht, veen, veenhuizen, velp, verlaat, vleuten, waardhuizen, werkendam, wijk en aalburg, woudrichem, zevenaar
+- aarle, achterveld, aerdt, almkerk, amen, amstelveen, amstenrade, andel, anderen, angerlo, anloo, annen, annerveenschekanaal, anreep-schieven, assen, babberich, babylonienbroek, bahr, balloo, balloërveld (plaats), barneveld, beek, beesel, bergen op zoom, best, bevermeer, bingelrade, bingerden, borger, boxtel, breda, brielle, broekhorn, bronneger, bronnegerveen, buinen, buinerveen, de glind, de meern, de noord, de steeg, de vleut, de vorst, den berg, deurze, dieren, doenrade, draai, drongelen, drouwen, drouwenermond, drouwenerveen, dussen, eerste exloermond, ees, eesergroen, eeserveen, eethen, eext, eexterveen, eexterveenschekanaal, eexterzandvoort, ekehaar, eldersloo, eleveld, ellecom, ellertshaar, exloo, exloërveen, garderen, gasselte, gasselternijveen, gasselternijveenschemond, gasteren, geelbroek, genderen, genhout, geverik, giesbeek, giessen, gieten, gieterveen, graswijk, grolloo, haarzuilens, hank, heerhugowaard, heesch, heeswijk-dinther, herwen, hezelaar, hulsberg, jabeek, kasteren, kelmond, kinderbos, klijndijk, kootwijk, kootwijkerbroek, laag-soeren, langenberg, lathum, leiderdorp, lennisheuvel, liempde, lobith, looeind, loon, loosbroek, luissel, marwijksoord, meeuwen, merkelbeek, neerbeek, nergena, nes aan de amstel, nieuw annerveen, nieuw-buinen, nieuwediep, nieuwendijk, nijlande, nistelrode, nooitgedacht, nuth, odoorn, odoornerveen, offenbeek, oirsbeek, ooy, oud annerveen, oud-zevenaar, ouddorp, pannerden, papenvoort, puth, reuver, rheden, rhee, rijkel, rijswijk, roermond, rolde, roond, rotterdam, schimmert, schinnen, schinveld, schipborg, schoonloo, selissen, sleeuwijk, spankeren, spaubeek, spijk, spijkerboor, stroe, swalmen, sweikhuizen, ter aard, terschuur, tolkamer, tongeren, tuindorp, tweede exloermond, tweede valthermond, ubbena, uitwijk, uppel, utrecht, valthe, valthermond, veen, veenhuizen, velp, verlaat, vierpolders, vinkel, vleuten, voorthuizen, vorstenbosch, vredenheim, vrilkhoven, waardhuizen, werkendam, westdorp, wijk en aalburg, wijnandsrade, witten, woudrichem, zandberg, zeijerveld, zevenaar, zwartebroek, zwartewaal
 
 ##### --(Rova) Aalten, Amersfoort, Bunschoten, Dalfsen, Dinkelland, Hardenberg, Hattem, Heerde, Olst-Wijhe, Ommen, Oost Gelre, Raalte, Staphorst, Steenwijkerland, Tubbergen, Twenterand, Urk, Westerveld, Winterswijk, Woudenberg, Zwartewaterland, Zwolle
 ###### WARNING! Might not work well at the end of the year / beginning of the next year
