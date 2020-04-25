@@ -82,7 +82,7 @@ class OmrinAfval(object):
 
             soup = BeautifulSoup(html, "html.parser")
             frame = soup.find("div", {"id": "frame"})
-            script = frame.find("script", {"type": "text/javascript"}).text
+            script = frame.find("script", {"type": "text/javascript"}).string
             omrinDataGroups = script[script.index("{"):]
             omrinDataGroupsJson = json.loads(omrinDataGroups[:len(omrinDataGroups) - 1])
 

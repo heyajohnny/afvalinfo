@@ -4,6 +4,8 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 
 <a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
 
+Number of supported 'Gemeenten' in The Netherlands: 135 of 355 = 38%
+
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
 
 ##### --(Cyclus) Bodegraven-Reeuwijk, Gouda, Kaag en Braassem, Krimpenerwaard, Montfoort, Nieuwkoop, Waddinxveen, Zuidplas
