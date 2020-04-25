@@ -100,6 +100,7 @@ from .location.blink import BlinkAfval
 from .location.bar import BarAfval
 from .location.spaarnelanden import SpaarnelandenAfval
 from .location.cyclus import CyclusAfval
+from .location.circulusberkel import CirculusBerkelAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -195,6 +196,13 @@ class AfvalinfoData(object):
         "ommel", "someren", "sterksel", "vlierden"]
         if self.city in blink:
             self.data = BlinkAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        circulusberkel = ["almen", "apeldoorn", "baak", "barchem", "bathmen", "beekbergen", "beemte-broekland", "bronkhorst", "bussloo", "de vecht", "deventer", "diepenveen", "doesburg", "drempt", "eefde", "emst", "epe", "epse", "gorssel", "halle", "harfsen", "hengelo", "hoenderloo",
+        "hoog soeren", "hoog-keppel", "hummelo", "joppe", "keijenborg", "klarenbeek", "kring van dorth", "laag-keppel", "laren", "lettele", "lieren", "lochem", "loenen", "nijbroek", "oene", "okkenbroek", "olburgen", "radio kootwijk", "rha", "schalkhaar", "steenderen", "terwolde", "teuge",
+        "toldijk", "twello", "uddel", "ugchelen", "vaassen", "vierakker", "voorst", "vorden", "warnsveld", "wenum-wiesel", "wichmond", "wilp", "wilp-achterhoek", "zelhem", "zutphen"]
+        if self.city in circulusberkel:
+            self.data = CirculusBerkelAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         cyclus = ["ammerstol", "bergambacht", "berkenwoude", "bodegraven", "de meije", "driebruggen", "gouda", "gouderak", "haastrecht", "hogebrug", "hoogmade", "kaag", "krimpen aan de lek", "lageweg", "langeraar", "leimuiden", "lekkerkerk", "linschoten", "moerkapelle", "montfoort",

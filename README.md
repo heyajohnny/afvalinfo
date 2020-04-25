@@ -4,9 +4,12 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 
 <a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
 
-Number of supported 'Gemeenten' in The Netherlands: 173 of 355 = 48,7%
+Number of supported 'Gemeenten' in The Netherlands: 182 of 355 = 51,2%
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
+
+##### --(Circulus-Berkel) Apeldoorn, Bronckhorst, Brummen, Deventer, Doesburg, Epe, Lochem, Voorst, Zutphen
+- almen, apeldoorn, baak, barchem, bathmen, beekbergen, beemte-broekland, bronkhorst, bussloo, de vecht, deventer, diepenveen, doesburg, drempt, eefde, emst, epe, epse, gorssel, halle, harfsen, hengelo, hoenderloo, hoog soeren, hoog-keppel, hummelo, joppe, keijenborg, klarenbeek, kring van dorth, laag-keppel, laren, lettele, lieren, lochem, loenen, nijbroek, oene, okkenbroek, olburgen, radio kootwijk, rha, schalkhaar, steenderen, terwolde, teuge, toldijk, twello, uddel, ugchelen, vaassen, vierakker, voorst, vorden, warnsveld, wenum-wiesel, wichmond, wilp, wilp-achterhoek, zelhem, zutphen
 
 ##### --(Cyclus) Bodegraven-Reeuwijk, Gouda, Kaag en Braassem, Krimpenerwaard, Montfoort, Nieuwkoop, Waddinxveen, Zuidplas
 - ammerstol, bergambacht, berkenwoude, bodegraven, de meije, driebruggen, gouda, gouderak, haastrecht, hogebrug, hoogmade, kaag, krimpen aan de lek, lageweg, langeraar, leimuiden, lekkerkerk, linschoten, moerkapelle, montfoort, moordrecht, nieuwe wetering, nieuwerbrug, nieuwerkerk aan den ijssel, nieuwkoop, nieuwveen, noordeinde, noorden, opperduit, oud ade, oude wetering, ouderkerk aan den ijssel, reeuwijk-brug, reeuwijk-dorp, rijnsaterwoude, rijpwetering, roelofarendsveen, schoonhoven, schuwacht, sluipwijk, stolwijk, tempel, ter aar, vlist, waarde, waddinxveen, willeskop, willige langerak, woerdense verlaat, woubrugge, zevenhoven, zevenhuizen
