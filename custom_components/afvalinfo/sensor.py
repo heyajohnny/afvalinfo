@@ -279,7 +279,7 @@ class AfvalinfoData(object):
             self.data = MeppelAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        mijnafvalwijzer = ["aarle", "achterveld", "aerdt", "almkerk", "amen", "amstelveen", "amstenrade", "andel", "anderen", "angerlo", "anloo", "annen", "annerveenschekanaal", "anreep-schieven", "assen", "babberich", "babylonienbroek", "bahr", "balloo", "balloërveld (plaats)", "barneveld", "beek",
+        mijnafvalwijzer = ["aarle", "achterveld", "aerdt", "almkerk", "amen", "amstelveen", "amstenrade", "andel", "anderen", "angerlo", "anloo", "annen", "annerveenschekanaal", "anreep-schieven", "assen", "babberich", "babylonienbroek", "bahr", "balloo", "balloerveld", "barneveld", "beek",
         "beesel", "bergen op zoom", "best", "bevermeer", "bingelrade", "bingerden", "borger", "boxtel", "breda", "brielle", "broekhorn", "bronneger", "bronnegerveen", "buinen", "buinerveen", "de glind", "de meern", "de noord", "de steeg", "de vleut", "de vorst", "den berg", "deurze", "dieren", "doenrade",
         "draai", "drongelen", "drouwen", "drouwenermond", "drouwenerveen", "dussen", "eerste exloermond", "ees", "eesergroen", "eeserveen", "eethen", "eext", "eexterveen", "eexterveenschekanaal", "eexterzandvoort", "ekehaar", "eldersloo", "eleveld", "ellecom", "ellertshaar", "exloo", "exloërveen",
         "garderen", "gasselte", "gasselternijveen", "gasselternijveenschemond", "gasteren", "geelbroek", "genderen", "genhout", "geverik", "giesbeek", "giessen", "gieten", "gieterveen", "graswijk", "grolloo", "haarzuilens", "hank", "heerhugowaard", "heesch", "heeswijk-dinther", "herwen", "hezelaar",
