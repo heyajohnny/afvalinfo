@@ -4,24 +4,12 @@ Sensor component for Afvalinfo
 Author: Johnny Visser
 
 ToDo: Add more locations for MijnAfvalWijzer
-Halderberge,
-Harderwijk,
-Heiloo,
-Hilvarenbeek,
-Hoogezand-Sappemeer,
-Horst aan de Maas,
-Houten,
-Kampen,
-Krimpen aan den IJssel,
-Lansingerland,
-Leiden,
 Leudal,
 Leusden,
 Loon op Zand,
 Lopik,
 Maasgouw,
 Meierijstad,
-Menterwolde,
 Moerdijk,
 Nijkerk,
 Noordenveld,
@@ -42,7 +30,6 @@ Rucphen,
 Scherpenzeel,
 Sint-Michielsgestel,
 Sittard-Geleen,
-Slochteren,
 Smallingerland,
 Stadskanaal,
 Stein,
@@ -265,18 +252,21 @@ class AfvalinfoData(object):
             self.data = MeppelAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        mijnafvalwijzer = ["aarle", "abcoude", "achterveld", "aerdt", "akersloot", "almkerk", "alteveer", "amen", "amstelhoek", "amstelveen", "amstenrade", "andel", "anderen", "angerlo", "anloo", "annen", "annerveenschekanaal", "anreep-schieven", "ansen", "assen", "baambrugge", "babberich",
-        "babylonienbroek", "bahr", "bakkum", "bakkum-noord", "balloerveld", "balloo", "barneveld", "beek", "beesel", "bergen op zoom", "berghuizen", "best", "bevermeer", "biddinghuizen", "bilthoven", "bingelrade", "bingerden", "borger", "boxtel", "breda", "brielle", "broekhorn", "bronneger",
-        "bronnegerveen", "buinen", "buinerveen", "castricum aan zee", "castricum", "de beek", "de bilt", "de glind", "de hoef", "de meern", "de noord", "de steeg", "de vleut", "de vorst", "de wijk", "de woude", "den berg", "deurze", "dieren", "doenrade", "doetinchem", "dongen", "dongense vaart",
-        "doornspijk", "draai", "drie", "drogteropslagen", "drongelen", "dronten", "drouwen", "drouwenermond", "drouwenerveen", "duiven", "dusseldorp", "dussen", "echten", "eerste exloermond", "ees", "eesergroen", "eeserveen", "eethen", "eext", "eexterveen", "eexterveenschekanaal", "eexterzandvoort",
-        "ekehaar", "elburg", "eldersloo", "eleveld", "ellecom", "ellertshaar", "ermelo", "etten-leur", "eursinge", "exloo", "exloërveen", "fort", "gaanderen", "garderen", "gasselte", "gasselternijveen", "gasselternijveenschemond", "gasteren", "geelbroek", "geertruidenberg", "genderen", "genhout",
-        "geverik", "giesbeek", "giessen", "gieten", "gieterveen", "gilze", "goirle", "graswijk", "groenekan", "groessen", "grolloo", "haarzuilens", "hank", "heerhugowaard", "heesch", "heeswijk-dinther", "herwen", "hezelaar", "hollandsche rading", "horst", "houtdorp", "hulsberg", "hulten", "jabeek",
-        "kasteren", "kelmond", "kerkenveld", "kinderbos", "klein-dongen", "klijndijk", "koekange", "koekangerveld", "kootwijk", "kootwijkerbroek", "laag-soeren", "langenberg", "lathum", "leiderdorp", "lennisheuvel", "leuvenum", "liempde", "limmen", "linde", "lobith", "loo", "looeind", "loon", "loosbroek",
-        "luissel", "maartensdijk", "marwijksoord", "meeuwen", "merkelbeek", "mijdrecht", "molenschot", "neerbeek", "nergena", "nes aan de amstel", "nieuw annerveen", "nieuw-buinen", "nieuw-wehl", "nieuwediep", "nieuwendijk", "nijlande", "nistelrode", "nooitgedacht", "nuth", "odoorn", "odoornerveen",
-        "offenbeek", "oirsbeek", "oosteinde", "ooy", "oud annerveen", "oud-zevenaar", "ouddorp", "pannerden", "papenvoort", "puth", "raamsdonk", "raamsdonksveer", "reuver", "rheden", "rhee", "riel", "rijen", "rijkel", "rijswijk", "roermond", "rolde", "roond", "rotterdam", "ruinen", "ruinerwold",
-        "s gravenmoer", "s-gravenmoerse vaart", "schimmert", "schinnen", "schinveld", "schipborg", "schoonloo", "selissen", "sleeuwijk", "spankeren", "spaubeek", "speuld", "spijk", "spijkerboor", "staverden", "stroe", "swalmen", "sweikhuizen", "swifterbant", "t harde", "telgt", "ter aard", "terschuur",
-        "tolkamer", "tongeren", "tonsel", "tuindorp", "tweede exloermond", "tweede valthermond", "ubbena", "uitwijk", "uppel", "utrecht", "valthe", "valthermond", "veen", "veenhuizen", "veeningen", "velp", "verlaat", "vierpolders", "vinkel", "vinkeveen", "vleuten", "voorthuizen", "vorstenbosch", "vredenheim",
-        "vrilkhoven", "waardhuizen", "waverveen", "wehl", "werkendam", "westbroek", "westdorp", "wijk en aalburg", "wijnandsrade", "wijnbergen", "wilnis", "witten", "woudrichem", "zandberg", "zeijerveld", "zevenaar", "zuidwolde", "zwartebroek", "zwartewaal"]
+        mijnafvalwijzer = ["aarle", "abcoude", "achterveld", "aerdt", "akersloot", "almkerk", "alteveer", "amen", "america", "amstelhoek", "amstelveen", "amstenrade", "andel", "anderen", "angerlo", "anloo", "annen", "annerveenschekanaal", "anreep-schieven", "ansen", "assen", "baambrugge", "baarschot",
+        "babberich", "babylonienbroek", "bahr", "bakkum", "bakkum-noord", "balloerveld", "balloo", "barneveld", "beek", "beesel", "bergen op zoom", "berghuizen", "bergschenhoek", "berkel en rodenrijs", "best", "bevermeer", "biddinghuizen", "biest-houtakker", "bilthoven", "bingelrade", "bingerden",
+        "bleiswijk", "borger", "bosschenhoofd", "boxtel", "breda", "brielle", "broekhorn", "broekhuizen", "broekhuizenvorst", "bronneger", "bronnegerveen", "buinen", "buinerveen", "castricum aan zee", "castricum", "de beek", "de bilt", "de glind", "de hoef", "de meern", "de noord", "de steeg", "de vleut",
+        "de vorst", "de wijk", "de woude", "den berg", "deurze", "dieren", "diessen", "doenrade", "doetinchem", "dongen", "dongense vaart", "doornspijk", "draai", "drie", "drogteropslagen", "drongelen", "dronten", "drouwen", "drouwenermond", "drouwenerveen", "duiven", "dusseldorp", "dussen", "echten",
+        "eerste exloermond", "ees", "eesergroen", "eeserveen", "eethen", "eext", "eexterveen", "eexterveenschekanaal", "eexterzandvoort", "ekehaar", "elburg", "eldersloo", "eleveld", "ellecom", "ellertshaar", "ermelo", "esbeek", "etten-leur", "eursinge", "evertsoord", "exloo", "exloërveen", "fort",
+        "foxhol", "froombosch", "gaanderen", "garderen", "gasselte", "gasselternijveen", "gasselternijveenschemond", "gasteren", "geelbroek", "geertruidenberg", "genderen", "genhout", "geverik", "giesbeek", "giessen", "gieten", "gieterveen", "gilze", "goirle", "grafhorst", "graswijk", "griendtsveen",
+        "groenekan", "groessen", "grolloo", "grubbenvorst", "haarzuilens", "haghorst", "hank", "harderwijk", "harkstede", "heerhugowaard", "heesch", "heeswijk-dinther", "hegelsom", "heiloo", "hellum", "herwen", "hezelaar", "hierden", "hilvarenbeek", "hoeven", "hollandsche rading", "hoogezand", "horst",
+        "houtdorp", "houten", "hulsberg", "hulten", "ijsselmuiden", "jabeek", "kampen", "kamperveen", "kasteren", "kelmond", "kerkenveld", "kiel-windeweer", "kinderbos", "klein-dongen", "klijndijk", "koekange", "koekangerveld", "kolham", "kootwijk", "kootwijkerbroek", "krimpen aan den ijssel", "kronenberg",
+        "kropswolde", "kruisweg", "laag-soeren", "langenberg", "lathum", "leiden", "leiderdorp", "lennisheuvel", "leuvenum", "liempde", "limmen", "linde", "lobith", "loo", "looeind", "loon", "loosbroek", "lottum", "luddeweer", "luissel", "maartensdijk", "marwijksoord", "meeden", "meerlo", "meeuwen", "melderslo",
+        "merkelbeek", "meterik", "mijdrecht", "molenschot", "muntendam", "neerbeek", "nergena", "nes aan de amstel", "nieuw annerveen", "nieuw-buinen", "nieuw-wehl", "nieuwediep", "nieuwendijk", "nijlande", "nistelrode", "nooitgedacht", "noordbroek", "nuth", "odoorn", "odoornerveen", "offenbeek", "oirsbeek",
+        "oosteinde", "ooy", "oud annerveen", "oud gastel", "oud-zevenaar", "ouddorp", "oudenbosch", "overschild", "pannerden", "papenvoort", "puth", "raamsdonk", "raamsdonksveer", "reuver", "rheden", "rhee", "riel", "rijen", "rijkel", "rijswijk", "rodenrijs", "roermond", "rolde", "roond", "rotte", "rotterdam",
+        "ruinen", "ruinerwold", "s gravenmoer", "s-gravenmoerse vaart", "s-heerenbroek", "sappemeer", "schalkwijk", "scharmer", "schildwolde", "schimmert", "schinnen", "schinveld", "schipborg", "schoonloo", "selissen", "sevenum", "siddeburen", "sleeuwijk", "slochteren", "spankeren", "spaubeek", "speuld", "spijk",
+        "spijkerboor", "stampersgat", "staverden", "steendam", "stroe", "swalmen", "sweikhuizen", "swifterbant", "swolgen", "t goy", "t harde", "telgt", "ter aard", "terschuur", "tienray", "tjuchem", "tolkamer", "tongeren", "tonsel", "tripscompagnie", "tuindorp", "tull en t waal", "tweede exloermond",
+        "tweede valthermond", "ubbena", "uitwijk", "uppel", "utrecht", "valthe", "valthermond", "veen", "veenhuizen", "veeningen", "velp", "verlaat", "vierpolders", "vinkel", "vinkeveen", "vleuten", "voorthuizen", "vorstenbosch", "vredenheim", "vrilkhoven", "waardhuizen", "waterhuizen", "waverveen", "wehl",
+        "werkendam", "westbroek", "westdorp", "westerbroek", "wijk en aalburg", "wijnandsrade", "wijnbergen", "wilnis", "wilsum", "witten", "woudbloem", "woudrichem", "zalk", "zandberg", "zeijerveld", "zevenaar", "zuidbroek", "zuidwolde", "zwartebroek", "zwartewaal"]
         if self.city in mijnafvalwijzer:
             self.data = MijnAfvalWijzerAfval().get_data(
                 self.city, self.postcode, self.street_number
