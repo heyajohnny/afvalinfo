@@ -72,6 +72,9 @@ class TwentemilieuAfval(object):
                 # _pickupTypeText = "PACKAGES"
                 if data["_pickupTypeText"] == "PACKAGES":
                     waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
+                # _pickupTypeText = "TEXTILE"
+                if data["_pickupTypeText"] == "TEXTILE":
+                    waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
 
             return waste_dict
         except urllib.error.URLError as exc:

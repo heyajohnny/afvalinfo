@@ -13,7 +13,7 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 
 
-class AlmereAfval(object):
+class AcvAfval(object):
     def get_data(self, city, postcode, street_number):
         _LOGGER.debug("Updating Waste collection dates")
 
@@ -22,11 +22,11 @@ class AlmereAfval(object):
             waste_dict = {}
 
             # Get companyCode for this location
-            companyCode = SENSOR_LOCATIONS_TO_COMPANY_CODE[city]
+            companyCode = SENSOR_LOCATIONS_TO_COMPANY_CODE["acv"]
 
             #######################################################
             # First request: get uniqueId and community
-            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL[city][0]
+            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["acv"][0]
 
             data = {
                 "postCode": postcode,
@@ -43,7 +43,7 @@ class AlmereAfval(object):
 
             #######################################################
             # Second request: get the dates
-            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL[city][1]
+            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["acv"][1]
 
             today = date.today()
             todayNextYear = today + relativedelta(years=1)
@@ -61,14 +61,19 @@ class AlmereAfval(object):
             dataList = r.json()["dataList"]
 
             for data in dataList:
-                if data["_pickupTypeText"] == "GREENGREY":
-                    waste_dict["restafval"] = data["pickupDates"][0].split("T")[0]
-                if data["_pickupTypeText"] == "GREENGREY":
+                if data["_pickupTypeText"] == "GREEN":
                     waste_dict["gft"] = data["pickupDates"][0].split("T")[0]
                 if data["_pickupTypeText"] == "PAPER":
                     waste_dict["papier"] = data["pickupDates"][0].split("T")[0]
+                #pbd = PACKAGES or GREY
                 if data["_pickupTypeText"] == "PACKAGES":
                     waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
+                if "pbd" not in waste_dict:
+                    if data["_pickupTypeText"] == "GREY":
+                        waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
+                #restafval is also GREY
+                if data["_pickupTypeText"] == "GREY":
+                    waste_dict["restafval"] = data["pickupDates"][0].split("T")[0]
                 if data["_pickupTypeText"] == "TEXTILE":
                     waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
 

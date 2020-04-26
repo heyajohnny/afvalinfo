@@ -69,6 +69,8 @@ class NissewaardAfval(object):
                     waste_dict["papier"] = data["pickupDates"][0].split("T")[0]
                 if data["_pickupTypeText"] == "PACKAGES":
                     waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
+                if data["_pickupTypeText"] == "TEXTILE":
+                    waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
 
             return waste_dict
         except urllib.error.URLError as exc:

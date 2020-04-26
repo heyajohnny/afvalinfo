@@ -4,9 +4,12 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 
 <a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
 
-Number of supported 'Gemeenten' in The Netherlands: 182 of 355 = 51,2%
+Number of supported 'Gemeenten' in The Netherlands: 187 of 355 = 52,7%
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
+
+##### --(ACV) Ede, Renkum, Renswoude, Veenendaal, Wageningen
+- bennekom, de klomp, deelen, doorwerth, ede, ederveen, harskamp, heelsum, heveadorp, lunteren, oosterbeek, otterlo, renkum, renswoude, veenendaal, wageningen, wekerom, wolfheze
 
 ##### --(Circulus-Berkel) Apeldoorn, Bronckhorst, Brummen, Deventer, Doesburg, Epe, Lochem, Voorst, Zutphen
 - almen, apeldoorn, baak, barchem, bathmen, beekbergen, beemte-broekland, bronkhorst, bussloo, de vecht, deventer, diepenveen, doesburg, drempt, eefde, emst, epe, epse, gorssel, halle, harfsen, hengelo, hoenderloo, hoog soeren, hoog-keppel, hummelo, joppe, keijenborg, klarenbeek, kring van dorth, laag-keppel, laren, lettele, lieren, lochem, loenen, nijbroek, oene, okkenbroek, olburgen, radio kootwijk, rha, schalkhaar, steenderen, terwolde, teuge, toldijk, twello, uddel, ugchelen, vaassen, vierakker, voorst, vorden, warnsveld, wenum-wiesel, wichmond, wilp, wilp-achterhoek, zelhem, zutphen

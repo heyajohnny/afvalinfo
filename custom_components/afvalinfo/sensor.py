@@ -101,6 +101,7 @@ from .location.bar import BarAfval
 from .location.spaarnelanden import SpaarnelandenAfval
 from .location.cyclus import CyclusAfval
 from .location.circulusberkel import CirculusBerkelAfval
+from .location.acv import AcvAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -172,6 +173,11 @@ class AfvalinfoData(object):
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
         _LOGGER.debug("Updating Waste collection dates")
+        acv = ["bennekom", "de klomp", "deelen", "doorwerth", "ede", "ederveen", "harskamp", "heelsum", "heveadorp", "lunteren", "oosterbeek", "otterlo", "renkum", "renswoude", "veenendaal", "wageningen", "wekerom", "wolfheze"]
+        if self.city in acv:
+            self.data = AcvAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
         alkmaar = ["alkmaar", "driehuizen", "graft", "grootschermer", "koedijk", "markenbinnen", "noordeinde", "oost-graftdijk", "oterleek", "oudorp", "de rijp", "schermerhorn", "starnmeer", "stompetoren", "ursem", "west-graftdijk", "zuidschermer"]
         if self.city in alkmaar:
             self.data = AlkmaarAfval().get_data(

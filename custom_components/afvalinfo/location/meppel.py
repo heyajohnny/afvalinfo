@@ -72,6 +72,9 @@ class MeppelAfval(object):
                 # _pickupTypeText = "VET" contains also 'textiel', so it will be categorized under textiel
                 if data["_pickupTypeText"] == "VET":
                     waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
+                # _pickupTypeText = "TEXTILE"
+                if data["_pickupTypeText"] == "TEXTILE":
+                    waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
 
             return waste_dict
         except urllib.error.URLError as exc:

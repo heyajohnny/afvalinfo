@@ -74,7 +74,8 @@ class BarAfval(object):
                 #restafval is also GREY
                 if data["_pickupTypeText"] == "GREY":
                     waste_dict["restafval"] = data["pickupDates"][0].split("T")[0]
-
+                if data["_pickupTypeText"] == "TEXTILE":
+                    waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
 
             return waste_dict
         except urllib.error.URLError as exc:
