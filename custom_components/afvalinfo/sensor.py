@@ -95,6 +95,7 @@ from .location.spaarnelanden import SpaarnelandenAfval
 from .location.cyclus import CyclusAfval
 from .location.circulusberkel import CirculusBerkelAfval
 from .location.acv import AcvAfval
+from .location.irado import IradoAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -247,8 +248,13 @@ class AfvalinfoData(object):
             self.data = HvcAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
+        irado = ["capelle aan den ijssel", "rozenburg", "schiedam", "vlaardingen"]
+        if self.city in irado:
+            self.data = IradoAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
         meerlanden = ["aalsmeer", "aalsmeerderbrug", "abbenes", "aerdenhout", "badhoevedorp", "beinsdorp", "bennebroek", "bentveld", "bloemendaal", "bloemendaal aan zee", "boesingheliede", "buitenkaag", "burgerveen", "cruquius", "de zilk", "diemen", "haarlemmerliede", "halfweg", "heemstede", "hillegom",
-        "hoofddorp", "kudelstaart", "leimuiderbrug", "lijnden", "lisse", "lisserbroek", "nieuw-vennep", "noordwijk aan zee", "noordwijk-binnen", "noordwijkerhout", "oude meer", "overveen", "rijsenhout", "rozenburg", "schiphol", "schiphol-rijk", "spaarndam", "vijfhuizen", "vogelenzang", "weteringbrug",
+        "hoofddorp", "kudelstaart", "leimuiderbrug", "lijnden", "lisse", "lisserbroek", "nieuw-vennep", "noordwijk aan zee", "noordwijk-binnen", "noordwijkerhout", "oude meer", "overveen", "rijsenhout", "schiphol", "schiphol-rijk", "spaarndam", "vijfhuizen", "vogelenzang", "weteringbrug",
         "zwaanshoek", "zwanenburg"]
         if self.city in meerlanden:
             self.data = MeerlandenAfval().get_data(

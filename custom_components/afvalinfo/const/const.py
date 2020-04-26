@@ -33,6 +33,9 @@ SENSOR_LOCATIONS_TO_URL = {
     "defriesemeren": ["https://www.afvalalert.nl/kalender/{0}/{1}/?web=1"],
     "gad": ["https://inzamelkalender.gad.nl/adres/{0}:{1}"],
     "hvc": ["https://inzamelkalender.hvcgroep.nl/adressen/{0}:{1}", "https://inzamelkalender.hvcgroep.nl/rest/adressen/{0}/kalender/{1}"],
+    "irado": [
+        "https://www.irado.nl/bewoners/afvalkalender",
+        "https://www.irado.nl/bewoners/afvalkalender"],
     "mijnafvalwijzer": ["https://www.mijnafvalwijzer.nl/nl/{0}/{1}/"],
     "meerlanden": [
         "https://wasteapi.ximmio.com/api/FetchAdress",

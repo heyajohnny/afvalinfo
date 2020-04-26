@@ -4,9 +4,12 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 
 <a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
 
-Number of supported 'Gemeenten' in The Netherlands: 194 of 355 = 54,6%
+Number of supported 'Gemeenten' in The Netherlands: 197 of 355 = 55,5%
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
+
+##### --(Irado) Capelle aan den IJssel, Schiedam, Vlaardingen
+- capelle aan den ijssel, rozenburg, schiedam, vlaardingen
 
 ##### --(ACV) Ede, Renkum, Renswoude, Veenendaal, Wageningen
 - bennekom, de klomp, deelen, doorwerth, ede, ederveen, harskamp, heelsum, heveadorp, lunteren, oosterbeek, otterlo, renkum, renswoude, veenendaal, wageningen, wekerom, wolfheze
