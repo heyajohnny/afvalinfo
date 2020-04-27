@@ -11,7 +11,7 @@ import urllib.error
 
 
 class SpaarnelandenAfval(object):
-    def get_date_from_afvaltype(self, ophaaldata, afvaltype):
+    def get_date_from_afvaltype(self, ophaaldata, afvaltype, afvalnaam):
         try:
             html = ophaaldata.find(href="/afvalstroom/" + str(afvaltype))
             date = html.i.string[3:]
@@ -24,7 +24,7 @@ class SpaarnelandenAfval(object):
             )
             return year + "-" + month + "-" + day
         except Exception as exc:
-            _LOGGER.warning("Error occurred while splitting data: %r", exc)
+            _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
             return ""
 
     def get_data(self, city, postcode, street_number):
@@ -44,20 +44,20 @@ class SpaarnelandenAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
             # find afvalstroom/1 = pbd/papier
-            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 1)
+            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 1, "pbd")
             # find afvalstroom/21 = papier
-            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 1)
+            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 1, "papier")
             if len(waste_dict["papier"]) == 0:
-                waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 21)
+                waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 21, "papier")
             # find afvalstroom/3 = gft
-            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 3)
+            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 3, "gft")
             # find afvalstroom/23 = gft
-            if len(waste_dict["papier"]) == 0:
-                waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 23)
+            if len(waste_dict["gft"]) == 0:
+                waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 23, "gft")
             # find afvalstroom/26 = restafval
-            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 26)
+            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 26, "restafval")
             if len(waste_dict["restafval"]) == 0:
-                waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 7)
+                waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 7, "restafval")
 
             return waste_dict
         except urllib.error.URLError as exc:

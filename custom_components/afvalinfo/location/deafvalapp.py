@@ -12,7 +12,7 @@ import http.cookiejar
 
 
 class DeAfvalAppAfval(object):
-    def get_date_from_afvaltype(self, ophaaldata, afvaltype):
+    def get_date_from_afvaltype(self, ophaaldata, afvaltype, afvalnaam):
         try:
             # get index of the <a> element, which is just before our <p> element with the date
             searchString = "=" + afvaltype + "\">"
@@ -33,7 +33,8 @@ class DeAfvalAppAfval(object):
                 else datetime.today().year + 1
             )
             return year + "-" + month + "-" + day
-        except:
+        except Exception as exc:
+            _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
             return ""
 
     def get_data(self, city, postcode, street_number):
@@ -61,15 +62,15 @@ class DeAfvalAppAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
             # find gft
-            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, "GFT")
+            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, "GFT", "gft")
             # find papiers
-            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, "PAPIER")
+            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, "PAPIER", "papier")
             # find pbd / pmd
-            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PMD")
+            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PMD", "pbd")
             if len(waste_dict["pbd"]) == 0:
-                waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PLASTIC")
+                waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PLASTIC", "pbd")
             # find restafval
-            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "REST")
+            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "REST", "restafval")
 
             return waste_dict
         except urllib.error.URLError as exc:

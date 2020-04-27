@@ -11,7 +11,7 @@ import urllib.error
 
 
 class AlphenAanDenRijnAfval(object):
-    def get_date_from_afvaltype(self, ophaaldata, afvaltype):
+    def get_date_from_afvaltype(self, ophaaldata, afvaltype, afvalnaam):
         try:
             html = ophaaldata.find(href="/afvalstroom/" + str(afvaltype))
             date = html.i.string[3:]
@@ -24,7 +24,7 @@ class AlphenAanDenRijnAfval(object):
             )
             return year + "-" + month + "-" + day
         except Exception as exc:
-            _LOGGER.warning("Error occurred while splitting data: %r", exc)
+            _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
             return ""
 
     def get_data(self, city, postcode, street_number):
@@ -44,13 +44,13 @@ class AlphenAanDenRijnAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
             # find afvalstroom/112 = gft
-            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 112)
+            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 112, "gft")
             # find afvalstroom/87 = papier
-            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 87)
+            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 87, "papier")
             # find afvalstroom/113 = pbd
-            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 113)
+            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 113, "pbd")
             # find afvalstroom/101 = restafval
-            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 101)
+            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 101, "restafval")
 
             return waste_dict
         except urllib.error.URLError as exc:

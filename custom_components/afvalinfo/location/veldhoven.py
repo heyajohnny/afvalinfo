@@ -11,7 +11,7 @@ import urllib.error
 
 
 class VeldhovenAfval(object):
-    def get_date_from_afvaltype(self, ophaaldata, afvaltype):
+    def get_date_from_afvaltype(self, ophaaldata, afvaltype, afvalnaam):
         try:
             # get index of the <h3> element, which is just before our <td> element with the date
             searchString = "id=\"" + afvaltype + "\">"
@@ -70,7 +70,7 @@ class VeldhovenAfval(object):
                 firstdate = insdate if insdate < date else date
                 return firstdate
         except Exception as exc:
-            _LOGGER.error("Error occurred while splitting data: %r", exc)
+            _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
             return ""
 
     def get_data(self, city, postcode, street_number):
@@ -91,13 +91,13 @@ class VeldhovenAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
             # find groene-container = gft
-            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, "groene-container")
+            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, "groene-container", "gft")
             # find grijze-container = restafval
-            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "grijze-container")
+            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "grijze-container", "restafval")
             # find pmd-zak = pbd
-            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "pmd-zak")
+            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "pmd-zak", "pbd")
             # find blauwe-container = papier
-            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, "blauwe-container")
+            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, "blauwe-container", "papier")
 
             return waste_dict
         except urllib.error.URLError as exc:

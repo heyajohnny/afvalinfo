@@ -11,7 +11,7 @@ import urllib.error
 
 
 class MijnAfvalWijzerAfval(object):
-    def get_date_from_afvaltype(self, html, afvaltype):
+    def get_date_from_afvaltype(self, html, afvaltype, afvalnaam):
         try:
             results = html.findAll("p", {"class": afvaltype})
 
@@ -35,7 +35,7 @@ class MijnAfvalWijzerAfval(object):
             # if nothing was found
             return ""
         except Exception as exc:
-            _LOGGER.error("Error occurred while splitting data: %r", exc)
+            _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
             return ""
 
     def get_data(self, city, postcode, street_number):
@@ -56,23 +56,23 @@ class MijnAfvalWijzerAfval(object):
             waste_dict = {}
 
             # find gft. In some locations it's 'gft' and in other locations it's 'restgft'
-            waste_dict["gft"] = self.get_date_from_afvaltype(jaaroverzicht, "gft")
+            waste_dict["gft"] = self.get_date_from_afvaltype(jaaroverzicht, "gft", "gft")
             if len(waste_dict["gft"]) == 0:
-                waste_dict["gft"] = self.get_date_from_afvaltype(jaaroverzicht, "restgft")
+                waste_dict["gft"] = self.get_date_from_afvaltype(jaaroverzicht, "restgft", "gft")
             # find papier
-            waste_dict["papier"] = self.get_date_from_afvaltype(jaaroverzicht, "papier")
+            waste_dict["papier"] = self.get_date_from_afvaltype(jaaroverzicht, "papier", "papier")
             # find pbd. In some locations it's 'pd' and in other locations it's 'pmb' or 'plastic'
-            waste_dict["pbd"] = self.get_date_from_afvaltype(jaaroverzicht, "pd")
+            waste_dict["pbd"] = self.get_date_from_afvaltype(jaaroverzicht, "pd", "pbd")
             if len(waste_dict["pbd"]) == 0:
-                waste_dict["pbd"] = self.get_date_from_afvaltype(jaaroverzicht, "pmd")
+                waste_dict["pbd"] = self.get_date_from_afvaltype(jaaroverzicht, "pmd", "pbd")
             if len(waste_dict["pbd"]) == 0:
-                waste_dict["pbd"] = self.get_date_from_afvaltype(jaaroverzicht, "plastic")
+                waste_dict["pbd"] = self.get_date_from_afvaltype(jaaroverzicht, "plastic", "pbd")
             # find restafval. In some locations it's 'restafval' and in other locations it's 'restgft'
-            waste_dict["restafval"] = self.get_date_from_afvaltype(jaaroverzicht, "restafval")
+            waste_dict["restafval"] = self.get_date_from_afvaltype(jaaroverzicht, "restafval", "restafval")
             if len(waste_dict["restafval"]) == 0:
-                waste_dict["restafval"] = self.get_date_from_afvaltype(jaaroverzicht, "restgft")
+                waste_dict["restafval"] = self.get_date_from_afvaltype(jaaroverzicht, "restgft", "restafval")
             # find textiel
-            waste_dict["textiel"] = self.get_date_from_afvaltype(jaaroverzicht, "textiel")
+            waste_dict["textiel"] = self.get_date_from_afvaltype(jaaroverzicht, "textiel", "textiel")
 
             return waste_dict
         except urllib.error.URLError as exc:

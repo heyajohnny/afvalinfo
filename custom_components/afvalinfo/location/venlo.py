@@ -10,7 +10,7 @@ import urllib.error
 
 
 class VenloAfval(object):
-    def get_date_from_afvaltype(self, tableRows, afvaltype):
+    def get_date_from_afvaltype(self, tableRows, afvaltype, afvalnaam):
         try:
             for row in tableRows:
                 garbageDate = row.find("td")
@@ -35,7 +35,7 @@ class VenloAfval(object):
             # if nothing was found
             return ""
         except Exception as exc:
-            _LOGGER.error("Error occurred while splitting data: %r", exc)
+            _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
             return ""
 
     def get_data(self, city, postcode, street_number):
@@ -57,11 +57,11 @@ class VenloAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
             # GFT
-            waste_dict["gft"] = self.get_date_from_afvaltype(tableRows, "GFT")
+            waste_dict["gft"] = self.get_date_from_afvaltype(tableRows, "GFT", "gft")
             # Restafval
-            waste_dict["restafval"] = self.get_date_from_afvaltype(tableRows, "Restafval/PMD")
+            waste_dict["restafval"] = self.get_date_from_afvaltype(tableRows, "Restafval/PMD", "restafval")
             # PMD
-            waste_dict["pbd"] = self.get_date_from_afvaltype(tableRows, "Restafval/PMD")
+            waste_dict["pbd"] = self.get_date_from_afvaltype(tableRows, "Restafval/PMD", "pbd")
 
             return waste_dict
         except urllib.error.URLError as exc:

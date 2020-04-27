@@ -14,7 +14,7 @@ import json
 
 
 class IradoAfval(object):
-    def get_date_from_afvaltype(self, data, afvaltype):
+    def get_date_from_afvaltype(self, data, afvaltype, afvalnaam):
         try:
             html = data.find("div", {"class": "avk-block-row pickup-type-item " + str(afvaltype) + " active"})
             #get innerHTML
@@ -29,7 +29,7 @@ class IradoAfval(object):
             )
             return year + "-" + month + "-" + day
         except Exception as exc:
-            _LOGGER.warning("Error occurred while splitting data: %r", exc)
+            _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
             return ""
 
 
@@ -69,10 +69,10 @@ class IradoAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
 
-            waste_dict["restafval"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-rest")
-            waste_dict["gft"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-gft")
-            waste_dict["papier"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-papier")
-            waste_dict["pbd"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-kunststof")
+            waste_dict["restafval"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-rest", "restafval")
+            waste_dict["gft"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-gft", "gft")
+            waste_dict["papier"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-papier", "papier")
+            waste_dict["pbd"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-kunststof", "pbd")
 
             return waste_dict
         except urllib.error.URLError as exc:
