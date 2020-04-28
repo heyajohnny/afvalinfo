@@ -1,10 +1,11 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
+### Number of supported 'Gemeenten' in The Netherlands: 197 of 355 = 55,5%
 
 If you like my work, please buy me a coffee. This will keep me awake :)
 
 <a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
 
-Number of supported 'Gemeenten' in The Netherlands: 197 of 355 = 55,5%
+You can also support me by starting to download and use the Brave browser through this <a href="https://brave.com/hey326" target="_blank">link</a>
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
 
