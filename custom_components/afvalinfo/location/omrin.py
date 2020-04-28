@@ -11,11 +11,16 @@ import urllib.request
 import urllib.error
 import http.cookiejar
 import json
+import ast
 
 
 class OmrinAfval(object):
     def get_date_from_afvaltype(self, year, data, afvaltype, afvalnaam):
         try:
+            #to lowercase the data json
+            data = ast.literal_eval(str(data).lower())
+            #to lowercase the afvaltype
+            afvaltype = afvaltype.lower()
             dataFilteredByType = data[afvaltype]
             dates = dataFilteredByType["dates"]
 

@@ -67,3 +67,4 @@ Version: 0.3.34 20200426 - Added locations for ACV
 Version: 0.3.35 20200426 - Added locations for MijnAfvalWijzer
 Version: 0.3.36 20200426 - Added locations for Irado
 Version: 0.3.37 20200427 - Updated logging for failed data splitting
+Version: 0.3.38 20200428 - Fix Omrin case sensitivity
