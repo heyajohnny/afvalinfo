@@ -47,6 +47,7 @@ SENSOR_LOCATIONS_TO_URL = {
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],
     "omrin": ["https://www.omrin.nl/bij-mij-thuis/afval-regelen/afvalkalender"],
+    "rd4": ["https://www.rd4info.nl/NSI/Burger/Aspx/afvalkalender_public_text.aspx?pc={0}&nr={1}&t="],
     "rova": ["http://afvalkalender.rova.nl/nl/{0}/{1}/"],
     "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/{0}:{1}"],
     "spaarnelanden": ["https://afvalwijzer.spaarnelanden.nl/adres/{0}:{1}"],
@@ -105,6 +106,21 @@ MONTH_TO_NUMBER = {
     "oktober": "10",
     "november": "11",
     "december": "12",
+}
+
+NUMBER_TO_MONTH = {
+    1: "januari",
+    2: "februari",
+    3: "maart",
+    4: "april",
+    5: "mei",
+    6: "juni",
+    7: "juli",
+    8: "augustus",
+    9: "september",
+    10: "oktober",
+    11: "november",
+    12: "december",
 }
 
 CONF_CITY = "city"

@@ -44,6 +44,7 @@ Zoetermeer,
 Zoeterwoude
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn and acv
 ToDo: Add huisnummer toevoeging
+ToDo: Fix all the next year problems
 """
 
 import voluptuous as vol
@@ -96,6 +97,7 @@ from .location.cyclus import CyclusAfval
 from .location.circulusberkel import CirculusBerkelAfval
 from .location.acv import AcvAfval
 from .location.irado import IradoAfval
+from .location.rd4 import Rd4Afval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -305,6 +307,13 @@ class AfvalinfoData(object):
         "welsrijp", "west-terschelling", "westergeest", "westhoek", "wetsens", "wier", "wierum", "wijnaldum", "wijnjewoude", "wijns", "wijtgaard", "winsum", "wirdum", "wolvega", "zandhuizen", "zwagerbosch", "zweins"]
         if self.city in omrin:
             self.data = OmrinAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        rd4 = ["amstenrade", "banholt", "bemelen", "beutenaken", "bingelrade", "bocholtz", "brunssum", "cadier en keer", "doenrade", "eckelrade", "eijsden", "elkenrade", "epen", "eperheide", "etenaken", "euverem", "eys", "eyserheide", "gronsveld", "gulpen", "heerlen", "heijenrath", "hilleshagen", "hoensbroek",
+        "holset", "hulsberg", "ingber", "jabeek", "kerkrade", "klimmen", "kunrade", "landgraaf", "lemiers", "margraten", "mariadorp en poelveld", "mechelen", "merkelbeek", "mesch en withuis", "mheer", "nijswiller", "noorbeek", "nuth", "oirsbeek", "oost-maarland", "partij-wittem", "puth", "ransdaal", "reijmerstok",
+        "rijckholt", "scheulder", "schimmert", "schinnen", "schinveld", "schweiberg", "simpelveld", "sint geertruid", "slenaken", "stokhem", "sweikhuizen", "trintelen", "ubachsberg", "vaals", "vijlen", "voerendaal", "wahlwiller", "wijlre", "wijnandsrade"]
+        if self.city in rd4:
+            self.data = Rd4Afval().get_data(
                 self.city, self.postcode, self.street_number
             )
         rova = ["aalten", "agelo", "albergen", "amersfoort", "ane", "anerveen", "anevelde", "ankum", "arrien", "baarlo", "baars", "balkbrug", "basse", "beerze", "beerzerveld", "belt-schutsloot", "bergentheim", "blankenham", "blokzijl", "boschoord", "bredevoort", "broekland", "brucht", "bruchterveld",

@@ -1,5 +1,5 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
-### Number of supported 'Gemeenten' in The Netherlands: 197 of 355 = 55,5%
+### Number of supported 'Gemeenten' in The Netherlands: 207 of 355 = 58,3%
 
 If you like my work, please buy me a coffee. This will keep me awake :)
 
@@ -8,6 +8,10 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 You can also support me by starting to download and use the Brave browser through this <a href="https://brave.com/hey326" target="_blank">link</a>
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
+
+##### --(Rd4) Beekdaelen, Brunssum, Eijsden-Margraten, Gulpen-Wittem, Heerlen, Kerkrade, Landgraaf, Simpelveld, Vaals, Voerendaal
+###### WARNING! Might not work well at the end of the year / beginning of the next year
+- amstenrade, banholt, bemelen, beutenaken, bingelrade, bocholtz, brunssum, cadier en keer, doenrade, eckelrade, eijsden, elkenrade, epen, eperheide, etenaken, euverem, eys, eyserheide, gronsveld, gulpen, heerlen, heijenrath, hilleshagen, hoensbroek, holset, hulsberg, ingber, jabeek, kerkrade, klimmen, kunrade, landgraaf, lemiers, margraten, mariadorp en poelveld, mechelen, merkelbeek, mesch en withuis, mheer, nijswiller, noorbeek, nuth, oirsbeek, oost-maarland, partij-wittem, puth, ransdaal, reijmerstok, rijckholt, scheulder, schimmert, schinnen, schinveld, schweiberg, simpelveld, sint geertruid, slenaken, stokhem, sweikhuizen, trintelen, ubachsberg, vaals, vijlen, voerendaal, wahlwiller, wijlre, wijnandsrade
 
 ##### --(Irado) Capelle aan den IJssel, Schiedam, Vlaardingen
 - capelle aan den ijssel, rozenburg, schiedam, vlaardingen
