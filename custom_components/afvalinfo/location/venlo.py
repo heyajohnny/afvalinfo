@@ -62,6 +62,8 @@ class VenloAfval(object):
             waste_dict["restafval"] = self.get_date_from_afvaltype(tableRows, "Restafval/PMD", "restafval")
             # PMD
             waste_dict["pbd"] = self.get_date_from_afvaltype(tableRows, "Restafval/PMD", "pbd")
+            # Papier
+            waste_dict["papier"] = self.get_date_from_afvaltype(tableRows, "Papier", "papier")
 
             return waste_dict
         except urllib.error.URLError as exc:
