@@ -3,6 +3,11 @@
   "name": "Afvalinfo",
   "documentation": "https://github.com/heyajohnny/afvalinfo",
   "dependencies": [],
-  "codeowners": ["@heyajohnny"],
-  "requirements": ["bs4"]
+  "codeowners": [
+    "@heyajohnny"
+  ],
+  "requirements": [
+    "beautifulsoup4==4.9.0",
+    "babel==2.8.0"
+  ]
 }

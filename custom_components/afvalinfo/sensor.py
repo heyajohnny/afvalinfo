@@ -51,6 +51,10 @@ import voluptuous as vol
 from datetime import datetime, date, timedelta
 from dateutil.relativedelta import relativedelta
 import urllib.error
+from babel import Locale
+from babel.dates import format_date, format_datetime, format_time
+import re
+
 from .const.const import (
     MIN_TIME_BETWEEN_UPDATES,
     _LOGGER,
@@ -59,6 +63,7 @@ from .const.const import (
     CONF_STREET_NUMBER,
     CONF_DATE_FORMAT,
     CONF_TIMESPAN_IN_DAYS,
+    CONF_LOCALE,
     SENSOR_PREFIX,
     ATTR_LAST_UPDATE,
     ATTR_HIDDEN,
@@ -117,7 +122,8 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Required(CONF_POSTCODE, default="3361AB"): cv.string,
         vol.Required(CONF_STREET_NUMBER, default="1"): cv.string,
         vol.Optional(CONF_DATE_FORMAT, default = "%d-%m-%Y"): cv.string,
-        vol.Optional(CONF_TIMESPAN_IN_DAYS, default = "365"): cv.string,
+        vol.Optional(CONF_TIMESPAN_IN_DAYS, default="365"): cv.string,
+        vol.Optional(CONF_LOCALE, default = "en"): cv.string,
     }
 )
 
@@ -130,6 +136,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     street_number = config.get(CONF_STREET_NUMBER)
     date_format = config.get(CONF_DATE_FORMAT).strip()
     timespan_in_days = config.get(CONF_TIMESPAN_IN_DAYS)
+    locale = config.get(CONF_LOCALE)
 
     try:
         data = AfvalinfoData(city, postcode, street_number)
@@ -145,7 +152,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
         #if sensor_type not in SENSOR_TYPES:
         #    SENSOR_TYPES[sensor_type] = [sensor_type.title(), "", "mdi:recycle"]
         if sensor_type.title().lower() != "trash_type_today" and sensor_type.title().lower() != "trash_type_tomorrow":
-            entities.append(AfvalinfoSensor(data, sensor_type, date_format, timespan_in_days))
+            entities.append(AfvalinfoSensor(data, sensor_type, date_format, timespan_in_days, locale))
 
         #Add sensor -trash_type_today
         if sensor_type.title().lower() == "trash_type_today":
@@ -391,11 +398,12 @@ class AfvalinfoData(object):
             )
 
 class AfvalinfoSensor(Entity):
-    def __init__(self, data, sensor_type, date_format, timespan_in_days):
+    def __init__(self, data, sensor_type, date_format, timespan_in_days, locale):
         self.data = data
         self.type = sensor_type
         self.date_format = date_format
         self.timespan_in_days = timespan_in_days
+        self.locale = locale
         self._name = SENSOR_PREFIX + SENSOR_TYPES[sensor_type][0]
         self._icon = SENSOR_TYPES[sensor_type][1]
         self._hidden = False
@@ -433,7 +441,7 @@ class AfvalinfoSensor(Entity):
 
                     if collection_date:
                         # Set the values of the sensor
-                        self._last_update = date.today().strftime("%d-%m-%Y %H:%M")
+                        self._last_update = datetime.today().strftime("%d-%m-%Y %H:%M")
 
                         # Is the collection date today?
                         self._is_collection_date_today = date.today() == collection_date
@@ -444,7 +452,26 @@ class AfvalinfoSensor(Entity):
 
                         # Only show the value if the date is lesser than or equal to (today + timespan_in_days)
                         if collection_date <= date.today() + relativedelta(days=int(self.timespan_in_days)):
-                            self._state = collection_date.strftime(self.date_format)
+                            #if the date does not contain a named day or month, return the date as normal
+                            if (self.date_format.find('a') == -1 and self.date_format.find('A') == -1
+                            and self.date_format.find('b') == -1 and self.date_format.find('B') == -1):
+                                self._state = collection_date.strftime(self.date_format)
+                            #else convert the named values to the locale names
+                            else:
+                                self.date_format = self.date_format.replace('%a', 'EEE')
+                                self.date_format = self.date_format.replace('%A', 'EEEE')
+                                self.date_format = self.date_format.replace('%b', 'MMM')
+                                self.date_format = self.date_format.replace('%B', 'MMMM')
+
+                                #half babel, half date string... something like EEEE 04-MMMM-2020
+                                half_babel_half_date = collection_date.strftime(self.date_format)
+
+                                #replace the digits with qquoted digits 01 --> '01'
+                                half_babel_half_date = re.sub(r"(\d+)", r"'\1'", half_babel_half_date)
+                                #transform the EEE, EEEE etc... to a real locale date, with babel
+                                locale_date = format_date(collection_date, half_babel_half_date, locale=self.locale)
+
+                                self._state = locale_date
                         else:
                             self._hidden = True
                     else:
@@ -458,4 +485,4 @@ class AfvalinfoSensor(Entity):
             self._hidden = True
             self._days_until_collection_date = None
             self._is_collection_date_today = False
-            self._last_update = date.today().strftime("%d-%m-%Y %H:%M")
+            self._last_update = datetime.today().strftime("%d-%m-%Y %H:%M")

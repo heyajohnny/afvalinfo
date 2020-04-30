@@ -69,3 +69,4 @@ Version: 0.3.36 20200426 - Added locations for Irado
 Version: 0.3.37 20200427 - Updated logging for failed data splitting
 Version: 0.3.38 20200428 - Fix Omrin case sensitivity
 Version: 0.3.39 20200428 - Added locations for Rd4
+Version: 0.4.0  20200430 - Added an option to show the date in a different language, other than English

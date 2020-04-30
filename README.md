@@ -1,4 +1,5 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 ### Number of supported 'Gemeenten' in The Netherlands: 207 of 355 = 58,3%
 
 If you like my work, please buy me a coffee. This will keep me awake :)
@@ -124,6 +125,7 @@ Example config:
       postcode: 33361AB                (required, default = 3361AB)
       streetnumber: 1                  (required, default = 1)
       dateformat: '%d-%m-%Y'           (optional, default = %d-%m-%Y) day-month-year
+      locale: 'nl'                     (optional, default = 'en')
       timespanindays: 365              (optional, default = 365) number of days to look into the future
 ```
 
@@ -143,6 +145,7 @@ So if you only specify -pbd and -trash_type_today under your resources, you will
         - pbd
         - gft
         - trash_type_today
+        - trash_type_tomorrow
       city: sliedrecht
       postcode: 33361AB
       streetnumber: 1
@@ -158,7 +161,14 @@ dateformat:
 If you want to adjust the way the date is presented. You can do it using the dateformat option. All [python strftime options](http://strftime.org/) should work.
 Default is '%d-%m-%Y', which will result in per example:
 ```yaml
-21-9-2019.
+21-9-2019
+```
+```yaml
+locale:
+```
+With locale you can present the date in any language you want (this only works for the day of the week (%a or %A) and the name of the month (%b or %B)). [Here](http://www.localeplanet.com/icu/iso639.html) is a list of locales. If you use '%A %d %B %Y' for dateformat and 'nl' for locale, the date will be presented as:
+```yaml
+zaterdag 21 september 2019
 ```
 ### Timespan in days
 ```yaml
