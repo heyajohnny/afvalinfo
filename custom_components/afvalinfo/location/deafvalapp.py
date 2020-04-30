@@ -69,8 +69,12 @@ class DeAfvalAppAfval(object):
             waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PMD", "pbd")
             if len(waste_dict["pbd"]) == 0:
                 waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PLASTIC", "pbd")
+            if len(waste_dict["pbd"]) == 0:
+                waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PBP", "pbd")
             # find restafval
             waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "REST", "restafval")
+            if len(waste_dict["restafval"]) == 0:
+                waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "ZAK_BLAUW", "restafval")
 
             return waste_dict
         except urllib.error.URLError as exc:

@@ -459,13 +459,13 @@ class AfvalinfoSensor(Entity):
                                 self._state = collection_date.strftime(self.date_format)
                             #else convert the named values to the locale names
                             else:
-                                self.date_format = self.date_format.replace('%a', 'EEE')
-                                self.date_format = self.date_format.replace('%A', 'EEEE')
-                                self.date_format = self.date_format.replace('%b', 'MMM')
-                                self.date_format = self.date_format.replace('%B', 'MMMM')
+                                edited_date_format = self.date_format.replace('%a', 'EEE')
+                                edited_date_format = edited_date_format.replace('%A', 'EEEE')
+                                edited_date_format = edited_date_format.replace('%b', 'MMM')
+                                edited_date_format = edited_date_format.replace('%B', 'MMMM')
 
                                 #half babel, half date string... something like EEEE 04-MMMM-2020
-                                half_babel_half_date = collection_date.strftime(self.date_format)
+                                half_babel_half_date = collection_date.strftime(edited_date_format)
 
                                 #replace the digits with qquoted digits 01 --> '01'
                                 half_babel_half_date = re.sub(r"(\d+)", r"'\1'", half_babel_half_date)

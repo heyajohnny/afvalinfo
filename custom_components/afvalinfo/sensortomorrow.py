@@ -4,9 +4,11 @@ from .const.const import (
     _LOGGER,
     ATTR_LAST_UPDATE,
     SENSOR_TYPES,
-    SENSOR_PREFIX
+    SENSOR_PREFIX,
+    MIN_TIME_BETWEEN_UPDATES
 )
 from homeassistant.helpers.entity import Entity
+from homeassistant.util import Throttle
 
 
 class AfvalInfoTomorrowSensor(Entity):
@@ -36,9 +38,10 @@ class AfvalInfoTomorrowSensor(Entity):
     def device_state_attributes(self):
         return {ATTR_LAST_UPDATE: self._last_update}
 
+    @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
         self.data.update()
-        self._last_update = date.today().strftime("%d-%m-%Y %H:%M")
+        self._last_update = datetime.today().strftime("%d-%m-%Y %H:%M")
         self._state = ""  # reset the state
         tomorrow = (date.today() + timedelta(days=1)).strftime(self.date_format)
         for entity in self._entities:
