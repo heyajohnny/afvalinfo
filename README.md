@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'Gemeenten' in The Netherlands: 207 of 355 = 58,3%
+### Number of supported 'Gemeenten' in The Netherlands: 213,5 of 355 = 60,14%
 
 If you like my work, please buy me a coffee. This will keep me awake :)
 
@@ -9,6 +9,9 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 You can also support me by starting to download and use the Brave browser through this <a href="https://brave.com/hey326" target="_blank">link</a>
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
+
+##### --(Dar) Berg en Dal, Beuningen, Druten, Heumen, Nijmegen, Wijchen
+- afferden, balgoij, batenburg, beek, berg en dal, bergharen, beuningen, deest, druten, erlecom, ewijk, groesbeek, heilig landstichting, hernen, heumen, horssen, kekerdom, leur, leuth, malden, millingen aan de rijn, nederasselt, niftrik, nijmegen, ooij, overasselt, persingen, puiflijk, ubbergen, weurt, wijchen, winssen
 
 ##### --(Rd4) Beekdaelen, Brunssum, Eijsden-Margraten, Gulpen-Wittem, Heerlen, Kerkrade, Landgraaf, Simpelveld, Vaals, Voerendaal
 ###### WARNING! Might not work well at the end of the year / beginning of the next year

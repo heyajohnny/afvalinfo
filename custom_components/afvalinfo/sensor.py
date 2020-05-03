@@ -104,6 +104,7 @@ from .location.circulusberkel import CirculusBerkelAfval
 from .location.acv import AcvAfval
 from .location.irado import IradoAfval
 from .location.rd4 import Rd4Afval
+from .location.dar import DarAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -220,6 +221,12 @@ class AfvalinfoData(object):
         "schoonhoven", "schuwacht", "sluipwijk", "stolwijk", "tempel", "ter aar", "vlist", "waarde", "waddinxveen", "willeskop", "willige langerak", "woerdense verlaat", "woubrugge", "zevenhoven", "zevenhuizen"]
         if self.city in cyclus:
             self.data = CyclusAfval().get_data(
+                self.city, self.postcode, self.street_number
+            )
+        dar = ["afferden", "balgoij", "batenburg", "beek", "berg en dal", "bergharen", "beuningen", "deest", "druten", "erlecom", "ewijk", "groesbeek", "heilig landstichting", "hernen", "heumen", "horssen", "kekerdom", "leur", "leuth", "malden", "millingen aan de rijn", "nederasselt", "niftrik",
+        "nijmegen", "ooij", "overasselt", "persingen", "puiflijk", "ubbergen", "weurt", "wijchen", "winssen"]
+        if self.city in dar:
+            self.data = DarAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
         deafvalapp = ["aalst", "acquoy", "alem", "alphen", "altforst", "ammerzoden", "appeltern", "asch", "asperen", "axel", "beers", "beesd", "beneden-leeuwen", "beugen", "beusichem", "biervliet", "boekel", "boven-leeuwen", "boxmeer", "brakel", "breugel", "bruchem", "buren", "buurmalsen",
