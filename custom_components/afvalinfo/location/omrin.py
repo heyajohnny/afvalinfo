@@ -113,10 +113,16 @@ class OmrinAfval(object):
                 waste_dict["restafval"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Restafval", "restafval")
             if omrinNextYear and len(waste_dict["restafval"]) == 0:
                 waste_dict["restafval"] = self.get_date_from_afvaltype(thisYear, omrinNextYear, "Restafval", "restafval")
-            #gft = Biobak or Tuinafval or Extra Tuinafval
+            #gft = Biobak or Tuinafval or Extra Tuinafval or GFT afval
+            #Biobak
             waste_dict["gft"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Biobak", "gft")
             if omrinNextYear and len(waste_dict["gft"]) == 0:
                 waste_dict["gft"] = self.get_date_from_afvaltype(nextYear, omrinNextYear, "Biobak", "gft")
+            #GFT afval
+            if len(waste_dict["gft"]) == 0:
+                waste_dict["gft"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "GFT afval", "gft")
+            if omrinNextYear and len(waste_dict["gft"]) == 0:
+                waste_dict["gft"] = self.get_date_from_afvaltype(nextYear, omrinNextYear, "GFT afval", "gft")
             #see which one is earlier
             if len(waste_dict["gft"]) == 0:
                 if len(waste_dict["gft"]) == 0:
