@@ -7,6 +7,25 @@ ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn
 ToDo: Add the old municities: Bedum, Winsum (Het Hoge Land). https://gemeente.groningen.nl/afvalwijzer/
 ToDo: Add huisnummer toevoeging
 ToDo: Fix all the next year problems
+ToDo: Add the following gemeenten:
+Alphen-Chaam                    (MijnAfvalWijzer)
+Amsterdam                       ???
+Appingedam                      (Omrin)
+Baarle-Nassau                   (MijnAfvalWijzer)
+Baarn                           (https://inzamelschema.rmn.nl/)
+Beemster                        (https://afvalkalender.purmerend.nl/)
+Beesel                          (https://www.beesel.nl/inwoners/afval-en-milieu/afvalkalender/)
+Bergeijk
+Bergen Limburg or Noord-Holland
+Berkelland
+Bladel
+Blaricum
+Bonaire
+Borsele
+Bunnik
+Coevorden
+Cranendonck
+next to check from 'd' to 'z'
 """
 
 import voluptuous as vol
