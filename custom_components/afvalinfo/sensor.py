@@ -25,7 +25,99 @@ Borsele
 Bunnik
 Coevorden
 Cranendonck
-next to check from 'd' to 'z'
+Dantumadeel
+Delft
+Delfzijl
+Den Haag
+Drimmelen
+Edam-Volendam
+Eemnes
+Eersel
+Eindhoven
+Emmen
+Geldrop-Mierlo
+Gennep
+Goeree-Overflakkee
+Goes
+Gooise Meren
+Gorinchem
+Groningen
+Haaren
+Hardinxveld-Giessendam
+Hellendoorn
+Hellevoetsluis
+'s-Hertogenbosch
+Het Hogeland
+Hoeksche Waard
+Hoogeveen
+Huizen
+Hulst
+IJsselstein
+Kapelle
+Katwijk
+Koggenland
+Landerd
+Landsmeer
+Langedijk
+Laren
+Leidschendam-Voorburg
+Lingewaard
+Loppersum
+Losser
+Maassluis
+Maastricht
+Meerssen
+Middelburg
+Midden-Delfland
+Midden-Drenthe
+Molenlanden
+Mook en Middelaar
+Nederweert
+Nieuwegein
+Noord-Beveland
+Oegstgeest
+Oirschot
+Oisterwijk
+Oostzaan
+Ouder-Amstel
+Peel en Maas
+Pijnacker-Nootdorp
+Purmerend
+Putten
+Reimerswaal
+Reusel-De Mierden
+Rijswijk
+Rozendaal
+Saba
+Schiermonnikoog
+Schouwen-Duiveland
+Sint Eustatius
+Sluis
+Soest
+Steenbergen
+Texel
+Tholen
+Tietjerksteradeel
+Uden
+Uithoorn
+Valkenburg a/d Geul
+Valkenswaard
+Veere
+Vlieland
+Vlissingen
+Voorschoten
+Vught
+Waalre
+Wassenaar
+Weert
+Weesp
+Westerwolde
+Wijdemeren
+Wormerland
+Zeewolde
+Zeist
+Zevenaar
+Zundert
 """
 
 import voluptuous as vol
@@ -282,7 +374,7 @@ class AfvalinfoData(object):
         "nieuw-scheemda", "nieuw-wehl", "nieuwe pekela", "nieuwediep", "nieuwendijk", "nieuwer ter aa", "nieuwersluis", "nieuwolda", "nigtevecht", "nijega", "nijkerk", "nijkerkerveen", "nijlande", "nijnsel", "nispen", "nistelrode", "nooitgedacht", "noordbroek", "noordeinde", "noordhoek", "norg", "numero dertien",
         "nunhem", "nunspeet", "nuth", "obbicht", "odoorn", "odoornerveen", "offenbeek", "ohe en laak", "oijen", "oirsbeek", "oldebroek", "olland", "ommelanderwijk", "onstwedde", "oosteind", "oosteinde", "oosterhout", "oosterwolde", "oostvoorne", "oostwold", "ooy", "opeinde", "oss", "ossendrecht", "oud annerveen",
         "oud gastel", "oud-zevenaar", "oud-zuilen", "ouddorp", "oude pekela", "oudega", "oudemolen", "oudemolen", "oudenbosch", "oudewater", "oudezijl", "overberg", "overlangel", "overschild", "paarlo", "pannerden", "papekop", "papenhoven", "papenvoort", "paterswolde", "peest", "peize", "peizermade", "peizerwold",
-        "polsbroek", "polsbroekerdam", "posterholt", "posthoorn", "purmer", "puth", "putte", "raamsdonk", "raamsdonksveer", "randwijk", "ravenstein", "reutje", "reuver", "rheden", "rhee", "rhenen", "riel", "rijen", "rijkel", "rijssen", "rijswijk", "rockanje", "roden", "rodenrijs", "roderesch", "roderwolde", "roermond",
+        "polsbroek", "polsbroekerdam", "posterholt", "posthoorn", "purmer", "puth", "putte", "raamsdonk", "raamsdonksveer", "randwijk", "ravenstein", "reutje", "reuver", "rheden", "rhee", "rhenen", "riel", "rijen", "rijkel", "rijssen", "rockanje", "roden", "rodenrijs", "roderesch", "roderwolde", "roermond",
         "roggel", "rolde", "roond", "roosendaal", "rotte", "rotterdam", "rottevalle", "rucphen", "ruinen", "ruinerwold", "s gravenmoer", "s-gravenmoerse vaart", "s-heerenbroek", "sandebuur", "sappemeer", "sassenheim", "schalkwijk", "scharmer", "scheemda", "scherpenzeel", "schijf", "schijndel", "schildwolde", "schimmert",
         "schinnen", "schinveld", "schipborg", "schoonloo", "selissen", "sevenum", "siddeburen", "silvolde", "sinderen", "sint odilienberg", "sint-michielsgestel", "sint-oedenrode", "sittard", "sleeuwijk", "slijk-ewijk", "slochteren", "smalle ee", "smeerling", "spankeren", "spaubeek", "speuld", "spijk", "spijkerboor",
         "sprang", "sprundel", "st. willebrord", "stadskanaal", "stampersgat", "standdaarbuiten", "staverden", "steenbergen", "steendam", "stein", "sterenborg", "stevensweert", "stoutenburg", "stroe", "swalmen", "sweikhuizen", "swifterbant", "swolgen", "t goy", "t harde", "t loo", "taarlo", "teeffelen", "telgt", "ter aard",
