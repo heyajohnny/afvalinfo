@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'Gemeenten' in The Netherlands: 252,5 of 352 = 71,7%
+### Number of supported 'Gemeenten' in The Netherlands: 258,5 of 352 = 73,4%
 
 If you like my work, please buy me a coffee. This will keep me awake :)
 
@@ -41,8 +41,8 @@ You can also support me by starting to download and use the Brave browser throug
 ##### --(Súdwest-Fryslân) Zuidwest-Friesland
 - abbega, allingawier, arum, blauwhuis, bolsward, bozum, breezanddijk, britswerd, burgwerd, cornwerd, dedgum, deersum, edens, exmorra, ferwoude, folsgare, gaast, gaastmeer, gauw, goënga, greonterp, hartwerd, heeg, hemelum, hennaard, hichtum, hidaard, hieslum, hindeloopen, hommerts, idsegahuizum, idzega, ijlst, ijsbrechtum, indijk, heidenschap, itens, jutrijp, kimswerd, kornwerderzand, koudum, koufurderrige, kubaard, loënga, lollum, longerhouw, lutkewierum, makkum, molkwerum, nijhuizum, nijland, offingawier, oosterend, oosterwierum, oosthem, oppenhuizen, oudega, parrega, piaam, pingjum, poppingawier, rauwerd, rien, roodhuis, sandfirden, scharnegoutum, schettens, schraard, sijbrandaburen, smallebrugge, sneek, stavoren, terzool, tirns, tjalhuizum, tjerkwerd, uitwellingerga, waaxens, warns, westhem, wieuwerd, witmarsum, wolsum, wommels, wons, workum, woudsend, ypecolsga, zurich
 
-##### --(GAD) Hilversum
-- hilversum
+##### --(GAD) Blaricum, Gooise Meren, Hilversum, Huizen, Laren, Weesp, Wijdemeren
+- ankeveen, blaricum, bussum, de horn, hilversum, huizen, kortenhoef, laren, muiden, muiderberg, naarden, nederhorst den berg, nieuw-loosdrecht, oud-loosdrecht, s-graveland, uitermeer, weesp
 
 ##### --Venray
 - blitterswijck, castenray, geijsteren, heide, leunen, merselo, oirlo, oostrum, smakt, venray, veulen, vredepeel, wanssum, ysselsteyn

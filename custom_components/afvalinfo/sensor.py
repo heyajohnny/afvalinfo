@@ -18,7 +18,6 @@ Bergeijk                        www.mijnafvalwijzer.nl
 Bergen Limburg or Noord-Holland nh = https://www.hvcgroep.nl/zelf-regelen/ophaalmomenten l = bergen.nl/home/afval_44490/item/afvalkalender-2020_38953.html
 Berkelland                      https://afvalkalender.gemeenteberkelland.nl/
 Bladel                          www.mijnafvalwijzer
-Blaricum                        https://inzamelkalender.gad.nl/
 Borsele                         https://afvalkalender.borsele.nl/
 Bunnik                          https://inzamelschema.rmn.nl/
 Coevorden                       https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
@@ -37,7 +36,6 @@ Geldrop-Mierlo                  https://www.cure-afvalbeheer.nl/afvalkalender/
 Gennep                          https://www.gennep.nl/document.php?m=28&fileid=98242&f=834a3177a76c30293e3e9d1c200729fb&attachment=0&c=34148
 Goeree-Overflakkee              https://www.goeree-overflakkee.nl/portal/overzicht-producten-en-diensten_43368/product/afval-huishoudelijk-afval_451.html
 Goes                            https://afvalkalender.goes.nl/
-Gooise Meren                    https://inzamelkalender.gad.nl/
 Gorinchem                       https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
 Groningen                       https://gemeente.groningen.nl/afvalwijzer/groningen
 Haaren                          https://haaren.afvalstoffendienstkalender.nl/
@@ -48,7 +46,6 @@ Hellevoetsluis                  https://www.hellevoetsluis.nl/Inwoners/WONEN_EN_
 Het Hogeland                    https://hethogeland.nl/afval/afvalkalender
 Hoeksche Waard                  https://www.radhw.nl/inwoners/ophaalschema
 Hoogeveen                       https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
-Huizen                          https://inzamelkalender.gad.nl/
 Hulst                           https://www.zrd.nl/afvalkalender.htm
 IJsselstein                     https://inzamelschema.rmn.nl/
 Kapelle                         https://www.zrd.nl/afvalkalender.htm
@@ -57,7 +54,6 @@ Koggenland                      https://www.hvcgroep.nl/zelf-regelen/ophaalmomen
 Landerd                         https://www.landerd.nl/inwoners-en-ondernemers/afval/afvalkalender/pdf/2020
 Landsmeer                       https://admin.sduconnect.nl/linked_links/1577977473Afvalkalender_2020_DEF.pdf
 Langedijk                       https://mijnafvalwijzer.nl/
-Laren                           https://inzamelkalender.gad.nl/
 Leidschendam-Voorburg           http://www.avalex.nl/kalender/
 Lingewaard                      https://www.mijnafvalwijzer.nl/
 Loppersum                       https://gemeente.groningen.nl/afvalwijzer/loppersum?pk_campaign=Redirects&pk_kwd=data-afvalinzameling
@@ -105,9 +101,7 @@ Vught                           https://vught.afvalstoffendienstkalender.nl/
 Waalre                          https://afvalkalender.waalre.nl/
 Wassenaar                       http://www.avalex.nl/kalender/
 Weert                           https://www.weert.nl/huisvuil-duobak-en-ophaaldagen
-Weesp                           https://inzamelkalender.gad.nl/adres/1381DD:104::
 Westerwolde                     https://www.westerwolde.nl/trash-removal-calendar
-Wijdemeren                      https://inzamelkalender.gad.nl/
 Wormerland                      https://www.hvcgroep.nl/zelf-regelen/ophaalmomenten
 Zeewolde                        https://www.hvcgroep.nl/zelf-regelen/ophaalmomenten
 Zeist                           https://inzamelschema.rmn.nl/
@@ -315,7 +309,7 @@ class AfvalinfoData(object):
             self.data = DeFrieseMerenAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        gad = ["hilversum"]
+        gad = ["ankeveen", "blaricum", "bussum", "de horn", "hilversum", "huizen", "kortenhoef", "laren", "muiden", "muiderberg", "naarden", "nederhorst den berg", "nieuw-loosdrecht", "oud-loosdrecht", "s-graveland", "uitermeer", "weesp"]
         if self.city in gad:
             self.data = GadAfval().get_data(
                 self.city, self.postcode, self.street_number
