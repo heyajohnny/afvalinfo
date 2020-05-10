@@ -10,114 +10,109 @@ ToDo: Fix all the next year problems
 ToDo: Add the following gemeenten:
 Alphen-Chaam                    (MijnAfvalWijzer)
 Amsterdam                       ???
-Appingedam                      (Omrin)
 Baarle-Nassau                   (MijnAfvalWijzer)
 Baarn                           (https://inzamelschema.rmn.nl/)
 Beemster                        (https://afvalkalender.purmerend.nl/)
 Beesel                          (https://www.beesel.nl/inwoners/afval-en-milieu/afvalkalender/)
-Bergeijk
-Bergen Limburg or Noord-Holland
-Berkelland
-Bladel
-Blaricum
-Bonaire
-Borsele
-Bunnik
-Coevorden
-Cranendonck
-Dantumadeel
-Delft
-Delfzijl
-Den Haag
-Drimmelen
-Edam-Volendam
-Eemnes
-Eersel
-Eindhoven
-Emmen
-Geldrop-Mierlo
-Gennep
-Goeree-Overflakkee
-Goes
-Gooise Meren
-Gorinchem
-Groningen
-Haaren
-Hardinxveld-Giessendam
-Hellendoorn
-Hellevoetsluis
-'s-Hertogenbosch
-Het Hogeland
-Hoeksche Waard
-Hoogeveen
-Huizen
-Hulst
-IJsselstein
-Kapelle
-Katwijk
-Koggenland
-Landerd
-Landsmeer
-Langedijk
-Laren
-Leidschendam-Voorburg
-Lingewaard
-Loppersum
-Losser
-Maassluis
-Maastricht
-Meerssen
-Middelburg
-Midden-Delfland
-Midden-Drenthe
-Molenlanden
-Mook en Middelaar
-Nederweert
-Nieuwegein
-Noord-Beveland
-Oegstgeest
-Oirschot
-Oisterwijk
-Oostzaan
-Ouder-Amstel
-Peel en Maas
-Pijnacker-Nootdorp
-Purmerend
-Putten
-Reimerswaal
-Reusel-De Mierden
-Rijswijk
-Rozendaal
-Saba
+Bergeijk                        www.mijnafvalwijzer.nl
+Bergen Limburg or Noord-Holland nh = https://www.hvcgroep.nl/zelf-regelen/ophaalmomenten l = bergen.nl/home/afval_44490/item/afvalkalender-2020_38953.html
+Berkelland                      https://afvalkalender.gemeenteberkelland.nl/
+Bladel                          www.mijnafvalwijzer
+Blaricum                        https://inzamelkalender.gad.nl/
+Borsele                         https://afvalkalender.borsele.nl/
+Bunnik                          https://inzamelschema.rmn.nl/
+Coevorden                       https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
+Cranendonck                     https://afvalkalender.cranendonck.nl/
+Dantumadeel                     https://www.dantumadiel.frl/afvalkalender
+Delft                           http://www.avalex.nl/kalender/
+Delfzijl                        https://www.delfzijl.nl/inwoners/afvalkalender_43586/
+Den Haag                        https://huisvuilkalender.denhaag.nl/form
+Drimmelen                       https://drimmelen.nl/afvalkalender
+Edam-Volendam                   https://www.edam-volendam.nl/portal-home/inzamelkalender_43466/
+Eemnes                          https://www.eemnes.nl/inwoners/Afval/Afvalwijzer
+Eersel                          www.mijnafvalwijzer.nl
+Eindhoven                       https://www.cure-afvalbeheer.nl/afvalkalender/
+Emmen                           https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
+Geldrop-Mierlo                  https://www.cure-afvalbeheer.nl/afvalkalender/
+Gennep                          https://www.gennep.nl/document.php?m=28&fileid=98242&f=834a3177a76c30293e3e9d1c200729fb&attachment=0&c=34148
+Goeree-Overflakkee              https://www.goeree-overflakkee.nl/portal/overzicht-producten-en-diensten_43368/product/afval-huishoudelijk-afval_451.html
+Goes                            https://afvalkalender.goes.nl/
+Gooise Meren                    https://inzamelkalender.gad.nl/
+Gorinchem                       https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
+Groningen                       https://gemeente.groningen.nl/afvalwijzer/groningen
+Haaren                          https://haaren.afvalstoffendienstkalender.nl/
+Hardinxveld-Giessendam          https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
+Hellendoorn                     https://afvalportaal.2go-mobile.com/modules/24434f5b-7244-412b-9306-3a2bd1e22bc1/kalender/
+Hellevoetsluis                  https://www.hellevoetsluis.nl/Inwoners/WONEN_EN_LEEFOMGEVING/Afval/Afvalkalender
+'s-Hertogenbosch                https://www.afvalstoffendienst.nl/login
+Het Hogeland                    https://hethogeland.nl/afval/afvalkalender
+Hoeksche Waard                  https://www.radhw.nl/inwoners/ophaalschema
+Hoogeveen                       https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
+Huizen                          https://inzamelkalender.gad.nl/
+Hulst                           https://www.zrd.nl/afvalkalender.htm
+IJsselstein                     https://inzamelschema.rmn.nl/
+Kapelle                         https://www.zrd.nl/afvalkalender.htm
+Katwijk                         https://afval.katwijk.nl/nc/afvalkalender/
+Koggenland                      https://www.hvcgroep.nl/zelf-regelen/ophaalmomenten
+Landerd                         https://www.landerd.nl/inwoners-en-ondernemers/afval/afvalkalender/pdf/2020
+Landsmeer                       https://admin.sduconnect.nl/linked_links/1577977473Afvalkalender_2020_DEF.pdf
+Langedijk                       https://mijnafvalwijzer.nl/
+Laren                           https://inzamelkalender.gad.nl/
+Leidschendam-Voorburg           http://www.avalex.nl/kalender/
+Lingewaard                      https://www.mijnafvalwijzer.nl/
+Loppersum                       https://gemeente.groningen.nl/afvalwijzer/loppersum?pk_campaign=Redirects&pk_kwd=data-afvalinzameling
+Losser                          https://www.twentemilieu.nl/losser/afval/afvalkalender
+Maassluis                       https://www.maassluis.nl/wonen-verkeer-en-veiligheid/afvalinzameling_43871/
+Maastricht                      https://www.rd4info.nl/NSI/Burger/Aspx/afvalkalender_general.aspx
+Meerssen                        https://www.rd4info.nl/NSI/Burger/Aspx/afvalkalender_general.aspx
+Middelburg                      https://www.middelburg.nl/Inwoners/Afval/Ophaaldagen_huisvuil
+Midden-Delfland                 http://www.avalex.nl/kalender/
+Midden-Drenthe                  https://www.middendrenthe.nl/website/!suite86.scherm0325?mVrg=12635
+Molenlanden                     https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
+Mook en Middelaar               https://www.mookenmiddelaar.nl/inwoner/afval-en-duurzaamheid_42542/item/afvalkalender-2020_40888.html
+Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
+Nieuwegein                      https://inzamelschema.rmn.nl/
+Noord-Beveland                  https://www.zrd.nl/afvalkalender.htm
+Oegstgeest                      https://www.oegstgeest.nl/fileadmin/editor/Documenten/Inwoners/Alles_over_afval/afvalkalender_2020_v8.pdf
+Oirschot                        www.mijnafvalwijzer.nl
+Oisterwijk                      https://oisterwijk.afvalstoffendienstkalender.nl/
+Oostzaan                        https://www.oostzaan.nl/mozard/document/docnr/1182761/bijlage%20-%20afvalkalender%20Oostzaan%202020%20-%20met%20wijkindeling
+Ouder-Amstel                    https://www.ouder-amstel.nl/Home/Nieuws_en_actualiteiten/Nieuws/Alle_nieuwsberichten_2020/April/Data_inzameling_afval
+Peel en Maas                    https://afvalkalender.peelenmaas.nl/
+Pijnacker-Nootdorp              http://www.avalex.nl/kalender/
+Purmerend                       https://afvalkalender.purmerend.nl/
+Putten                          https://www.mijnafvalwijzer.nl/
+Reimerswaal                     https://www.zrd.nl/afvalkalender.htm
+Reusel-De Mierden               https://www.reuseldemierden.nl/document.php?m=25&fileid=123208&f=3e3d90c015a9b15ffc98c993c8e4e9da&attachment=0&c=40975
+Rijswijk                        http://www.avalex.nl/kalender/
+Rozendaal                       https://www.rozendaal.nl/dsresource?objectid=d7a004f0-ff97-490a-8837-1b66e5bc11e1&type=org
 Schiermonnikoog
-Schouwen-Duiveland
-Sint Eustatius
-Sluis
-Soest
-Steenbergen
-Texel
-Tholen
-Tietjerksteradeel
-Uden
-Uithoorn
-Valkenburg a/d Geul
-Valkenswaard
-Veere
-Vlieland
-Vlissingen
-Voorschoten
-Vught
-Waalre
-Wassenaar
-Weert
-Weesp
-Westerwolde
-Wijdemeren
-Wormerland
-Zeewolde
-Zeist
-Zevenaar
-Zundert
+Schouwen-Duiveland              https://afvalkalender.schouwen-duiveland.nl/
+Sluis                           https://www.zrd.nl/afvalkalender.htm
+Soest                           https://inzamelschema.rmn.nl/
+Steenbergen                     https://www.gemeente-steenbergen.nl/inwoners_overzicht/afval/
+Texel                           https://www.texel.nl/mozard/!suite86.scherm0325?mVrg=5059
+Tholen                          https://www.zrd.nl/afvalkalender.htm
+Uden                            https://www.uden.nl/inwoners/afval/ophaaldagen-afval/
+Uithoorn                        https://www.uithoorn.nl/Home/Afval/Afvalkalender
+Valkenburg a/d Geul             https://www.rd4info.nl/NSI/Burger/Aspx/afvalkalender_general.aspx
+Valkenswaard                    https://www.cure-afvalbeheer.nl/afvalkalender/
+Veere                           https://www.zrd.nl/afvalkalender.htm
+Vlieland                        https://www.vlieland.nl/v-zelf-regelen/producten_42533/product/afval-huishoudelijk-afval_17.html
+Vlissingen                      https://www.vlissingen.nl/inwoner/afval-en-milieu/afval/huishoudelijk-afval-en-afvalkalender.html
+Voorschoten                     https://www.voorschotenmaakthetverschil.nl/
+Vught                           https://vught.afvalstoffendienstkalender.nl/
+Waalre                          https://afvalkalender.waalre.nl/
+Wassenaar                       http://www.avalex.nl/kalender/
+Weert                           https://www.weert.nl/huisvuil-duobak-en-ophaaldagen
+Weesp                           https://inzamelkalender.gad.nl/adres/1381DD:104::
+Westerwolde                     https://www.westerwolde.nl/trash-removal-calendar
+Wijdemeren                      https://inzamelkalender.gad.nl/
+Wormerland                      https://www.hvcgroep.nl/zelf-regelen/ophaalmomenten
+Zeewolde                        https://www.hvcgroep.nl/zelf-regelen/ophaalmomenten
+Zeist                           https://inzamelschema.rmn.nl/
+Zevenaar                        https://mijnafvalwijzer.nl/
+Zundert                         https://www.zundert.nl/afval-en-milieustraat/afvalkalender-2020.html
 """
 
 import voluptuous as vol
@@ -393,20 +388,20 @@ class AfvalinfoData(object):
             self.data = NissewaardAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        omrin = ["aalsum", "achlum", "aegum", "akkrum", "anjum", "appelscha", "augsbuurt", "augustinusga", "baaiduinen", "baard", "baijum", "bakkeveen", "ballum", "beers", "beetgum", "beetgumermolen", "beetsterzwaag", "bergum", "berlikum", "birdaard", "blesdijke", "blessum", "blija", "boelenslaan", "boer", "boijl",
-        "boksum", "bokum", "bontebok", "bornwird", "brantgum", "breede", "britsum", "broek", "buitenpost", "buren", "burum", "cornjum", "de blesse", "de hoeve", "de knijpe", "deinum", "dokkum", "dongjum", "donkerbroek", "doodstil", "douwen", "drachten-azeven", "drogeham", "dronrijp", "ee", "eemshaven", "eenrum",
-        "eernewoude", "eestrum", "elsloo", "engelum", "engwierum", "eppenhuizen", "ewer", "ferwerd", "finkum", "firdgum", "fochteloo", "formerum", "foudgum", "franeker", "friens", "frieschepalen", "garijp", "genum", "gerkesklooster", "gersloot", "giekerk", "gorredijk", "goutum", "grijssloot", "groot maarslag",
-        "grouw", "hallum", "hantum", "hantumeruitburen", "hantumhuizen", "hardegarijp", "harkema", "harlingen", "haskerdijken", "haule", "haulerwijk", "hee", "heerenveen", "hefswal", "hempens	hempus", "hemrik", "herbaijum", "hiaure", "hijlaard", "hijum", "hitzum", "hogebeintum", "hollum", "holwerd", "hoorn",
-        "hoornsterzwaag", "hornhuizen", "houwerzijl", "huins", "idaard", "irnsum", "janum", "jellum", "jelsum", "jislum", "jonkersland", "jorwerd", "jouswier", "jubbega", "kaakhorn", "kaard", "kantens", "katershorn", "katlijk", "kinnum", "klein maarslag", "kleine huisjes", "klooster-lidlum", "kloosterburen",
+        omrin = ["aalsum", "achlum", "aegum", "akkrum", "anjum", "appelscha", "appingedam", "augsbuurt", "augustinusga", "baaiduinen", "baard", "baijum", "bakkeveen", "ballum", "beers", "beetgum", "beetgumermolen", "beetsterzwaag", "bergum", "berlikum", "birdaard", "blesdijke", "blessum", "blija", "boelenslaan",
+        "boer", "boijl", "boksum", "bokum", "bontebok", "bornwird", "brantgum", "breede", "britsum", "broek", "buitenpost", "buren", "burum", "cornjum", "de blesse", "de hoeve", "de knijpe", "deinum", "dokkum", "dongjum", "donkerbroek", "doodstil", "douwen", "drachten-azeven", "drogeham", "dronrijp", "ee",
+        "eemshaven", "eenrum", "eernewoude", "eestrum", "elsloo", "engelum", "engwierum", "eppenhuizen", "ewer", "ferwerd", "finkum", "firdgum", "fochteloo", "formerum", "foudgum", "franeker", "friens", "frieschepalen", "garijp", "genum", "gerkesklooster", "gersloot", "giekerk", "gorredijk", "goutum", "grijssloot",
+        "groot maarslag", "grouw", "hallum", "hantum", "hantumeruitburen", "hantumhuizen", "hardegarijp", "harkema", "harlingen", "haskerdijken", "haule", "haulerwijk", "hee", "heerenveen", "hefswal", "hempens	hempus", "hemrik", "herbaijum", "hiaure", "hijlaard", "hijum", "hitzum", "hogebeintum", "hollum", "holwerd",
+        "hoorn", "hoornsterzwaag", "hornhuizen", "houwerzijl", "huins", "idaard", "irnsum", "janum", "jellum", "jelsum", "jislum", "jonkersland", "jorwerd", "jouswier", "jubbega", "kaakhorn", "kaard", "kantens", "katershorn", "katlijk", "kinnum", "klein maarslag", "kleine huisjes", "klooster-lidlum", "kloosterburen",
         "kollum", "kollumerpomp", "kollumerzwaag", "koningsoord", "kootstertille", "kruisweg", "landerum", "langedijke", "langelille", "langezwaag", "lauwersoog", "leens", "leeuwarden", "lekkum", "lichtaard", "lies", "lioessens", "lions", "lippenhuizen", "luinjeberd", "luxwoude", "makkinga", "mantgum", "marrum",
         "marssum", "menaldum", "mensingeweer", "metslawier", "midlum", "midsland", "miedum", "mildam", "minnertsga", "moddergat", "molenend", "molenrij", "morra", "munnekeburen", "munnekezijl", "nes", "niawier", "niekerk", "nieuwebrug", "nieuwehorne", "nieuweschoot", "nij altoenae", "nij beets", "nijeberkoop",
         "nijeholtpade", "nijeholtwolde", "nijelamer", "nijetrijne", "noordbergum", "noordpolderzijl", "noordwolde", "oenkerk", "oldeberkoop", "oldeboorn", "oldeholtpade", "oldeholtwolde", "oldelamer", "oldenzijl", "oldetrijne", "oldorp", "olterterp", "oosteinde", "oosterbierum", "oosterend", "oosterlittens",
-        "oostermeer", "oosternieland", "oosternijkerk", "oosterstreek", "oosterwolde", "oostrum", "oranjewoud", "oude leije", "oudebildtzijl", "oudedijk", "oudehorne", "oudeschip", "oudeschoot", "oudkerk", "oudwoude", "paapstil", "paesens", "peins", "peperga", "pieterburen", "pietersbierum", "raard", "ravenswoud",
-        "reitsum", "ried", "rijperkerk", "roodehaan", "roodeschool", "roordahuizum", "rottum", "rottumeroog", "rottumerplaat", "schalsum", "scherpenzeel", "schingen", "schouwen", "schouwerzijl", "sexbierum", "siegerswoude", "simonszand", "sint annaparochie", "sint jacobiparochie", "slappeterp", "slijkenburg",
-        "snakkerburen", "sonnega", "spanga", "spannum", "startenhuizen", "steggerda", "stiens", "stitswerd", "striep", "stroobos", "suameer", "suawoude", "surhuisterveen", "surhuizum", "swichum", "t lage van de weg", "t stort", "teerns", "ter idzard", "terband", "ternaard", "terwispel", "tietjerk", "tijnje",
-        "tjalleberd", "triemen", "twijzel", "twijzelerheide", "tzum", "tzummarum", "uithuizen", "uithuizermeeden", "ulrum", "ureterp", "usquert", "valom", "veenklooster", "vierhuizen", "vinkega", "vliedorp", "vrouwenparochie", "waaxens", "wadwerd", "wanswerd", "warffum", "warfhuizen", "warfstermolen", "warga",
-        "warstiens", "wartena", "waskemeer", "wehe-den hoorn", "weidum", "welsrijp", "west-terschelling", "westergeest", "westernieland", "westhoek", "wetsens", "wier", "wierhuizen", "wierum", "wijnaldum", "wijnjewoude", "wijns", "wijtgaard", "winsum", "wirdum", "wolvega", "zandeweer", "zandhuizen", "zevenhuizen",
-        "zoutkamp", "zuurdijk", "zwagerbosch", "zweins"]
+        "oostermeer", "oosternieland", "oosternijkerk", "oosterstreek", "oosterwolde", "oostrum", "opwierde", "oranjewoud", "oude leije", "oudebildtzijl", "oudedijk", "oudehorne", "oudeschip", "oudeschoot", "oudkerk", "oudwoude", "paapstil", "paesens", "peins", "peperga", "pieterburen", "pietersbierum", "raard",
+        "ravenswoud", "reitsum", "ried", "rijperkerk", "roodehaan", "roodeschool", "roordahuizum", "rottum", "rottumeroog", "rottumerplaat", "schalsum", "scherpenzeel", "schingen", "schouwen", "schouwerzijl", "sexbierum", "siegerswoude", "simonszand", "sint annaparochie", "sint jacobiparochie", "slappeterp",
+        "slijkenburg", "snakkerburen", "solwerd", "sonnega", "spanga", "spannum", "startenhuizen", "steggerda", "stiens", "stitswerd", "striep", "stroobos", "suameer", "suawoude", "surhuisterveen", "surhuizum", "swichum", "t lage van de weg", "t stort", "teerns", "ter idzard", "terband", "ternaard", "terwispel",
+        "tietjerk", "tijnje", "tjalleberd", "tjamsweer", "triemen", "twijzel", "twijzelerheide", "tzum", "tzummarum", "uithuizen", "uithuizermeeden", "ulrum", "ureterp", "usquert", "valom", "veenklooster", "vierhuizen", "vinkega", "vliedorp", "vrouwenparochie", "waaxens", "wadwerd", "wanswerd", "warffum",
+        "warfhuizen", "warfstermolen", "warga", "warstiens", "wartena", "waskemeer", "wehe-den hoorn", "weidum", "welsrijp", "west-terschelling", "westergeest", "westernieland", "westhoek", "wetsens", "wier", "wierhuizen", "wierum", "wijnaldum", "wijnjewoude", "wijns", "wijtgaard", "winsum", "wirdum", "wolvega",
+        "zandeweer", "zandhuizen", "zevenhuizen", "zoutkamp", "zuurdijk", "zwagerbosch", "zweins"]
         if self.city in omrin:
             self.data = OmrinAfval().get_data(
                 self.city, self.postcode, self.street_number
