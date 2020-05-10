@@ -15,7 +15,7 @@ Baarn                           (https://inzamelschema.rmn.nl/)
 Beemster                        (https://afvalkalender.purmerend.nl/)
 Beesel                          (https://www.beesel.nl/inwoners/afval-en-milieu/afvalkalender/)
 Bergeijk                        www.mijnafvalwijzer.nl
-Bergen Limburg or Noord-Holland nh = https://www.hvcgroep.nl/zelf-regelen/ophaalmomenten l = bergen.nl/home/afval_44490/item/afvalkalender-2020_38953.html
+Bergen Limburg                  bergen.nl/home/afval_44490/item/afvalkalender-2020_38953.html
 Berkelland                      https://afvalkalender.gemeenteberkelland.nl/
 Bladel                          www.mijnafvalwijzer
 Borsele                         https://afvalkalender.borsele.nl/
@@ -50,7 +50,6 @@ Hulst                           https://www.zrd.nl/afvalkalender.htm
 IJsselstein                     https://inzamelschema.rmn.nl/
 Kapelle                         https://www.zrd.nl/afvalkalender.htm
 Katwijk                         https://afval.katwijk.nl/nc/afvalkalender/
-Koggenland                      https://www.hvcgroep.nl/zelf-regelen/ophaalmomenten
 Landerd                         https://www.landerd.nl/inwoners-en-ondernemers/afval/afvalkalender/pdf/2020
 Landsmeer                       https://admin.sduconnect.nl/linked_links/1577977473Afvalkalender_2020_DEF.pdf
 Langedijk                       https://mijnafvalwijzer.nl/
@@ -102,8 +101,6 @@ Waalre                          https://afvalkalender.waalre.nl/
 Wassenaar                       http://www.avalex.nl/kalender/
 Weert                           https://www.weert.nl/huisvuil-duobak-en-ophaaldagen
 Westerwolde                     https://www.westerwolde.nl/trash-removal-calendar
-Wormerland                      https://www.hvcgroep.nl/zelf-regelen/ophaalmomenten
-Zeewolde                        https://www.hvcgroep.nl/zelf-regelen/ophaalmomenten
 Zeist                           https://inzamelschema.rmn.nl/
 Zevenaar                        https://mijnafvalwijzer.nl/
 Zundert                         https://www.zundert.nl/afval-en-milieustraat/afvalkalender-2020.html
@@ -314,14 +311,15 @@ class AfvalinfoData(object):
             self.data = GadAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        hvc = ["aagtdorp", "aartswoud", "abbekerk", "abbestede", "alblasserdam", "andijk", "anna paulowna", "assendelft", "bant", "barsingerhorn", "benningbroek", "bergen aan zee", "beverwijk", "blokdijk", "blokker", "bovenkarspel", "breezand", "bregtdorp", "burgerbrug", "burgervlotbrug", "callantsoog",
-        "camperduin", "catrijp", "creil", "de buurt", "de haukes", "de stolpen", "de strook", "de weere", "den helder", "den oever", "dirkshorn", "dordrecht", "driehuis", "eenigenburg", "egmond aan den hoef", "egmond aan zee", "egmond-binnen", "emmeloord", "enkhuizen", "ens", "espel", "gouwe", "groenveld",
-        "groet", "groote keeten", "grootebroek", "hargen", "haringhuizen", "hauwert", "heemskerk", "heerjansdam", "hem", "hendrik-ido-ambacht", "hippolytushoef", "hoogkarspel", "hoogwoud", "hoorn", "huisduinen", "ijmuiden", "julianadorp", "kalverdijk", "keinse", "kleine sluis", "kleine-lindt", "kolhorn",
-        "koog aan de zaan", "krabbendam", "kraggenburg", "kreil", "kreileroord", "krommenie", "lambertschaag", "lelystad", "lutjebroek", "lutjewinkel", "luttelgeest", "marknesse", "medemblik", "middenmeer", "midwoud", "moerbeek", "nagele", "nibbixwoud", "nieuwe niedorp", "nieuwesluis", "onderdijk",
-        "oosterblokker", "oosterdijk", "oosterklief", "oosterland", "oosterleek", "oostwoud", "opmeer", "opperdoes", "oude niedorp", "oudesluis", "papendrecht", "petten", "rinnegom", "rutten", "santpoort-noord", "santpoort-zuid", "schagen", "schagerbrug", "schellinkhout", "schokland", "schoorl",
-        "schoorldam", "schoorldam", "sijbekarspel", "sint maarten", "sint maartensbrug", "sint maartensvlotbrug", "sint maartenszee", "slootdorp", "smerp", "spaarndammerpolder", "spanbroek", "stroe", "stroet", "t rijpje", "t veld", "t zand", "terdiek", "tjallewal", "tolke", "tolke", "tollebeek",
-        "tuitjenhorn", "twisk", "valkkoog", "van ewijcksluis", "vatrop", "velsen", "velsen-noord", "velsen-zuid", "velserbroek", "venhuizen", "verlaat", "waarland", "wadway", "wadway", "warmenhuizen", "wervershoof", "westerklief", "westerland", "westknollendam", "westwoud", "westzaan", "wieringerwaard",
-        "wieringerwerf", "wijdenes", "wijk aan duin", "wijk aan zee", "wimmenum", "winkel", "wognum", "wormerveer", "zaandam", "zaandijk", "zandwerven", "zijdewind", "zwaag", "zwaagdijk-oost", "zwaagdijk-west", "zwijndrecht"]
+        hvc = ["aagtdorp", "aartswoud", "abbekerk", "abbestede", "alblasserdam", "andijk", "anna paulowna", "assendelft", "avenhorn", "bant", "barsingerhorn", "benningbroek", "bergen aan zee", "bergen", "berkhout", "beverwijk", "blokdijk", "blokker", "bobeldijk", "bovenkarspel", "breezand", "bregtdorp",
+        "burgerbrug", "burgervlotbrug", "callantsoog", "camperduin", "catrijp", "creil", "de buurt", "de goorn", "de haukes", "de stolpen", "de strook", "de weere", "den helder", "den oever", "dirkshorn", "dordrecht", "driehuis", "eenigenburg", "egmond aan den hoef", "egmond aan zee", "egmond-binnen",
+        "emmeloord", "enkhuizen", "ens", "espel", "gouwe", "groenveld", "groet", "groote keeten", "grootebroek", "grosthuizen", "hargen", "haringhuizen", "hauwert", "heemskerk", "heerjansdam", "hem", "hendrik-ido-ambacht", "hensbroek", "hippolytushoef", "hoogkarspel", "hoogwoud", "hoorn", "huisduinen",
+        "ijmuiden", "jisp", "julianadorp", "kalverdijk", "keinse", "kleine sluis", "kleine-lindt", "kolhorn", "koog aan de zaan", "krabbendam", "kraggenburg", "kreil", "kreileroord", "krommenie", "lambertschaag", "lelystad", "lutjebroek", "lutjewinkel", "luttelgeest", "marknesse", "medemblik", "middenmeer",
+        "midwoud", "moerbeek", "nagele", "neck", "nibbixwoud", "nieuwe niedorp", "nieuwesluis", "obdam", "onderdijk", "oosterblokker", "oosterdijk", "oosterklief", "oosterland", "oosterleek", "oostknollendam", "oostwoud", "opmeer", "opperdoes", "oude niedorp", "oudendijk", "oudesluis", "papendrecht", "petten",
+        "rinnegom", "rustenburg", "rutten", "santpoort-noord", "santpoort-zuid", "schagen", "schagerbrug", "scharwoude", "schellinkhout", "schokland", "schoorl", "schoorldam", "sijbekarspel", "sint maarten", "sint maartensbrug", "sint maartensvlotbrug", "sint maartenszee", "slootdorp", "smerp", "spaarndammerpolder",
+        "spanbroek", "spierdijk", "spijkerboor", "stroe", "stroet", "t rijpje", "t veld", "t zand", "terdiek", "tjallewal", "tolke", "tollebeek", "tuitjenhorn", "twisk", "ursem", "valkkoog", "van ewijcksluis", "vatrop", "velsen", "velsen-noord", "velsen-zuid", "velserbroek", "venhuizen", "verlaat", "waarland",
+        "wadway", "warmenhuizen", "wervershoof", "westerklief", "westerland", "westknollendam", "westwoud", "westzaan", "wieringerwaard", "wieringerwerf", "wijdenes", "wijdewormer", "wijk aan duin", "wijk aan zee", "wimmenum", "winkel", "wogmeer", "wognum", "wormer", "wormerveer", "zaandam", "zaandijk",
+        "zandwerven", "zeewolde", "zijdewind", "zuidermeer", "zwaag", "zwaagdijk-oost", "zwaagdijk-west", "zwijndrecht"]
         if self.city in hvc:
             self.data = HvcAfval().get_data(
                 self.city, self.postcode, self.street_number
