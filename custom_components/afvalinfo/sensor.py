@@ -58,8 +58,6 @@ Lingewaard                      https://www.mijnafvalwijzer.nl/
 Loppersum                       https://gemeente.groningen.nl/afvalwijzer/loppersum?pk_campaign=Redirects&pk_kwd=data-afvalinzameling
 Losser                          https://www.twentemilieu.nl/losser/afval/afvalkalender
 Maassluis                       https://www.maassluis.nl/wonen-verkeer-en-veiligheid/afvalinzameling_43871/
-Maastricht                      https://www.rd4info.nl/NSI/Burger/Aspx/afvalkalender_general.aspx
-Meerssen                        https://www.rd4info.nl/NSI/Burger/Aspx/afvalkalender_general.aspx
 Middelburg                      https://www.middelburg.nl/Inwoners/Afval/Ophaaldagen_huisvuil
 Midden-Delfland                 http://www.avalex.nl/kalender/
 Midden-Drenthe                  https://www.middendrenthe.nl/website/!suite86.scherm0325?mVrg=12635
@@ -90,7 +88,6 @@ Texel                           https://www.texel.nl/mozard/!suite86.scherm0325?
 Tholen                          https://www.zrd.nl/afvalkalender.htm
 Uden                            https://www.uden.nl/inwoners/afval/ophaaldagen-afval/
 Uithoorn                        https://www.uithoorn.nl/Home/Afval/Afvalkalender
-Valkenburg a/d Geul             https://www.rd4info.nl/NSI/Burger/Aspx/afvalkalender_general.aspx
 Valkenswaard                    https://www.cure-afvalbeheer.nl/afvalkalender/
 Veere                           https://www.zrd.nl/afvalkalender.htm
 Vlieland                        https://www.vlieland.nl/v-zelf-regelen/producten_42533/product/afval-huishoudelijk-afval_17.html
@@ -398,9 +395,10 @@ class AfvalinfoData(object):
             self.data = OmrinAfval().get_data(
                 self.city, self.postcode, self.street_number
             )
-        rd4 = ["amstenrade", "banholt", "bemelen", "beutenaken", "bingelrade", "bocholtz", "brunssum", "cadier en keer", "doenrade", "eckelrade", "eijsden", "elkenrade", "epen", "eperheide", "etenaken", "euverem", "eys", "eyserheide", "gronsveld", "gulpen", "heerlen", "heijenrath", "hilleshagen", "hoensbroek",
-        "holset", "hulsberg", "ingber", "jabeek", "kerkrade", "klimmen", "kunrade", "landgraaf", "lemiers", "margraten", "mariadorp en poelveld", "mechelen", "merkelbeek", "mesch en withuis", "mheer", "nijswiller", "noorbeek", "nuth", "oirsbeek", "oost-maarland", "partij-wittem", "puth", "ransdaal", "reijmerstok",
-        "rijckholt", "scheulder", "schimmert", "schinnen", "schinveld", "schweiberg", "simpelveld", "sint geertruid", "slenaken", "stokhem", "sweikhuizen", "trintelen", "ubachsberg", "vaals", "vijlen", "voerendaal", "wahlwiller", "wijlre", "wijnandsrade"]
+        rd4 = ["amstenrade", "banholt", "bemelen", "berg", "beutenaken", "bingelrade", "bocholtz", "broekhem", "brunssum", "bunde", "cadier en keer", "doenrade", "eckelrade", "eijsden", "elkenrade", "epen", "eperheide", "etenaken", "euverem", "eys", "eyserheide", "geulle aan de maas", "geulle", "gronsveld", "gulpen",
+        "heerlen", "heijenrath", "hilleshagen", "hoensbroek", "holset", "houthem", "hulsberg", "ingber", "jabeek", "kerkrade", "klimmen", "kunrade", "landgraaf", "lemiers", "maastricht", "margraten", "mariadorp en poelveld", "mechelen", "meerssen", "merkelbeek", "mesch en withuis", "mheer", "moorveld", "nijswiller",
+        "noorbeek", "nuth", "oirsbeek", "oost-maarland", "oud-valkenburg", "partij-wittem", "puth", "ransdaal", "reijmerstok", "rijckholt", "rothem", "scheulder", "schimmert", "schin op geul", "schinnen", "schinveld", "schweiberg", "sibbe", "simpelveld", "sint geertruid", "slenaken", "stokhem", "sweikhuizen",
+        "trintelen", "ubachsberg", "ulestraten", "vaals", "valkenburg", "vijlen", "vilt", "voerendaal", "wahlwiller", "wijlre", "wijnandsrade"]
         if self.city in rd4:
             self.data = Rd4Afval().get_data(
                 self.city, self.postcode, self.street_number

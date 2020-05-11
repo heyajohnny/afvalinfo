@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'Gemeenten' in The Netherlands: 261,5 of 352 = 74,3%
+### Number of supported 'Gemeenten' in The Netherlands: 264,5 of 352 = 75,1%
 
 If you like my work, please buy me a coffee. This will keep me awake :)
 
@@ -13,9 +13,9 @@ You can also support me by starting to download and use the Brave browser throug
 ##### --(Dar) Berg en Dal, Beuningen, Druten, Heumen, Nijmegen, Wijchen
 - afferden, balgoij, batenburg, beek, berg en dal, bergharen, beuningen, deest, druten, erlecom, ewijk, groesbeek, heilig landstichting, hernen, heumen, horssen, kekerdom, leur, leuth, malden, millingen aan de rijn, nederasselt, niftrik, nijmegen, ooij, overasselt, persingen, puiflijk, ubbergen, weurt, wijchen, winssen
 
-##### --(Rd4) Beekdaelen, Brunssum, Eijsden-Margraten, Gulpen-Wittem, Heerlen, Kerkrade, Landgraaf, Simpelveld, Vaals, Voerendaal
+##### --(Rd4) Beekdaelen, Brunssum, Eijsden-Margraten, Gulpen-Wittem, Heerlen, Kerkrade, Landgraaf, Maastricht, Meerssen, Simpelveld, Vaals, Valkenburg aan de Geul Voerendaal
 ###### WARNING! Might not work well at the end of the year / beginning of the next year
-- amstenrade, banholt, bemelen, beutenaken, bingelrade, bocholtz, brunssum, cadier en keer, doenrade, eckelrade, eijsden, elkenrade, epen, eperheide, etenaken, euverem, eys, eyserheide, gronsveld, gulpen, heerlen, heijenrath, hilleshagen, hoensbroek, holset, hulsberg, ingber, jabeek, kerkrade, klimmen, kunrade, landgraaf, lemiers, margraten, mariadorp en poelveld, mechelen, merkelbeek, mesch en withuis, mheer, nijswiller, noorbeek, nuth, oirsbeek, oost-maarland, partij-wittem, puth, ransdaal, reijmerstok, rijckholt, scheulder, schimmert, schinnen, schinveld, schweiberg, simpelveld, sint geertruid, slenaken, stokhem, sweikhuizen, trintelen, ubachsberg, vaals, vijlen, voerendaal, wahlwiller, wijlre, wijnandsrade
+- amstenrade, banholt, bemelen, berg, beutenaken, bingelrade, bocholtz, broekhem, brunssum, bunde, cadier en keer, doenrade, eckelrade, eijsden, elkenrade, epen, eperheide, etenaken, euverem, eys, eyserheide, geulle aan de maas, geulle, gronsveld, gulpen, heerlen, heijenrath, hilleshagen, hoensbroek, holset, houthem, hulsberg, ingber, jabeek, kerkrade, klimmen, kunrade, landgraaf, lemiers, maastricht, margraten, mariadorp en poelveld, mechelen, meerssen, merkelbeek, mesch en withuis, mheer, moorveld, nijswiller, noorbeek, nuth, oirsbeek, oost-maarland, oud-valkenburg, partij-wittem, puth, ransdaal, reijmerstok, rijckholt, rothem, scheulder, schimmert, schin op geul, schinnen, schinveld, schweiberg, sibbe, simpelveld, sint geertruid, slenaken, stokhem, sweikhuizen, trintelen, ubachsberg, ulestraten, vaals, valkenburg, vijlen, vilt, voerendaal, wahlwiller, wijlre, wijnandsrade
 
 ##### --(Irado) Capelle aan den IJssel, Schiedam, Vlaardingen
 - capelle aan den ijssel, rozenburg, schiedam, vlaardingen
