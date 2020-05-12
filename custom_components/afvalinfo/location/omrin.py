@@ -105,7 +105,7 @@ class OmrinAfval(object):
             except KeyError:
                 omrinNextYear = None
 
-            #restafval = Sortibak or Restafval
+            #restafval = Sortibak or Restafval or Rest Weststellingwerf
             waste_dict["restafval"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Sortibak", "restafval")
             if omrinNextYear and len(waste_dict["restafval"]) == 0:
                 waste_dict["restafval"] = self.get_date_from_afvaltype(nextYear, omrinNextYear, "Sortibak", "restafval")
@@ -113,7 +113,11 @@ class OmrinAfval(object):
                 waste_dict["restafval"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Restafval", "restafval")
             if omrinNextYear and len(waste_dict["restafval"]) == 0:
                 waste_dict["restafval"] = self.get_date_from_afvaltype(thisYear, omrinNextYear, "Restafval", "restafval")
-            #gft = Biobak or Tuinafval or Extra Tuinafval or GFT afval
+            if len(waste_dict["restafval"]) == 0:
+                waste_dict["restafval"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Rest Weststellingwerf", "restafval")
+            if omrinNextYear and len(waste_dict["restafval"]) == 0:
+                waste_dict["restafval"] = self.get_date_from_afvaltype(thisYear, omrinNextYear, "Rest Weststellingwerf", "restafval")
+            #gft = Biobak or Tuinafval or Extra Tuinafval or GFT afval or GFT Weststellingwerf
             #Biobak
             waste_dict["gft"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Biobak", "gft")
             if omrinNextYear and len(waste_dict["gft"]) == 0:
@@ -123,6 +127,11 @@ class OmrinAfval(object):
                 waste_dict["gft"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "GFT afval", "gft")
             if omrinNextYear and len(waste_dict["gft"]) == 0:
                 waste_dict["gft"] = self.get_date_from_afvaltype(nextYear, omrinNextYear, "GFT afval", "gft")
+            #GFT Weststellingwerf
+            if len(waste_dict["gft"]) == 0:
+                waste_dict["gft"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "GFT Weststellingwerf", "gft")
+            if omrinNextYear and len(waste_dict["gft"]) == 0:
+                waste_dict["gft"] = self.get_date_from_afvaltype(nextYear, omrinNextYear, "GFT Weststellingwerf", "gft")
             #see which one is earlier
             if len(waste_dict["gft"]) == 0:
                 if len(waste_dict["gft"]) == 0:

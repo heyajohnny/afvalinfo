@@ -56,7 +56,6 @@ Langedijk                       https://mijnafvalwijzer.nl/
 Leidschendam-Voorburg           http://www.avalex.nl/kalender/
 Lingewaard                      https://www.mijnafvalwijzer.nl/
 Loppersum                       https://gemeente.groningen.nl/afvalwijzer/loppersum?pk_campaign=Redirects&pk_kwd=data-afvalinzameling
-Losser                          https://www.twentemilieu.nl/losser/afval/afvalkalender
 Maassluis                       https://www.maassluis.nl/wonen-verkeer-en-veiligheid/afvalinzameling_43871/
 Middelburg                      https://www.middelburg.nl/Inwoners/Afval/Ophaaldagen_huisvuil
 Midden-Delfland                 http://www.avalex.nl/kalender/
