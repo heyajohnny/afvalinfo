@@ -58,7 +58,7 @@ class Rd4Afval(object):
             _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
             return ""
 
-    def get_data(self, city, postcode, street_number):
+    def get_data(self, city, postcode, street_number, resources):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
@@ -77,11 +77,16 @@ class Rd4Afval(object):
 
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
-            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, "GFT", "gft")
-            waste_dict["textiel"] = self.get_date_from_afvaltype(ophaaldata, "BEST-tas", "textiel")
-            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, "Oud papier", "papier")
-            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PMD-afval", "pbd")
-            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "Restafval", "restafval")
+            if "gft" in resources:
+                waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, "GFT", "gft")
+            if "textiel" in resources:
+                waste_dict["textiel"] = self.get_date_from_afvaltype(ophaaldata, "BEST-tas", "textiel")
+            if "papier" in resources:
+                waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, "Oud papier", "papier")
+            if "pbd" in resources:
+                waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PMD-afval", "pbd")
+            if "restafval" in resources:
+                waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "Restafval", "restafval")
 
             return waste_dict
         except urllib.error.URLError as exc:

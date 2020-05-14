@@ -40,7 +40,7 @@ class RovaAfval(object):
             _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
             return ""
 
-    def get_data(self, city, postcode, street_number):
+    def get_data(self, city, postcode, street_number, resources):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
@@ -60,17 +60,22 @@ class RovaAfval(object):
             waste_dict = {}
 
             # find gft
-            waste_dict["gft"] = self.get_date_from_afvaltype(res, "gft", "gft")
+            if "gft" in resources:
+                waste_dict["gft"] = self.get_date_from_afvaltype(res, "gft", "gft")
             # find restafval
-            waste_dict["restafval"] = self.get_date_from_afvaltype(res, "restafval", "restafval")
+            if "restafval" in resources:
+                waste_dict["restafval"] = self.get_date_from_afvaltype(res, "restafval", "restafval")
             # find pbd. In some locations it's 'pd' and in other locations it's 'pmb'
-            waste_dict["pbd"] = self.get_date_from_afvaltype(res, "pd", "pbd")
-            if len(waste_dict["pbd"]) == 0:
-                waste_dict["pbd"] = self.get_date_from_afvaltype(res, "pmd", "pbd")
+            if "pbd" in resources:
+                waste_dict["pbd"] = self.get_date_from_afvaltype(res, "pd", "pbd")
+                if len(waste_dict["pbd"]) == 0:
+                    waste_dict["pbd"] = self.get_date_from_afvaltype(res, "pmd", "pbd")
             # find papier
-            waste_dict["papier"] = self.get_date_from_afvaltype(res, "papier", "papier")
+            if "papier" in resources:
+                waste_dict["papier"] = self.get_date_from_afvaltype(res, "papier", "papier")
             # find textiel
-            waste_dict["textiel"] = self.get_date_from_afvaltype(res, "textiel", "textiel")
+            if "textiel" in resources:
+                waste_dict["textiel"] = self.get_date_from_afvaltype(res, "textiel", "textiel")
 
             return waste_dict
         except urllib.error.URLError as exc:

@@ -11,7 +11,7 @@ import requests
 
 class DeFrieseMerenAfval(object):
 
-    def get_data(self, city, postcode, street_number):
+    def get_data(self, city, postcode, street_number, resources):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
@@ -31,12 +31,15 @@ class DeFrieseMerenAfval(object):
             waste_dict = {}
             for item in items:
                 if datetime.strptime(item["date"], '%Y-%m-%d').date() >= today:
-                    if item["type"] == "rest" and not "restafval" in waste_dict:
-                        waste_dict["restafval"] = item["date"]
-                    if item["type"] == "gft" and not "gft" in waste_dict:
-                        waste_dict["gft"] = item["date"]
-                    if item["type"] == "papier" and not "papier" in waste_dict:
-                        waste_dict["papier"] = item["date"]
+                    if "restafval" in resources:
+                        if item["type"] == "rest" and not "restafval" in waste_dict:
+                            waste_dict["restafval"] = item["date"]
+                    if "gft" in resources:
+                        if item["type"] == "gft" and not "gft" in waste_dict:
+                            waste_dict["gft"] = item["date"]
+                    if "papier" in resources:
+                        if item["type"] == "papier" and not "papier" in waste_dict:
+                            waste_dict["papier"] = item["date"]
             return waste_dict
         except urllib.error.URLError as exc:
             _LOGGER.error("Error occurred while fetching data: %r", exc.reason)

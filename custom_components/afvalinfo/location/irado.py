@@ -33,7 +33,7 @@ class IradoAfval(object):
             return ""
 
 
-    def get_data(self, city, postcode, street_number):
+    def get_data(self, city, postcode, street_number, resources):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
@@ -69,10 +69,14 @@ class IradoAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
 
-            waste_dict["restafval"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-rest", "restafval")
-            waste_dict["gft"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-gft", "gft")
-            waste_dict["papier"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-papier", "papier")
-            waste_dict["pbd"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-kunststof", "pbd")
+            if "restafval" in resources:
+                waste_dict["restafval"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-rest", "restafval")
+            if "gft" in resources:
+                waste_dict["gft"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-gft", "gft")
+            if "papier" in resources:
+                waste_dict["papier"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-papier", "papier")
+            if "pbd" in resources:
+                waste_dict["pbd"] = self.get_date_from_afvaltype(nextPickup, "pickup-type-item-kunststof", "pbd")
 
             return waste_dict
         except urllib.error.URLError as exc:

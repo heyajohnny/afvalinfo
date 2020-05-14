@@ -27,7 +27,7 @@ class BlinkAfval(object):
             _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
             return ""
 
-    def get_data(self, city, postcode, street_number):
+    def get_data(self, city, postcode, street_number, resources):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
@@ -44,13 +44,17 @@ class BlinkAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
             # find afvalstroom/4 = pbd
-            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 4, "pbd")
+            if "pbd" in resources:
+                waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 4, "pbd")
             # find afvalstroom/78 = gft
-            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 78, "gft")
+            if "gft" in resources:
+                waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 78, "gft")
             # find afvalstroom/1 = papier
-            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 1, "papier")
+            if "papier" in resources:
+                waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 1, "papier")
             # find afvalstroom/81 = restafval
-            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 81, "restafval")
+            if "restafval" in resources:
+                waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 81, "restafval")
 
 
             return waste_dict

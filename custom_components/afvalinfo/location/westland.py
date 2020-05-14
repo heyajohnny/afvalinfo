@@ -35,7 +35,7 @@ class WestlandAfval(object):
             _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
             return ""
 
-    def get_data(self, city, postcode, street_number):
+    def get_data(self, city, postcode, street_number, resources):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
@@ -64,11 +64,14 @@ class WestlandAfval(object):
             html = r.json()["html"]
 
             # find gft
-            waste_dict["gft"] = self.get_date_from_afvaltype(html, "soort-groen", "gft")
+            if "gft" in resources:
+                waste_dict["gft"] = self.get_date_from_afvaltype(html, "soort-groen", "gft")
             # find papier
-            waste_dict["papier"] = self.get_date_from_afvaltype(html, "soort-papier", "papier")
+            if "papier" in resources:
+                waste_dict["papier"] = self.get_date_from_afvaltype(html, "soort-papier", "papier")
             # find restafval
-            waste_dict["restafval"] = self.get_date_from_afvaltype(html, "soort-grijs", "restafval")
+            if "restafval" in resources:
+                waste_dict["restafval"] = self.get_date_from_afvaltype(html, "soort-grijs", "restafval")
 
             return waste_dict
         except urllib.error.URLError as exc:

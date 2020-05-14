@@ -14,7 +14,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class AlmereAfval(object):
-    def get_data(self, city, postcode, street_number):
+    def get_data(self, city, postcode, street_number, resources):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
@@ -61,16 +61,21 @@ class AlmereAfval(object):
             dataList = r.json()["dataList"]
 
             for data in dataList:
-                if data["_pickupTypeText"] == "GREENGREY":
-                    waste_dict["restafval"] = data["pickupDates"][0].split("T")[0]
-                if data["_pickupTypeText"] == "GREENGREY":
-                    waste_dict["gft"] = data["pickupDates"][0].split("T")[0]
-                if data["_pickupTypeText"] == "PAPER":
-                    waste_dict["papier"] = data["pickupDates"][0].split("T")[0]
-                if data["_pickupTypeText"] == "PACKAGES":
-                    waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
-                if data["_pickupTypeText"] == "TEXTILE":
-                    waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
+                if "restafval" in resources:
+                    if data["_pickupTypeText"] == "GREENGREY":
+                        waste_dict["restafval"] = data["pickupDates"][0].split("T")[0]
+                if "gft" in resources:
+                    if data["_pickupTypeText"] == "GREENGREY":
+                        waste_dict["gft"] = data["pickupDates"][0].split("T")[0]
+                if "papier" in resources:
+                    if data["_pickupTypeText"] == "PAPER":
+                        waste_dict["papier"] = data["pickupDates"][0].split("T")[0]
+                if "pbd" in resources:
+                    if data["_pickupTypeText"] == "PACKAGES":
+                        waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
+                if "textiel" in resources:
+                    if data["_pickupTypeText"] == "TEXTILE":
+                        waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
 
             return waste_dict
         except urllib.error.URLError as exc:

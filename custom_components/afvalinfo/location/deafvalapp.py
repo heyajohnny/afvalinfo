@@ -37,7 +37,7 @@ class DeAfvalAppAfval(object):
             _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
             return ""
 
-    def get_data(self, city, postcode, street_number):
+    def get_data(self, city, postcode, street_number, resources):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
@@ -62,19 +62,23 @@ class DeAfvalAppAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
             # find gft
-            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, "GFT", "gft")
+            if "gft" in resources:
+                waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, "GFT", "gft")
             # find papiers
-            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, "PAPIER", "papier")
+            if "papier" in resources:
+                waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, "PAPIER", "papier")
             # find pbd / pmd
-            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PMD", "pbd")
-            if len(waste_dict["pbd"]) == 0:
-                waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PLASTIC", "pbd")
-            if len(waste_dict["pbd"]) == 0:
-                waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PBP", "pbd")
+            if "pbd" in resources:
+                waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PMD", "pbd")
+                if len(waste_dict["pbd"]) == 0:
+                    waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PLASTIC", "pbd")
+                if len(waste_dict["pbd"]) == 0:
+                    waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "PBP", "pbd")
             # find restafval
-            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "REST", "restafval")
-            if len(waste_dict["restafval"]) == 0:
-                waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "ZAK_BLAUW", "restafval")
+            if "restafval" in resources:
+                waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "REST", "restafval")
+                if len(waste_dict["restafval"]) == 0:
+                    waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "ZAK_BLAUW", "restafval")
 
             return waste_dict
         except urllib.error.URLError as exc:

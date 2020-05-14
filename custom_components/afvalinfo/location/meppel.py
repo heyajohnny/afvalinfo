@@ -13,7 +13,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class MeppelAfval(object):
-    def get_data(self, city, postcode, street_number):
+    def get_data(self, city, postcode, street_number, resources):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
@@ -61,20 +61,25 @@ class MeppelAfval(object):
 
             for data in dataList:
                 # _pickupTypeText = "GREEN"
-                if data["_pickupTypeText"] == "GREEN":
-                    waste_dict["gft"] = data["pickupDates"][0].split("T")[0]
+                if "gft" in resources:
+                    if data["_pickupTypeText"] == "GREEN":
+                        waste_dict["gft"] = data["pickupDates"][0].split("T")[0]
                 # _pickupTypeText = "PAPER"
-                if data["_pickupTypeText"] == "PAPER":
-                    waste_dict["papier"] = data["pickupDates"][0].split("T")[0]
+                if "papier" in resources:
+                    if data["_pickupTypeText"] == "PAPER":
+                        waste_dict["papier"] = data["pickupDates"][0].split("T")[0]
                 # _pickupTypeText = "PLASTIC"
-                if data["_pickupTypeText"] == "PLASTIC":
-                    waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
+                if "pbd" in resources:
+                    if data["_pickupTypeText"] == "PLASTIC":
+                        waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
                 # _pickupTypeText = "VET" contains also 'textiel', so it will be categorized under textiel
-                if data["_pickupTypeText"] == "VET":
-                    waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
+                if "textiel" in resources:
+                    if data["_pickupTypeText"] == "VET":
+                        waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
                 # _pickupTypeText = "TEXTILE"
-                if data["_pickupTypeText"] == "TEXTILE":
-                    waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
+                if "textiel" in resources:
+                    if data["_pickupTypeText"] == "TEXTILE":
+                        waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
 
             return waste_dict
         except urllib.error.URLError as exc:

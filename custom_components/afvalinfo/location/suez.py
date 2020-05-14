@@ -27,7 +27,7 @@ class SuezAfval(object):
             _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
             return ""
 
-    def get_data(self, city, postcode, street_number):
+    def get_data(self, city, postcode, street_number, resources):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
@@ -44,15 +44,19 @@ class SuezAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
             # find afvalstroom/1 = gft
-            waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 1, "gft")
+            if "gft" in resources:
+                waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 1, "gft")
             # find afvalstroom/2 = papier
-            waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 2, "papier")
+            if "papier" in resources:
+                waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 2, "papier")
             # find afvalstroom/3 or 21 = restafval
-            waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 3, "restafval")
-            if len(waste_dict["restafval"]) == 0:
-                waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 21, "restafval")
+            if "restafval" in resources:
+                waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 3, "restafval")
+                if len(waste_dict["restafval"]) == 0:
+                    waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 21, "restafval")
             # find afvalstroom/4 = pbd
-            waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 4, "pbd")
+            if "pbd" in resources:
+                waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 4, "pbd")
 
             return waste_dict
         except urllib.error.URLError as exc:
