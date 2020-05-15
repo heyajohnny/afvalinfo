@@ -186,8 +186,10 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
 
     try:
         resourcesMinusTodayAndTomorrow = config[CONF_RESOURCES]
-        resourcesMinusTodayAndTomorrow.remove("trash_type_today")
-        resourcesMinusTodayAndTomorrow.remove("trash_type_tomorrow")
+        if "trash_type_today" in resourcesMinusTodayAndTomorrow:
+            resourcesMinusTodayAndTomorrow.remove("trash_type_today")
+        if "trash_type_tomorrow" in resourcesMinusTodayAndTomorrow:
+            resourcesMinusTodayAndTomorrow.remove("trash_type_tomorrow")
 
         data = AfvalinfoData(city, postcode, street_number, resourcesMinusTodayAndTomorrow)
     except urllib.error.HTTPError as error:
