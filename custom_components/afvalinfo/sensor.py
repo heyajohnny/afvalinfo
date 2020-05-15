@@ -185,7 +185,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     locale = config.get(CONF_LOCALE)
 
     try:
-        resourcesMinusTodayAndTomorrow = config[CONF_RESOURCES]
+        resourcesMinusTodayAndTomorrow = config[CONF_RESOURCES].copy()
         if "trash_type_today" in resourcesMinusTodayAndTomorrow:
             resourcesMinusTodayAndTomorrow.remove("trash_type_today")
         if "trash_type_tomorrow" in resourcesMinusTodayAndTomorrow:
