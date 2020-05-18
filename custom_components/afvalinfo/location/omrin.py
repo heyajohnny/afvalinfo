@@ -141,10 +141,10 @@ class OmrinAfval(object):
                         extratuinafval = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Extra Tuinafval", "gft")
                     if omrinNextYear and len(extratuinafval) == 0:
                         extratuinafval = self.get_date_from_afvaltype(thisYear, omrinNextYear, "Extra Tuinafval", "gft")
-                    if len(waste_dict["gft"] == 0):
-                        waste_dict["gft"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Biobak", "gft")
-                    if omrinNextYear and len(waste_dict["gft"]) == 0:
-                        waste_dict["gft"] = self.get_date_from_afvaltype(nextYear, omrinNextYear, "Biobak", "gft")                        
+                    if len(waste_dict["gft"]) == 0:
+                        tuinafval = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Biobak", "gft")
+                    if omrinNextYear and len(tuinafval) == 0:
+                        tuinafval = self.get_date_from_afvaltype(nextYear, omrinNextYear, "Biobak", "gft")                        
                     if len(waste_dict["gft"]) == 0:
                         extratuinafval = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Biobak extra data", "gft")
                     if len(tuinafval) != 0 or len(extratuinafval) != 0:
