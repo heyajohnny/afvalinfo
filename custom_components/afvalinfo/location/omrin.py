@@ -121,12 +121,9 @@ class OmrinAfval(object):
             #gft = Biobak or Tuinafval or Extra Tuinafval or GFT afval or GFT Weststellingwerf
             #Biobak
             if "gft" in resources:
-                waste_dict["gft"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Biobak", "gft")
-                if omrinNextYear and len(waste_dict["gft"]) == 0:
-                    waste_dict["gft"] = self.get_date_from_afvaltype(nextYear, omrinNextYear, "Biobak", "gft")
+
                 #GFT afval
-                if len(waste_dict["gft"]) == 0:
-                    waste_dict["gft"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "GFT afval", "gft")
+                waste_dict["gft"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "GFT afval", "gft")
                 if omrinNextYear and len(waste_dict["gft"]) == 0:
                     waste_dict["gft"] = self.get_date_from_afvaltype(nextYear, omrinNextYear, "GFT afval", "gft")
                 #GFT Weststellingwerf
@@ -144,6 +141,12 @@ class OmrinAfval(object):
                         extratuinafval = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Extra Tuinafval", "gft")
                     if omrinNextYear and len(extratuinafval) == 0:
                         extratuinafval = self.get_date_from_afvaltype(thisYear, omrinNextYear, "Extra Tuinafval", "gft")
+                    if len(waste_dict["gft"] == 0):
+                        waste_dict["gft"] = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Biobak", "gft")
+                    if omrinNextYear and len(waste_dict["gft"]) == 0:
+                        waste_dict["gft"] = self.get_date_from_afvaltype(nextYear, omrinNextYear, "Biobak", "gft")                        
+                    if len(waste_dict["gft"]) == 0:
+                        extratuinafval = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Biobak extra data", "gft")
                     if len(tuinafval) != 0 or len(extratuinafval) != 0:
                         if len(tuinafval) != 0 and len(extratuinafval) == 0:
                             waste_dict["gft"] = tuinafval
