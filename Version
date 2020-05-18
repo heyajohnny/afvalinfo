@@ -86,3 +86,4 @@ Version: 0.4.13 20200512 - Fix for Weststellingwerf (Omrin)
 Version: 0.4.14 20200512 - Added locations to MijnAfvalWijzer
 Version: 0.4.15 20200514 - Changed logic for sensors
 Version: 0.4.16 20200515 - Remove element from list error fix
+Version: 0.4.17 20200518 - Omrin bugfixes
