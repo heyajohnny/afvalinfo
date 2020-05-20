@@ -32,6 +32,7 @@ SENSOR_LOCATIONS_TO_URL = {
         "http://www.deafvalapp.nl/calendar/kalender_dashboard.jsp",
     ],
     "defriesemeren": ["https://www.afvalalert.nl/kalender/{0}/{1}/?web=1"],
+    "drimmelen": ["https://drimmelen.nl/trash-removal-calendar/{0}/{1}"],
     "gad": ["https://inzamelkalender.gad.nl/adres/{0}:{1}"],
     "hvc": ["https://inzamelkalender.hvcgroep.nl/adressen/{0}:{1}", "https://inzamelkalender.hvcgroep.nl/rest/adressen/{0}/kalender/{1}"],
     "irado": [
