@@ -38,9 +38,7 @@ Hellevoetsluis                  https://www.hellevoetsluis.nl/Inwoners/WONEN_EN_
 Het Hogeland                    https://hethogeland.nl/afval/afvalkalender
 Hoeksche Waard                  https://www.radhw.nl/inwoners/ophaalschema
 Hoogeveen                       https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
-Hulst                           https://www.zrd.nl/afvalkalender.htm
 IJsselstein                     https://inzamelschema.rmn.nl/
-Kapelle                         https://www.zrd.nl/afvalkalender.htm
 Katwijk                         https://afval.katwijk.nl/nc/afvalkalender/
 Landerd                         https://www.landerd.nl/inwoners-en-ondernemers/afval/afvalkalender/pdf/2020
 Landsmeer                       https://admin.sduconnect.nl/linked_links/1577977473Afvalkalender_2020_DEF.pdf
@@ -54,7 +52,6 @@ Molenlanden                     https://www.waardlanden.nl/particulieren/afvalin
 Mook en Middelaar               https://www.mookenmiddelaar.nl/inwoner/afval-en-duurzaamheid_42542/item/afvalkalender-2020_40888.html
 Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
 Nieuwegein                      https://inzamelschema.rmn.nl/
-Noord-Beveland                  https://www.zrd.nl/afvalkalender.htm
 Oegstgeest                      https://www.oegstgeest.nl/fileadmin/editor/Documenten/Inwoners/Alles_over_afval/afvalkalender_2020_v8.pdf
 Oisterwijk                      https://oisterwijk.afvalstoffendienstkalender.nl/
 Oostzaan                        https://www.oostzaan.nl/mozard/document/docnr/1182761/bijlage%20-%20afvalkalender%20Oostzaan%202020%20-%20met%20wijkindeling
@@ -62,20 +59,16 @@ Ouder-Amstel                    https://www.ouder-amstel.nl/Home/Nieuws_en_actua
 Peel en Maas                    https://afvalkalender.peelenmaas.nl/
 Pijnacker-Nootdorp              http://www.avalex.nl/kalender/
 Purmerend                       https://afvalkalender.purmerend.nl/
-Reimerswaal                     https://www.zrd.nl/afvalkalender.htm
 Reusel-De Mierden               https://www.reuseldemierden.nl/document.php?m=25&fileid=123208&f=3e3d90c015a9b15ffc98c993c8e4e9da&attachment=0&c=40975
 Rijswijk                        http://www.avalex.nl/kalender/
 Rozendaal                       https://www.rozendaal.nl/dsresource?objectid=d7a004f0-ff97-490a-8837-1b66e5bc11e1&type=org
 Schiermonnikoog
 Schouwen-Duiveland              https://afvalkalender.schouwen-duiveland.nl/
-Sluis                           https://www.zrd.nl/afvalkalender.htm
 Soest                           https://inzamelschema.rmn.nl/
 Steenbergen                     https://www.gemeente-steenbergen.nl/inwoners_overzicht/afval/
 Texel                           https://www.texel.nl/mozard/!suite86.scherm0325?mVrg=5059
-Tholen                          https://www.zrd.nl/afvalkalender.htm
 Uden                            https://www.uden.nl/inwoners/afval/ophaaldagen-afval/
 Uithoorn                        https://www.uithoorn.nl/Home/Afval/Afvalkalender
-Veere                           https://www.zrd.nl/afvalkalender.htm
 Vlieland                        https://www.vlieland.nl/v-zelf-regelen/producten_42533/product/afval-huishoudelijk-afval_17.html
 Vlissingen                      https://www.vlissingen.nl/inwoner/afval-en-milieu/afval/huishoudelijk-afval-en-afvalkalender.html
 Voorschoten                     https://www.voorschotenmaakthetverschil.nl/
@@ -146,6 +139,7 @@ from .location.irado import IradoAfval
 from .location.rd4 import Rd4Afval
 from .location.dar import DarAfval
 from .location.drimmelen import DrimmelenAfval
+from .location.zrd import ZrdAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -464,6 +458,14 @@ class AfvalinfoData(object):
         westland = ["de lier", "honselersdijk", "kwintsheul", "maasdijk", "monster", "naaldwijk", "poeldijk", "s-gravenzande", "ter heijde", "wateringen"]
         if self.city in westland:
             self.data = WestlandAfval().get_data(
+                self.city, self.postcode, self.street_number, self.resources
+            )
+        zrd = ["aagtekerke", "aardenburg", "anna jacobapolder", "bath", "biezelinge", "biggekerke", "breskens", "cadzand", "clinge", "colijnsplaat", "dishoek", "domburg", "eede", "gapinge", "geersdijk", "graauw", "grijpskerke", "groede", "hansweert", "heikant",
+        "hengstdijk", "hoofdplaat", "hulst", "ijzendijke", "kamperland", "kapelle", "kapellebrug", "kats", "kloosterzande", "kortgene", "koudekerke", "krabbendijke", "kruiningen", "kuitaart", "lamswaarde", "meliskerke", "nieuw-namen", "nieuwvliet", "oostburg",
+        "oostdijk", "oostkapelle", "ossenisse", "oud-vossemeer", "poortvliet", "retranchement", "rilland", "scherpenisse", "schoondijke", "schore", "serooskerke", "sint anna ter muiden", "sint jansteen", "sint kruis", "sint philipsland", "sint-annaland", "sint-maartensdijk",
+        "sluis", "stavenisse", "terhole", "tholen", "veere", "vogelwaarde", "vrouwenpolder", "waarde", "walsoorden", "waterlandkerkje", "wemeldinge", "westkapelle", "wissenkerke", "yerseke", "zoutelande", "zuidzande"]
+        if self.city in zrd:
+            self.data = ZrdAfval().get_data(
                 self.city, self.postcode, self.street_number, self.resources
             )
         zuidwestfriesland = ["abbega", "allingawier", "arum", "blauwhuis", "bolsward", "bozum", "breezanddijk", "britswerd", "burgwerd", "cornwerd", "dedgum", "deersum", "edens", "exmorra", "ferwoude", "folsgare", "gaast", "gaastmeer", "gauw", "goënga", "greonterp",

@@ -67,6 +67,7 @@ SENSOR_LOCATIONS_TO_URL = {
     ],
     "westerkwartier": ["https://www.afvalalert.nl/kalender/{0}/{1}/?web=1"],
     "westland": ["https://huisvuilkalender.gemeentewestland.nl/huisvuilkalender/Huisvuilkalender/get-huisvuilkalender-ajax"],
+    "zrd": ["https://afvalkalender.zrd.nl/adres/{0}:{1}"],
     "zuidwestfriesland": ["https://afvalkalender.sudwestfryslan.nl/adres/{0}:{1}"]
 }
 
