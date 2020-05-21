@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'Gemeenten' in The Netherlands: 285,5 of 352 = 81,1%
+### Number of supported 'Gemeenten' in The Netherlands: 291,5 of 352 = 82,8%
 
 If you like my work, please buy me a coffee. This will keep me awake :)
 
@@ -10,7 +10,10 @@ You can also support me by starting to download and use the Brave browser throug
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
 
-##### -- (Zrd) Hulst, Kapelle, Noord-Beveland, Reimerswaal, Sluis, Tholen, Veere
+##### --(Rmn) Baarn, Bunnik, IJsselstein, Nieuwegein, Soest, Zeist
+- austerlitz, baarn, bosch en duin, bunnik, den dolder, eembrugge, huis ter heide, ijsselstein, lage vuursche, nieuwegein, odijk, soest, soestduinen, soesterberg, werkhoven, zeist
+
+##### --(Zrd) Hulst, Kapelle, Noord-Beveland, Reimerswaal, Sluis, Tholen, Veere
 - aagtekerke, aardenburg, anna jacobapolder, bath, biezelinge, biggekerke, breskens, cadzand, clinge, colijnsplaat, dishoek, domburg, eede, gapinge, geersdijk, graauw, grijpskerke, groede, hansweert, heikant, hengstdijk, hoofdplaat, hulst, ijzendijke, kamperland, kapelle, kapellebrug, kats, kloosterzande, kortgene, koudekerke, krabbendijke, kruiningen, kuitaart, lamswaarde, meliskerke, nieuw-namen, nieuwvliet, oostburg, oostdijk, oostkapelle, ossenisse, oud-vossemeer, poortvliet, retranchement, rilland, scherpenisse, schoondijke, schore, serooskerke, sint anna ter muiden, sint jansteen, sint kruis, sint philipsland, sint-annaland, sint-maartensdijk, sluis, stavenisse, terhole, tholen, veere, vogelwaarde, vrouwenpolder, waarde, walsoorden, waterlandkerkje, wemeldinge, westkapelle, wissenkerke, yerseke, zoutelande, zuidzande
 
 ##### -- Drimmelen

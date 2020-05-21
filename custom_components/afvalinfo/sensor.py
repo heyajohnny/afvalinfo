@@ -9,13 +9,11 @@ ToDo: Add huisnummer toevoeging
 ToDo: Fix all the next year problems
 ToDo: Add the following gemeenten:
 Amsterdam                       ???
-Baarn                           (https://inzamelschema.rmn.nl/)
 Beemster                        (https://afvalkalender.purmerend.nl/)
 Beesel                          (https://www.beesel.nl/inwoners/afval-en-milieu/afvalkalender/)
 Bergen Limburg                  bergen.nl/home/afval_44490/item/afvalkalender-2020_38953.html
 Berkelland                      https://afvalkalender.gemeenteberkelland.nl/
 Borsele                         https://afvalkalender.borsele.nl/
-Bunnik                          https://inzamelschema.rmn.nl/
 Coevorden                       https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
 Cranendonck                     https://afvalkalender.cranendonck.nl/
 Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
@@ -38,7 +36,6 @@ Hellevoetsluis                  https://www.hellevoetsluis.nl/Inwoners/WONEN_EN_
 Het Hogeland                    https://hethogeland.nl/afval/afvalkalender
 Hoeksche Waard                  https://www.radhw.nl/inwoners/ophaalschema
 Hoogeveen                       https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
-IJsselstein                     https://inzamelschema.rmn.nl/
 Katwijk                         https://afval.katwijk.nl/nc/afvalkalender/
 Landerd                         https://www.landerd.nl/inwoners-en-ondernemers/afval/afvalkalender/pdf/2020
 Landsmeer                       https://admin.sduconnect.nl/linked_links/1577977473Afvalkalender_2020_DEF.pdf
@@ -51,7 +48,6 @@ Midden-Drenthe                  https://www.middendrenthe.nl/website/!suite86.sc
 Molenlanden                     https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
 Mook en Middelaar               https://www.mookenmiddelaar.nl/inwoner/afval-en-duurzaamheid_42542/item/afvalkalender-2020_40888.html
 Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
-Nieuwegein                      https://inzamelschema.rmn.nl/
 Oegstgeest                      https://www.oegstgeest.nl/fileadmin/editor/Documenten/Inwoners/Alles_over_afval/afvalkalender_2020_v8.pdf
 Oisterwijk                      https://oisterwijk.afvalstoffendienstkalender.nl/
 Oostzaan                        https://www.oostzaan.nl/mozard/document/docnr/1182761/bijlage%20-%20afvalkalender%20Oostzaan%202020%20-%20met%20wijkindeling
@@ -64,7 +60,6 @@ Rijswijk                        http://www.avalex.nl/kalender/
 Rozendaal                       https://www.rozendaal.nl/dsresource?objectid=d7a004f0-ff97-490a-8837-1b66e5bc11e1&type=org
 Schiermonnikoog
 Schouwen-Duiveland              https://afvalkalender.schouwen-duiveland.nl/
-Soest                           https://inzamelschema.rmn.nl/
 Steenbergen                     https://www.gemeente-steenbergen.nl/inwoners_overzicht/afval/
 Texel                           https://www.texel.nl/mozard/!suite86.scherm0325?mVrg=5059
 Uden                            https://www.uden.nl/inwoners/afval/ophaaldagen-afval/
@@ -77,7 +72,6 @@ Waalre                          https://afvalkalender.waalre.nl/
 Wassenaar                       http://www.avalex.nl/kalender/
 Weert                           https://www.weert.nl/huisvuil-duobak-en-ophaaldagen
 Westerwolde                     https://www.westerwolde.nl/trash-removal-calendar
-Zeist                           https://inzamelschema.rmn.nl/
 Zundert                         https://www.zundert.nl/afval-en-milieustraat/afvalkalender-2020.html
 """
 
@@ -140,6 +134,7 @@ from .location.rd4 import Rd4Afval
 from .location.dar import DarAfval
 from .location.drimmelen import DrimmelenAfval
 from .location.zrd import ZrdAfval
+from .location.rmn import RmnAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -394,6 +389,11 @@ class AfvalinfoData(object):
         "trintelen", "ubachsberg", "ulestraten", "vaals", "valkenburg", "vijlen", "vilt", "voerendaal", "wahlwiller", "wijlre", "wijnandsrade"]
         if self.city in rd4:
             self.data = Rd4Afval().get_data(
+                self.city, self.postcode, self.street_number, self.resources
+            )
+        rmn = ["austerlitz", "baarn", "bosch en duin", "bunnik", "den dolder", "eembrugge", "huis ter heide", "ijsselstein", "lage vuursche", "nieuwegein", "odijk", "soest", "soestduinen", "soesterberg", "werkhoven", "zeist"]
+        if self.city in rmn:
+            self.data = RmnAfval().get_data(
                 self.city, self.postcode, self.street_number, self.resources
             )
         rova = ["aalten", "agelo", "albergen", "amersfoort", "ane", "anerveen", "anevelde", "ankum", "arrien", "baarlo", "baars", "balkbrug", "basse", "beerze", "beerzerveld", "belt-schutsloot", "bergentheim", "blankenham", "blokzijl", "boschoord", "bredevoort", "broekland", "brucht", "bruchterveld",
