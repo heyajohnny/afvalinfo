@@ -38,12 +38,12 @@ class GoereeOverflakkeeAfval(object):
             waste_dict = {}
 
             #######################################################
-            # First request: get uniqueId and community
+            # First request
             API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["goereeoverflakkee"][0].format(
                 postcode, street_number
             )
 
-            # sending post request and saving response as response object
+            # sending get request
             r = requests.get(url=API_ENDPOINT)
 
             containers = r.content[1:]
