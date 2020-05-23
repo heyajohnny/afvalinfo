@@ -17,14 +17,13 @@ Borsele                         https://afvalkalender.borsele.nl/
 Coevorden                       https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
 Cranendonck                     https://afvalkalender.cranendonck.nl/
 Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
-Delft                           http://www.avalex.nl/kalender/
+Delft                           http://www.avalex.nl/kalender/ Avalex heeft waarschijnlijk nergens een kalender. Voor alle zoekopdrachten krijg je "Voor dit adres is geen kalender beschikbaar"
 Delfzijl                        https://www.delfzijl.nl/inwoners/afvalkalender_43586/
 Den Haag                        https://huisvuilkalender.denhaag.nl/form
 Edam-Volendam                   https://www.edam-volendam.nl/portal-home/inzamelkalender_43466/
 Eemnes                          https://www.eemnes.nl/inwoners/Afval/Afvalwijzer
 Emmen                           https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
 Gennep                          https://www.gennep.nl/document.php?m=28&fileid=98242&f=834a3177a76c30293e3e9d1c200729fb&attachment=0&c=34148
-Goeree-Overflakkee              https://www.goeree-overflakkee.nl/portal/overzicht-producten-en-diensten_43368/product/afval-huishoudelijk-afval_451.html
 Goes                            https://afvalkalender.goes.nl/
 Gorinchem                       https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
 Groningen                       https://gemeente.groningen.nl/afvalwijzer/groningen
@@ -135,6 +134,7 @@ from .location.dar import DarAfval
 from .location.drimmelen import DrimmelenAfval
 from .location.zrd import ZrdAfval
 from .location.rmn import RmnAfval
+from .location.goereeoverflakkee import GoereeOverflakkeeAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -295,6 +295,11 @@ class AfvalinfoData(object):
             self.data = GadAfval().get_data(
                 self.city, self.postcode, self.street_number, self.resources
             )
+        goereeoverflakkee = ["achthuizen", "den bommel", "dirksland", "goedereede", "havenhoofd", "herkingen", "melissant", "middelharnis", "nieuwe-tonge", "ooltgensplaat", "ouddorp", "oude-tonge", "sommelsdijk", "stad aan t haringvliet", "stellendam", "zuidzijde"]
+        if self.city in goereeoverflakkee:
+            self.data = GoereeOverflakkeeAfval().get_data(
+                self.city, self.postcode, self.street_number, self.resources
+            )
         hvc = ["aagtdorp", "aartswoud", "abbekerk", "abbestede", "alblasserdam", "andijk", "anna paulowna", "assendelft", "avenhorn", "bant", "barsingerhorn", "benningbroek", "bergen aan zee", "bergen", "berkhout", "beverwijk", "blokdijk", "blokker", "bobeldijk", "bovenkarspel", "breezand", "bregtdorp",
         "burgerbrug", "burgervlotbrug", "callantsoog", "camperduin", "catrijp", "creil", "de buurt", "de goorn", "de haukes", "de stolpen", "de strook", "de weere", "den helder", "den oever", "dirkshorn", "dordrecht", "driehuis", "eenigenburg", "egmond aan den hoef", "egmond aan zee", "egmond-binnen",
         "emmeloord", "enkhuizen", "ens", "espel", "gouwe", "groenveld", "groet", "groote keeten", "grootebroek", "grosthuizen", "hargen", "haringhuizen", "hauwert", "heemskerk", "heerjansdam", "hem", "hendrik-ido-ambacht", "hensbroek", "hippolytushoef", "hoogkarspel", "hoogwoud", "hoorn", "huisduinen",
@@ -345,7 +350,7 @@ class AfvalinfoData(object):
         "monnickendam", "montfort", "mullegen", "munstergeleen", "muntendam", "mussel", "musselkanaal", "nattenhoven", "neer", "neerbeek", "neeritter", "neerlangel", "neerloon", "nergena", "nes aan de amstel", "netersel", "netterden", "nietap", "nieuw annerveen", "nieuw-beerta", "nieuw-buinen", "nieuw-roden", "nieuw-scheemda",
         "nieuw-wehl", "nieuwe pekela", "nieuwediep", "nieuwendijk", "nieuwer ter aa", "nieuwersluis", "nieuwolda", "nigtevecht", "nijega", "nijkerk", "nijkerkerveen", "nijlande", "nijnsel", "nispen", "nistelrode", "nooitgedacht", "noord-scharwoude", "noordbroek", "noordeinde", "noordhoek", "norg", "numero dertien", "nunhem",
         "nunspeet", "nuth", "obbicht", "odoorn", "odoornerveen", "offenbeek", "ohe en laak", "oijen", "oirsbeek", "oirschot", "oldebroek", "olland", "ommelanderwijk", "onstwedde", "oosteind", "oosteinde", "oostelbeers", "oosterhout", "oosterwolde", "oostvoorne", "oostwold", "ooy", "opeinde", "oss", "ossendrecht", "oud annerveen",
-        "oud gastel", "oud-zevenaar", "oud-zuilen", "ouddorp", "oude pekela", "oudega", "oudemolen", "oudenbosch", "oudewater", "oudezijl", "oudkarspel", "overberg", "overlangel", "overschild", "paarlo", "pannerden", "papekop", "papenhoven", "papenvoort", "paterswolde", "peest", "peize", "peizermade", "peizerwold", "polsbroek",
+        "oud gastel", "oud-zevenaar", "oud-zuilen", "oude pekela", "oudega", "oudemolen", "oudenbosch", "oudewater", "oudezijl", "oudkarspel", "overberg", "overlangel", "overschild", "paarlo", "pannerden", "papekop", "papenhoven", "papenvoort", "paterswolde", "peest", "peize", "peizermade", "peizerwold", "polsbroek",
         "polsbroekerdam", "posterholt", "posthoorn", "purmer", "puth", "putte", "putten", "raamsdonk", "raamsdonksveer", "randwijk", "ravenstein", "ressen", "reutje", "reuver", "rheden", "rhee", "rhenen", "riel", "riethoven", "rijen", "rijkel", "rijssen", "rockanje", "roden", "rodenrijs", "roderesch", "roderwolde", "roermond",
         "roggel", "rolde", "roond", "roosendaal", "rotte", "rotterdam", "rottevalle", "rucphen", "ruinen", "ruinerwold", "s gravenmoer", "s-gravenmoerse vaart", "s-heerenbroek", "sandebuur", "sappemeer", "sassenheim", "schaft", "schalkwijk", "scharmer", "scheemda", "scherpenzeel", "schijf", "schijndel", "schildwolde", "schimmert",
         "schinnen", "schinveld", "schipborg", "schoonloo", "selissen", "sevenum", "siddeburen", "silvolde", "sinderen", "sint odilienberg", "sint pancras", "sint-michielsgestel", "sint-oedenrode", "sittard", "sleeuwijk", "slijk-ewijk", "slochteren", "smalle ee", "smeerling", "spankeren", "spaubeek", "speuld", "spijk", "spijkerboor",
