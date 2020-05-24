@@ -23,6 +23,7 @@ SENSOR_LOCATIONS_TO_URL = {
     "bar": [
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],
+    "berkelland": ["https://afvalkalender.gemeenteberkelland.nl/adres/{0}:{1}"],
     "blink": ["https://mijnblink.nl/adres/{0}:{1}"],
     "circulusberkel": ["https://afvalkalender.circulus-berkel.nl/adres/{0}:{1}"],
     "cyclus": ["https://afvalkalender.cyclusnv.nl/adres/{0}:{1}"],

@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'Gemeenten' in The Netherlands: 292,5 of 352 = 83%
+### Number of supported 'Gemeenten' in The Netherlands: 293,5 of 352 = 83,4%
 
 If you like my work, please buy me a coffee. This will keep me awake :)
 
@@ -9,6 +9,9 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 You can also support me by starting to download and use the Brave browser through this <a href="https://brave.com/hey326" target="_blank">link</a>
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
+
+##### -- Berkelland
+- beltrum, borculo, eibergen, geesteren, gelselaar, haarlo, neede, noordijk, rekken, rietmolen, ruurlo
 
 ##### -- Goeree-Overflakkee
 - achthuizen, den bommel, dirksland, goedereede, havenhoofd, herkingen, melissant, middelharnis, nieuwe-tonge, ooltgensplaat, ouddorp, oude-tonge, sommelsdijk, stad aan t haringvliet, stellendam, zuidzijde

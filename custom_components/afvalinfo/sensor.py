@@ -12,7 +12,6 @@ Amsterdam                       ???
 Beemster                        (https://afvalkalender.purmerend.nl/)
 Beesel                          (https://www.beesel.nl/inwoners/afval-en-milieu/afvalkalender/)
 Bergen Limburg                  bergen.nl/home/afval_44490/item/afvalkalender-2020_38953.html
-Berkelland                      https://afvalkalender.gemeenteberkelland.nl/
 Borsele                         https://afvalkalender.borsele.nl/
 Coevorden                       https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
 Cranendonck                     https://afvalkalender.cranendonck.nl/
@@ -135,6 +134,7 @@ from .location.drimmelen import DrimmelenAfval
 from .location.zrd import ZrdAfval
 from .location.rmn import RmnAfval
 from .location.goereeoverflakkee import GoereeOverflakkeeAfval
+from .location.berkelland import BerkellandAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -238,6 +238,11 @@ class AfvalinfoData(object):
         bar = ["barendrecht", "bolnes", "oostendam", "poortugaal", "rhoon", "ridderkerk"]
         if self.city in bar:
             self.data = BarAfval().get_data(
+                self.city, self.postcode, self.street_number, self.resources
+            )
+        berkelland = ["beltrum", "borculo", "eibergen", "geesteren", "gelselaar", "haarlo", "neede", "noordijk", "rekken", "rietmolen", "ruurlo"]
+        if self.city in berkelland:
+            self.data = BerkellandAfval().get_data(
                 self.city, self.postcode, self.street_number, self.resources
             )
         blink = ["aarle-rixtel", "asten", "bakel", "beek en donk", "de mortel", "de rips", "deurne", "elsendorp", "gemert", "gerwen", "handel", "heeze", "helenaveen", "helmond", "heusden", "leende", "lierop", "lieshout", "liessel", "mariahout", "milheeze", "nederwetten", "neerkant", "nuenen",
