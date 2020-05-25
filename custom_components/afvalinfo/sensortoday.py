@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from .const.const import (
     _LOGGER,
     ATTR_LAST_UPDATE,
+    ATTR_YEAR_MONTH_DAY_DATE,
     SENSOR_TYPES,
-    SENSOR_PREFIX,
-    MIN_TIME_BETWEEN_UPDATES
+    SENSOR_PREFIX
 )
 from homeassistant.helpers.entity import Entity
 from homeassistant.util import Throttle
 
 class AfvalInfoTodaySensor(Entity):
-    def __init__(self, data, sensor_type, date_format, entities):
+    def __init__(self, data, sensor_type, entities):
         self.data = data
         self.type = sensor_type
-        self.date_format = date_format
         self._last_update = None
         self._name = SENSOR_PREFIX + SENSOR_TYPES[sensor_type][0]
         self._state = None
@@ -37,14 +36,14 @@ class AfvalInfoTodaySensor(Entity):
     def device_state_attributes(self):
         return {ATTR_LAST_UPDATE: self._last_update}
 
-    @Throttle(MIN_TIME_BETWEEN_UPDATES)
+    @Throttle(timedelta(minutes=1))
     def update(self):
         self.data.update()
         self._last_update = datetime.today().strftime("%d-%m-%Y %H:%M")
         self._state = ""  # reset the state
-        today = date.today().strftime(self.date_format)
+        today = str(date.today().strftime("%Y-%m-%d"))
         for entity in self._entities:
-            if entity.state == today:
+            if entity.device_state_attributes.get(ATTR_YEAR_MONTH_DAY_DATE) == today:
                 self._state = (self._state + " " + entity.name.split()[1]).strip().lower()
         if self._state == "":
             self._state = "none"

@@ -95,6 +95,7 @@ from .const.const import (
     ATTR_HIDDEN,
     ATTR_DAYS_UNTIL_COLLECTION_DATE,
     ATTR_IS_COLLECTION_DATE_TODAY,
+    ATTR_YEAR_MONTH_DAY_DATE,
     SENSOR_TYPES,
 )
 
@@ -188,17 +189,16 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
         sensor_type = resource.lower()
 
         #if sensor_type not in SENSOR_TYPES:
-        #    SENSOR_TYPES[sensor_type] = [sensor_type.title(), "", "mdi:recycle"]
         if sensor_type.title().lower() != "trash_type_today" and sensor_type.title().lower() != "trash_type_tomorrow":
             entities.append(AfvalinfoSensor(data, sensor_type, date_format, timespan_in_days, locale))
 
         #Add sensor -trash_type_today
         if sensor_type.title().lower() == "trash_type_today":
-            today = AfvalInfoTodaySensor(data, sensor_type, date_format, entities)
+            today = AfvalInfoTodaySensor(data, sensor_type, entities)
             entities.append(today)
         #Add sensor -trash_type_tomorrow
         if sensor_type.title().lower() == "trash_type_tomorrow":
-            tomorrow = AfvalInfoTomorrowSensor(data, sensor_type, date_format, entities)
+            tomorrow = AfvalInfoTomorrowSensor(data, sensor_type, entities)
             entities.append(tomorrow)
 
     add_entities(entities)
@@ -502,6 +502,7 @@ class AfvalinfoSensor(Entity):
         self._last_update = None
         self._days_until_collection_date = None
         self._is_collection_date_today = False
+        self._year_month_day_date = None
 
     @property
     def name(self):
@@ -517,7 +518,7 @@ class AfvalinfoSensor(Entity):
 
     @property
     def device_state_attributes(self):
-        return {ATTR_LAST_UPDATE: self._last_update, ATTR_HIDDEN: self._hidden, ATTR_DAYS_UNTIL_COLLECTION_DATE: self._days_until_collection_date, ATTR_IS_COLLECTION_DATE_TODAY: self._is_collection_date_today}
+        return {ATTR_YEAR_MONTH_DAY_DATE: self._year_month_day_date, ATTR_LAST_UPDATE: self._last_update, ATTR_HIDDEN: self._hidden, ATTR_DAYS_UNTIL_COLLECTION_DATE: self._days_until_collection_date, ATTR_IS_COLLECTION_DATE_TODAY: self._is_collection_date_today}
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
@@ -530,6 +531,9 @@ class AfvalinfoSensor(Entity):
                     collection_date = datetime.strptime(
                         waste_data[self.type], "%Y-%m-%d"
                     ).date()
+
+                    # Date in date format "%Y-%m-%d"
+                    self._year_month_day_date = str(collection_date)
 
                     if collection_date:
                         # Set the values of the sensor
@@ -576,5 +580,6 @@ class AfvalinfoSensor(Entity):
             self._state = None
             self._hidden = True
             self._days_until_collection_date = None
+            self._year_month_day_date = None
             self._is_collection_date_today = False
             self._last_update = datetime.today().strftime("%d-%m-%Y %H:%M")

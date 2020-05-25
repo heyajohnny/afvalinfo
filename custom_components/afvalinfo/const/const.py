@@ -140,6 +140,7 @@ ATTR_LAST_UPDATE = "last_update"
 ATTR_HIDDEN = "hidden"
 ATTR_IS_COLLECTION_DATE_TODAY = "is_collection_date_today"
 ATTR_DAYS_UNTIL_COLLECTION_DATE = "days_until_collection_date"
+ATTR_YEAR_MONTH_DAY_DATE = "year_month_day_date"
 
 _LOGGER = logging.getLogger(__name__)
 
