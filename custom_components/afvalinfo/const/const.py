@@ -40,13 +40,16 @@ SENSOR_LOCATIONS_TO_URL = {
     "irado": [
         "https://www.irado.nl/bewoners/afvalkalender",
         "https://www.irado.nl/bewoners/afvalkalender"],
-    "mijnafvalwijzer": ["https://www.mijnafvalwijzer.nl/nl/{0}/{1}/"],
     "meerlanden": [
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],
     "meppel": [
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],
+    "middendrenthe": [
+        "https://www.middendrenthe.nl/website/!suite86.scherm0325?mPag=6523&mAlle=J",
+        "https://www.middendrenthe.nl/website/!ctm_afval.Kalender"],
+    "mijnafvalwijzer": ["https://www.mijnafvalwijzer.nl/nl/{0}/{1}/"],
     "nissewaard": [
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],

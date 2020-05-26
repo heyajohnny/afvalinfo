@@ -42,7 +42,6 @@ Loppersum                       https://gemeente.groningen.nl/afvalwijzer/lopper
 Maassluis                       https://www.maassluis.nl/wonen-verkeer-en-veiligheid/afvalinzameling_43871/
 Middelburg                      https://www.middelburg.nl/Inwoners/Afval/Ophaaldagen_huisvuil
 Midden-Delfland                 http://www.avalex.nl/kalender/
-Midden-Drenthe                  https://www.middendrenthe.nl/website/!suite86.scherm0325?mVrg=12635
 Molenlanden                     https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
 Mook en Middelaar               https://www.mookenmiddelaar.nl/inwoner/afval-en-duurzaamheid_42542/item/afvalkalender-2020_40888.html
 Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
@@ -136,6 +135,7 @@ from .location.zrd import ZrdAfval
 from .location.rmn import RmnAfval
 from .location.goereeoverflakkee import GoereeOverflakkeeAfval
 from .location.berkelland import BerkellandAfval
+from .location.middendrenthe import MiddenDrentheAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -333,6 +333,11 @@ class AfvalinfoData(object):
         meppel = ["havelterberg", "kolderveen", "meppel", "nijeveen", "rogat"]
         if self.city in meppel:
             self.data = MeppelAfval().get_data(
+                self.city, self.postcode, self.street_number, self.resources
+            )
+        middendrenthe = ["balinge", "beilen", "bovensmilde", "bruntinge", "drijber", "elp", "eursinge", "garminge", "hijken", "hoogersmilde", "hooghalen", "mantinge", "nieuw-balinge", "oranje", "orvelte", "smilde", "spier", "westerbork", "wijster", "witteveen", "zuidveld", "zwiggelte"]
+        if self.city in middendrenthe:
+            self.data = MiddenDrentheAfval().get_data(
                 self.city, self.postcode, self.street_number, self.resources
             )
         mijnafvalwijzer = ["aarle", "abcoude", "achterberg", "achterveld", "aerdt", "akersloot", "almkerk", "alphen", "altena", "alteveer", "amen", "america", "amerongen", "amstelhoek", "amstelveen", "amstenrade", "andel", "andelst", "anderen", "angeren", "angerlo", "anloo", "annen", "annerveenschekanaal",
