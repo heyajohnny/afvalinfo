@@ -21,7 +21,7 @@ class HvcAfval(object):
                 postcode, street_number
             )
             r = requests.get(url=API_ENDPOINT)
-            bagid = r.json()[0]["bagid"]
+            bagid = r.json()[0]["bagId"]
 
             # Second request: get the dates
             API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["hvc"][1].format(

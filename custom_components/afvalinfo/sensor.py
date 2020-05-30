@@ -3,13 +3,47 @@
 Sensor component for Afvalinfo
 Author: Johnny Visser
 
+with zipcode and housenumber you can get the bagID:
+https://apps.hvcgroep.nl/rest/adressen/ 5" …zipcode…"-"…housenumber…"
+example: https://apps.hvcgroep.nl/rest/adressen/3328DB-37 4
+
+output looks like
+
+[{"bagId":"0505200000092263","postcode":"3328LN","huisnummer":35,"huisletter":"","huisnummerToevoeging":"","openbareRuimteNaam":"Moestuin","woonplaatsNaam":"Dordrecht","latitude":51.7701971,"longitude":4.6597255,"woonplaatsId":2351,"gemeenteId":505}]
+find bagid:0505200000092263
+
+get data:
+https://apps.hvcgroep.nl/rest/adressen/ 5" …myBagId … “/kalender/” … myYear
+url looks like:
+https://apps.hvcgroep.nl/rest/adressen/0505200000092263/kalender/2019 5
+
+Urls for other providers:
+
+Copy to clipboard
+Cyclus NV: https://afvalkalender.cyclusnv.nl
+HVC: https://apps.hvcgroep.nl
+Dar: https://afvalkalender.dar.nl
+Afvalvrij / Circulus-Berkel: https://afvalkalender.circulus-berkel.nl
+Meerlanden: https://afvalkalender.meerlanden.nl
+Cure: https://afvalkalender.cure-afvalbeheer.nl
+Avalex: https://www.avalex.nl
+RMN: https://inzamelschema.rmn.nl
+Venray: https://afvalkalender.venray.nl
+Berkelland: https://afvalkalender.gemeenteberkelland.nl
+Alphen aan den Rijn: https://afvalkalender.alphenaandenrijn.nlrest/adressen/0505200000061116/afvalstromen
+Waalre: http://afvalkalender.waalre.nl
+ZRD: https://afvalkalender.zrd.nl
+Spaarnelanden: https://afvalwijzer.spaarnelanden.nl
+Montfoort: https://afvalkalender.montfoort.nl
+GAD: https://inzamelkalender.gad.nl
+Cranendonck: https://afvalkalender.cranendonck.nl
+
 ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn
 ToDo: Add the old municities: Bedum, Winsum (Het Hoge Land). https://gemeente.groningen.nl/afvalwijzer/
 ToDo: Add huisnummer toevoeging
 ToDo: Fix all the next year problems
 ToDo: Add the following gemeenten:
 Amsterdam                       ???
-Beemster                        (https://afvalkalender.purmerend.nl/)
 Beesel                          (https://www.beesel.nl/inwoners/afval-en-milieu/afvalkalender/)
 Bergen Limburg                  bergen.nl/home/afval_44490/item/afvalkalender-2020_38953.html
 Borsele                         https://afvalkalender.borsele.nl/
@@ -403,7 +437,7 @@ class AfvalinfoData(object):
             self.data = OmrinAfval().get_data(
                 self.city, self.postcode, self.street_number, self.resources
             )
-        purmerend = ["purmerend", "purmerbuurt"]
+        purmerend = ["middenbeemster", "noordbeemster", "purmerend", "purmerbuurt", "westbeemster", "zuidoostbeemster"]
         if self.city in purmerend:
             self.data = PurmerendAfval().get_data(
                 self.city, self.postcode, self.street_number, self.resources

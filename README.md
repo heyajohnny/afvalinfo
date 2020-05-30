@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'Gemeenten' in The Netherlands: 295,5 of 352 = 83,9%
+### Number of supported 'Gemeenten' in The Netherlands: 297,5 of 352 = 84,5%
 
 If you like my work, please buy me a coffee. This will keep me awake :)
 
@@ -8,8 +8,11 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
 
-##### -- Purmerend
-- purmerend, purmerbuurt
+##### -- Den Haag
+- den haag
+
+##### -- Purmerend, Beemster
+- middenbeemster, noordbeemster, purmerend, purmerbuurt, westbeemster, zuidoostbeemster
 
 ##### -- Midden-Drenthe
 - balinge, beilen, bovensmilde, bruntinge, drijber, elp, eursinge, garminge, hijken, hoogersmilde, hooghalen, mantinge, nieuw-balinge, oranje, orvelte, smilde, spier, westerbork, wijster, witteveen, zuidveld, zwiggelte
