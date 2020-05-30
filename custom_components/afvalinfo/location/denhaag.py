@@ -12,7 +12,7 @@ import http.cookiejar
 import re
 
 
-class MiddenDrentheAfval(object):
+class DenHaagAfval(object):
     def get_date_from_afvaltype(self, ophaaldata, afvaltype, afvalnaam):
         try:
             today = date.today()
@@ -46,35 +46,59 @@ class MiddenDrentheAfval(object):
             op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
 
             # first call to save cookie
-            url = SENSOR_LOCATIONS_TO_URL["middendrenthe"][0]
+            url = SENSOR_LOCATIONS_TO_URL["denhaag"][0]
+
             res = op.open(url)
 
-            url = SENSOR_LOCATIONS_TO_URL["middendrenthe"][1]
+            _LOGGER.warning(res.headers)
+
+            # second call
+            url = SENSOR_LOCATIONS_TO_URL["denhaag"][0]
 
             data = {
-                "mPostcode": postcode,
-                "mHuisnr": street_number,
-                "mBpk": "WFN"
+                "postcode": postcode,
+                "huisnummer": street_number
             }
 
             postdata = urllib.parse.urlencode(data).encode()
 
             # sending post request and saving response as response object
             request = urllib.request.Request(url, postdata)
+
             #open the response object
             response = op.open(request)
 
             #read the data
+            """html = response.read().decode("utf-8")
+
+            soup = BeautifulSoup(html, "html.parser")
+
+            _LOGGER.warning(soup)
+
+            # 3rd call
+            url = SENSOR_LOCATIONS_TO_URL["denhaag"][1]
+
+            request = urllib.request.Request(url)
+
+            #open the response object
+            response = op.open(request)
+"""
+            #read the data
             html = response.read().decode("utf-8")
 
             soup = BeautifulSoup(html, "html.parser")
-            ophaaldata = soup.find("main")
-            ophaaldata = ophaaldata.find_all("div", {"style": ["width:32%;float:left;", "width:32%;float:right;"]})
+
+            #_LOGGER.warning(soup)
+            _LOGGER.warning(response.headers)
+
+
+            #ophaaldata = soup.find("main")
+            #ophaaldata = ophaaldata.find_all("div", {"style": ["width:32%;float:left;", "width:32%;float:right;"]})
 
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
             # gft
-            if "gft" in resources:
+            """if "gft" in resources:
                 waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, "Groene container:", "gft")
             # restafval
             if "restafval" in resources:
@@ -82,7 +106,7 @@ class MiddenDrentheAfval(object):
             # pbd
             if "pbd" in resources:
                 waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, "Oranje container:", "pbd")
-
+            """
             return waste_dict
         except urllib.error.URLError as exc:
             _LOGGER.error("Error occurred while fetching data: %r", exc.reason)

@@ -33,6 +33,10 @@ SENSOR_LOCATIONS_TO_URL = {
         "http://www.deafvalapp.nl/calendar/kalender_dashboard.jsp",
     ],
     "defriesemeren": ["https://www.afvalalert.nl/kalender/{0}/{1}/?web=1"],
+    "denhaag": [
+        "https://huisvuilkalender.denhaag.nl/form",
+        "https://huisvuilkalender.denhaag.nl/wanneer"
+    ],
     "drimmelen": ["https://drimmelen.nl/trash-removal-calendar/{0}/{1}"],
     "gad": ["https://inzamelkalender.gad.nl/adres/{0}:{1}"],
     "goereeoverflakkee": ["https://webadapter.watsoftware.nl/widget.aspx?version=3.7&action=3000001&xml=<postcode>{0}</postcode><huisnummer>{1}</huisnummer><guid>BCE23C06-E248-4300-B97F-E308A451C6B4</guid>"],
@@ -54,6 +58,7 @@ SENSOR_LOCATIONS_TO_URL = {
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],
     "omrin": ["https://www.omrin.nl/bij-mij-thuis/afval-regelen/afvalkalender"],
+    "purmerend": ["https://afvalkalender.purmerend.nl/adres/{0}:{1}"],
     "rd4": ["https://www.rd4info.nl/NSI/Burger/Aspx/afvalkalender_public_text.aspx?pc={0}&nr={1}&t="],
     "rmn": ["https://inzamelschema.rmn.nl/adres/{0}:{1}"],
     "rova": ["http://afvalkalender.rova.nl/nl/{0}/{1}/"],

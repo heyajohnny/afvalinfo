@@ -18,7 +18,6 @@ Cranendonck                     https://afvalkalender.cranendonck.nl/
 Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
 Delft                           http://www.avalex.nl/kalender/ Avalex heeft waarschijnlijk nergens een kalender. Voor alle zoekopdrachten krijg je "Voor dit adres is geen kalender beschikbaar"
 Delfzijl                        https://www.delfzijl.nl/inwoners/afvalkalender_43586/
-Den Haag                        https://huisvuilkalender.denhaag.nl/form
 Edam-Volendam                   https://www.edam-volendam.nl/portal-home/inzamelkalender_43466/
 Eemnes                          https://www.eemnes.nl/inwoners/Afval/Afvalwijzer
 Emmen                           https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
@@ -51,7 +50,6 @@ Oostzaan                        https://www.oostzaan.nl/mozard/document/docnr/11
 Ouder-Amstel                    https://www.ouder-amstel.nl/Home/Nieuws_en_actualiteiten/Nieuws/Alle_nieuwsberichten_2020/April/Data_inzameling_afval
 Peel en Maas                    https://afvalkalender.peelenmaas.nl/
 Pijnacker-Nootdorp              http://www.avalex.nl/kalender/
-Purmerend                       https://afvalkalender.purmerend.nl/
 Reusel-De Mierden               https://www.reuseldemierden.nl/document.php?m=25&fileid=123208&f=3e3d90c015a9b15ffc98c993c8e4e9da&attachment=0&c=40975
 Rijswijk                        http://www.avalex.nl/kalender/
 Rozendaal                       https://www.rozendaal.nl/dsresource?objectid=d7a004f0-ff97-490a-8837-1b66e5bc11e1&type=org
@@ -136,6 +134,8 @@ from .location.rmn import RmnAfval
 from .location.goereeoverflakkee import GoereeOverflakkeeAfval
 from .location.berkelland import BerkellandAfval
 from .location.middendrenthe import MiddenDrentheAfval
+from .location.denhaag import DenHaagAfval
+from .location.purmerend import PurmerendAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -282,6 +282,11 @@ class AfvalinfoData(object):
             self.data = DeAfvalAppAfval().get_data(
                 self.city, self.postcode, self.street_number, self.resources
             )
+        denhaag = ["den haag"]
+        if self.city in denhaag:
+            self.data = DenHaagAfval().get_data(
+                self.city, self.postcode, self.street_number, self.resources
+            )
         defriesemeren = ["akmarijp", "bakhuizen", "balk", "ballingbuur", "bantega", "bargebek", "boornzwaag", "boornzwaag over de wielen", "brekkenpolder", "broek", "commissiepolle", "de bels", "de polle", "de rijlst", "delburen", "delfstrahuizen", "dijken", "doniaga", "echten", "echtenerbrug",
         "eesterga", "elahuizen", "finkeburen", "follega", "goingarijp", "harich", "haskerhorne", "heide", "hooibergen", "huisterheide", "idskenhuizen", "joure", "kolderwolde", "langweer", "legemeer", "lemmer", "marderhoek", "mirns", "nieuw amerika", "nijehaske", "nijemirdum", "noed", "oldeouwer",
         "onland", "oosterzee", "oudega", "oudehaske", "oudemirdum", "ouwster-nijega", "ouwsterhaule", "rijs", "rohel", "rotstergaast", "rotsterhaule", "rottum", "ruigahuizen", "scharsterbrug", "schoterzijl", "schouw", "sint nicolaasga", "sintjohannesga", "sloten", "snikzwaag", "sondel", "spannenburg",
@@ -396,6 +401,11 @@ class AfvalinfoData(object):
         "zandeweer", "zandhuizen", "zevenhuizen", "zoutkamp", "zuurdijk", "zwagerbosch", "zweins"]
         if self.city in omrin:
             self.data = OmrinAfval().get_data(
+                self.city, self.postcode, self.street_number, self.resources
+            )
+        purmerend = ["purmerend", "purmerbuurt"]
+        if self.city in purmerend:
+            self.data = PurmerendAfval().get_data(
                 self.city, self.postcode, self.street_number, self.resources
             )
         rd4 = ["amstenrade", "banholt", "bemelen", "berg", "beutenaken", "bingelrade", "bocholtz", "broekhem", "brunssum", "bunde", "cadier en keer", "doenrade", "eckelrade", "eijsden", "elkenrade", "epen", "eperheide", "etenaken", "euverem", "eys", "eyserheide", "geulle aan de maas", "geulle", "gronsveld", "gulpen",
