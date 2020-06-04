@@ -49,7 +49,6 @@ Bergen Limburg                  bergen.nl/home/afval_44490/item/afvalkalender-20
 Coevorden                       https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
 Cranendonck                     https://afvalkalender.cranendonck.nl/
 Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
-Delft                           http://www.avalex.nl/kalender/ Avalex heeft waarschijnlijk nergens een kalender. Voor alle zoekopdrachten krijg je "Voor dit adres is geen kalender beschikbaar"
 Delfzijl                        https://www.delfzijl.nl/inwoners/afvalkalender_43586/
 Edam-Volendam                   https://www.edam-volendam.nl/portal-home/inzamelkalender_43466/
 Eemnes                          https://www.eemnes.nl/inwoners/Afval/Afvalwijzer
@@ -68,11 +67,9 @@ Hoogeveen                       https://www.area-afval.nl/voor-bewoners/afvalkal
 Katwijk                         https://afval.katwijk.nl/nc/afvalkalender/
 Landerd                         https://www.landerd.nl/inwoners-en-ondernemers/afval/afvalkalender/pdf/2020
 Landsmeer                       https://admin.sduconnect.nl/linked_links/1577977473Afvalkalender_2020_DEF.pdf
-Leidschendam-Voorburg           http://www.avalex.nl/kalender/
 Loppersum                       https://gemeente.groningen.nl/afvalwijzer/loppersum?pk_campaign=Redirects&pk_kwd=data-afvalinzameling
 Maassluis                       https://www.maassluis.nl/wonen-verkeer-en-veiligheid/afvalinzameling_43871/
 Middelburg                      https://www.middelburg.nl/Inwoners/Afval/Ophaaldagen_huisvuil
-Midden-Delfland                 http://www.avalex.nl/kalender/
 Molenlanden                     https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
 Mook en Middelaar               https://www.mookenmiddelaar.nl/inwoner/afval-en-duurzaamheid_42542/item/afvalkalender-2020_40888.html
 Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
@@ -81,9 +78,7 @@ Oisterwijk                      https://oisterwijk.afvalstoffendienstkalender.nl
 Oostzaan                        https://www.oostzaan.nl/mozard/document/docnr/1182761/bijlage%20-%20afvalkalender%20Oostzaan%202020%20-%20met%20wijkindeling
 Ouder-Amstel                    https://www.ouder-amstel.nl/Home/Nieuws_en_actualiteiten/Nieuws/Alle_nieuwsberichten_2020/April/Data_inzameling_afval
 Peel en Maas                    https://afvalkalender.peelenmaas.nl/
-Pijnacker-Nootdorp              http://www.avalex.nl/kalender/
 Reusel-De Mierden               https://www.reuseldemierden.nl/document.php?m=25&fileid=123208&f=3e3d90c015a9b15ffc98c993c8e4e9da&attachment=0&c=40975
-Rijswijk                        http://www.avalex.nl/kalender/
 Rozendaal                       https://www.rozendaal.nl/dsresource?objectid=d7a004f0-ff97-490a-8837-1b66e5bc11e1&type=org
 Schiermonnikoog
 Schouwen-Duiveland              https://afvalkalender.schouwen-duiveland.nl/
@@ -96,7 +91,6 @@ Vlissingen                      https://www.vlissingen.nl/inwoner/afval-en-milie
 Voorschoten                     https://www.voorschotenmaakthetverschil.nl/
 Vught                           https://vught.afvalstoffendienstkalender.nl/
 Waalre                          https://afvalkalender.waalre.nl/
-Wassenaar                       http://www.avalex.nl/kalender/
 Weert                           https://www.weert.nl/huisvuil-duobak-en-ophaaldagen
 Westerwolde                     https://www.westerwolde.nl/trash-removal-calendar
 Zundert                         https://www.zundert.nl/afval-en-milieustraat/afvalkalender-2020.html
@@ -170,6 +164,7 @@ from .location.denhaag import DenHaagAfval
 from .location.purmerend import PurmerendAfval
 from .location.borsele import BorseleAfval
 from .location.hellendoorn import HellendoornAfval
+from .location.avalex import AvalexAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -267,6 +262,11 @@ class AfvalinfoData(object):
         alphenaandenrijn = ["aarlanderveen", "alphen aan den rijn", "benthuizen", "boskoop", "hazerswoude-dorp", "hazerswoude-rijndijk", "koudekerk aan den rijn", "zwammerdam"]
         if self.city in alphenaandenrijn:
             self.data = AlphenAanDenRijnAfval().get_data(
+                self.city, self.postcode, self.street_number, self.resources
+            )
+        avalex = ["delfgauw", "delft", "den hoorn", "leidschendam", "maaldrift", "maasland", "nootdorp", "pijnacker", "rijswijk", "schipluiden", "sion", "stompwijk", "strijp", "t haantje", "t woudt", "voorburg", "wassenaar"]
+        if self.city in avalex:
+            self.data = AvalexAfval().get_data(
                 self.city, self.postcode, self.street_number, self.resources
             )
         bar = ["barendrecht", "bolnes", "oostendam", "poortugaal", "rhoon", "ridderkerk"]

@@ -1,12 +1,15 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'Gemeenten' in The Netherlands: 299,5 of 352 = 85,1%
+### Number of supported 'Gemeenten' in The Netherlands: 305,5 of 352 = 86,8%
 
 If you like my work, please buy me a coffee. This will keep me awake :)
 
 <a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
+
+##### --(Avalex) Delft, Leidschendam-Voorburg, Midden-Delfland, Pijnacker-Nootdorp, Rijswijk, Wassenaar
+- delfgauw, delft, den hoorn, leidschendam, maaldrift, maasland, nootdorp, pijnacker, rijswijk, schipluiden, sion, stompwijk, strijp, t haantje, t woudt, voorburg, wassenaar
 
 ##### -- Hellendoorn
 - daarle, daarlerveen, haarle, hellendoorn, nijverdal

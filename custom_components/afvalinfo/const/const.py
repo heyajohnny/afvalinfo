@@ -20,6 +20,10 @@ SENSOR_LOCATIONS_TO_URL = {
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],
     "alphenaandenrijn": ["https://afvalkalender.alphenaandenrijn.nl/adres/{0}:{1}"],
+    "avalex": [
+        "https://www.avalex.nl/rest/adressen/{0}-{1}",
+        "https://www.avalex.nl/rest/adressen/{0}/kalender/{1}"
+    ],
     "bar": [
         "https://wasteapi.ximmio.com/api/FetchAdress",
         "https://wasteapi.ximmio.com/api/GetCalendar"],
