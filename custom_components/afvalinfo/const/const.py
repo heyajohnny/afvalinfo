@@ -41,6 +41,9 @@ SENSOR_LOCATIONS_TO_URL = {
     "drimmelen": ["https://drimmelen.nl/trash-removal-calendar/{0}/{1}"],
     "gad": ["https://inzamelkalender.gad.nl/adres/{0}:{1}"],
     "goereeoverflakkee": ["https://webadapter.watsoftware.nl/widget.aspx?version=3.7&action=3000001&xml=<postcode>{0}</postcode><huisnummer>{1}</huisnummer><guid>BCE23C06-E248-4300-B97F-E308A451C6B4</guid>"],
+    "hellendoorn": [
+        "https://wasteapi.ximmio.com/api/FetchAdress",
+        "https://wasteapi.ximmio.com/api/GetCalendar"],
     "hvc": [
         "https://inzamelkalender.hvcgroep.nl/rest/adressen/{0}-{1}",
         "https://inzamelkalender.hvcgroep.nl/rest/adressen/{0}/kalender/{1}"
@@ -95,8 +98,8 @@ SENSOR_LOCATIONS_TO_COMPANY_CODE = {
     "nissewaard": ["9dc25c8a-175a-4a41-b7a1-83f237a80b77"],
     "meerlanden": ["800bf8d7-6dd1-4490-ba9d-b419d6dc8a45"],
     "bar": ["bb58e633-de14-4b2a-9941-5bc419f1c4b0"],
-    "acv": ["f8e2844a-095e-48f9-9f98-71fceb51d2c3"]
-    # ToDo: "hellendoorn": ["24434f5b-7244-412b-9306-3a2bd1e22bc1"],
+    "acv": ["f8e2844a-095e-48f9-9f98-71fceb51d2c3"],
+    "hellendoorn": ["24434f5b-7244-412b-9306-3a2bd1e22bc1"]
 }
 
 MONTH_TO_NUMBER = {

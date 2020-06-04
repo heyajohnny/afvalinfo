@@ -60,7 +60,6 @@ Gorinchem                       https://www.waardlanden.nl/particulieren/afvalin
 Groningen                       https://gemeente.groningen.nl/afvalwijzer/groningen
 Haaren                          https://haaren.afvalstoffendienstkalender.nl/
 Hardinxveld-Giessendam          https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
-Hellendoorn                     https://afvalportaal.2go-mobile.com/modules/24434f5b-7244-412b-9306-3a2bd1e22bc1/kalender/
 Hellevoetsluis                  https://www.hellevoetsluis.nl/Inwoners/WONEN_EN_LEEFOMGEVING/Afval/Afvalkalender
 's-Hertogenbosch                https://www.afvalstoffendienst.nl/login
 Het Hogeland                    https://hethogeland.nl/afval/afvalkalender
@@ -170,6 +169,7 @@ from .location.middendrenthe import MiddenDrentheAfval
 from .location.denhaag import DenHaagAfval
 from .location.purmerend import PurmerendAfval
 from .location.borsele import BorseleAfval
+from .location.hellendoorn import HellendoornAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -347,6 +347,11 @@ class AfvalinfoData(object):
         goereeoverflakkee = ["achthuizen", "den bommel", "dirksland", "goedereede", "havenhoofd", "herkingen", "melissant", "middelharnis", "nieuwe-tonge", "ooltgensplaat", "ouddorp", "oude-tonge", "sommelsdijk", "stad aan t haringvliet", "stellendam", "zuidzijde"]
         if self.city in goereeoverflakkee:
             self.data = GoereeOverflakkeeAfval().get_data(
+                self.city, self.postcode, self.street_number, self.resources
+            )
+        hellendoorn = ["daarle", "daarlerveen", "haarle", "hellendoorn", "nijverdal"]
+        if self.city in hellendoorn:
+            self.data = HellendoornAfval().get_data(
                 self.city, self.postcode, self.street_number, self.resources
             )
         hvc = ["aagtdorp", "aartswoud", "abbekerk", "abbestede", "alblasserdam", "andijk", "anna paulowna", "assendelft", "avenhorn", "bant", "barsingerhorn", "benningbroek", "bergen aan zee", "bergen", "berkhout", "beverwijk", "blokdijk", "blokker", "bobeldijk", "bovenkarspel", "breezand", "bregtdorp",
