@@ -9,20 +9,23 @@ from bs4 import BeautifulSoup
 import urllib.request
 import urllib.error
 
-
-class SliedrechtAfval(object):
+class BorseleAfval(object):
     def get_date_from_afvaltype(self, ophaaldata, afvaltype, afvalnaam):
         try:
-            html = ophaaldata.find(href="/afvalstroom/" + str(afvaltype))
-            date = html.i.string[3:]
-            day = date.split()[0]
-            month = MONTH_TO_NUMBER[date.split()[1]]
-            year = str(
-                datetime.today().year
-                if datetime.today().month <= int(month)
-                else datetime.today().year + 1
-            )
-            return year + "-" + month + "-" + day
+            for data in ophaaldata:
+                result = data.find("th", {"class": afvaltype})
+                if result:
+                    date = data.find("td")
+                    date = str(date).split("<br/>")[0]
+                    day = date.split()[1]
+                    month = MONTH_TO_NUMBER[date.split()[2]]
+                    year = str(
+                        datetime.today().year
+                        if datetime.today().month <= int(month)
+                        else datetime.today().year + 1
+                    )
+                    return year + "-" + month + "-" + day
+            return ""
         except Exception as exc:
             _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
             return ""
@@ -31,7 +34,7 @@ class SliedrechtAfval(object):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
-            url = SENSOR_LOCATIONS_TO_URL[city][0].format(
+            url = SENSOR_LOCATIONS_TO_URL["borsele"][0].format(
                 postcode, street_number
             )
             req = urllib.request.Request(url=url)
@@ -39,22 +42,20 @@ class SliedrechtAfval(object):
             html = f.read().decode("utf-8")
 
             soup = BeautifulSoup(html, "html.parser")
-            ophaaldata = soup.find(id="ophaaldata")
+            ophaaldata = soup.find(id="garbage-dates")
+            ophaaldata = ophaaldata.find_all("tr")
 
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
             # find afvalstroom/3 = gft
             if "gft" in resources:
-                waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 3, "gft")
-            # find afvalstroom/7 = textiel
-            if "textiel" in resources:
-                waste_dict["textiel"] = self.get_date_from_afvaltype(ophaaldata, 7, "textiel")
+                waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, "icon-groene-container", "gft")
+            # find afvalstroom/7 = restafval
+            if "restafval" in resources:
+                waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, "icon-grijze-container", "restafval")
             # find afvalstroom/87 = papier
             if "papier" in resources:
-                waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 87, "papier")
-            # find afvalstroom/92 = pbd
-            if "pbd" in resources:
-                waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 92, "pbd")
+                waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, "icon-blauwe-container", "papier")
 
             return waste_dict
         except urllib.error.URLError as exc:

@@ -46,7 +46,6 @@ ToDo: Add the following gemeenten:
 Amsterdam                       ???
 Beesel                          (https://www.beesel.nl/inwoners/afval-en-milieu/afvalkalender/)
 Bergen Limburg                  bergen.nl/home/afval_44490/item/afvalkalender-2020_38953.html
-Borsele                         https://afvalkalender.borsele.nl/
 Coevorden                       https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
 Cranendonck                     https://afvalkalender.cranendonck.nl/
 Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
@@ -170,6 +169,7 @@ from .location.berkelland import BerkellandAfval
 from .location.middendrenthe import MiddenDrentheAfval
 from .location.denhaag import DenHaagAfval
 from .location.purmerend import PurmerendAfval
+from .location.borsele import BorseleAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -283,6 +283,11 @@ class AfvalinfoData(object):
         "ommel", "someren", "sterksel", "vlierden"]
         if self.city in blink:
             self.data = BlinkAfval().get_data(
+                self.city, self.postcode, self.street_number, self.resources
+            )
+        borsele = ["baarland", "borssele", "driewegen", "ellewoutsdijk", "heinkenszand", "hoedekenskerke", "kwadendamme", "lewedorp", "nieuwdorp", "nisse", "oudelande", "ovezande", "s-gravenpolder", "s-heer abtskerke", "s-heerenhoek"]
+        if self.city in borsele:
+            self.data = BorseleAfval().get_data(
                 self.city, self.postcode, self.street_number, self.resources
             )
         circulusberkel = ["almen", "apeldoorn", "baak", "barchem", "bathmen", "beekbergen", "beemte-broekland", "bronkhorst", "bussloo", "de vecht", "deventer", "diepenveen", "doesburg", "drempt", "eefde", "emst", "epe", "epse", "gorssel", "halle", "harfsen", "hengelo", "hoenderloo",
