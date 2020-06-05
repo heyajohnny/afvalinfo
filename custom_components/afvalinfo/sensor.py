@@ -243,12 +243,12 @@ class AfvalinfoData(object):
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
         _LOGGER.debug("Updating Waste collection dates")
-        acv = ["bennekom", "de klomp", "deelen", "doorwerth", "ede", "ederveen", "harskamp", "heelsum", "heveadorp", "lunteren", "oosterbeek", "otterlo", "renkum", "renswoude", "veenendaal", "wageningen", "wekerom", "wolfheze"]
+        acv = ["ede", "renkum", "renswoude", "veenendaal", "wageningen"]
         if self.location in acv:
             self.data = AcvAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        alkmaar = ["alkmaar", "driehuizen", "graft", "grootschermer", "koedijk", "markenbinnen", "noordeinde", "oost-graftdijk", "oterleek", "oudorp", "de rijp", "schermerhorn", "starnmeer", "stompetoren", "ursem", "west-graftdijk", "zuidschermer"]
+        alkmaar = ["alkmaar"]
         if self.location in alkmaar:
             self.data = AlkmaarAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
@@ -258,72 +258,57 @@ class AfvalinfoData(object):
             self.data = AlmereAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        alphenaandenrijn = ["aarlanderveen", "alphen aan den rijn", "benthuizen", "boskoop", "hazerswoude-dorp", "hazerswoude-rijndijk", "koudekerk aan den rijn", "zwammerdam"]
+        alphenaandenrijn = ["alphen aan den rijn"]
         if self.location in alphenaandenrijn:
             self.data = AlphenAanDenRijnAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        area = ["aalden", "achterste erm", "alteveer", "barger-compascuum", "benneveld", "coevorden", "dalen", "dalerpeel", "dalerveen", "de kiel", "diphoorn", "eldijk", "elim", "emmen", "emmer-compascuum", "erica", "erm",
-        "fluitenberg", "gees", "geesbrug", "hollandscheveld", "holsloot", "hoogeveen", "klazienaveen", "langerak", "meppen", "nieuw moscou", "nieuw-amsterdam", "nieuw-dordrecht", "nieuw-schoonebeek", "nieuw-weerdinge",
-        "nieuwe krim", "nieuweroord", "nieuwlande", "nijstad", "noord-sleen", "noordscheschut", "oosterhesselen", "pesse", "roswinkel", "schoonebeek", "schoonoord", "sleen", "steenwijksmoer", "stieltjeskanaal", "stuifzand",
-        "t haantje", "tiendeveen", "veenhuizen", "veenoord", "wachtum", "weiteveen", "wezup", "wezuperbrug", "zwartemeer", "zweeloo", "zwinderen"]
+        area = ["coevorden", "emmen", "hoogeveen"]
         if self.location in area:
             self.data = AreaAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        avalex = ["delfgauw", "delft", "den hoorn", "leidschendam", "maaldrift", "maasland", "nootdorp", "pijnacker", "rijswijk", "schipluiden", "sion", "stompwijk", "strijp", "t haantje", "t woudt", "voorburg", "wassenaar"]
+        avalex = ["delft", "leidschendam-voorburg", "midden-delfland", "pijnacker-nootdorp", "rijswijk", "wassenaar"]
         if self.location in avalex:
             self.data = AvalexAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        bar = ["barendrecht", "bolnes", "oostendam", "poortugaal", "rhoon", "ridderkerk"]
+        bar = ["barendrecht", "albrandswaard", "ridderkerk"]
         if self.location in bar:
             self.data = BarAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        berkelland = ["beltrum", "borculo", "eibergen", "geesteren", "gelselaar", "haarlo", "neede", "noordijk", "rekken", "rietmolen", "ruurlo"]
+        berkelland = ["berkelland"]
         if self.location in berkelland:
             self.data = BerkellandAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        blink = ["aarle-rixtel", "asten", "bakel", "beek en donk", "de mortel", "de rips", "deurne", "elsendorp", "gemert", "gerwen", "handel", "heeze", "helenaveen", "helmond", "heusden", "leende", "lierop", "lieshout", "liessel", "mariahout", "milheeze", "nederwetten", "neerkant", "nuenen",
-        "ommel", "someren", "sterksel", "vlierden"]
+        blink = ["asten", "deurne", "gemert-bakel", "heeze-leende", "helmond", "laarbeek", "nuenen", "someren"]
         if self.location in blink:
             self.data = BlinkAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        borsele = ["baarland", "borssele", "driewegen", "ellewoutsdijk", "heinkenszand", "hoedekenskerke", "kwadendamme", "lewedorp", "nieuwdorp", "nisse", "oudelande", "ovezande", "s-gravenpolder", "s-heer abtskerke", "s-heerenhoek"]
+        borsele = ["borsele"]
         if self.location in borsele:
             self.data = BorseleAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        circulusberkel = ["almen", "apeldoorn", "baak", "barchem", "bathmen", "beekbergen", "beemte-broekland", "bronkhorst", "bussloo", "de vecht", "deventer", "diepenveen", "doesburg", "drempt", "eefde", "emst", "epe", "epse", "gorssel", "halle", "harfsen", "hengelo", "hoenderloo",
-        "hoog soeren", "hoog-keppel", "hummelo", "joppe", "keijenborg", "klarenbeek", "kring van dorth", "laag-keppel", "laren", "lettele", "lieren", "lochem", "loenen", "nijbroek", "oene", "okkenbroek", "olburgen", "radio kootwijk", "rha", "schalkhaar", "steenderen", "terwolde", "teuge",
-        "toldijk", "twello", "uddel", "ugchelen", "vaassen", "vierakker", "voorst", "vorden", "warnsveld", "wenum-wiesel", "wichmond", "wilp", "wilp-achterhoek", "zelhem", "zutphen"]
+        circulusberkel = ["apeldoorn", "bronckhorst", "brummen", "deventer", "doesburg", "epe", "lochem", "voorst", "zutphen"]
         if self.location in circulusberkel:
             self.data = CirculusBerkelAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        cyclus = ["ammerstol", "bergambacht", "berkenwoude", "bodegraven", "de meije", "driebruggen", "gouda", "gouderak", "haastrecht", "hogebrug", "hoogmade", "kaag", "krimpen aan de lek", "lageweg", "langeraar", "leimuiden", "lekkerkerk", "linschoten", "moerkapelle", "montfoort",
-        "moordrecht", "nieuwe wetering", "nieuwerbrug", "nieuwerkerk aan den ijssel", "nieuwkoop", "nieuwveen", "noordeinde", "noorden", "opperduit", "oud ade", "oude wetering", "ouderkerk aan den ijssel", "reeuwijk-brug", "reeuwijk-dorp", "rijnsaterwoude", "rijpwetering", "roelofarendsveen",
-        "schoonhoven", "schuwacht", "sluipwijk", "stolwijk", "tempel", "ter aar", "vlist", "waarde", "waddinxveen", "willeskop", "willige langerak", "woerdense verlaat", "woubrugge", "zevenhoven", "zevenhuizen"]
+        cyclus = ["bodegraven-reeuwijk", "gouda", "kaag en braassem", "krimpenerwaard", "montfoort", "nieuwkoop", "waddinxveen", "zuidplas"]
         if self.location in cyclus:
             self.data = CyclusAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        dar = ["afferden", "balgoij", "batenburg", "beek", "berg en dal", "bergharen", "beuningen", "deest", "druten", "erlecom", "ewijk", "groesbeek", "heilig landstichting", "hernen", "heumen", "horssen", "kekerdom", "leur", "leuth", "malden", "millingen aan de rijn", "nederasselt", "niftrik",
-        "nijmegen", "ooij", "overasselt", "persingen", "puiflijk", "ubbergen", "weurt", "wijchen", "winssen"]
+        dar = ["berg en dal", "beuningen", "druten", "heumen", "nijmegen", "wijchen"]
         if self.location in dar:
             self.data = DarAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        deafvalapp = ["aalst", "acquoy", "alem", "alphen", "altforst", "ammerzoden", "appeltern", "asch", "asperen", "axel", "beers", "beesd", "beneden-leeuwen", "beugen", "beusichem", "biervliet", "boekel", "boven-leeuwen", "boxmeer", "brakel", "breugel", "bruchem", "buren", "buurmalsen",
-        "buurmalsen", "cuijk", "culemborg", "deil", "delwijnen", "dieteren", "dodewaard", "dreumel", "echt", "echteld", "eck en wiel", "enspijk", "erichem", "escharen", "est", "gameren", "gassel", "geldermalsen", "gellicum", "grave", "groeningen", "haaften", "haps", "hedel", "heerewaarden",
-        "heesselt", "hellouw", "helmond", "herwijnen", "heukelum", "hoek", "hoenzadriel", "holthees", "huize padua", "hurwenen", "ijzendoorn", "ingen", "kapel-avezaath", "katwijk", "kerk-avezaath", "kerkdriel", "kerkwijk", "kesteren", "koewacht", "koningsbosch", "landhorst", "langenboom",
-        "ledeacker", "lienden", "linden", "maasbommel", "maashees", "maria hoop", "maurik", "meteren", "mill", "nederhemert-noord", "nederhemert-zuid", "neerijnen", "nieuwaal", "nieuwstadt", "ochten", "oeffelt", "ommeren", "ophemert", "opheusden", "opijnen", "oploo", "overloon", "overslag",
-        "pey", "philippine", "poederoijen", "ravenswaaij", "rhenoy", "rijkevoort", "rijswijk", "roosteren", "rossum", "rumpt", "sambeek", "sas van gent", "sint agatha", "sint anthonis", "sint hubert", "sint joost", "sluiskil", "son", "spijk", "spui", "stevensbeek", "susteren", "terneuzen",
-        "tiel", "tricht", "tuil", "varik", "velddriel", "velp", "venhorst", "vierlingsbeek", "vortum-mullem", "vuren", "waardenburg", "wamel", "wanroij", "well", "wellseind", "westdorpe", "westerbeek", "wilbertoord", "zaamslag", "zaltbommel", "zennewijnen", "zoelen", "zoelmond",
-        "zuiddorpe", "zuilichem"]
+        deafvalapp = ["boekel", "boxmeer", "buren", "cuijk", "culemborg", "echt-susteren", "grave", "helmond", "maasdriel", "mill en sint hubert", "neder-betuwe", "sint anthonis", "son en breugel", "terneuzen", "tiel", "west betuwe", "west maas en waal", "zaltbommel"]
         if self.location in deafvalapp:
             self.data = DeAfvalAppAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
@@ -333,153 +318,93 @@ class AfvalinfoData(object):
             self.data = DenHaagAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        defriesemeren = ["akmarijp", "bakhuizen", "balk", "ballingbuur", "bantega", "bargebek", "boornzwaag", "boornzwaag over de wielen", "brekkenpolder", "broek", "commissiepolle", "de bels", "de polle", "de rijlst", "delburen", "delfstrahuizen", "dijken", "doniaga", "echten", "echtenerbrug",
-        "eesterga", "elahuizen", "finkeburen", "follega", "goingarijp", "harich", "haskerhorne", "heide", "hooibergen", "huisterheide", "idskenhuizen", "joure", "kolderwolde", "langweer", "legemeer", "lemmer", "marderhoek", "mirns", "nieuw amerika", "nijehaske", "nijemirdum", "noed", "oldeouwer",
-        "onland", "oosterzee", "oudega", "oudehaske", "oudemirdum", "ouwster-nijega", "ouwsterhaule", "rijs", "rohel", "rotstergaast", "rotsterhaule", "rottum", "ruigahuizen", "scharsterbrug", "schoterzijl", "schouw", "sint nicolaasga", "sintjohannesga", "sloten", "snikzwaag", "sondel", "spannenburg",
-        "tacozijl", "terhorne", "terkaple", "teroele", "tjerkgaast", "trophorne", "vegelinsoord", "vierhuis", "vinkeburen", "vrisburen", "westend", "westerend-harich", "wijckel", "zevenbuurt"]
+        defriesemeren = ["de friese meren"]
         if self.location in defriesemeren:
             self.data = DeFrieseMerenAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        drimmelen = ["blauwe sluis", "drimmelen", "helkant", "hooge zwaluwe", "lage zwaluwe", "made", "oud-drimmelen", "terheijden", "wagenberg"]
+        drimmelen = ["drimmelen"]
         if self.location in drimmelen:
             self.data = DrimmelenAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        gad = ["ankeveen", "blaricum", "bussum", "de horn", "hilversum", "huizen", "kortenhoef", "laren", "muiden", "muiderberg", "naarden", "nederhorst den berg", "nieuw-loosdrecht", "oud-loosdrecht", "s-graveland", "uitermeer", "weesp"]
+        gad = ["blaricum", "gooise meren", "hilversum", "huizen", "laren", "weesp", "wijdemeren"]
         if self.location in gad:
             self.data = GadAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        goereeoverflakkee = ["achthuizen", "den bommel", "dirksland", "goedereede", "havenhoofd", "herkingen", "melissant", "middelharnis", "nieuwe-tonge", "ooltgensplaat", "ouddorp", "oude-tonge", "sommelsdijk", "stad aan t haringvliet", "stellendam", "zuidzijde"]
+        goereeoverflakkee = ["goeree-overflakkee"]
         if self.location in goereeoverflakkee:
             self.data = GoereeOverflakkeeAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        hellendoorn = ["daarle", "daarlerveen", "haarle", "hellendoorn", "nijverdal"]
+        hellendoorn = ["hellendoorn"]
         if self.location in hellendoorn:
             self.data = HellendoornAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        hvc = ["aagtdorp", "aartswoud", "abbekerk", "abbestede", "alblasserdam", "andijk", "anna paulowna", "assendelft", "avenhorn", "bant", "barsingerhorn", "benningbroek", "bergen aan zee", "bergen", "berkhout", "beverwijk", "blokdijk", "blokker", "bobeldijk", "bovenkarspel", "breezand", "bregtdorp",
-        "burgerbrug", "burgervlotbrug", "callantsoog", "camperduin", "catrijp", "creil", "de buurt", "de goorn", "de haukes", "de stolpen", "de strook", "de weere", "den helder", "den oever", "dirkshorn", "dordrecht", "driehuis", "eenigenburg", "egmond aan den hoef", "egmond aan zee", "egmond-binnen",
-        "emmeloord", "enkhuizen", "ens", "espel", "gouwe", "groenveld", "groet", "groote keeten", "grootebroek", "grosthuizen", "hargen", "haringhuizen", "hauwert", "heemskerk", "heerjansdam", "hem", "hendrik-ido-ambacht", "hensbroek", "hippolytushoef", "hoogkarspel", "hoogwoud", "hoorn", "huisduinen",
-        "ijmuiden", "jisp", "julianadorp", "kalverdijk", "keinse", "kleine sluis", "kleine-lindt", "kolhorn", "koog aan de zaan", "krabbendam", "kraggenburg", "kreil", "kreileroord", "krommenie", "lambertschaag", "lelystad", "lutjebroek", "lutjewinkel", "luttelgeest", "marknesse", "medemblik", "middenmeer",
-        "midwoud", "moerbeek", "nagele", "neck", "nibbixwoud", "nieuwe niedorp", "nieuwesluis", "obdam", "onderdijk", "oosterblokker", "oosterdijk", "oosterklief", "oosterland", "oosterleek", "oostknollendam", "oostwoud", "opmeer", "opperdoes", "oude niedorp", "oudendijk", "oudesluis", "papendrecht", "petten",
-        "rinnegom", "rustenburg", "rutten", "santpoort-noord", "santpoort-zuid", "schagen", "schagerbrug", "scharwoude", "schellinkhout", "schokland", "schoorl", "schoorldam", "sijbekarspel", "sint maarten", "sint maartensbrug", "sint maartensvlotbrug", "sint maartenszee", "slootdorp", "smerp", "spaarndammerpolder",
-        "spanbroek", "spierdijk", "spijkerboor", "stroe", "stroet", "t rijpje", "t veld", "t zand", "terdiek", "tjallewal", "tolke", "tollebeek", "tuitjenhorn", "twisk", "ursem", "valkkoog", "van ewijcksluis", "vatrop", "velsen", "velsen-noord", "velsen-zuid", "velserbroek", "venhuizen", "verlaat", "waarland",
-        "wadway", "warmenhuizen", "wervershoof", "westerklief", "westerland", "westknollendam", "westwoud", "westzaan", "wieringerwaard", "wieringerwerf", "wijdenes", "wijdewormer", "wijk aan duin", "wijk aan zee", "wimmenum", "winkel", "wogmeer", "wognum", "wormer", "wormerveer", "zaandam", "zaandijk",
-        "zandwerven", "zeewolde", "zijdewind", "zuidermeer", "zwaag", "zwaagdijk-oost", "zwaagdijk-west", "zwijndrecht"]
+        hvc = ["alblasserdam", "bergen", "beverwijk", "den helder", "dordrecht", "drechterland", "enkhuizen", "hendrik-ido-ambacht", "heemskerk", "hollands kroon", "hoorn", "koggenland", "lelystad", "medemblik", "noordoostpolder", "opmeer", "papendrecht", "schagen", "stede broec", "velsen", "wormerland",
+        "zaanstad", "zeewolde", "zwijndrecht"]
         if self.location in hvc:
             self.data = HvcAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        irado = ["capelle aan den ijssel", "rozenburg", "schiedam", "vlaardingen"]
+        irado = ["capelle aan den ijssel", "schiedam", "vlaardingen"]
         if self.location in irado:
             self.data = IradoAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        meerlanden = ["aalsmeer", "aalsmeerderbrug", "abbenes", "aerdenhout", "badhoevedorp", "beinsdorp", "bennebroek", "bentveld", "bloemendaal", "bloemendaal aan zee", "boesingheliede", "buitenkaag", "burgerveen", "cruquius", "de zilk", "diemen", "haarlemmerliede", "halfweg", "heemstede", "hillegom",
-        "hoofddorp", "kudelstaart", "leimuiderbrug", "lijnden", "lisse", "lisserbroek", "nieuw-vennep", "noordwijk aan zee", "noordwijk-binnen", "noordwijkerhout", "oude meer", "overveen", "rijsenhout", "schiphol", "schiphol-rijk", "spaarndam", "vijfhuizen", "vogelenzang", "weteringbrug",
-        "zwaanshoek", "zwanenburg"]
+        meerlanden = ["aalsmeer", "bloemendaal", "diemen", "haarlemmermeer", "heemstede", "hillegom", "lisse", "noordwijk"]
         if self.location in meerlanden:
             self.data = MeerlandenAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        meppel = ["havelterberg", "kolderveen", "meppel", "nijeveen", "rogat"]
+        meppel = ["meppel"]
         if self.location in meppel:
             self.data = MeppelAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        middendrenthe = ["balinge", "beilen", "bovensmilde", "bruntinge", "drijber", "elp", "eursinge", "garminge", "hijken", "hoogersmilde", "hooghalen", "mantinge", "nieuw-balinge", "oranje", "orvelte", "smilde", "spier", "westerbork", "wijster", "witteveen", "zuidveld", "zwiggelte"]
+        middendrenthe = ["midden-drenthe"]
         if self.location in middendrenthe:
             self.data = MiddenDrentheAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        mijnafvalwijzer = ["aarle", "abcoude", "achterberg", "achterveld", "aerdt", "akersloot", "almkerk", "alphen", "altena", "alteveer", "amen", "america", "amerongen", "amstelhoek", "amstelveen", "amstenrade", "andel", "andelst", "anderen", "angeren", "angerlo", "anloo", "annen", "annerveenschekanaal",
-        "anreep-schieven", "ansen", "assen", "assum", "baambrugge", "baarle", "baarschot", "babberich", "babylonienbroek", "bad nieuweschans", "baexem", "bahr", "bakkum", "bakkum-noord", "balloerveld", "balloo", "bareveld", "barlage", "barneveld", "bavel", "beegden", "beek", "beerta", "beesel", "bemmel",
-        "benschop", "berg aan de maas", "bergeijk", "bergen op zoom", "berghem", "berghuizen", "bergschenhoek", "berkel en rodenrijs", "berkel-enschot", "berlicum", "best", "bevermeer", "biddinghuizen", "biest-houtakker", "bilthoven", "bingelrade", "bingerden", "bladel", "blauwestad", "bleiswijk", "blekslage",
-        "boerdonk", "bontebrug", "boornbergum", "borger", "borgercompagnie", "borkel", "born", "boskant", "bosschenhoofd", "boven pekela", "bovenveen", "boxtel", "braamberg", "breda", "breedenbroek", "breukelen", "brielle", "broek in waterland", "broek op langedijk", "broekhorn", "broekhuizen", "broekhuizenvorst",
-        "broeksittard", "bronneger", "bronnegerveen", "buchten", "buggenum", "buinen", "buinerveen", "bunne", "cabauw", "calfven", "capelle", "castelre", "casteren", "castricum aan zee", "castricum", "catsop", "ceresdorp", "chaam", "cothen", "dalem", "de beek", "de bilt", "de glind", "de groeve", "de hoef",
-        "de meern", "de meije", "de moer", "de noord", "de punt", "de steeg", "de tike", "de veenhoop", "de vleut", "de vorst", "de wijk", "de wilgen", "de woude", "demen", "den berg", "den dungen", "den hout", "dennenburg", "deursen", "deurze", "dieden", "dieren", "diessen", "doenrade", "doetinchem", "dommelen",
-        "donderen", "dongen", "dongense vaart", "doorn", "doornenburg", "doornspijk", "dorst", "draai", "drachten", "drachtstercompagnie", "drie", "driebergen-rijsenburg", "drieborg", "driel", "drogteropslagen", "drongelen", "dronten", "drouwen", "drouwenermond", "drouwenerveen", "duiven", "duizel", "dusseldorp",
-        "dussen", "echten", "eekt", "eelde", "eelderwolde", "een", "een-west", "eerde", "eersel", "eerste exloermond", "ees", "eesergroen", "eeserveen", "eethen", "eext", "eexterveen", "eexterveenschekanaal", "eexterzandvoort", "eindhoven", "einighausen", "ekehaar", "elburg", "eldersloo", "eleveld", "ell", "ellecom",
-        "ellertshaar", "elsloo", "elspeet", "elst", "ermelo", "erp", "esbeek", "etsberg", "etten", "etten-leur", "eursinge", "evertsoord", "exloo", "exloërveen", "fijnaart", "finsterwolde", "fort", "foxhol", "foxwolde", "froombosch", "gaanderen", "galder", "garderen", "gasselte", "gasselternijveen", "gasselternijveenschemond",
-        "gasteren", "geelbroek", "geertruidenberg", "geffen", "gelderswoude", "geldrop", "geleen", "gemonde", "genderen", "gendringen", "gendt", "genhout", "geverik", "giesbeek", "giessen", "gieten", "gieterveen", "gilze", "goengahuizen", "goirle", "grafhorst", "graswijk", "grathem", "grevenbicht", "griendtsveen", "groenekan",
-        "groessen", "grolloo", "grubbenvorst", "guttecoven", "haalderen", "haarzuilens", "haelen", "haghorst", "haler", "hank", "hapert", "harderwijk", "haren", "harkstede", "harmelen", "hattemerbroek", "heel", "heerhugowaard", "heerle", "heesch", "heeswijk-dinther", "hegelsom", "heibloem", "heijningen", "heiligerlee", "heiloo",
-        "hekendorp", "hellum", "helwijk", "hemmen", "herkenbosch", "herpen", "herveld", "herwen", "heteren", "heythuysen", "hezelaar", "hierden", "hilvarenbeek", "hochte", "hoevelaken", "hoeven", "hollandsche rading", "holten", "holtum", "hoog geldrop", "hoogeloon", "hoogerheide", "hoogezand", "horn", "horst", "horsten",
-        "houtdorp", "houten", "houtigehage", "huijbergen", "huis ter heide", "huisseling", "huissen", "hulsberg", "hulshorst", "hulten", "hunsel", "ijsselmuiden", "ilpendam", "ittervoort", "jaarsveld", "jabeek", "kaatsheuvel", "kamerik", "kampen", "kamperveen", "kanis", "kasteren", "katwoude", "keldonk", "kelmond",
-        "kelpen-oler", "kerkdorp", "kerkenveld", "kessel", "kibbelgaarn", "kiel-windeweer", "kinderbos", "klein-dongen", "kleine meers", "klijndijk", "klundert", "knegsel", "kockengen", "koedijk", "koekange", "koekangerveld", "kolham", "kootwijk", "kootwijkerbroek", "kopstukken", "kortehemmen", "krimpen aan den ijssel",
-        "kronenberg", "kropswolde", "kruisweg", "laag-soeren", "langbroek", "langelo", "langenberg", "langeweg", "lapstreek", "lathum", "leersum", "leiden", "leiderdorp", "lennisheuvel", "lerop", "leusden", "leusden-zuid", "leutingewolde", "leuvenum", "liempde", "lieveren", "limbricht", "limmen", "limmerkoog", "linde",
-        "linne", "lith", "lithoijen", "lobith", "loenen aan de vecht", "loenersloot", "loo", "looeind", "loon op zand", "loon", "loosbroek", "lopik", "lopikerkapel", "lottum", "luddeweer", "luissel", "luyksgestel", "maarn", "maarsbergen", "maarssen", "maarssenbroek", "maartensdijk", "maasband", "maasbracht", "maaskantje",
-        "macharen", "maren", "maren-kessel", "mariaheide", "marken", "marwijksoord", "matsloot", "meeden", "meerlo", "meers", "meeuwen", "megchelen", "megen", "melderslo", "melick", "merkelbeek", "meterik", "middelbeers", "middelrode", "midlaren", "midwolda", "mierlo", "mijdrecht", "moerdijk", "moerstraten", "molenschot",
-        "monnickendam", "montfort", "mullegen", "munstergeleen", "muntendam", "mussel", "musselkanaal", "nattenhoven", "neer", "neerbeek", "neeritter", "neerlangel", "neerloon", "nergena", "nes aan de amstel", "netersel", "netterden", "nietap", "nieuw annerveen", "nieuw-beerta", "nieuw-buinen", "nieuw-roden", "nieuw-scheemda",
-        "nieuw-wehl", "nieuwe pekela", "nieuwediep", "nieuwendijk", "nieuwer ter aa", "nieuwersluis", "nieuwolda", "nigtevecht", "nijega", "nijkerk", "nijkerkerveen", "nijlande", "nijnsel", "nispen", "nistelrode", "nooitgedacht", "noord-scharwoude", "noordbroek", "noordeinde", "noordhoek", "norg", "numero dertien", "nunhem",
-        "nunspeet", "nuth", "obbicht", "odoorn", "odoornerveen", "offenbeek", "ohe en laak", "oijen", "oirsbeek", "oirschot", "oldebroek", "olland", "ommelanderwijk", "onstwedde", "oosteind", "oosteinde", "oostelbeers", "oosterhout", "oosterwolde", "oostvoorne", "oostwold", "ooy", "opeinde", "oss", "ossendrecht", "oud annerveen",
-        "oud gastel", "oud-zevenaar", "oud-zuilen", "oude pekela", "oudega", "oudemolen", "oudenbosch", "oudewater", "oudezijl", "oudkarspel", "overberg", "overlangel", "overschild", "paarlo", "pannerden", "papekop", "papenhoven", "papenvoort", "paterswolde", "peest", "peize", "peizermade", "peizerwold", "polsbroek",
-        "polsbroekerdam", "posterholt", "posthoorn", "purmer", "puth", "putte", "putten", "raamsdonk", "raamsdonksveer", "randwijk", "ravenstein", "ressen", "reutje", "reuver", "rheden", "rhee", "rhenen", "riel", "riethoven", "rijen", "rijkel", "rijssen", "rockanje", "roden", "rodenrijs", "roderesch", "roderwolde", "roermond",
-        "roggel", "rolde", "roond", "roosendaal", "rotte", "rotterdam", "rottevalle", "rucphen", "ruinen", "ruinerwold", "s gravenmoer", "s-gravenmoerse vaart", "s-heerenbroek", "sandebuur", "sappemeer", "sassenheim", "schaft", "schalkwijk", "scharmer", "scheemda", "scherpenzeel", "schijf", "schijndel", "schildwolde", "schimmert",
-        "schinnen", "schinveld", "schipborg", "schoonloo", "selissen", "sevenum", "siddeburen", "silvolde", "sinderen", "sint odilienberg", "sint pancras", "sint-michielsgestel", "sint-oedenrode", "sittard", "sleeuwijk", "slijk-ewijk", "slochteren", "smalle ee", "smeerling", "spankeren", "spaubeek", "speuld", "spijk", "spijkerboor",
-        "spoordonk", "sprang", "sprundel", "st. willebrord", "stadskanaal", "stampersgat", "standdaarbuiten", "staverden", "steenbergen", "steendam", "steensel", "stein", "sterenborg", "stevensweert", "stoutenburg", "strijbeek", "stroe", "swalmen", "sweikhuizen", "swifterbant", "swolgen", "t goy", "t harde", "t loo", "taarlo",
-        "teeffelen", "telgt", "ter aard", "ter wupping", "terborg", "terheijl", "terschuur", "thorn", "tienhoven", "tienray", "tilburg", "tjuchem", "tolkamer", "tongeren", "tonnekreek", "tonsel", "tripscompagnie", "trutjeshoek", "tuindorp", "tull en t waal", "tweede exloermond", "tweede valthermond", "tynaarlo", "ubbena",
-        "udenhout", "uitdam", "uitgeest", "uitweg", "uitwijk", "ulft", "ulicoten", "ulvenhout", "uppel", "urmond", "utrecht", "valburg", "valkenswaard", "valthe", "valthermond", "varsselder", "varsseveld", "veen", "veendam", "veenhuizen", "veeningen", "veghel", "velp", "verlaat", "vessem", "vierhouten", "vierpolders", "vinkel",
-        "vinkeveen", "vledderhuizen", "vledderveen", "vleuten", "vlodrop", "vlodrop-station", "voorhout", "voorthuizen", "vorstenbosch", "voskuil", "vosseberg", "vredenheim", "vreeland", "vries", "vrijhoeve-capelle", "vrilkhoven", "waalwijk", "waardhuizen", "warmond", "waspik", "waspik-zuid", "watergang", "waterhuizen",
-        "waverveen", "weebosch", "wehl", "werkendam", "wessem", "westbroek", "westdorp", "westelbeers", "westendorp", "westerbroek", "westerhoven", "westerlee", "westervelde en zuidvelde", "westervoort", "wezep", "wijbosch", "wijk bij duurstede", "wijk en aalburg", "wijnandsrade", "wijnbergen", "wildervank", "wildervanksterdallen",
-        "willemstad", "willige langerak", "wilnis", "wilsum", "winde", "winschoten", "wintelre", "witten", "woensdrecht", "woerden", "woudbloem", "woudrichem", "wouw", "wouwse plantage", "yde", "zalk", "zandberg", "zeegse", "zegge", "zegveld", "zeijen", "zeijerveld", "zetten", "zevenaar", "zevenbergschen hoek", "zijtaart",
-        "zoetermeer", "zoeterwoude-dorp", "zoeterwoude-rijndijk", "zuid-scharwoude", "zuidbroek", "zuiderwoude", "zuidlaarderveen", "zuidlaren", "zuidwolde", "zwartebroek", "zwartewaal"]
+        mijnafvalwijzer = ["aa en hunze", "alphen-chaam", "assen", "altena", "amstelveen", "baarle-nassau", "barneveld", "beek", "beekdaelen", "beesel", "bergeijk", "bergen op zoom", "bernheze", "best", "bladel", "borger-odoorn", "boxtel", "breda", "brielle", "castricum", "de ronde venen", "de wolden", "de bilt",
+        "doetinchem", "dongen", "dronten", "duiven", "eersel", "eindhoven", "elburg", "ermelo", "etten-leur", "geertruidenberg", "geldrop-mierlo", "gilze en rijen", "goirle", "halderberge", "harderwijk", "heerhugowaard", "heiloo", "hilvarenbeek", "horst aan de maas", "houten", "kampen", "krimpen aan den ijssel",
+        "langedijk", "lansingerland", "leiden", "leiderdorp", "leudal", "leusden", "lingewaard", "loon op zand", "lopik", "maasgouw", "meierijstad", " midden-groningen", "moerdijk", "nijkerk", "noordenveld", "nunspeet", "oirschot", "oldambt", "oldebroek", "oosterhout", "oss", "oude ijsselstreek", "oude pekela",
+        "putten", "oudewater", "overbetuwe", "rheden", "rhenen", "rijssen-holten", "roerdalen", "roermond", "roosendaal", "rotterdam", "rucphen", "scherpenzeel", "sint-michielsgestel", "sittard-geleen", "smallingerland", "stadskanaal", "stein", "stichtse vecht", "teylingen", "tilburg", "tynaarlo", "uitgeest",
+        "utrecht", "utrechtse heuvelrug", "valkenswaard", "veendam", "waalwijk", "waterland", "wijk bij duurstede", "westervoort", "westvoorne", "woensdrecht", "woerden", "zevenaar", "zoetermeer", "zoeterwoude"]
         if self.location in mijnafvalwijzer:
             self.data = MijnAfvalWijzerAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        nissewaard = ["abbenbroek", "geervliet", "heenvliet", "hekelingen", "simonshaven", "spijkenisse", "zuidland"]
+        nissewaard = ["nissewaard"]
         if self.location in nissewaard:
             self.data = NissewaardAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        omrin = ["aalsum", "achlum", "aegum", "akkrum", "anjum", "appelscha", "appingedam", "augsbuurt", "augustinusga", "baaiduinen", "baard", "baijum", "bakkeveen", "ballum", "beers", "beetgum", "beetgumermolen", "beetsterzwaag", "bergum", "berlikum", "birdaard", "blesdijke", "blessum", "blija", "boelenslaan",
-        "boer", "boijl", "boksum", "bokum", "bontebok", "bornwird", "brantgum", "breede", "britsum", "broek", "buitenpost", "buren", "burum", "cornjum", "de blesse", "de hoeve", "de knijpe", "deinum", "dokkum", "dongjum", "donkerbroek", "doodstil", "douwen", "drachten-azeven", "drogeham", "dronrijp", "ee",
-        "eemshaven", "eenrum", "eernewoude", "eestrum", "elsloo", "engelum", "engwierum", "eppenhuizen", "ewer", "ferwerd", "finkum", "firdgum", "fochteloo", "formerum", "foudgum", "franeker", "friens", "frieschepalen", "garijp", "genum", "gerkesklooster", "gersloot", "giekerk", "gorredijk", "goutum", "grijssloot",
-        "groot maarslag", "grouw", "hallum", "hantum", "hantumeruitburen", "hantumhuizen", "hardegarijp", "harkema", "harlingen", "haskerdijken", "haule", "haulerwijk", "hee", "heerenveen", "hefswal", "hempens	hempus", "hemrik", "herbaijum", "hiaure", "hijlaard", "hijum", "hitzum", "hogebeintum", "hollum", "holwerd",
-        "hoorn", "hoornsterzwaag", "hornhuizen", "houwerzijl", "huins", "idaard", "irnsum", "janum", "jellum", "jelsum", "jislum", "jonkersland", "jorwerd", "jouswier", "jubbega", "kaakhorn", "kaard", "kantens", "katershorn", "katlijk", "kinnum", "klein maarslag", "kleine huisjes", "klooster-lidlum", "kloosterburen",
-        "kollum", "kollumerpomp", "kollumerzwaag", "koningsoord", "kootstertille", "kruisweg", "landerum", "langedijke", "langelille", "langezwaag", "lauwersoog", "leens", "leeuwarden", "lekkum", "lichtaard", "lies", "lioessens", "lions", "lippenhuizen", "luinjeberd", "luxwoude", "makkinga", "mantgum", "marrum",
-        "marssum", "menaldum", "mensingeweer", "metslawier", "midlum", "midsland", "miedum", "mildam", "minnertsga", "moddergat", "molenend", "molenrij", "morra", "munnekeburen", "munnekezijl", "nes", "niawier", "niekerk", "nieuwebrug", "nieuwehorne", "nieuweschoot", "nij altoenae", "nij beets", "nijeberkoop",
-        "nijeholtpade", "nijeholtwolde", "nijelamer", "nijetrijne", "noordbergum", "noordpolderzijl", "noordwolde", "oenkerk", "oldeberkoop", "oldeboorn", "oldeholtpade", "oldeholtwolde", "oldelamer", "oldenzijl", "oldetrijne", "oldorp", "olterterp", "oosteinde", "oosterbierum", "oosterend", "oosterlittens",
-        "oostermeer", "oosternieland", "oosternijkerk", "oosterstreek", "oosterwolde", "oostrum", "opwierde", "oranjewoud", "oude leije", "oudebildtzijl", "oudedijk", "oudehorne", "oudeschip", "oudeschoot", "oudkerk", "oudwoude", "paapstil", "paesens", "peins", "peperga", "pieterburen", "pietersbierum", "raard",
-        "ravenswoud", "reitsum", "ried", "rijperkerk", "roodehaan", "roodeschool", "roordahuizum", "rottum", "rottumeroog", "rottumerplaat", "schalsum", "scherpenzeel", "schingen", "schouwen", "schouwerzijl", "sexbierum", "siegerswoude", "simonszand", "sint annaparochie", "sint jacobiparochie", "slappeterp",
-        "slijkenburg", "snakkerburen", "solwerd", "sonnega", "spanga", "spannum", "startenhuizen", "steggerda", "stiens", "stitswerd", "striep", "stroobos", "suameer", "suawoude", "surhuisterveen", "surhuizum", "swichum", "t lage van de weg", "t stort", "teerns", "ter idzard", "terband", "ternaard", "terwispel",
-        "tietjerk", "tijnje", "tjalleberd", "tjamsweer", "triemen", "twijzel", "twijzelerheide", "tzum", "tzummarum", "uithuizen", "uithuizermeeden", "ulrum", "ureterp", "usquert", "valom", "veenklooster", "vierhuizen", "vinkega", "vliedorp", "vrouwenparochie", "waaxens", "wadwerd", "wanswerd", "warffum",
-        "warfhuizen", "warfstermolen", "warga", "warstiens", "wartena", "waskemeer", "wehe-den hoorn", "weidum", "welsrijp", "west-terschelling", "westergeest", "westernieland", "westhoek", "wetsens", "wier", "wierhuizen", "wierum", "wijnaldum", "wijnjewoude", "wijns", "wijtgaard", "winsum", "wirdum", "wolvega",
-        "zandeweer", "zandhuizen", "zevenhuizen", "zoutkamp", "zuurdijk", "zwagerbosch", "zweins"]
+        omrin = ["Achtkarspelen", "Ameland", "Appingedam", "Harlingen", "Heerenveen", "Het Hoge Land(De Marne", "Eemsmond)", "Leeuwarden", "Noardeast Fryslân", "Ooststellingwerf", "Opsterland", "Terschelling", "Tietjerksteradeel", "Waadhoeke", "Weststellingwerf"]
         if self.location in omrin:
             self.data = OmrinAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        purmerend = ["middenbeemster", "noordbeemster", "purmerend", "purmerbuurt", "westbeemster", "zuidoostbeemster"]
+        purmerend = ["beemster", "purmerend"]
         if self.location in purmerend:
             self.data = PurmerendAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        rd4 = ["amstenrade", "banholt", "bemelen", "berg", "beutenaken", "bingelrade", "bocholtz", "broekhem", "brunssum", "bunde", "cadier en keer", "doenrade", "eckelrade", "eijsden", "elkenrade", "epen", "eperheide", "etenaken", "euverem", "eys", "eyserheide", "geulle aan de maas", "geulle", "gronsveld", "gulpen",
-        "heerlen", "heijenrath", "hilleshagen", "hoensbroek", "holset", "houthem", "hulsberg", "ingber", "jabeek", "kerkrade", "klimmen", "kunrade", "landgraaf", "lemiers", "maastricht", "margraten", "mariadorp en poelveld", "mechelen", "meerssen", "merkelbeek", "mesch en withuis", "mheer", "moorveld", "nijswiller",
-        "noorbeek", "nuth", "oirsbeek", "oost-maarland", "oud-valkenburg", "partij-wittem", "puth", "ransdaal", "reijmerstok", "rijckholt", "rothem", "scheulder", "schimmert", "schin op geul", "schinnen", "schinveld", "schweiberg", "sibbe", "simpelveld", "sint geertruid", "slenaken", "stokhem", "sweikhuizen",
-        "trintelen", "ubachsberg", "ulestraten", "vaals", "valkenburg", "vijlen", "vilt", "voerendaal", "wahlwiller", "wijlre", "wijnandsrade"]
+        rd4 = ["beekdaelen", "brunssum", "eijsden-margraten", "gulpen-wittem", "heerlen", "kerkrade", "landgraaf", "maastricht", "meerssen", "simpelveld", "vaals", "valkenburg aan de geul", "voerendaal"]
         if self.location in rd4:
             self.data = Rd4Afval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        rmn = ["austerlitz", "baarn", "bosch en duin", "bunnik", "den dolder", "eembrugge", "huis ter heide", "ijsselstein", "lage vuursche", "nieuwegein", "odijk", "soest", "soestduinen", "soesterberg", "werkhoven", "zeist"]
+        rmn = ["baarn", "bunnik", "ijsselstein", "nieuwegein", "soest", "zeist"]
         if self.location in rmn:
             self.data = RmnAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        rova = ["aalten", "agelo", "albergen", "amersfoort", "ane", "anerveen", "anevelde", "ankum", "arrien", "baarlo", "baars", "balkbrug", "basse", "beerze", "beerzerveld", "belt-schutsloot", "bergentheim", "blankenham", "blokzijl", "boschoord", "bredevoort", "broekland", "brucht", "bruchterveld",
-        "bunschoten-spakenburg", "collendoorn", "dalfsen", "dalmsholte", "darp", "de bult", "de heurne", "de krim", "de pol", "dedemsvaart", "den ham", "den velde", "denekamp", "deurningen", "diever", "dieverbrug", "diffelen", "dinxperlo", "doldersum", "dwingeloo", "eemdijk", "eemster", "eesveen",
-        "fleringen", "frederiksoord", "geerdijk", "geesteren", "geeuwenbrug", "genemuiden", "giethmen", "giethoorn", "gramsbergen", "groenlo", "haarle", "harbrinkhoek", "hardenberg", "harreveld", "hasselt", "hattem", "havelte", "havelterberg", "heemserveen", "heerde", "heeten", "heino", "hezingen", "holtheme",
-        "holthone", "hoogenweg", "hoogland", "hooglanderveen", "hoonhorst", "ijhorst", "ijsselham", "kalenberg", "kallenkote", "kloosterhaar", "kuinre", "laag zuthem", "langeveen", "lattrop-breklenkamp", "leggeloo", "lemele", "lemelerveld", "lhee", "lheebroek", "lichtenvoorde", "lierderholthuis", "lievelde",
-        "loozen", "lutten", "luttenberg", "mander", "manderveen", "mariaparochie", "marienvelde", "marijenkampen", "mariënberg", "mariënheem", "marle", "mastenbroek", "meddo", "nederland", "nieuw heeten", "nieuwleusen", "nijensleek", "nutter", "oldemarkt", "olst", "ommen", "onna", "ootmarsum", "ossenzijl",
-        "oud ootmarsum", "oudleusen", "paasloo", "punthorst", "raalte", "radewijk", "reutum", "rheeze", "rheezerveen", "rossum", "rouveen", "saasveld", "scheerwolde", "schuinesloot", "sibculo", "sint jansklooster", "slagharen", "staphorst", "steenwijk", "steenwijkerwold", "stegeren", "tilligte", "tubbergen",
-        "tuk", "uffelte", "urk", "vasse", "veessen", "venebrugge", "vilsteren", "vinkenbuurt", "vledder", "vledderveen", "vollenhove", "vorchten", "vragender", "vriezenveen", "vroomshoop", "wanneperveen", "wapenveld", "wapse", "wapserveen", "weerselo", "welsum", "wesepe", "westeinde", "westerhaar-vriezenveensewijk",
-        "wetering", "wijhe", "wilhelminaoord", "willemsoord", "winterswijk", "witharen", "witte paarden", "wittelte", "woudenberg", "zieuwent", "zorgvlied", "zuidveen", "zwartsluis", "zwolle"]
+        rova = ["aalten", "amersfoort", "bunschoten", "dalfsen", "dinkelland", "hardenberg", "hattem", "heerde", "olst-wijhe", "ommen", "oost gelre", "raalte", "staphorst", "steenwijkerland", "tubbergen", "twenterand", "urk", "westerveld", "winterswijk",
+        "woudenberg", "zwartewaterland", "zwolle"]
         if self.location in rova:
             self.data = RovaAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
@@ -489,18 +414,17 @@ class AfvalinfoData(object):
             self.data = SliedrechtAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        spaarnelanden = ["haarlem", "spaarndam-west", "zandvoort"]
+        spaarnelanden = ["haarlem", "zandvoort"]
         if self.location in spaarnelanden:
             self.data = SpaarnelandenAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        suez = ["arnhem", "elden", "schaarsbergen"]
+        suez = ["arnhem"]
         if self.location in suez:
             self.data = SuezAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        twentemilieu = ["aadorp", "almelo", "ambt delden", "beckum", "bentelo", "beuningen", "boekelo", "borne", "bornerbroek", "buurse", "de lutte", "delden", "diepenheim", "enschede", "enter", "glane", "glanerbrug", "goor", "haaksbergen", "hengelo", "hengevelde",
-        "hertme", "lonneker", "losser", "markelo", "oldenzaal", "overdinkel", "st. isidorushoeve", "usselo", "wierden", "zenderen"]
+        twentemilieu = ["almelo", "borne", "enschede", "haaksbergen", "hengelo", "hof van twente", "losser", "oldenzaal", "wierden"]
         if self.location in twentemilieu:
             self.data = TwentemilieuAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
@@ -510,45 +434,37 @@ class AfvalinfoData(object):
             self.data = VeldhovenAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        venlo = ["arcen", "belfeld", "lomm", "steyl", "tegelen", "velden", "venlo"]
+        venlo = ["venlo"]
         if self.location in venlo:
             self.data = VenloAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        venray = ["blitterswijck", "castenray", "geijsteren", "heide", "leunen", "merselo", "oirlo", "oostrum", "smakt", "venray", "veulen", "vredepeel", "wanssum", "ysselsteyn"]
+        venray = ["venray"]
         if self.location in venray:
             self.data = VenrayAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        vijfheerenlanden = ["ameide", "everdingen", "hagestein", "hei- en boeicop", "hoef en haag", "kedichem", "leerbroek", "leerdam", "lexmond", "meerkerk", "nieuwland", "oosterwijk", "ossenwaard", "schoonrewoerd", "tienhoven aan de lek", "vianen", "zijderveld"]
+        vijfheerenlanden = ["vijfheerenlanden"]
         if self.location in vijfheerenlanden:
             self.data = VijfheerenlandenAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        westerkwartier = ["aduard", "boerakker", "briltil", "de wilp", "den ham_" "den horn", "doezum", "enumatil", "ezinge", "feerwerd", "garnwerd", "grijpskerk", "grootegast", "jonkersvaart", "kommerzijl", "kornhorn", "lauwerzijl", "leek", "lettelbert",
-        "lucaswolde", "lutjegast", "marum", "midwolde", "niebert", "niehove", "niekerk", "niezijl", "noordhorn", "noordwijk", "nuis", "oldehove", "oldekerk", "oostwold", "opende", "pieterzijl", "saaksum", "sebaldeburen", "tolbert", "visvliet", "zevenhuizen", "zuidhorn"]
+        westerkwartier = ["westerkwartier"]
         if self.location in westerkwartier:
             self.data = WesterkwartierAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        westland = ["de lier", "honselersdijk", "kwintsheul", "maasdijk", "monster", "naaldwijk", "poeldijk", "s-gravenzande", "ter heijde", "wateringen"]
+        westland = ["westland"]
         if self.location in westland:
             self.data = WestlandAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        zrd = ["aagtekerke", "aardenburg", "anna jacobapolder", "bath", "biezelinge", "biggekerke", "breskens", "cadzand", "clinge", "colijnsplaat", "dishoek", "domburg", "eede", "gapinge", "geersdijk", "graauw", "grijpskerke", "groede", "hansweert", "heikant",
-        "hengstdijk", "hoofdplaat", "hulst", "ijzendijke", "kamperland", "kapelle", "kapellebrug", "kats", "kloosterzande", "kortgene", "koudekerke", "krabbendijke", "kruiningen", "kuitaart", "lamswaarde", "meliskerke", "nieuw-namen", "nieuwvliet", "oostburg",
-        "oostdijk", "oostkapelle", "ossenisse", "oud-vossemeer", "poortvliet", "retranchement", "rilland", "scherpenisse", "schoondijke", "schore", "serooskerke", "sint anna ter muiden", "sint jansteen", "sint kruis", "sint philipsland", "sint-annaland", "sint-maartensdijk",
-        "sluis", "stavenisse", "terhole", "tholen", "veere", "vogelwaarde", "vrouwenpolder", "waarde", "walsoorden", "waterlandkerkje", "wemeldinge", "westkapelle", "wissenkerke", "yerseke", "zoutelande", "zuidzande"]
+        zrd = ["hulst", "kapelle", "noord-beveland", "reimerswaal", "sluis", "tholen", "veere"]
         if self.location in zrd:
             self.data = ZrdAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        zuidwestfriesland = ["abbega", "allingawier", "arum", "blauwhuis", "bolsward", "bozum", "breezanddijk", "britswerd", "burgwerd", "cornwerd", "dedgum", "deersum", "edens", "exmorra", "ferwoude", "folsgare", "gaast", "gaastmeer", "gauw", "goënga", "greonterp",
-        "hartwerd", "heeg", "hemelum", "hennaard", "hichtum", "hidaard", "hieslum", "hindeloopen", "hommerts", "idsegahuizum", "idzega", "ijlst", "ijsbrechtum", "indijk", "heidenschap", "itens", "jutrijp", "kimswerd", "kornwerderzand", "koudum", "koufurderrige",
-        "kubaard", "loënga", "lollum", "longerhouw", "lutkewierum", "makkum", "molkwerum", "nijhuizum", "nijland", "offingawier", "oosterend", "oosterwierum", "oosthem", "oppenhuizen", "oudega", "parrega", "piaam", "pingjum", "poppingawier", "rauwerd", "rien", "roodhuis",
-        "sandfirden", "scharnegoutum", "schettens", "schraard", "sijbrandaburen", "smallebrugge", "sneek", "stavoren", "terzool", "tirns", "tjalhuizum", "tjerkwerd", "uitwellingerga", "waaxens", "warns", "westhem", "wieuwerd", "witmarsum", "wolsum", "wommels", "wons",
-        "workum", "woudsend", "ypecolsga", "zurich"]
+        zuidwestfriesland = ["zuidwest-friesland"]
         if self.location in zuidwestfriesland:
             self.data = ZuidWestFrieslandAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
