@@ -153,6 +153,7 @@ NUMBER_TO_MONTH = {
 }
 
 CONF_CITY = "city"
+CONF_LOCATION = "location"
 CONF_POSTCODE = "postcode"
 CONF_STREET_NUMBER = "streetnumber"
 CONF_DATE_FORMAT = "dateformat"

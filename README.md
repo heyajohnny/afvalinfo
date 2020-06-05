@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'Gemeenten' in The Netherlands: 308,5 of 352 = 87,6%
+### Number of supported 'gemeenten' in The Netherlands: 308,5 of 352 = 87,6%
 
 If you like my work, please buy me a coffee. This will keep me awake :)
 
@@ -143,9 +143,9 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 ##### --Westland
 - de lier, honselersdijk, kwintsheul, maasdijk, monster, naaldwijk, poeldijk, s-gravenzande, ter heijde, wateringen
 
-### Add cities
-The code is designed to add new cities relatively easy.
-Please create an issue in https://github.com/heyajohnny/afvalinfo/issues to request a new city.
+### Add 'gemeente'
+The code is designed to add new 'gemeentes' relatively easy.
+Please create an issue in https://github.com/heyajohnny/afvalinfo/issues to request a new 'gemeente'.
 If there are any problems with the component, don't hesitate to create an issue here: https://github.com/heyajohnny/afvalinfo/issues
 
 ### Install:
@@ -158,7 +158,7 @@ Example config:
       resources:                       (at least 1 required)
         - pbd
         - trash_type_today
-      city: sliedrecht                 (required, default = sliedrecht)
+      location: sliedrecht             (required, default = sliedrecht)
       postcode: 33361AB                (required, default = 3361AB)
       streetnumber: 1                  (required, default = 1)
       dateformat: '%d-%m-%Y'           (optional, default = %d-%m-%Y) day-month-year
@@ -183,7 +183,7 @@ So if you only specify -pbd and -trash_type_today under your resources, you will
         - gft
         - trash_type_today
         - trash_type_tomorrow
-      city: sliedrecht
+      location: sliedrecht
       postcode: 33361AB
       streetnumber: 1
 ```

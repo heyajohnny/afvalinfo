@@ -102,6 +102,7 @@ from .const.const import (
     MIN_TIME_BETWEEN_UPDATES,
     _LOGGER,
     CONF_CITY,
+    CONF_LOCATION,
     CONF_POSTCODE,
     CONF_STREET_NUMBER,
     CONF_DATE_FORMAT,
@@ -175,7 +176,8 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Required(CONF_RESOURCES, default=[]): vol.All(
             cv.ensure_list, [vol.In(SENSOR_TYPES)]
         ),
-        vol.Required(CONF_CITY, default="sliedrecht"): cv.string,
+        vol.Optional(CONF_CITY, default=""): cv.string,
+        vol.Optional(CONF_LOCATION, default="sliedrecht"): cv.string,
         vol.Required(CONF_POSTCODE, default="3361AB"): cv.string,
         vol.Required(CONF_STREET_NUMBER, default="1"): cv.string,
         vol.Optional(CONF_DATE_FORMAT, default = "%d-%m-%Y"): cv.string,
@@ -188,7 +190,9 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 def setup_platform(hass, config, add_entities, discovery_info=None):
     _LOGGER.debug("Setup Afvalinfo sensor")
 
-    city = config.get(CONF_CITY).lower().strip()
+    location = config.get(CONF_CITY).lower().strip()
+    if len(location) == 0:
+        location = config.get(CONF_LOCATION).lower().strip()
     postcode = config.get(CONF_POSTCODE).strip()
     street_number = config.get(CONF_STREET_NUMBER)
     date_format = config.get(CONF_DATE_FORMAT).strip()
@@ -202,7 +206,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
         if "trash_type_tomorrow" in resourcesMinusTodayAndTomorrow:
             resourcesMinusTodayAndTomorrow.remove("trash_type_tomorrow")
 
-        data = AfvalinfoData(city, postcode, street_number, resourcesMinusTodayAndTomorrow)
+        data = AfvalinfoData(location, postcode, street_number, resourcesMinusTodayAndTomorrow)
     except urllib.error.HTTPError as error:
         _LOGGER.error(error.reason)
         return False
@@ -229,9 +233,9 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
 
 
 class AfvalinfoData(object):
-    def __init__(self, city, postcode, street_number, resources):
+    def __init__(self, location, postcode, street_number, resources):
         self.data = None
-        self.city = city
+        self.location = location
         self.postcode = postcode
         self.street_number = street_number
         self.resources = resources
@@ -240,78 +244,78 @@ class AfvalinfoData(object):
     def update(self):
         _LOGGER.debug("Updating Waste collection dates")
         acv = ["bennekom", "de klomp", "deelen", "doorwerth", "ede", "ederveen", "harskamp", "heelsum", "heveadorp", "lunteren", "oosterbeek", "otterlo", "renkum", "renswoude", "veenendaal", "wageningen", "wekerom", "wolfheze"]
-        if self.city in acv:
+        if self.location in acv:
             self.data = AcvAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         alkmaar = ["alkmaar", "driehuizen", "graft", "grootschermer", "koedijk", "markenbinnen", "noordeinde", "oost-graftdijk", "oterleek", "oudorp", "de rijp", "schermerhorn", "starnmeer", "stompetoren", "ursem", "west-graftdijk", "zuidschermer"]
-        if self.city in alkmaar:
+        if self.location in alkmaar:
             self.data = AlkmaarAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         almere = ["almere"]
-        if self.city in almere:
+        if self.location in almere:
             self.data = AlmereAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         alphenaandenrijn = ["aarlanderveen", "alphen aan den rijn", "benthuizen", "boskoop", "hazerswoude-dorp", "hazerswoude-rijndijk", "koudekerk aan den rijn", "zwammerdam"]
-        if self.city in alphenaandenrijn:
+        if self.location in alphenaandenrijn:
             self.data = AlphenAanDenRijnAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         area = ["aalden", "achterste erm", "alteveer", "barger-compascuum", "benneveld", "coevorden", "dalen", "dalerpeel", "dalerveen", "de kiel", "diphoorn", "eldijk", "elim", "emmen", "emmer-compascuum", "erica", "erm",
         "fluitenberg", "gees", "geesbrug", "hollandscheveld", "holsloot", "hoogeveen", "klazienaveen", "langerak", "meppen", "nieuw moscou", "nieuw-amsterdam", "nieuw-dordrecht", "nieuw-schoonebeek", "nieuw-weerdinge",
         "nieuwe krim", "nieuweroord", "nieuwlande", "nijstad", "noord-sleen", "noordscheschut", "oosterhesselen", "pesse", "roswinkel", "schoonebeek", "schoonoord", "sleen", "steenwijksmoer", "stieltjeskanaal", "stuifzand",
         "t haantje", "tiendeveen", "veenhuizen", "veenoord", "wachtum", "weiteveen", "wezup", "wezuperbrug", "zwartemeer", "zweeloo", "zwinderen"]
-        if self.city in area:
+        if self.location in area:
             self.data = AreaAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         avalex = ["delfgauw", "delft", "den hoorn", "leidschendam", "maaldrift", "maasland", "nootdorp", "pijnacker", "rijswijk", "schipluiden", "sion", "stompwijk", "strijp", "t haantje", "t woudt", "voorburg", "wassenaar"]
-        if self.city in avalex:
+        if self.location in avalex:
             self.data = AvalexAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         bar = ["barendrecht", "bolnes", "oostendam", "poortugaal", "rhoon", "ridderkerk"]
-        if self.city in bar:
+        if self.location in bar:
             self.data = BarAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         berkelland = ["beltrum", "borculo", "eibergen", "geesteren", "gelselaar", "haarlo", "neede", "noordijk", "rekken", "rietmolen", "ruurlo"]
-        if self.city in berkelland:
+        if self.location in berkelland:
             self.data = BerkellandAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         blink = ["aarle-rixtel", "asten", "bakel", "beek en donk", "de mortel", "de rips", "deurne", "elsendorp", "gemert", "gerwen", "handel", "heeze", "helenaveen", "helmond", "heusden", "leende", "lierop", "lieshout", "liessel", "mariahout", "milheeze", "nederwetten", "neerkant", "nuenen",
         "ommel", "someren", "sterksel", "vlierden"]
-        if self.city in blink:
+        if self.location in blink:
             self.data = BlinkAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         borsele = ["baarland", "borssele", "driewegen", "ellewoutsdijk", "heinkenszand", "hoedekenskerke", "kwadendamme", "lewedorp", "nieuwdorp", "nisse", "oudelande", "ovezande", "s-gravenpolder", "s-heer abtskerke", "s-heerenhoek"]
-        if self.city in borsele:
+        if self.location in borsele:
             self.data = BorseleAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         circulusberkel = ["almen", "apeldoorn", "baak", "barchem", "bathmen", "beekbergen", "beemte-broekland", "bronkhorst", "bussloo", "de vecht", "deventer", "diepenveen", "doesburg", "drempt", "eefde", "emst", "epe", "epse", "gorssel", "halle", "harfsen", "hengelo", "hoenderloo",
         "hoog soeren", "hoog-keppel", "hummelo", "joppe", "keijenborg", "klarenbeek", "kring van dorth", "laag-keppel", "laren", "lettele", "lieren", "lochem", "loenen", "nijbroek", "oene", "okkenbroek", "olburgen", "radio kootwijk", "rha", "schalkhaar", "steenderen", "terwolde", "teuge",
         "toldijk", "twello", "uddel", "ugchelen", "vaassen", "vierakker", "voorst", "vorden", "warnsveld", "wenum-wiesel", "wichmond", "wilp", "wilp-achterhoek", "zelhem", "zutphen"]
-        if self.city in circulusberkel:
+        if self.location in circulusberkel:
             self.data = CirculusBerkelAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         cyclus = ["ammerstol", "bergambacht", "berkenwoude", "bodegraven", "de meije", "driebruggen", "gouda", "gouderak", "haastrecht", "hogebrug", "hoogmade", "kaag", "krimpen aan de lek", "lageweg", "langeraar", "leimuiden", "lekkerkerk", "linschoten", "moerkapelle", "montfoort",
         "moordrecht", "nieuwe wetering", "nieuwerbrug", "nieuwerkerk aan den ijssel", "nieuwkoop", "nieuwveen", "noordeinde", "noorden", "opperduit", "oud ade", "oude wetering", "ouderkerk aan den ijssel", "reeuwijk-brug", "reeuwijk-dorp", "rijnsaterwoude", "rijpwetering", "roelofarendsveen",
         "schoonhoven", "schuwacht", "sluipwijk", "stolwijk", "tempel", "ter aar", "vlist", "waarde", "waddinxveen", "willeskop", "willige langerak", "woerdense verlaat", "woubrugge", "zevenhoven", "zevenhuizen"]
-        if self.city in cyclus:
+        if self.location in cyclus:
             self.data = CyclusAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         dar = ["afferden", "balgoij", "batenburg", "beek", "berg en dal", "bergharen", "beuningen", "deest", "druten", "erlecom", "ewijk", "groesbeek", "heilig landstichting", "hernen", "heumen", "horssen", "kekerdom", "leur", "leuth", "malden", "millingen aan de rijn", "nederasselt", "niftrik",
         "nijmegen", "ooij", "overasselt", "persingen", "puiflijk", "ubbergen", "weurt", "wijchen", "winssen"]
-        if self.city in dar:
+        if self.location in dar:
             self.data = DarAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         deafvalapp = ["aalst", "acquoy", "alem", "alphen", "altforst", "ammerzoden", "appeltern", "asch", "asperen", "axel", "beers", "beesd", "beneden-leeuwen", "beugen", "beusichem", "biervliet", "boekel", "boven-leeuwen", "boxmeer", "brakel", "breugel", "bruchem", "buren", "buurmalsen",
         "buurmalsen", "cuijk", "culemborg", "deil", "delwijnen", "dieteren", "dodewaard", "dreumel", "echt", "echteld", "eck en wiel", "enspijk", "erichem", "escharen", "est", "gameren", "gassel", "geldermalsen", "gellicum", "grave", "groeningen", "haaften", "haps", "hedel", "heerewaarden",
@@ -320,42 +324,42 @@ class AfvalinfoData(object):
         "pey", "philippine", "poederoijen", "ravenswaaij", "rhenoy", "rijkevoort", "rijswijk", "roosteren", "rossum", "rumpt", "sambeek", "sas van gent", "sint agatha", "sint anthonis", "sint hubert", "sint joost", "sluiskil", "son", "spijk", "spui", "stevensbeek", "susteren", "terneuzen",
         "tiel", "tricht", "tuil", "varik", "velddriel", "velp", "venhorst", "vierlingsbeek", "vortum-mullem", "vuren", "waardenburg", "wamel", "wanroij", "well", "wellseind", "westdorpe", "westerbeek", "wilbertoord", "zaamslag", "zaltbommel", "zennewijnen", "zoelen", "zoelmond",
         "zuiddorpe", "zuilichem"]
-        if self.city in deafvalapp:
+        if self.location in deafvalapp:
             self.data = DeAfvalAppAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         denhaag = ["den haag"]
-        if self.city in denhaag:
+        if self.location in denhaag:
             self.data = DenHaagAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         defriesemeren = ["akmarijp", "bakhuizen", "balk", "ballingbuur", "bantega", "bargebek", "boornzwaag", "boornzwaag over de wielen", "brekkenpolder", "broek", "commissiepolle", "de bels", "de polle", "de rijlst", "delburen", "delfstrahuizen", "dijken", "doniaga", "echten", "echtenerbrug",
         "eesterga", "elahuizen", "finkeburen", "follega", "goingarijp", "harich", "haskerhorne", "heide", "hooibergen", "huisterheide", "idskenhuizen", "joure", "kolderwolde", "langweer", "legemeer", "lemmer", "marderhoek", "mirns", "nieuw amerika", "nijehaske", "nijemirdum", "noed", "oldeouwer",
         "onland", "oosterzee", "oudega", "oudehaske", "oudemirdum", "ouwster-nijega", "ouwsterhaule", "rijs", "rohel", "rotstergaast", "rotsterhaule", "rottum", "ruigahuizen", "scharsterbrug", "schoterzijl", "schouw", "sint nicolaasga", "sintjohannesga", "sloten", "snikzwaag", "sondel", "spannenburg",
         "tacozijl", "terhorne", "terkaple", "teroele", "tjerkgaast", "trophorne", "vegelinsoord", "vierhuis", "vinkeburen", "vrisburen", "westend", "westerend-harich", "wijckel", "zevenbuurt"]
-        if self.city in defriesemeren:
+        if self.location in defriesemeren:
             self.data = DeFrieseMerenAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         drimmelen = ["blauwe sluis", "drimmelen", "helkant", "hooge zwaluwe", "lage zwaluwe", "made", "oud-drimmelen", "terheijden", "wagenberg"]
-        if self.city in drimmelen:
+        if self.location in drimmelen:
             self.data = DrimmelenAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         gad = ["ankeveen", "blaricum", "bussum", "de horn", "hilversum", "huizen", "kortenhoef", "laren", "muiden", "muiderberg", "naarden", "nederhorst den berg", "nieuw-loosdrecht", "oud-loosdrecht", "s-graveland", "uitermeer", "weesp"]
-        if self.city in gad:
+        if self.location in gad:
             self.data = GadAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         goereeoverflakkee = ["achthuizen", "den bommel", "dirksland", "goedereede", "havenhoofd", "herkingen", "melissant", "middelharnis", "nieuwe-tonge", "ooltgensplaat", "ouddorp", "oude-tonge", "sommelsdijk", "stad aan t haringvliet", "stellendam", "zuidzijde"]
-        if self.city in goereeoverflakkee:
+        if self.location in goereeoverflakkee:
             self.data = GoereeOverflakkeeAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         hellendoorn = ["daarle", "daarlerveen", "haarle", "hellendoorn", "nijverdal"]
-        if self.city in hellendoorn:
+        if self.location in hellendoorn:
             self.data = HellendoornAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         hvc = ["aagtdorp", "aartswoud", "abbekerk", "abbestede", "alblasserdam", "andijk", "anna paulowna", "assendelft", "avenhorn", "bant", "barsingerhorn", "benningbroek", "bergen aan zee", "bergen", "berkhout", "beverwijk", "blokdijk", "blokker", "bobeldijk", "bovenkarspel", "breezand", "bregtdorp",
         "burgerbrug", "burgervlotbrug", "callantsoog", "camperduin", "catrijp", "creil", "de buurt", "de goorn", "de haukes", "de stolpen", "de strook", "de weere", "den helder", "den oever", "dirkshorn", "dordrecht", "driehuis", "eenigenburg", "egmond aan den hoef", "egmond aan zee", "egmond-binnen",
@@ -366,31 +370,31 @@ class AfvalinfoData(object):
         "spanbroek", "spierdijk", "spijkerboor", "stroe", "stroet", "t rijpje", "t veld", "t zand", "terdiek", "tjallewal", "tolke", "tollebeek", "tuitjenhorn", "twisk", "ursem", "valkkoog", "van ewijcksluis", "vatrop", "velsen", "velsen-noord", "velsen-zuid", "velserbroek", "venhuizen", "verlaat", "waarland",
         "wadway", "warmenhuizen", "wervershoof", "westerklief", "westerland", "westknollendam", "westwoud", "westzaan", "wieringerwaard", "wieringerwerf", "wijdenes", "wijdewormer", "wijk aan duin", "wijk aan zee", "wimmenum", "winkel", "wogmeer", "wognum", "wormer", "wormerveer", "zaandam", "zaandijk",
         "zandwerven", "zeewolde", "zijdewind", "zuidermeer", "zwaag", "zwaagdijk-oost", "zwaagdijk-west", "zwijndrecht"]
-        if self.city in hvc:
+        if self.location in hvc:
             self.data = HvcAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         irado = ["capelle aan den ijssel", "rozenburg", "schiedam", "vlaardingen"]
-        if self.city in irado:
+        if self.location in irado:
             self.data = IradoAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         meerlanden = ["aalsmeer", "aalsmeerderbrug", "abbenes", "aerdenhout", "badhoevedorp", "beinsdorp", "bennebroek", "bentveld", "bloemendaal", "bloemendaal aan zee", "boesingheliede", "buitenkaag", "burgerveen", "cruquius", "de zilk", "diemen", "haarlemmerliede", "halfweg", "heemstede", "hillegom",
         "hoofddorp", "kudelstaart", "leimuiderbrug", "lijnden", "lisse", "lisserbroek", "nieuw-vennep", "noordwijk aan zee", "noordwijk-binnen", "noordwijkerhout", "oude meer", "overveen", "rijsenhout", "schiphol", "schiphol-rijk", "spaarndam", "vijfhuizen", "vogelenzang", "weteringbrug",
         "zwaanshoek", "zwanenburg"]
-        if self.city in meerlanden:
+        if self.location in meerlanden:
             self.data = MeerlandenAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         meppel = ["havelterberg", "kolderveen", "meppel", "nijeveen", "rogat"]
-        if self.city in meppel:
+        if self.location in meppel:
             self.data = MeppelAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         middendrenthe = ["balinge", "beilen", "bovensmilde", "bruntinge", "drijber", "elp", "eursinge", "garminge", "hijken", "hoogersmilde", "hooghalen", "mantinge", "nieuw-balinge", "oranje", "orvelte", "smilde", "spier", "westerbork", "wijster", "witteveen", "zuidveld", "zwiggelte"]
-        if self.city in middendrenthe:
+        if self.location in middendrenthe:
             self.data = MiddenDrentheAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         mijnafvalwijzer = ["aarle", "abcoude", "achterberg", "achterveld", "aerdt", "akersloot", "almkerk", "alphen", "altena", "alteveer", "amen", "america", "amerongen", "amstelhoek", "amstelveen", "amstenrade", "andel", "andelst", "anderen", "angeren", "angerlo", "anloo", "annen", "annerveenschekanaal",
         "anreep-schieven", "ansen", "assen", "assum", "baambrugge", "baarle", "baarschot", "babberich", "babylonienbroek", "bad nieuweschans", "baexem", "bahr", "bakkum", "bakkum-noord", "balloerveld", "balloo", "bareveld", "barlage", "barneveld", "bavel", "beegden", "beek", "beerta", "beesel", "bemmel",
@@ -423,14 +427,14 @@ class AfvalinfoData(object):
         "waverveen", "weebosch", "wehl", "werkendam", "wessem", "westbroek", "westdorp", "westelbeers", "westendorp", "westerbroek", "westerhoven", "westerlee", "westervelde en zuidvelde", "westervoort", "wezep", "wijbosch", "wijk bij duurstede", "wijk en aalburg", "wijnandsrade", "wijnbergen", "wildervank", "wildervanksterdallen",
         "willemstad", "willige langerak", "wilnis", "wilsum", "winde", "winschoten", "wintelre", "witten", "woensdrecht", "woerden", "woudbloem", "woudrichem", "wouw", "wouwse plantage", "yde", "zalk", "zandberg", "zeegse", "zegge", "zegveld", "zeijen", "zeijerveld", "zetten", "zevenaar", "zevenbergschen hoek", "zijtaart",
         "zoetermeer", "zoeterwoude-dorp", "zoeterwoude-rijndijk", "zuid-scharwoude", "zuidbroek", "zuiderwoude", "zuidlaarderveen", "zuidlaren", "zuidwolde", "zwartebroek", "zwartewaal"]
-        if self.city in mijnafvalwijzer:
+        if self.location in mijnafvalwijzer:
             self.data = MijnAfvalWijzerAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         nissewaard = ["abbenbroek", "geervliet", "heenvliet", "hekelingen", "simonshaven", "spijkenisse", "zuidland"]
-        if self.city in nissewaard:
+        if self.location in nissewaard:
             self.data = NissewaardAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         omrin = ["aalsum", "achlum", "aegum", "akkrum", "anjum", "appelscha", "appingedam", "augsbuurt", "augustinusga", "baaiduinen", "baard", "baijum", "bakkeveen", "ballum", "beers", "beetgum", "beetgumermolen", "beetsterzwaag", "bergum", "berlikum", "birdaard", "blesdijke", "blessum", "blija", "boelenslaan",
         "boer", "boijl", "boksum", "bokum", "bontebok", "bornwird", "brantgum", "breede", "britsum", "broek", "buitenpost", "buren", "burum", "cornjum", "de blesse", "de hoeve", "de knijpe", "deinum", "dokkum", "dongjum", "donkerbroek", "doodstil", "douwen", "drachten-azeven", "drogeham", "dronrijp", "ee",
@@ -446,27 +450,27 @@ class AfvalinfoData(object):
         "tietjerk", "tijnje", "tjalleberd", "tjamsweer", "triemen", "twijzel", "twijzelerheide", "tzum", "tzummarum", "uithuizen", "uithuizermeeden", "ulrum", "ureterp", "usquert", "valom", "veenklooster", "vierhuizen", "vinkega", "vliedorp", "vrouwenparochie", "waaxens", "wadwerd", "wanswerd", "warffum",
         "warfhuizen", "warfstermolen", "warga", "warstiens", "wartena", "waskemeer", "wehe-den hoorn", "weidum", "welsrijp", "west-terschelling", "westergeest", "westernieland", "westhoek", "wetsens", "wier", "wierhuizen", "wierum", "wijnaldum", "wijnjewoude", "wijns", "wijtgaard", "winsum", "wirdum", "wolvega",
         "zandeweer", "zandhuizen", "zevenhuizen", "zoutkamp", "zuurdijk", "zwagerbosch", "zweins"]
-        if self.city in omrin:
+        if self.location in omrin:
             self.data = OmrinAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         purmerend = ["middenbeemster", "noordbeemster", "purmerend", "purmerbuurt", "westbeemster", "zuidoostbeemster"]
-        if self.city in purmerend:
+        if self.location in purmerend:
             self.data = PurmerendAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         rd4 = ["amstenrade", "banholt", "bemelen", "berg", "beutenaken", "bingelrade", "bocholtz", "broekhem", "brunssum", "bunde", "cadier en keer", "doenrade", "eckelrade", "eijsden", "elkenrade", "epen", "eperheide", "etenaken", "euverem", "eys", "eyserheide", "geulle aan de maas", "geulle", "gronsveld", "gulpen",
         "heerlen", "heijenrath", "hilleshagen", "hoensbroek", "holset", "houthem", "hulsberg", "ingber", "jabeek", "kerkrade", "klimmen", "kunrade", "landgraaf", "lemiers", "maastricht", "margraten", "mariadorp en poelveld", "mechelen", "meerssen", "merkelbeek", "mesch en withuis", "mheer", "moorveld", "nijswiller",
         "noorbeek", "nuth", "oirsbeek", "oost-maarland", "oud-valkenburg", "partij-wittem", "puth", "ransdaal", "reijmerstok", "rijckholt", "rothem", "scheulder", "schimmert", "schin op geul", "schinnen", "schinveld", "schweiberg", "sibbe", "simpelveld", "sint geertruid", "slenaken", "stokhem", "sweikhuizen",
         "trintelen", "ubachsberg", "ulestraten", "vaals", "valkenburg", "vijlen", "vilt", "voerendaal", "wahlwiller", "wijlre", "wijnandsrade"]
-        if self.city in rd4:
+        if self.location in rd4:
             self.data = Rd4Afval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         rmn = ["austerlitz", "baarn", "bosch en duin", "bunnik", "den dolder", "eembrugge", "huis ter heide", "ijsselstein", "lage vuursche", "nieuwegein", "odijk", "soest", "soestduinen", "soesterberg", "werkhoven", "zeist"]
-        if self.city in rmn:
+        if self.location in rmn:
             self.data = RmnAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         rova = ["aalten", "agelo", "albergen", "amersfoort", "ane", "anerveen", "anevelde", "ankum", "arrien", "baarlo", "baars", "balkbrug", "basse", "beerze", "beerzerveld", "belt-schutsloot", "bergentheim", "blankenham", "blokzijl", "boschoord", "bredevoort", "broekland", "brucht", "bruchterveld",
         "bunschoten-spakenburg", "collendoorn", "dalfsen", "dalmsholte", "darp", "de bult", "de heurne", "de krim", "de pol", "dedemsvaart", "den ham", "den velde", "denekamp", "deurningen", "diever", "dieverbrug", "diffelen", "dinxperlo", "doldersum", "dwingeloo", "eemdijk", "eemster", "eesveen",
@@ -476,78 +480,78 @@ class AfvalinfoData(object):
         "oud ootmarsum", "oudleusen", "paasloo", "punthorst", "raalte", "radewijk", "reutum", "rheeze", "rheezerveen", "rossum", "rouveen", "saasveld", "scheerwolde", "schuinesloot", "sibculo", "sint jansklooster", "slagharen", "staphorst", "steenwijk", "steenwijkerwold", "stegeren", "tilligte", "tubbergen",
         "tuk", "uffelte", "urk", "vasse", "veessen", "venebrugge", "vilsteren", "vinkenbuurt", "vledder", "vledderveen", "vollenhove", "vorchten", "vragender", "vriezenveen", "vroomshoop", "wanneperveen", "wapenveld", "wapse", "wapserveen", "weerselo", "welsum", "wesepe", "westeinde", "westerhaar-vriezenveensewijk",
         "wetering", "wijhe", "wilhelminaoord", "willemsoord", "winterswijk", "witharen", "witte paarden", "wittelte", "woudenberg", "zieuwent", "zorgvlied", "zuidveen", "zwartsluis", "zwolle"]
-        if self.city in rova:
+        if self.location in rova:
             self.data = RovaAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         sliedrecht = ["sliedrecht"]
-        if self.city in sliedrecht:
+        if self.location in sliedrecht:
             self.data = SliedrechtAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         spaarnelanden = ["haarlem", "spaarndam-west", "zandvoort"]
-        if self.city in spaarnelanden:
+        if self.location in spaarnelanden:
             self.data = SpaarnelandenAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         suez = ["arnhem", "elden", "schaarsbergen"]
-        if self.city in suez:
+        if self.location in suez:
             self.data = SuezAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         twentemilieu = ["aadorp", "almelo", "ambt delden", "beckum", "bentelo", "beuningen", "boekelo", "borne", "bornerbroek", "buurse", "de lutte", "delden", "diepenheim", "enschede", "enter", "glane", "glanerbrug", "goor", "haaksbergen", "hengelo", "hengevelde",
         "hertme", "lonneker", "losser", "markelo", "oldenzaal", "overdinkel", "st. isidorushoeve", "usselo", "wierden", "zenderen"]
-        if self.city in twentemilieu:
+        if self.location in twentemilieu:
             self.data = TwentemilieuAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         veldhoven = ["veldhoven"]
-        if self.city in veldhoven:
+        if self.location in veldhoven:
             self.data = VeldhovenAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         venlo = ["arcen", "belfeld", "lomm", "steyl", "tegelen", "velden", "venlo"]
-        if self.city in venlo:
+        if self.location in venlo:
             self.data = VenloAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         venray = ["blitterswijck", "castenray", "geijsteren", "heide", "leunen", "merselo", "oirlo", "oostrum", "smakt", "venray", "veulen", "vredepeel", "wanssum", "ysselsteyn"]
-        if self.city in venray:
+        if self.location in venray:
             self.data = VenrayAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         vijfheerenlanden = ["ameide", "everdingen", "hagestein", "hei- en boeicop", "hoef en haag", "kedichem", "leerbroek", "leerdam", "lexmond", "meerkerk", "nieuwland", "oosterwijk", "ossenwaard", "schoonrewoerd", "tienhoven aan de lek", "vianen", "zijderveld"]
-        if self.city in vijfheerenlanden:
+        if self.location in vijfheerenlanden:
             self.data = VijfheerenlandenAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         westerkwartier = ["aduard", "boerakker", "briltil", "de wilp", "den ham_" "den horn", "doezum", "enumatil", "ezinge", "feerwerd", "garnwerd", "grijpskerk", "grootegast", "jonkersvaart", "kommerzijl", "kornhorn", "lauwerzijl", "leek", "lettelbert",
         "lucaswolde", "lutjegast", "marum", "midwolde", "niebert", "niehove", "niekerk", "niezijl", "noordhorn", "noordwijk", "nuis", "oldehove", "oldekerk", "oostwold", "opende", "pieterzijl", "saaksum", "sebaldeburen", "tolbert", "visvliet", "zevenhuizen", "zuidhorn"]
-        if self.city in westerkwartier:
+        if self.location in westerkwartier:
             self.data = WesterkwartierAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         westland = ["de lier", "honselersdijk", "kwintsheul", "maasdijk", "monster", "naaldwijk", "poeldijk", "s-gravenzande", "ter heijde", "wateringen"]
-        if self.city in westland:
+        if self.location in westland:
             self.data = WestlandAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         zrd = ["aagtekerke", "aardenburg", "anna jacobapolder", "bath", "biezelinge", "biggekerke", "breskens", "cadzand", "clinge", "colijnsplaat", "dishoek", "domburg", "eede", "gapinge", "geersdijk", "graauw", "grijpskerke", "groede", "hansweert", "heikant",
         "hengstdijk", "hoofdplaat", "hulst", "ijzendijke", "kamperland", "kapelle", "kapellebrug", "kats", "kloosterzande", "kortgene", "koudekerke", "krabbendijke", "kruiningen", "kuitaart", "lamswaarde", "meliskerke", "nieuw-namen", "nieuwvliet", "oostburg",
         "oostdijk", "oostkapelle", "ossenisse", "oud-vossemeer", "poortvliet", "retranchement", "rilland", "scherpenisse", "schoondijke", "schore", "serooskerke", "sint anna ter muiden", "sint jansteen", "sint kruis", "sint philipsland", "sint-annaland", "sint-maartensdijk",
         "sluis", "stavenisse", "terhole", "tholen", "veere", "vogelwaarde", "vrouwenpolder", "waarde", "walsoorden", "waterlandkerkje", "wemeldinge", "westkapelle", "wissenkerke", "yerseke", "zoutelande", "zuidzande"]
-        if self.city in zrd:
+        if self.location in zrd:
             self.data = ZrdAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
         zuidwestfriesland = ["abbega", "allingawier", "arum", "blauwhuis", "bolsward", "bozum", "breezanddijk", "britswerd", "burgwerd", "cornwerd", "dedgum", "deersum", "edens", "exmorra", "ferwoude", "folsgare", "gaast", "gaastmeer", "gauw", "goënga", "greonterp",
         "hartwerd", "heeg", "hemelum", "hennaard", "hichtum", "hidaard", "hieslum", "hindeloopen", "hommerts", "idsegahuizum", "idzega", "ijlst", "ijsbrechtum", "indijk", "heidenschap", "itens", "jutrijp", "kimswerd", "kornwerderzand", "koudum", "koufurderrige",
         "kubaard", "loënga", "lollum", "longerhouw", "lutkewierum", "makkum", "molkwerum", "nijhuizum", "nijland", "offingawier", "oosterend", "oosterwierum", "oosthem", "oppenhuizen", "oudega", "parrega", "piaam", "pingjum", "poppingawier", "rauwerd", "rien", "roodhuis",
         "sandfirden", "scharnegoutum", "schettens", "schraard", "sijbrandaburen", "smallebrugge", "sneek", "stavoren", "terzool", "tirns", "tjalhuizum", "tjerkwerd", "uitwellingerga", "waaxens", "warns", "westhem", "wieuwerd", "witmarsum", "wolsum", "wommels", "wons",
         "workum", "woudsend", "ypecolsga", "zurich"]
-        if self.city in zuidwestfriesland:
+        if self.location in zuidwestfriesland:
             self.data = ZuidWestFrieslandAfval().get_data(
-                self.city, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.resources
             )
 
 class AfvalinfoSensor(Entity):

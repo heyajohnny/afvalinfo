@@ -100,3 +100,4 @@ Version: 0.4.27 20200604 - Added Borsele
 Version: 0.4.28 20200604 - Added Hellendoorn
 Version: 0.4.29 20200604 - Added Avalex
 Version: 0.4.30 20200605 - Added Area
+Version: 0.4.31 20200605 - Preperation for refactor city -> location (only 'gemeenten' instead of places)
