@@ -8,6 +8,7 @@
   ],
   "requirements": [
     "beautifulsoup4==4.9.0",
-    "Babel==2.8.0"
+    "Babel==2.8.0",
+    "python-dateutil==2.8.1"
   ]
 }

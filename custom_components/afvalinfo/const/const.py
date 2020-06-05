@@ -104,6 +104,7 @@ SENSOR_LOCATIONS_TO_COMPANY_CODE = {
     "bar": ["bb58e633-de14-4b2a-9941-5bc419f1c4b0"],
     "acv": ["f8e2844a-095e-48f9-9f98-71fceb51d2c3"],
     "hellendoorn": ["24434f5b-7244-412b-9306-3a2bd1e22bc1"]
+    #ToDo: add "area": ["adc418da-d19b-11e5-ab30-625662870761"]
 }
 
 MONTH_TO_NUMBER = {
