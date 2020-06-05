@@ -18,14 +18,11 @@ url looks like:
 https://apps.hvcgroep.nl/rest/adressen/0505200000092263/kalender/2019 5
 
 Urls for other providers:
-
-Copy to clipboard
 Cyclus NV: https://afvalkalender.cyclusnv.nl
 HVC: https://apps.hvcgroep.nl
 Dar: https://afvalkalender.dar.nl
 Afvalvrij / Circulus-Berkel: https://afvalkalender.circulus-berkel.nl
 Meerlanden: https://afvalkalender.meerlanden.nl
-Cure: https://afvalkalender.cure-afvalbeheer.nl
 Avalex: https://www.avalex.nl
 RMN: https://inzamelschema.rmn.nl
 Venray: https://afvalkalender.venray.nl
@@ -38,7 +35,7 @@ Montfoort: https://afvalkalender.montfoort.nl
 GAD: https://inzamelkalender.gad.nl
 Cranendonck: https://afvalkalender.cranendonck.nl
 
-ToDo: Merge / refactor all the Ximmio stuff and add hellendoorn
+ToDo: Merge / refactor all the Ximmio stuff
 ToDo: Add the old municities: Bedum, Winsum (Het Hoge Land). https://gemeente.groningen.nl/afvalwijzer/
 ToDo: Add huisnummer toevoeging
 ToDo: Fix all the next year problems
@@ -46,13 +43,11 @@ ToDo: Add the following gemeenten:
 Amsterdam                       ???
 Beesel                          (https://www.beesel.nl/inwoners/afval-en-milieu/afvalkalender/)
 Bergen Limburg                  bergen.nl/home/afval_44490/item/afvalkalender-2020_38953.html
-Coevorden                       https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
 Cranendonck                     https://afvalkalender.cranendonck.nl/
 Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
 Delfzijl                        https://www.delfzijl.nl/inwoners/afvalkalender_43586/
 Edam-Volendam                   https://www.edam-volendam.nl/portal-home/inzamelkalender_43466/
 Eemnes                          https://www.eemnes.nl/inwoners/Afval/Afvalwijzer
-Emmen                           https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
 Gennep                          https://www.gennep.nl/document.php?m=28&fileid=98242&f=834a3177a76c30293e3e9d1c200729fb&attachment=0&c=34148
 Goes                            https://afvalkalender.goes.nl/
 Gorinchem                       https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
@@ -63,7 +58,6 @@ Hellevoetsluis                  https://www.hellevoetsluis.nl/Inwoners/WONEN_EN_
 's-Hertogenbosch                https://www.afvalstoffendienst.nl/login
 Het Hogeland                    https://hethogeland.nl/afval/afvalkalender
 Hoeksche Waard                  https://www.radhw.nl/inwoners/ophaalschema
-Hoogeveen                       https://www.area-afval.nl/voor-bewoners/afvalkalender/digitale-afvalkalender
 Katwijk                         https://afval.katwijk.nl/nc/afvalkalender/
 Landerd                         https://www.landerd.nl/inwoners-en-ondernemers/afval/afvalkalender/pdf/2020
 Landsmeer                       https://admin.sduconnect.nl/linked_links/1577977473Afvalkalender_2020_DEF.pdf
@@ -165,6 +159,7 @@ from .location.purmerend import PurmerendAfval
 from .location.borsele import BorseleAfval
 from .location.hellendoorn import HellendoornAfval
 from .location.avalex import AvalexAfval
+from .location.area import AreaAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -262,6 +257,14 @@ class AfvalinfoData(object):
         alphenaandenrijn = ["aarlanderveen", "alphen aan den rijn", "benthuizen", "boskoop", "hazerswoude-dorp", "hazerswoude-rijndijk", "koudekerk aan den rijn", "zwammerdam"]
         if self.city in alphenaandenrijn:
             self.data = AlphenAanDenRijnAfval().get_data(
+                self.city, self.postcode, self.street_number, self.resources
+            )
+        area = ["aalden", "achterste erm", "alteveer", "barger-compascuum", "benneveld", "coevorden", "dalen", "dalerpeel", "dalerveen", "de kiel", "diphoorn", "eldijk", "elim", "emmen", "emmer-compascuum", "erica", "erm",
+        "fluitenberg", "gees", "geesbrug", "hollandscheveld", "holsloot", "hoogeveen", "klazienaveen", "langerak", "meppen", "nieuw moscou", "nieuw-amsterdam", "nieuw-dordrecht", "nieuw-schoonebeek", "nieuw-weerdinge",
+        "nieuwe krim", "nieuweroord", "nieuwlande", "nijstad", "noord-sleen", "noordscheschut", "oosterhesselen", "pesse", "roswinkel", "schoonebeek", "schoonoord", "sleen", "steenwijksmoer", "stieltjeskanaal", "stuifzand",
+        "t haantje", "tiendeveen", "veenhuizen", "veenoord", "wachtum", "weiteveen", "wezup", "wezuperbrug", "zwartemeer", "zweeloo", "zwinderen"]
+        if self.city in area:
+            self.data = AreaAfval().get_data(
                 self.city, self.postcode, self.street_number, self.resources
             )
         avalex = ["delfgauw", "delft", "den hoorn", "leidschendam", "maaldrift", "maasland", "nootdorp", "pijnacker", "rijswijk", "schipluiden", "sion", "stompwijk", "strijp", "t haantje", "t woudt", "voorburg", "wassenaar"]
