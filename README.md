@@ -18,56 +18,50 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
 
-##### --(Area) Coevorden, Emmen, Hoogeveen
-##### --(Avalex) Delft, Leidschendam-Voorburg, Midden-Delfland, Pijnacker-Nootdorp, Rijswijk, Wassenaar
-##### -- Hellendoorn
-##### -- Borsele
-##### -- Den Haag
-##### -- Purmerend, Beemster
-##### -- Midden-Drenthe
-##### -- Berkelland
-##### -- Goeree-Overflakkee
-##### --(Rmn) Baarn, Bunnik, IJsselstein, Nieuwegein, Soest, Zeist
-##### --(Zrd) Hulst, Kapelle, Noord-Beveland, Reimerswaal, Sluis, Tholen, Veere
-##### -- Drimmelen
-##### --(Dar) Berg en Dal, Beuningen, Druten, Heumen, Nijmegen, Wijchen
-##### --(Rd4) Beekdaelen, Brunssum, Eijsden-Margraten, Gulpen-Wittem, Heerlen, Kerkrade, Landgraaf, Maastricht, Meerssen, Simpelveld, Vaals, Valkenburg aan de Geul, Voerendaal
-###### WARNING! Might not work well at the end of the year / beginning of the next year
-
-##### --(Irado) Capelle aan den IJssel, Schiedam, Vlaardingen
-##### --(ACV) Ede, Renkum, Renswoude, Veenendaal, Wageningen
-##### --(Circulus-Berkel) Apeldoorn, Bronckhorst, Brummen, Deventer, Doesburg, Epe, Lochem, Voorst, Zutphen
-##### --(Cyclus) Bodegraven-Reeuwijk, Gouda, Kaag en Braassem, Krimpenerwaard, Montfoort, Nieuwkoop, Waddinxveen, Zuidplas
-##### --(Spaarnelanden) Haarlem, Zandvoort
-##### --(Bar) Barendrecht, Albrandswaard, Ridderkerk
-##### --(Blink) Asten, Deurne, Gemert-Bakel, Heeze-Leende, Helmond, Laarbeek, Nuenen, Someren
-##### --(Súdwest-Fryslân) Zuidwest-Friesland
-##### --(GAD) Blaricum, Gooise Meren, Hilversum, Huizen, Laren, Weesp, Wijdemeren
-##### -- Venray
-##### -- Veldhoven
-##### --(De Fryske Marren) De Friese Meren
-##### --(Omrin) Achtkarspelen, Ameland, Appingedam, Harlingen, Heerenveen, Het Hoge Land(De Marne, Eemsmond), Leeuwarden, Noardeast Fryslân, Ooststellingwerf, Opsterland, Terschelling, Tietjerksteradeel, Waadhoeke, Weststellingwerf
-##### --(Suez) Arnhem
-##### --(Meerlanden) Aalsmeer, Bloemendaal, Diemen, Haarlemmermeer, Heemstede, Hillegom, Lisse, Noordwijk
-##### -- Nissewaard
-##### -- Meppel
-##### --(MijnAfvalWijzer) AA en Hunze, Alphen-Chaam, Assen, Altena, Amstelveen, Baarle-Nassau, Barneveld, Beek, Beekdaelen, Beesel, Bergeijk, Bergen op Zoom, Bernheze, Best, Bladel, Borger-Odoorn, Boxtel, Breda, Brielle, Castricum, De Ronde Venen, De Wolden, De Bilt, Doetinchem, Dongen, Dronten, Duiven, Eersel, Eindhoven, Elburg, Ermelo, Etten-Leur, Geertruidenberg, Geldrop-Mierlo, Gilze en Rijen, Goirle, Halderberge, Harderwijk, Heerhugowaard, Heiloo, Hilvarenbeek, Horst aan de Maas, Houten, Kampen, Krimpen aan den IJssel, Langedijk, Lansingerland, Leiden, Leiderdorp, Leudal, Leusden, Lingewaard, Loon op Zand, Lopik, Maasgouw, Meierijstad,  Midden-Groningen, Moerdijk, Nijkerk, Noordenveld, Nunspeet, Oirschot, Oldambt, Oldebroek, Oosterhout, Oss, Oude IJsselstreek, Oude Pekela, Putten, Oudewater, Overbetuwe, Rheden, Rhenen, Rijssen-Holten, Roerdalen, Roermond, Roosendaal, Rotterdam, Rucphen, Scherpenzeel, Sint-Michielsgestel, Sittard-Geleen, Smallingerland, Stadskanaal, Stein, Stichtse Vecht, Teylingen, Tilburg, Tynaarlo, Uitgeest, Utrecht, Utrechtse Heuvelrug, Valkenswaard, Veendam, Waalwijk, Waterland, Wijk bij Duurstede, Westervoort, Westvoorne, Woensdrecht, Woerden, Zevenaar, Zoetermeer, Zoeterwoude
-###### WARNING! Might not work well at the end of the year / beginning of the next year
-
-##### --(Rova) Aalten, Amersfoort, Bunschoten, Dalfsen, Dinkelland, Hardenberg, Hattem, Heerde, Olst-Wijhe, Ommen, Oost Gelre, Raalte, Staphorst, Steenwijkerland, Tubbergen, Twenterand, Urk, Westerveld, Winterswijk, Woudenberg, Zwartewaterland, Zwolle
-###### WARNING! Might not work well at the end of the year / beginning of the next year
-
 ##### -- Alkmaar
 ##### -- Almere
 ##### -- Alphen aan den Rijn
-##### --(DeAfvalApp) Boekel, Boxmeer, Buren, Cuijk, Culemborg, Echt-Susteren, Grave, Helmond, Maasdriel, Mill en Sint Hubert, Neder-Betuwe, Sint Anthonis, Son en Breugel, Terneuzen, Tiel, West Betuwe, West Maas en Waal, Zaltbommel
-##### --(HVC) Alblasserdam, Bergen, Beverwijk, Den Helder, Dordrecht, Drechterland, Enkhuizen, Hendrik-Ido-Ambacht, Heemskerk, Hollands Kroon, Hoorn, Koggenland, Lelystad, Medemblik, Noordoostpolder, Opmeer, Papendrecht, Schagen, Stede Broec, Velsen, Wormerland, Zaanstad, Zeewolde, Zwijndrecht
+##### -- Berkelland
+##### -- Borsele
+##### -- Den Haag
+##### -- Drimmelen
+##### -- Goeree-Overflakkee
+##### -- Hellendoorn
+##### -- Meppel
+##### -- Midden-Drenthe
+##### -- Nissewaard
+##### -- Purmerend, Beemster
 ##### -- Sliedrecht
-##### --(Twente Milieu) Almelo, Borne, Enschede, Haaksbergen, Hengelo, Hof van Twente, Losser, Oldenzaal, Wierden
+##### -- Veldhoven
 ##### -- Venlo
+##### -- Venray
 ##### -- Vijfheerenlanden
 ##### -- Westerkwartier
 ##### -- Westland
+##### --(ACV) Ede, Renkum, Renswoude, Veenendaal, Wageningen
+##### --(Area) Coevorden, Emmen, Hoogeveen
+##### --(Avalex) Delft, Leidschendam-Voorburg, Midden-Delfland, Pijnacker-Nootdorp, Rijswijk, Wassenaar
+##### --(Bar) Barendrecht, Albrandswaard, Ridderkerk
+##### --(Blink) Asten, Deurne, Gemert-Bakel, Heeze-Leende, Helmond, Laarbeek, Nuenen, Someren
+##### --(Circulus-Berkel) Apeldoorn, Bronckhorst, Brummen, Deventer, Doesburg, Epe, Lochem, Voorst, Zutphen
+##### --(Cyclus) Bodegraven-Reeuwijk, Gouda, Kaag en Braassem, Krimpenerwaard, Montfoort, Nieuwkoop, Waddinxveen, Zuidplas
+##### --(Dar) Berg en Dal, Beuningen, Druten, Heumen, Nijmegen, Wijchen
+##### --(De Fryske Marren) De Friese Meren
+##### --(DeAfvalApp) Boekel, Boxmeer, Buren, Cuijk, Culemborg, Echt-Susteren, Grave, Helmond, Maasdriel, Mill en Sint Hubert, Neder-Betuwe, Sint Anthonis, Son en Breugel, Terneuzen, Tiel, West Betuwe, West Maas en Waal, Zaltbommel
+##### --(GAD) Blaricum, Gooise Meren, Hilversum, Huizen, Laren, Weesp, Wijdemeren
+##### --(HVC) Alblasserdam, Bergen, Beverwijk, Den Helder, Dordrecht, Drechterland, Enkhuizen, Hendrik-Ido-Ambacht, Heemskerk, Hollands Kroon, Hoorn, Koggenland, Lelystad, Medemblik, Noordoostpolder, Opmeer, Papendrecht, Schagen, Stede Broec, Velsen, Wormerland, Zaanstad, Zeewolde, Zwijndrecht
+##### --(Irado) Capelle aan den IJssel, Schiedam, Vlaardingen
+##### --(Meerlanden) Aalsmeer, Bloemendaal, Diemen, Haarlemmermeer, Heemstede, Hillegom, Lisse, Noordwijk
+##### --(MijnAfvalWijzer) AA en Hunze, Alphen-Chaam, Assen, Altena, Amstelveen, Baarle-Nassau, Barneveld, Beek, Beekdaelen, Beesel, Bergeijk, Bergen op Zoom, Bernheze, Best, Bladel, Borger-Odoorn, Boxtel, Breda, Brielle, Castricum, De Ronde Venen, De Wolden, De Bilt, Doetinchem, Dongen, Dronten, Duiven, Eersel, Eindhoven, Elburg, Ermelo, Etten-Leur, Geertruidenberg, Geldrop-Mierlo, Gilze en Rijen, Goirle, Halderberge, Harderwijk, Heerhugowaard, Heiloo, Hilvarenbeek, Horst aan de Maas, Houten, Kampen, Krimpen aan den IJssel, Langedijk, Lansingerland, Leiden, Leiderdorp, Leudal, Leusden, Lingewaard, Loon op Zand, Lopik, Maasgouw, Meierijstad,  Midden-Groningen, Moerdijk, Nijkerk, Noordenveld, Nunspeet, Oirschot, Oldambt, Oldebroek, Oosterhout, Oss, Oude IJsselstreek, Oude Pekela, Putten, Oudewater, Overbetuwe, Rheden, Rhenen, Rijssen-Holten, Roerdalen, Roermond, Roosendaal, Rotterdam, Rucphen, Scherpenzeel, Sint-Michielsgestel, Sittard-Geleen, Smallingerland, Stadskanaal, Stein, Stichtse Vecht, Teylingen, Tilburg, Tynaarlo, Uitgeest, Utrecht, Utrechtse Heuvelrug, Valkenswaard, Veendam, Waalwijk, Waterland, Wijk bij Duurstede, Westervoort, Westvoorne, Woensdrecht, Woerden, Zevenaar, Zoetermeer, Zoeterwoude  ###### WARNING! Might not work well at the end of the year / beginning of the next year
+##### --(Omrin) Achtkarspelen, Ameland, Appingedam, Harlingen, Heerenveen, Het Hoge Land(De Marne, Eemsmond), Leeuwarden, Noardeast Fryslân, Ooststellingwerf, Opsterland, Terschelling, Tietjerksteradeel, Waadhoeke, Weststellingwerf
+##### --(Rd4) Beekdaelen, Brunssum, Eijsden-Margraten, Gulpen-Wittem, Heerlen, Kerkrade, Landgraaf, Maastricht, Meerssen, Simpelveld, Vaals, Valkenburg aan de Geul, Voerendaal  ###### WARNING! Might not work well at the end of the year / beginning of the next year
+##### --(Rmn) Baarn, Bunnik, IJsselstein, Nieuwegein, Soest, Zeist
+##### --(Rova) Aalten, Amersfoort, Bunschoten, Dalfsen, Dinkelland, Hardenberg, Hattem, Heerde, Olst-Wijhe, Ommen, Oost Gelre, Raalte, Staphorst, Steenwijkerland, Tubbergen, Twenterand, Urk, Westerveld, Winterswijk, Woudenberg, Zwartewaterland, Zwolle  ###### WARNING! Might not work well at the end of the year / beginning of the next year
+##### --(Spaarnelanden) Haarlem, Zandvoort
+##### --(Suez) Arnhem
+##### --(Súdwest-Fryslân) Zuidwest-Friesland
+##### --(Twente Milieu) Almelo, Borne, Enschede, Haaksbergen, Hengelo, Hof van Twente, Losser, Oldenzaal, Wierden
+##### --(Zrd) Hulst, Kapelle, Noord-Beveland, Reimerswaal, Sluis, Tholen, Veere
 
 ### Add 'gemeente'
 The code is designed to add new 'gemeenten' relatively easy.
