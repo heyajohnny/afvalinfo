@@ -64,15 +64,27 @@ class AlmereAfval(object):
                 if "restafval" in resources:
                     if data["_pickupTypeText"] == "GREENGREY":
                         waste_dict["restafval"] = data["pickupDates"][0].split("T")[0]
+                    if "restafval" not in waste_dict or len(waste_dict["restafval"]) == 0:
+                        if data["_pickupTypeText"] == "GREY":
+                            waste_dict["restafval"] = data["pickupDates"][0].split("T")[0]
+                    if "restafval" not in waste_dict or len(waste_dict["restafval"]) == 0:
+                        if data["_pickupTypeText"] == "GREYPACKAGES":
+                            waste_dict["restafval"] = data["pickupDates"][0].split("T")[0]
                 if "gft" in resources:
                     if data["_pickupTypeText"] == "GREENGREY":
                         waste_dict["gft"] = data["pickupDates"][0].split("T")[0]
+                    if "gft" not in waste_dict or len(waste_dict["gft"]) == 0:
+                        if data["_pickupTypeText"] == "GREEN":
+                            waste_dict["gft"] = data["pickupDates"][0].split("T")[0]
                 if "papier" in resources:
                     if data["_pickupTypeText"] == "PAPER":
                         waste_dict["papier"] = data["pickupDates"][0].split("T")[0]
                 if "pbd" in resources:
                     if data["_pickupTypeText"] == "PACKAGES":
                         waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
+                    if "pbd" not in waste_dict or len(waste_dict["pbd"]) == 0:
+                        if data["_pickupTypeText"] == "GREYPACKAGES":
+                            waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
                 if "textiel" in resources:
                     if data["_pickupTypeText"] == "TEXTILE":
                         waste_dict["textiel"] = data["pickupDates"][0].split("T")[0]
