@@ -104,3 +104,4 @@ Version: 0.4.31 20200605 - Preperation for refactor city -> location (only 'geme
 Version: 0.5.0  20200605 - Changed city to location(gemeente)
 Version: 0.5.1  20200608 - Added extra mapping for almere
 Version: 0.5.2  20200610 - Fixed Omrin mapping
+Version: 0.5.3  20200610 - Refactor for all Ximmio locations

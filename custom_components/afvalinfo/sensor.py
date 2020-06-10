@@ -35,8 +35,7 @@ Montfoort: https://afvalkalender.montfoort.nl
 GAD: https://inzamelkalender.gad.nl
 Cranendonck: https://afvalkalender.cranendonck.nl
 
-ToDo: Merge / refactor all the Ximmio stuff
-ToDo: Add the old municities: Bedum, Winsum (Het Hoge Land). https://gemeente.groningen.nl/afvalwijzer/
+ToDo: Add the old municities: Bedum, Winsum (Het Hogeland). https://gemeente.groningen.nl/afvalwijzer/
 ToDo: Add huisnummer toevoeging
 ToDo: Fix all the next year problems
 ToDo: Add the following gemeenten:
@@ -118,21 +117,15 @@ from .const.const import (
 )
 
 from .location.sliedrecht import SliedrechtAfval
-from .location.vijfheerenlanden import VijfheerenlandenAfval
 from .location.deafvalapp import DeAfvalAppAfval
-from .location.twentemilieu import TwentemilieuAfval
 from .location.westerkwartier import WesterkwartierAfval
 from .location.westland import WestlandAfval
 from .location.rova import RovaAfval
-from .location.almere import AlmereAfval
 from .location.venlo import VenloAfval
 from .location.hvc import HvcAfval
 from .location.alkmaar import AlkmaarAfval
 from .location.alphenaandenrijn import AlphenAanDenRijnAfval
 from .location.mijnafvalwijzer import MijnAfvalWijzerAfval
-from .location.meppel import MeppelAfval
-from .location.nissewaard import NissewaardAfval
-from .location.meerlanden import MeerlandenAfval
 from .location.suez import SuezAfval
 from .location.omrin import OmrinAfval
 from .location.defriesemeren import DeFrieseMerenAfval
@@ -141,11 +134,9 @@ from .location.venray import VenrayAfval
 from .location.gad import GadAfval
 from .location.zuidwestfriesland import ZuidWestFrieslandAfval
 from .location.blink import BlinkAfval
-from .location.bar import BarAfval
 from .location.spaarnelanden import SpaarnelandenAfval
 from .location.cyclus import CyclusAfval
 from .location.circulusberkel import CirculusBerkelAfval
-from .location.acv import AcvAfval
 from .location.irado import IradoAfval
 from .location.rd4 import Rd4Afval
 from .location.dar import DarAfval
@@ -158,9 +149,8 @@ from .location.middendrenthe import MiddenDrentheAfval
 from .location.denhaag import DenHaagAfval
 from .location.purmerend import PurmerendAfval
 from .location.borsele import BorseleAfval
-from .location.hellendoorn import HellendoornAfval
 from .location.avalex import AvalexAfval
-from .location.area import AreaAfval
+from .location.ximmio import XimmioAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -243,19 +233,9 @@ class AfvalinfoData(object):
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
         _LOGGER.debug("Updating Waste collection dates")
-        acv = ["ede", "renkum", "renswoude", "veenendaal", "wageningen"]
-        if self.location in acv:
-            self.data = AcvAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
-            )
         alkmaar = ["alkmaar"]
         if self.location in alkmaar:
             self.data = AlkmaarAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
-            )
-        almere = ["almere"]
-        if self.location in almere:
-            self.data = AlmereAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         alphenaandenrijn = ["alphen aan den rijn"]
@@ -263,19 +243,9 @@ class AfvalinfoData(object):
             self.data = AlphenAanDenRijnAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        area = ["coevorden", "emmen", "hoogeveen"]
-        if self.location in area:
-            self.data = AreaAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
-            )
         avalex = ["delft", "leidschendam-voorburg", "midden-delfland", "pijnacker-nootdorp", "rijswijk", "wassenaar"]
         if self.location in avalex:
             self.data = AvalexAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
-            )
-        bar = ["barendrecht", "albrandswaard", "ridderkerk"]
-        if self.location in bar:
-            self.data = BarAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         berkelland = ["berkelland"]
@@ -338,11 +308,6 @@ class AfvalinfoData(object):
             self.data = GoereeOverflakkeeAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        hellendoorn = ["hellendoorn"]
-        if self.location in hellendoorn:
-            self.data = HellendoornAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
-            )
         hvc = ["alblasserdam", "bergen", "beverwijk", "den helder", "dordrecht", "drechterland", "enkhuizen", "hendrik-ido-ambacht", "heemskerk", "hollands kroon", "hoorn", "koggenland", "lelystad", "medemblik", "noordoostpolder", "opmeer", "papendrecht", "schagen", "stede broec", "velsen", "wormerland",
         "zaanstad", "zeewolde", "zwijndrecht"]
         if self.location in hvc:
@@ -352,16 +317,6 @@ class AfvalinfoData(object):
         irado = ["capelle aan den ijssel", "schiedam", "vlaardingen"]
         if self.location in irado:
             self.data = IradoAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
-            )
-        meerlanden = ["aalsmeer", "bloemendaal", "diemen", "haarlemmermeer", "heemstede", "hillegom", "lisse", "noordwijk"]
-        if self.location in meerlanden:
-            self.data = MeerlandenAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
-            )
-        meppel = ["meppel"]
-        if self.location in meppel:
-            self.data = MeppelAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         middendrenthe = ["midden-drenthe"]
@@ -376,11 +331,6 @@ class AfvalinfoData(object):
         "utrecht", "utrechtse heuvelrug", "valkenswaard", "veendam", "waalwijk", "waterland", "wijk bij duurstede", "westervoort", "westvoorne", "woensdrecht", "woerden", "zevenaar", "zoetermeer", "zoeterwoude"]
         if self.location in mijnafvalwijzer:
             self.data = MijnAfvalWijzerAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
-            )
-        nissewaard = ["nissewaard"]
-        if self.location in nissewaard:
-            self.data = NissewaardAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         omrin = ["achtkarspelen", "ameland", "appingedam", "harlingen", "heerenveen", "het hogeland", "leeuwarden", "noardeast fryslan", "ooststellingwerf", "opsterland", "terschelling", "tietjerksteradeel", "waadhoeke", "weststellingwerf"]
@@ -424,11 +374,6 @@ class AfvalinfoData(object):
             self.data = SuezAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        twentemilieu = ["almelo", "borne", "enschede", "haaksbergen", "hengelo", "hof van twente", "losser", "oldenzaal", "wierden"]
-        if self.location in twentemilieu:
-            self.data = TwentemilieuAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
-            )
         veldhoven = ["veldhoven"]
         if self.location in veldhoven:
             self.data = VeldhovenAfval().get_data(
@@ -444,11 +389,6 @@ class AfvalinfoData(object):
             self.data = VenrayAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        vijfheerenlanden = ["vijfheerenlanden"]
-        if self.location in vijfheerenlanden:
-            self.data = VijfheerenlandenAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
-            )
         westerkwartier = ["westerkwartier"]
         if self.location in westerkwartier:
             self.data = WesterkwartierAfval().get_data(
@@ -457,6 +397,11 @@ class AfvalinfoData(object):
         westland = ["westland"]
         if self.location in westland:
             self.data = WestlandAfval().get_data(
+                self.location, self.postcode, self.street_number, self.resources
+            )
+        ximmio = ["aalsmeer", "albrandswaard", "almelo", "almere", "barendrecht", "bloemendaal", "borne", "coevorden", "diemen", "ede", "emmen", "enschede", "haaksbergen", "haarlemmermeer", "heemstede", "hellendoorn", "hengelo", "hillegom", "hof van twente", "hoogeveen", "lisse", "losser", "meppel", "nissewaard", "noordwijk", "oldenzaal", "renkum", "renswoude", "ridderkerk", "veenendaal", "vijfheerenlanden", "wageningen", "wierden"]
+        if self.location in ximmio:
+            self.data = XimmioAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         zrd = ["hulst", "kapelle", "noord-beveland", "reimerswaal", "sluis", "tholen", "veere"]
