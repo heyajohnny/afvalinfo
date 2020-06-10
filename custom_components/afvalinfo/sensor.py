@@ -383,7 +383,7 @@ class AfvalinfoData(object):
             self.data = NissewaardAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        omrin = ["Achtkarspelen", "Ameland", "Appingedam", "Harlingen", "Heerenveen", "Het Hoge Land(De Marne", "Eemsmond)", "Leeuwarden", "Noardeast Fryslân", "Ooststellingwerf", "Opsterland", "Terschelling", "Tietjerksteradeel", "Waadhoeke", "Weststellingwerf"]
+        omrin = ["achtkarspelen", "ameland", "appingedam", "harlingen", "heerenveen", "het hoge land", "leeuwarden", "noardeast fryslan", "ooststellingwerf", "opsterland", "terschelling", "tietjerksteradeel", "waadhoeke", "weststellingwerf"]
         if self.location in omrin:
             self.data = OmrinAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
