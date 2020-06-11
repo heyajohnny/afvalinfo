@@ -69,7 +69,6 @@ Oegstgeest                      https://www.oegstgeest.nl/fileadmin/editor/Docum
 Oisterwijk                      https://oisterwijk.afvalstoffendienstkalender.nl/
 Oostzaan                        https://www.oostzaan.nl/mozard/document/docnr/1182761/bijlage%20-%20afvalkalender%20Oostzaan%202020%20-%20met%20wijkindeling
 Ouder-Amstel                    https://www.ouder-amstel.nl/Home/Nieuws_en_actualiteiten/Nieuws/Alle_nieuwsberichten_2020/April/Data_inzameling_afval
-Peel en Maas                    https://afvalkalender.peelenmaas.nl/
 Reusel-De Mierden               https://www.reuseldemierden.nl/document.php?m=25&fileid=123208&f=3e3d90c015a9b15ffc98c993c8e4e9da&attachment=0&c=40975
 Rozendaal                       https://www.rozendaal.nl/dsresource?objectid=d7a004f0-ff97-490a-8837-1b66e5bc11e1&type=org
 Schiermonnikoog
@@ -151,6 +150,7 @@ from .location.borsele import BorseleAfval
 from .location.avalex import AvalexAfval
 from .location.ximmio import XimmioAfval
 from .location.cranendonck import CranendonckAfval
+from .location.peelenmaas import PeelEnMaasAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -341,6 +341,11 @@ class AfvalinfoData(object):
         omrin = ["achtkarspelen", "ameland", "appingedam", "harlingen", "heerenveen", "het hogeland", "leeuwarden", "noardeast fryslan", "ooststellingwerf", "opsterland", "terschelling", "tietjerksteradeel", "waadhoeke", "weststellingwerf"]
         if self.location in omrin:
             self.data = OmrinAfval().get_data(
+                self.location, self.postcode, self.street_number, self.resources
+            )
+        peelenmaas = ["peel en maas"]
+        if self.location in peelenmaas:
+            self.data = PeelEnMaasAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         purmerend = ["beemster", "purmerend"]
