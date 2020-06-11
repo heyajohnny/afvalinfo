@@ -10,7 +10,7 @@ import urllib.request
 import urllib.error
 
 
-class ZrdAfval(object):
+class CranendonckAfval(object):
     def get_date_from_afvaltype(self, ophaaldata, afvaltype, afvalnaam):
         try:
             html = ophaaldata.find(href="/afvalstroom/" + str(afvaltype))
@@ -31,7 +31,7 @@ class ZrdAfval(object):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
-            url = SENSOR_LOCATIONS_TO_URL["zrd"][0].format(
+            url = SENSOR_LOCATIONS_TO_URL["cranendonck"][0].format(
                 postcode, street_number
             )
             req = urllib.request.Request(url=url)
@@ -44,21 +44,18 @@ class ZrdAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
 
-            # find afvalstroom/27 = textiel
-            if "textiel" in resources:
-                waste_dict["textiel"] = self.get_date_from_afvaltype(ophaaldata, 27, "textiel")
-            # find afvalstroom/19 = papier
+            # find afvalstroom/7 = papier
             if "papier" in resources:
-                waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 19, "papier")
-            # find afvalstroom/11 = gft
+                waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 7, "papier")
+            # find afvalstroom/2 = gft
             if "gft" in resources:
-                waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 11, "gft")
-            # find afvalstroom/31 = pbd
+                waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 2, "gft")
+            # find afvalstroom/1 = pbd
             if "pbd" in resources:
-                waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 31, "pbd")
-            # find afvalstroom/22 = restafval
+                waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 1, "pbd")
+            # find afvalstroom/8 = restafval
             if "restafval" in resources:
-                waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 22, "restafval")
+                waste_dict["restafval"] = self.get_date_from_afvaltype(ophaaldata, 8, "restafval")
 
             return waste_dict
         except urllib.error.URLError as exc:

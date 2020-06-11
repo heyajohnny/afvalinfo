@@ -42,7 +42,6 @@ ToDo: Add the following gemeenten:
 Amsterdam                       ???
 Beesel                          (https://www.beesel.nl/inwoners/afval-en-milieu/afvalkalender/)
 Bergen Limburg                  bergen.nl/home/afval_44490/item/afvalkalender-2020_38953.html
-Cranendonck                     https://afvalkalender.cranendonck.nl/
 Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
 Delfzijl                        https://www.delfzijl.nl/inwoners/afvalkalender_43586/
 Edam-Volendam                   https://www.edam-volendam.nl/portal-home/inzamelkalender_43466/
@@ -151,6 +150,7 @@ from .location.purmerend import PurmerendAfval
 from .location.borsele import BorseleAfval
 from .location.avalex import AvalexAfval
 from .location.ximmio import XimmioAfval
+from .location.cranendonck import CranendonckAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -266,6 +266,11 @@ class AfvalinfoData(object):
         circulusberkel = ["apeldoorn", "bronckhorst", "brummen", "deventer", "doesburg", "epe", "lochem", "voorst", "zutphen"]
         if self.location in circulusberkel:
             self.data = CirculusBerkelAfval().get_data(
+                self.location, self.postcode, self.street_number, self.resources
+            )
+        cranendonck = ["cranendonck"]
+        if self.location in cranendonck:
+            self.data = CranendonckAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         cyclus = ["bodegraven-reeuwijk", "gouda", "kaag en braassem", "krimpenerwaard", "montfoort", "nieuwkoop", "waddinxveen", "zuidplas"]
