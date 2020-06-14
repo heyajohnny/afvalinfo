@@ -12,6 +12,7 @@ SENSOR_TYPES = {
 }
 
 SENSOR_LOCATIONS_TO_URL = {
+    "afvalstoffendienstkalender": ["https://{0}.afvalstoffendienstkalender.nl/nl/{1}/{2}/"],
     "alkmaar": ["https://inzamelkalender.stadswerk072.nl/adres/{0}:{1}"],
     "alphenaandenrijn": ["https://afvalkalender.alphenaandenrijn.nl/adres/{0}:{1}"],
     "avalex": [

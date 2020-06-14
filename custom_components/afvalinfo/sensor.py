@@ -50,7 +50,6 @@ Gennep                          https://www.gennep.nl/document.php?m=28&fileid=9
 Goes                            https://afvalkalender.goes.nl/
 Gorinchem                       https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
 Groningen                       https://gemeente.groningen.nl/afvalwijzer/groningen
-Haaren                          https://haaren.afvalstoffendienstkalender.nl/
 Hardinxveld-Giessendam          https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
 Hellevoetsluis                  https://www.hellevoetsluis.nl/Inwoners/WONEN_EN_LEEFOMGEVING/Afval/Afvalkalender
 's-Hertogenbosch                https://www.afvalstoffendienst.nl/login
@@ -66,7 +65,6 @@ Molenlanden                     https://www.waardlanden.nl/particulieren/afvalin
 Mook en Middelaar               https://www.mookenmiddelaar.nl/inwoner/afval-en-duurzaamheid_42542/item/afvalkalender-2020_40888.html
 Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
 Oegstgeest                      https://www.oegstgeest.nl/fileadmin/editor/Documenten/Inwoners/Alles_over_afval/afvalkalender_2020_v8.pdf
-Oisterwijk                      https://oisterwijk.afvalstoffendienstkalender.nl/
 Oostzaan                        https://www.oostzaan.nl/mozard/document/docnr/1182761/bijlage%20-%20afvalkalender%20Oostzaan%202020%20-%20met%20wijkindeling
 Ouder-Amstel                    https://www.ouder-amstel.nl/Home/Nieuws_en_actualiteiten/Nieuws/Alle_nieuwsberichten_2020/April/Data_inzameling_afval
 Reusel-De Mierden               https://www.reuseldemierden.nl/document.php?m=25&fileid=123208&f=3e3d90c015a9b15ffc98c993c8e4e9da&attachment=0&c=40975
@@ -80,7 +78,6 @@ Uithoorn                        https://www.uithoorn.nl/Home/Afval/Afvalkalender
 Vlieland                        https://www.vlieland.nl/v-zelf-regelen/producten_42533/product/afval-huishoudelijk-afval_17.html
 Vlissingen                      https://www.vlissingen.nl/inwoner/afval-en-milieu/afval/huishoudelijk-afval-en-afvalkalender.html
 Voorschoten                     https://www.voorschotenmaakthetverschil.nl/
-Vught                           https://vught.afvalstoffendienstkalender.nl/
 Waalre                          https://afvalkalender.waalre.nl/
 Weert                           https://www.weert.nl/huisvuil-duobak-en-ophaaldagen
 Westerwolde                     https://www.westerwolde.nl/trash-removal-calendar
@@ -151,6 +148,7 @@ from .location.avalex import AvalexAfval
 from .location.ximmio import XimmioAfval
 from .location.cranendonck import CranendonckAfval
 from .location.peelenmaas import PeelEnMaasAfval
+from .location.afvalstoffendienstkalender import AfvalstoffendienstkalenderAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -233,6 +231,11 @@ class AfvalinfoData(object):
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
         _LOGGER.debug("Updating Waste collection dates")
+        afvalstoffendienstkalender = ["haaren", "oisterwijk", "vught"]
+        if self.location in afvalstoffendienstkalender:
+            self.data = AfvalstoffendienstkalenderAfval().get_data(
+                self.location, self.postcode, self.street_number, self.resources
+            )
         alkmaar = ["alkmaar"]
         if self.location in alkmaar:
             self.data = AlkmaarAfval().get_data(
