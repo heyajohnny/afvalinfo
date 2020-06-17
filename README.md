@@ -2,7 +2,7 @@
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 ### Number of supported 'gemeenten' in The Netherlands: 315,5 of 352 = 89,63%
 
-# Warning! Breaking change in this version! Change city (city/village) -> location (gemeente)
+### Warning! Breaking change from version 0.4.x (or lower) to 0.5.x! Change city (city/village) -> location (gemeente)
 ## Changed city
 ```
     city: sliedrecht             (name of the city/village)
