@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'gemeenten' in The Netherlands: 313,5 of 352 = 89,06%
+### Number of supported 'gemeenten' in The Netherlands: 314,5 of 352 = 89,35%
 
 # Warning! Breaking change in this version! Change city (city/village) -> location (gemeente)
 ## Changed city
@@ -29,6 +29,7 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 ##### -- Midden-Drenthe
 ##### -- Peel en Maas
 ##### -- Purmerend, Beemster
+##### -- Schouwen-Duiveland
 ##### -- Sliedrecht
 ##### -- Veldhoven
 ##### -- Venlo

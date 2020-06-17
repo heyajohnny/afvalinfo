@@ -55,6 +55,7 @@ SENSOR_LOCATIONS_TO_URL = {
     "rd4": ["https://www.rd4info.nl/NSI/Burger/Aspx/afvalkalender_public_text.aspx?pc={0}&nr={1}&t="],
     "rmn": ["https://inzamelschema.rmn.nl/adres/{0}:{1}"],
     "rova": ["http://afvalkalender.rova.nl/nl/{0}/{1}/"],
+    "schouwenduiveland": ["https://afvalkalender.schouwen-duiveland.nl/adres/{0}:{1}"],
     "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/{0}:{1}"],
     "spaarnelanden": ["https://afvalwijzer.spaarnelanden.nl/adres/{0}:{1}"],
     "suez": ["https://inzamelwijzer.suez.nl/adres/{0}:{1}"],

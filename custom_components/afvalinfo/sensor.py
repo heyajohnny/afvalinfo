@@ -70,7 +70,6 @@ Ouder-Amstel                    https://www.ouder-amstel.nl/Home/Nieuws_en_actua
 Reusel-De Mierden               https://www.reuseldemierden.nl/document.php?m=25&fileid=123208&f=3e3d90c015a9b15ffc98c993c8e4e9da&attachment=0&c=40975
 Rozendaal                       https://www.rozendaal.nl/dsresource?objectid=d7a004f0-ff97-490a-8837-1b66e5bc11e1&type=org
 Schiermonnikoog
-Schouwen-Duiveland              https://afvalkalender.schouwen-duiveland.nl/
 Steenbergen                     https://www.gemeente-steenbergen.nl/inwoners_overzicht/afval/
 Texel                           https://www.texel.nl/mozard/!suite86.scherm0325?mVrg=5059
 Uden                            https://www.uden.nl/inwoners/afval/ophaaldagen-afval/
@@ -149,6 +148,7 @@ from .location.ximmio import XimmioAfval
 from .location.cranendonck import CranendonckAfval
 from .location.peelenmaas import PeelEnMaasAfval
 from .location.afvalstoffendienstkalender import AfvalstoffendienstkalenderAfval
+from .location.schouwenduiveland import SchouwenDuivelandAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -370,6 +370,11 @@ class AfvalinfoData(object):
         "woudenberg", "zwartewaterland", "zwolle"]
         if self.location in rova:
             self.data = RovaAfval().get_data(
+                self.location, self.postcode, self.street_number, self.resources
+            )
+        schouwenduiveland = ["schouwen-duiveland"]
+        if self.location in schouwenduiveland:
+            self.data = SchouwenDuivelandAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         sliedrecht = ["sliedrecht"]
