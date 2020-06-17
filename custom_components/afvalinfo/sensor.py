@@ -17,23 +17,6 @@ https://apps.hvcgroep.nl/rest/adressen/ 5" …myBagId … “/kalender/” … m
 url looks like:
 https://apps.hvcgroep.nl/rest/adressen/0505200000092263/kalender/2019 5
 
-Urls for other providers:
-Cyclus NV: https://afvalkalender.cyclusnv.nl
-HVC: https://apps.hvcgroep.nl
-Dar: https://afvalkalender.dar.nl
-Afvalvrij / Circulus-Berkel: https://afvalkalender.circulus-berkel.nl
-Meerlanden: https://afvalkalender.meerlanden.nl
-Avalex: https://www.avalex.nl
-RMN: https://inzamelschema.rmn.nl
-Venray: https://afvalkalender.venray.nl
-Berkelland: https://afvalkalender.gemeenteberkelland.nl
-Alphen aan den Rijn: https://afvalkalender.alphenaandenrijn.nlrest/adressen/0505200000061116/afvalstromen
-Waalre: http://afvalkalender.waalre.nl
-ZRD: https://afvalkalender.zrd.nl
-Spaarnelanden: https://afvalwijzer.spaarnelanden.nl
-Montfoort: https://afvalkalender.montfoort.nl
-GAD: https://inzamelkalender.gad.nl
-Cranendonck: https://afvalkalender.cranendonck.nl
 
 ToDo: Add the old municities: Bedum, Winsum (Het Hogeland). https://gemeente.groningen.nl/afvalwijzer/
 ToDo: Add huisnummer toevoeging
@@ -77,7 +60,6 @@ Uithoorn                        https://www.uithoorn.nl/Home/Afval/Afvalkalender
 Vlieland                        https://www.vlieland.nl/v-zelf-regelen/producten_42533/product/afval-huishoudelijk-afval_17.html
 Vlissingen                      https://www.vlissingen.nl/inwoner/afval-en-milieu/afval/huishoudelijk-afval-en-afvalkalender.html
 Voorschoten                     https://www.voorschotenmaakthetverschil.nl/
-Waalre                          https://afvalkalender.waalre.nl/
 Weert                           https://www.weert.nl/huisvuil-duobak-en-ophaaldagen
 Westerwolde                     https://www.westerwolde.nl/trash-removal-calendar
 Zundert                         https://www.zundert.nl/afval-en-milieustraat/afvalkalender-2020.html
@@ -149,6 +131,7 @@ from .location.cranendonck import CranendonckAfval
 from .location.peelenmaas import PeelEnMaasAfval
 from .location.afvalstoffendienstkalender import AfvalstoffendienstkalenderAfval
 from .location.schouwenduiveland import SchouwenDuivelandAfval
+from .location.waalre import WaalreAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -405,6 +388,11 @@ class AfvalinfoData(object):
         venray = ["venray"]
         if self.location in venray:
             self.data = VenrayAfval().get_data(
+                self.location, self.postcode, self.street_number, self.resources
+            )
+        waalre = ["waalre"]
+        if self.location in waalre:
+            self.data = WaalreAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         westerkwartier = ["westerkwartier"]

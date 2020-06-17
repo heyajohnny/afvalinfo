@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'gemeenten' in The Netherlands: 314,5 of 352 = 89,35%
+### Number of supported 'gemeenten' in The Netherlands: 315,5 of 352 = 89,63%
 
 # Warning! Breaking change in this version! Change city (city/village) -> location (gemeente)
 ## Changed city
@@ -34,6 +34,7 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 ##### -- Veldhoven
 ##### -- Venlo
 ##### -- Venray
+##### -- Waalre
 ##### -- Westerkwartier
 ##### -- Westland
 ##### --(Afvalstoffendienstkalender) Haaren, Oisterwijk, Vught
