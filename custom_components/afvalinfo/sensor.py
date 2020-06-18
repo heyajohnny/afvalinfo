@@ -22,44 +22,50 @@ ToDo: Add the old municities: Bedum, Winsum (Het Hogeland). https://gemeente.gro
 ToDo: Add huisnummer toevoeging
 ToDo: Fix all the next year problems
 ToDo: Add the following gemeenten:
-Amsterdam                       ???
-Beesel                          (https://www.beesel.nl/inwoners/afval-en-milieu/afvalkalender/)
-Bergen Limburg                  bergen.nl/home/afval_44490/item/afvalkalender-2020_38953.html
+PDF: #####################################################################################################
+Bergen Limburg                  bergen.nl/home/afval_44490/item/afvalkalender-2020_38953.html (PDF)
+Delfzijl                        https://www.delfzijl.nl/inwoners/afvalkalender_43586/ (PDF)
+Edam-Volendam                   https://www.edam-volendam.nl/portal-home/inzamelkalender_43466/ (PDF)
+Eemnes                          https://www.eemnes.nl/inwoners/Afval/Afvalwijzer (PDF)
+Gennep                          https://www.gennep.nl/document.php?m=28&fileid=98242&f=834a3177a76c30293e3e9d1c200729fb&attachment=0&c=34148 (PDF)
+Goes                            https://afvalkalender.goes.nl/4461AB-2.html (PDF)
+Hellevoetsluis                  https://www.hellevoetsluis.nl/Inwoners/WONEN_EN_LEEFOMGEVING/Afval/Afvalkalender (PDF)
+Landerd                         https://www.landerd.nl/inwoners-en-ondernemers/afval/afvalkalender/pdf/2020 (PDF)
+Landsmeer                       https://admin.sduconnect.nl/linked_links/1577977473Afvalkalender_2020_DEF.pdf (PDF)
+Middelburg                      https://www.middelburg.nl/Inwoners/Afval/Ophaaldagen_huisvuil (PDF)
+Mook en Middelaar               https://www.mookenmiddelaar.nl/inwoner/afval-en-duurzaamheid_42542/item/afvalkalender-2020_40888.html (PDF)
+Oegstgeest                      https://www.oegstgeest.nl/fileadmin/editor/Documenten/Inwoners/Alles_over_afval/afvalkalender_2020_v8.pdf (PDF)
+Oostzaan                        https://www.oostzaan.nl/mozard/document/docnr/1182761/bijlage%20-%20afvalkalender%20Oostzaan%202020%20-%20met%20wijkindeling (PDF)
+Ouder-Amstel                    https://www.ouder-amstel.nl/Home/Nieuws_en_actualiteiten/Nieuws/Alle_nieuwsberichten_2020/April/Data_inzameling_afval (PDF)
+Reusel-De Mierden               https://www.reuseldemierden.nl/document.php?m=25&fileid=123208&f=3e3d90c015a9b15ffc98c993c8e4e9da&attachment=0&c=40975 (PDF)
+Rozendaal                       https://www.rozendaal.nl/dsresource?objectid=d7a004f0-ff97-490a-8837-1b66e5bc11e1&type=org (PDF)
+Uithoorn                        https://www.uithoorn.nl/Home/Afval/Afvalkalender (PDF)
+Vlissingen                      https://www.vlissingen.nl/inwoner/afval-en-milieu/afval/huishoudelijk-afval-en-afvalkalender.html (PDF)
+Zundert                         https://www.zundert.nl/afval-en-milieustraat/afvalkalender-2020.html (PDF)
+Steenbergen                     https://www.gemeente-steenbergen.nl/inwoners_overzicht/afval/ (PDF)
+Vlieland                        https://www.vlieland.nl/v-zelf-regelen/producten_42533/product/afval-huishoudelijk-afval_17.html (PDF)
+############################################################################################################
+Buurt / dorp of geen kalender: #############################################################################
+Weert                           https://www.weert.nl/huisvuil-duobak-en-ophaaldagen
+Texel                           https://www.texel.nl/mozard/!suite86.scherm0325?mVrg=5059
+Maassluis                       https://www.maassluis.nl/wonen-verkeer-en-veiligheid/afvalinzameling_43871/
+Schiermonnikoog                 Geen kalender
+############################################################################################################
+ToDo / doable: #############################################################################################
+Amsterdam                       https://www.amsterdam.nl/afval-en-hergebruik/afvalwijzer/?adres=De%20Wittenkade%2047
+Beesel                          https://www.beesel.nl/inwoners/afval-en-milieu/afvalkalender/5954AC-2.html
 Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
-Delfzijl                        https://www.delfzijl.nl/inwoners/afvalkalender_43586/
-Edam-Volendam                   https://www.edam-volendam.nl/portal-home/inzamelkalender_43466/
-Eemnes                          https://www.eemnes.nl/inwoners/Afval/Afvalwijzer
-Gennep                          https://www.gennep.nl/document.php?m=28&fileid=98242&f=834a3177a76c30293e3e9d1c200729fb&attachment=0&c=34148
-Goes                            https://afvalkalender.goes.nl/
 Groningen                       https://gemeente.groningen.nl/afvalwijzer/groningen
-Hellevoetsluis                  https://www.hellevoetsluis.nl/Inwoners/WONEN_EN_LEEFOMGEVING/Afval/Afvalkalender
 's-Hertogenbosch                https://www.afvalstoffendienst.nl/login
-Het Hogeland                    https://hethogeland.nl/afval/afvalkalender
+Het Hogeland                    https://hethogeland.nl/afval/afvalkalender (Winsum en Bedum)
 Hoeksche Waard                  https://www.radhw.nl/inwoners/ophaalschema
 Katwijk                         https://afval.katwijk.nl/nc/afvalkalender/
-Landerd                         https://www.landerd.nl/inwoners-en-ondernemers/afval/afvalkalender/pdf/2020
-Landsmeer                       https://admin.sduconnect.nl/linked_links/1577977473Afvalkalender_2020_DEF.pdf
 Loppersum                       https://gemeente.groningen.nl/afvalwijzer/loppersum?pk_campaign=Redirects&pk_kwd=data-afvalinzameling
-Maassluis                       https://www.maassluis.nl/wonen-verkeer-en-veiligheid/afvalinzameling_43871/
-Middelburg                      https://www.middelburg.nl/Inwoners/Afval/Ophaaldagen_huisvuil
-Mook en Middelaar               https://www.mookenmiddelaar.nl/inwoner/afval-en-duurzaamheid_42542/item/afvalkalender-2020_40888.html
 Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
-Oegstgeest                      https://www.oegstgeest.nl/fileadmin/editor/Documenten/Inwoners/Alles_over_afval/afvalkalender_2020_v8.pdf
-Oostzaan                        https://www.oostzaan.nl/mozard/document/docnr/1182761/bijlage%20-%20afvalkalender%20Oostzaan%202020%20-%20met%20wijkindeling
-Ouder-Amstel                    https://www.ouder-amstel.nl/Home/Nieuws_en_actualiteiten/Nieuws/Alle_nieuwsberichten_2020/April/Data_inzameling_afval
-Reusel-De Mierden               https://www.reuseldemierden.nl/document.php?m=25&fileid=123208&f=3e3d90c015a9b15ffc98c993c8e4e9da&attachment=0&c=40975
-Rozendaal                       https://www.rozendaal.nl/dsresource?objectid=d7a004f0-ff97-490a-8837-1b66e5bc11e1&type=org
-Schiermonnikoog
-Steenbergen                     https://www.gemeente-steenbergen.nl/inwoners_overzicht/afval/
-Texel                           https://www.texel.nl/mozard/!suite86.scherm0325?mVrg=5059
-Uden                            https://www.uden.nl/inwoners/afval/ophaaldagen-afval/
-Uithoorn                        https://www.uithoorn.nl/Home/Afval/Afvalkalender
-Vlieland                        https://www.vlieland.nl/v-zelf-regelen/producten_42533/product/afval-huishoudelijk-afval_17.html
-Vlissingen                      https://www.vlissingen.nl/inwoner/afval-en-milieu/afval/huishoudelijk-afval-en-afvalkalender.html
+Uden                            https://www.uden.nl/inwoners/afval/ophaaldagen-afval/5402AG-1.html
 Voorschoten                     https://www.voorschotenmaakthetverschil.nl/
-Weert                           https://www.weert.nl/huisvuil-duobak-en-ophaaldagen
 Westerwolde                     https://www.westerwolde.nl/trash-removal-calendar
-Zundert                         https://www.zundert.nl/afval-en-milieustraat/afvalkalender-2020.html
+#############################################################################################################
 """
 
 import voluptuous as vol
