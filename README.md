@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'gemeenten' in The Netherlands: 315,5 of 352 = 89,63%
+### Number of supported 'gemeenten' in The Netherlands: 318,5 of 352 = 90,5%
 
 ### Warning! Breaking change from version 0.4.x (or lower) to 0.5.x! Change city (city/village) -> location (gemeente)
 ## Changed city
@@ -56,7 +56,7 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 ##### --(Spaarnelanden) Haarlem, Zandvoort
 ##### --(Suez) Arnhem
 ##### --(Súdwest-Fryslân) Zuidwest-Friesland
-##### --(Ximmio) Aalsmeer, Albrandswaard, Almelo, Almere, Barendrecht, Bloemendaal, Borne, Coevorden, Diemen, Ede, Emmen, Enschede, Haaksbergen, Haarlemmermeer, Heemstede, Hellendoorn, Hengelo, Hillegom, Hof van Twente, Hoogeveen, Lisse, Losser, Meppel, Nissewaard, Noordwijk, Oldenzaal, Renkum, Renswoude, Ridderkerk, Veenendaal, Vijfheerenlanden, Wageningen, Wierden
+##### --(Ximmio) Aalsmeer, Albrandswaard, Almelo, Almere, Barendrecht, Bloemendaal, Borne, Coevorden, Diemen, Ede, Emmen, Enschede, Gorinchem, Haaksbergen, Haarlemmermeer, Hardinxveld-Giessendam, Heemstede, Hellendoorn, Hengelo, Hillegom, Hof van Twente, Hoogeveen, Lisse, Losser, Meppel, Molenlanden, Nissewaard, Noordwijk, Oldenzaal, Renkum, Renswoude, Ridderkerk, Veenendaal, Vijfheerenlanden, Wageningen, Wierden
 ##### --(Zrd) Hulst, Kapelle, Noord-Beveland, Reimerswaal, Sluis, Tholen, Veere
 
 ### Add 'gemeente'

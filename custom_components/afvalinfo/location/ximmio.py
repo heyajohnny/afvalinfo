@@ -52,6 +52,9 @@ class XimmioAfval(object):
             vijfheerenlanden = ["vijfheerenlanden"]
             if city in vijfheerenlanden:
                 location = "vijfheerenlanden"
+            waardlanden = ["gorinchem", "hardinxveld-giessendam", "molenlanden"]
+            if city in waardlanden:
+                location = "waardlanden"
 
             # Get companyCode for this location
             companyCode = SENSOR_LOCATIONS_TO_COMPANY_CODE[location]

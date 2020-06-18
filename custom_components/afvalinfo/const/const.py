@@ -88,6 +88,7 @@ SENSOR_LOCATIONS_TO_COMPANY_CODE = {
     "nissewaard": ["9dc25c8a-175a-4a41-b7a1-83f237a80b77"],
     "twentemilieu": ["8d97bb56-5afd-4cbc-a651-b4f7314264b4"],
     "vijfheerenlanden": ["942abcf6-3775-400d-ae5d-7380d728b23c"],
+    "waardlanden": ["942abcf6-3775-400d-ae5d-7380d728b23c"]
 }
 
 MONTH_TO_NUMBER = {

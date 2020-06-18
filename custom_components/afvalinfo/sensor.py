@@ -31,9 +31,7 @@ Edam-Volendam                   https://www.edam-volendam.nl/portal-home/inzamel
 Eemnes                          https://www.eemnes.nl/inwoners/Afval/Afvalwijzer
 Gennep                          https://www.gennep.nl/document.php?m=28&fileid=98242&f=834a3177a76c30293e3e9d1c200729fb&attachment=0&c=34148
 Goes                            https://afvalkalender.goes.nl/
-Gorinchem                       https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
 Groningen                       https://gemeente.groningen.nl/afvalwijzer/groningen
-Hardinxveld-Giessendam          https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
 Hellevoetsluis                  https://www.hellevoetsluis.nl/Inwoners/WONEN_EN_LEEFOMGEVING/Afval/Afvalkalender
 's-Hertogenbosch                https://www.afvalstoffendienst.nl/login
 Het Hogeland                    https://hethogeland.nl/afval/afvalkalender
@@ -44,7 +42,6 @@ Landsmeer                       https://admin.sduconnect.nl/linked_links/1577977
 Loppersum                       https://gemeente.groningen.nl/afvalwijzer/loppersum?pk_campaign=Redirects&pk_kwd=data-afvalinzameling
 Maassluis                       https://www.maassluis.nl/wonen-verkeer-en-veiligheid/afvalinzameling_43871/
 Middelburg                      https://www.middelburg.nl/Inwoners/Afval/Ophaaldagen_huisvuil
-Molenlanden                     https://www.waardlanden.nl/particulieren/afvalinzameling/afvalkalender
 Mook en Middelaar               https://www.mookenmiddelaar.nl/inwoner/afval-en-duurzaamheid_42542/item/afvalkalender-2020_40888.html
 Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
 Oegstgeest                      https://www.oegstgeest.nl/fileadmin/editor/Documenten/Inwoners/Alles_over_afval/afvalkalender_2020_v8.pdf
@@ -405,7 +402,8 @@ class AfvalinfoData(object):
             self.data = WestlandAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        ximmio = ["aalsmeer", "albrandswaard", "almelo", "almere", "barendrecht", "bloemendaal", "borne", "coevorden", "diemen", "ede", "emmen", "enschede", "haaksbergen", "haarlemmermeer", "heemstede", "hellendoorn", "hengelo", "hillegom", "hof van twente", "hoogeveen", "lisse", "losser", "meppel", "nissewaard", "noordwijk", "oldenzaal", "renkum", "renswoude", "ridderkerk", "veenendaal", "vijfheerenlanden", "wageningen", "wierden"]
+        ximmio = ["aalsmeer", "albrandswaard", "almelo", "almere", "barendrecht", "bloemendaal", "borne", "coevorden", "diemen", "ede", "emmen", "enschede", "gorinchem", "haaksbergen", "haarlemmermeer", "hardinxveld-giessendam", "heemstede", "hellendoorn",
+        "hengelo", "hillegom", "hof van twente", "hoogeveen", "lisse", "losser", "meppel", "molenlanden", "nissewaard", "noordwijk", "oldenzaal", "renkum", "renswoude", "ridderkerk", "veenendaal", "vijfheerenlanden", "wageningen", "wierden"]
         if self.location in ximmio:
             self.data = XimmioAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
