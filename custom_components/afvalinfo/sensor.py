@@ -55,12 +55,9 @@ ToDo / doable: #################################################################
 Amsterdam                       https://www.amsterdam.nl/afval-en-hergebruik/afvalwijzer/?adres=De%20Wittenkade%2047
 Beesel                          https://www.beesel.nl/inwoners/afval-en-milieu/afvalkalender/5954AC-2.html
 Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
-Groningen                       https://gemeente.groningen.nl/afvalwijzer/groningen
 's-Hertogenbosch                https://www.afvalstoffendienst.nl/login
-Het Hogeland                    https://hethogeland.nl/afval/afvalkalender (Winsum en Bedum)
 Hoeksche Waard                  https://www.radhw.nl/inwoners/ophaalschema
 Katwijk                         https://afval.katwijk.nl/nc/afvalkalender/
-Loppersum                       https://gemeente.groningen.nl/afvalwijzer/loppersum?pk_campaign=Redirects&pk_kwd=data-afvalinzameling
 Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
 Uden                            https://www.uden.nl/inwoners/afval/ophaaldagen-afval/5402AG-1.html
 Voorschoten                     https://www.voorschotenmaakthetverschil.nl/
@@ -135,6 +132,7 @@ from .location.peelenmaas import PeelEnMaasAfval
 from .location.afvalstoffendienstkalender import AfvalstoffendienstkalenderAfval
 from .location.schouwenduiveland import SchouwenDuivelandAfval
 from .location.waalre import WaalreAfval
+from .location.groningen import GroningenAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -300,6 +298,11 @@ class AfvalinfoData(object):
         goereeoverflakkee = ["goeree-overflakkee"]
         if self.location in goereeoverflakkee:
             self.data = GoereeOverflakkeeAfval().get_data(
+                self.location, self.postcode, self.street_number, self.resources
+            )
+        groningen = ["groningen", "het hogeland bw", "loppersum"]
+        if self.location in groningen:
+            self.data = GroningenAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         hvc = ["alblasserdam", "bergen", "beverwijk", "den helder", "dordrecht", "drechterland", "enkhuizen", "hendrik-ido-ambacht", "heemskerk", "hollands kroon", "hoorn", "koggenland", "lelystad", "medemblik", "noordoostpolder", "opmeer", "papendrecht", "schagen", "stede broec", "velsen", "wormerland",

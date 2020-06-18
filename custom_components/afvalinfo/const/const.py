@@ -38,6 +38,7 @@ SENSOR_LOCATIONS_TO_URL = {
     "drimmelen": ["https://drimmelen.nl/trash-removal-calendar/{0}/{1}"],
     "gad": ["https://inzamelkalender.gad.nl/adres/{0}:{1}"],
     "goereeoverflakkee": ["https://webadapter.watsoftware.nl/widget.aspx?version=3.7&action=3000001&xml=<postcode>{0}</postcode><huisnummer>{1}</huisnummer><guid>BCE23C06-E248-4300-B97F-E308A451C6B4</guid>"],
+    "groningen": ["https://gemeente.groningen.nl/afvalwijzer/groningen/{0}/{1}/{2}/"],
     "hvc": [
         "https://inzamelkalender.hvcgroep.nl/rest/adressen/{0}-{1}",
         "https://inzamelkalender.hvcgroep.nl/rest/adressen/{0}/kalender/{1}"
