@@ -19,13 +19,16 @@ class BeeselAfval(object):
                     date = str(data.td)
 
                     day = date.split()[1].zfill(2)
-                    month = MONTH_TO_NUMBER[(date.split()[2]).split("<br/>")[0]]
+                    try:
+                        month = MONTH_TO_NUMBER[(date.split()[2]).split("<br/>")[0]]
+                    except Exception as exc:
+                        month = MONTH_TO_NUMBER[(date.split()[2]).split("<span>")[0]]
                     year = str(
                         datetime.today().year
                         if datetime.today().month <= int(month)
                         else datetime.today().year + 1
                     )
-                    return str(year) + "-" + month + "-" + day
+                    return year + "-" + month + "-" + day
             return ""
         except Exception as exc:
             _LOGGER.warning("Something went wrong while splitting data: %r. This probably means that trash type %r is not supported on your location", exc, afvalnaam)
