@@ -53,7 +53,6 @@ Schiermonnikoog                 Geen kalender
 ############################################################################################################
 ToDo / doable: #############################################################################################
 Amsterdam                       https://www.amsterdam.nl/afval-en-hergebruik/afvalwijzer/?adres=De%20Wittenkade%2047
-Beesel                          https://www.beesel.nl/inwoners/afval-en-milieu/afvalkalender/5954AC-2.html
 Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
 's-Hertogenbosch                https://www.afvalstoffendienst.nl/login
 Hoeksche Waard                  https://www.radhw.nl/inwoners/ophaalschema
@@ -133,6 +132,7 @@ from .location.afvalstoffendienstkalender import AfvalstoffendienstkalenderAfval
 from .location.schouwenduiveland import SchouwenDuivelandAfval
 from .location.waalre import WaalreAfval
 from .location.groningen import GroningenAfval
+from .location.beesel import BeeselAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -233,6 +233,11 @@ class AfvalinfoData(object):
         avalex = ["delft", "leidschendam-voorburg", "midden-delfland", "pijnacker-nootdorp", "rijswijk", "wassenaar"]
         if self.location in avalex:
             self.data = AvalexAfval().get_data(
+                self.location, self.postcode, self.street_number, self.resources
+            )
+        beesel = ["beesel"]
+        if self.location in beesel:
+            self.data = BeeselAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         berkelland = ["berkelland"]

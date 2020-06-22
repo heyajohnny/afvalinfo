@@ -19,6 +19,7 @@ SENSOR_LOCATIONS_TO_URL = {
         "https://www.avalex.nl/rest/adressen/{0}-{1}",
         "https://www.avalex.nl/rest/adressen/{0}/kalender/{1}"
     ],
+    "beesel": ["https://www.beesel.nl/inwoners/afval-en-milieu/afvalkalender/{0}-{1}.html"],
     "berkelland": ["https://afvalkalender.gemeenteberkelland.nl/adres/{0}:{1}"],
     "blink": ["https://mijnblink.nl/adres/{0}:{1}"],
     "borsele": ["https://afvalkalender.borsele.nl/afval/afvalkalender/{0}/{1}"],
