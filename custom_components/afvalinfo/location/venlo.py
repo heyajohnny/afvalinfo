@@ -14,24 +14,25 @@ class VenloAfval(object):
         try:
             for row in tableRows:
                 garbageDate = row.find("td")
-                garbageType = row.find("span")
-                if garbageDate and garbageType:
-                    garbageDate = row.find("td").string
-                    garbageType = row.find("span").string
+                garbageTypes = row.find_all("span")
+                for garbageType in garbageTypes:
+                    if garbageDate and garbageType:
+                        garbageDate = row.find("td").string
+                        garbageType = garbageType.string
 
-                    #Does the afvaltype match...
-                    if garbageType == afvaltype:
-                        day = garbageDate.split()[1]
-                        month = MONTH_TO_NUMBER[garbageDate.split()[2]]
-                        year = str(
-                            datetime.today().year
-                            if datetime.today().month <= int(month)
-                            else datetime.today().year + 1
-                        )
-                        garbageDate = year + "-" + month + "-" + day
+                        #Does the afvaltype match...
+                        if garbageType == afvaltype:
+                            day = garbageDate.split()[1]
+                            month = MONTH_TO_NUMBER[garbageDate.split()[2]]
+                            year = str(
+                                datetime.today().year
+                                if datetime.today().month <= int(month)
+                                else datetime.today().year + 1
+                            )
+                            garbageDate = year + "-" + month + "-" + day
 
-                        if datetime.strptime(garbageDate, '%Y-%m-%d').date() >= date.today():
-                            return garbageDate
+                            if datetime.strptime(garbageDate, '%Y-%m-%d').date() >= date.today():
+                                return garbageDate
             # if nothing was found
             return ""
         except Exception as exc:
