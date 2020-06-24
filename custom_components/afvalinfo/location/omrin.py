@@ -21,7 +21,13 @@ class OmrinAfval(object):
             data = ast.literal_eval(str(data).lower())
             #to lowercase the afvaltype
             afvaltype = afvaltype.lower()
-            dataFilteredByType = data[afvaltype]
+
+            for d in data:
+                # d can contain something like 'biobak1' or 'biobak extra data2'
+                if d.startswith(afvaltype):
+                    dataFilteredByType = data[d]
+                    break
+
             dates = dataFilteredByType["dates"]
 
             thisMonth = datetime.today().month
