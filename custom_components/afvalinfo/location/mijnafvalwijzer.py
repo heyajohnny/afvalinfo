@@ -18,6 +18,11 @@ class MijnAfvalWijzerAfval(object):
             for result in results:
                 date = result.find("span", {"class": "span-line-break"})
 
+                #Sometimes there is no span with class span-line-break
+                #so we just get the result as date
+                if date is None:
+                    date = result
+
                 # get the value of the span
                 date = date.string
 
