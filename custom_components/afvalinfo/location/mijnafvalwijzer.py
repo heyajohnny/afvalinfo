@@ -21,10 +21,11 @@ class MijnAfvalWijzerAfval(object):
                 #Sometimes there is no span with class span-line-break
                 #so we just get the result as date
                 if date is None:
-                    date = result
-
-                # get the value of the span
-                date = date.string
+                    date = str(result).split(">")[1]
+                    date = date.split("<")[0]
+                else:
+                    # get the value of the span
+                    date = date.string
 
                 day = date.split()[1]
                 month = MONTH_TO_NUMBER[date.split()[2]]
