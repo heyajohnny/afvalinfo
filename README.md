@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'gemeenten' in The Netherlands: 324 of 352 = 92,04%
+### Number of supported 'gemeenten' in The Netherlands: 325 of 352 = 92,32%
 
 ### Warning! Breaking change from version 0.4.x (or lower) to 0.5.x! Change city (city/village) -> location (gemeente)
 ## Changed city
@@ -34,6 +34,7 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 ##### -- Purmerend, Beemster
 ##### -- Schouwen-Duiveland
 ##### -- Sliedrecht
+##### -- Uden
 ##### -- Veldhoven
 ##### -- Venlo
 ##### -- Venray
@@ -142,7 +143,7 @@ There are 3 important attributes:
 - is_collection_date_today.      This will return true if the collection date is today and false if the collection date is not today.
 - hidden.                        This will return true on error or if the date is outside of range of the 'timespanindays' value. On any other occasion it will return true.
 
-Example for attribute usage of attributes. This example creates a new sensor with the attribute value 'days_until_collection_date' of the sensor 'sensor.afvalinfo_papier':
+Example for usage of attributes. This example creates a new sensor with the attribute value 'days_until_collection_date' of the sensor 'sensor.afvalinfo_papier':
 ```yaml
 - platform: template
     sensors:

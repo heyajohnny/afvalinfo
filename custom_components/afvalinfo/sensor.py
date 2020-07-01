@@ -55,9 +55,7 @@ ToDo / doable: #################################################################
 Amsterdam                       https://www.amsterdam.nl/afval-en-hergebruik/afvalwijzer/?adres=De%20Wittenkade%2047
 Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
 's-Hertogenbosch                https://www.afvalstoffendienst.nl/login
-Katwijk                         https://afval.katwijk.nl/nc/afvalkalender/ 2225DS 1
 Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
-Uden                            https://www.uden.nl/inwoners/afval/ophaaldagen-afval/5402AG-1.html
 Voorschoten                     https://www.voorschotenmaakthetverschil.nl/
 Westerwolde                     https://www.westerwolde.nl/trash-removal-calendar
 #############################################################################################################
@@ -134,6 +132,7 @@ from .location.groningen import GroningenAfval
 from .location.beesel import BeeselAfval
 from .location.hoekschewaard import HoekscheWaardAfval
 from .location.katwijk import KatwijkAfval
+from .location.uden import UdenAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -395,6 +394,11 @@ class AfvalinfoData(object):
         suez = ["arnhem"]
         if self.location in suez:
             self.data = SuezAfval().get_data(
+                self.location, self.postcode, self.street_number, self.resources
+            )
+        uden = ["uden"]
+        if self.location in uden:
+            self.data = UdenAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         veldhoven = ["veldhoven"]

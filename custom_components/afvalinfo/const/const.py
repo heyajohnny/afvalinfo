@@ -63,6 +63,7 @@ SENSOR_LOCATIONS_TO_URL = {
     "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/{0}:{1}"],
     "spaarnelanden": ["https://afvalwijzer.spaarnelanden.nl/adres/{0}:{1}"],
     "suez": ["https://inzamelwijzer.suez.nl/adres/{0}:{1}"],
+    "uden": ["https://www.uden.nl/inwoners/afval/ophaaldagen-afval/{0}-{1}.html"],
     "veldhoven": ["https://www.veldhoven.nl/afvalkalender/{0}-{1}"],
     "venlo": ["https://www.venlo.nl/trash-removal-calendar/{0}/{1}"],
     "venray": ["https://afvalkalender.venray.nl/adres/{0}:{1}"],
