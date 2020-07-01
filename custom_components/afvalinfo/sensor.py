@@ -55,7 +55,6 @@ ToDo / doable: #################################################################
 Amsterdam                       https://www.amsterdam.nl/afval-en-hergebruik/afvalwijzer/?adres=De%20Wittenkade%2047
 Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
 's-Hertogenbosch                https://www.afvalstoffendienst.nl/login
-Hoeksche Waard                  https://www.radhw.nl/inwoners/ophaalschema
 Katwijk                         https://afval.katwijk.nl/nc/afvalkalender/
 Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
 Uden                            https://www.uden.nl/inwoners/afval/ophaaldagen-afval/5402AG-1.html
@@ -133,6 +132,7 @@ from .location.schouwenduiveland import SchouwenDuivelandAfval
 from .location.waalre import WaalreAfval
 from .location.groningen import GroningenAfval
 from .location.beesel import BeeselAfval
+from .location.hoekschewaard import HoekscheWaardAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -308,6 +308,11 @@ class AfvalinfoData(object):
         groningen = ["groningen", "het hogeland bw", "loppersum"]
         if self.location in groningen:
             self.data = GroningenAfval().get_data(
+                self.location, self.postcode, self.street_number, self.resources
+            )
+        hoekschewaard = ["hoeksche waard"]
+        if self.location in hoekschewaard:
+            self.data = HoekscheWaardAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         hvc = ["alblasserdam", "bergen", "beverwijk", "den helder", "dordrecht", "drechterland", "enkhuizen", "hendrik-ido-ambacht", "heemskerk", "hollands kroon", "hoorn", "koggenland", "lelystad", "medemblik", "noordoostpolder", "opmeer", "papendrecht", "schagen", "stede broec", "velsen", "wormerland",
