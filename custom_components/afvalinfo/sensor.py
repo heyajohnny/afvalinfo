@@ -55,7 +55,7 @@ ToDo / doable: #################################################################
 Amsterdam                       https://www.amsterdam.nl/afval-en-hergebruik/afvalwijzer/?adres=De%20Wittenkade%2047
 Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
 's-Hertogenbosch                https://www.afvalstoffendienst.nl/login
-Katwijk                         https://afval.katwijk.nl/nc/afvalkalender/
+Katwijk                         https://afval.katwijk.nl/nc/afvalkalender/ 2225DS 1
 Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
 Uden                            https://www.uden.nl/inwoners/afval/ophaaldagen-afval/5402AG-1.html
 Voorschoten                     https://www.voorschotenmaakthetverschil.nl/
@@ -133,6 +133,7 @@ from .location.waalre import WaalreAfval
 from .location.groningen import GroningenAfval
 from .location.beesel import BeeselAfval
 from .location.hoekschewaard import HoekscheWaardAfval
+from .location.katwijk import KatwijkAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -324,6 +325,11 @@ class AfvalinfoData(object):
         irado = ["capelle aan den ijssel", "schiedam", "vlaardingen"]
         if self.location in irado:
             self.data = IradoAfval().get_data(
+                self.location, self.postcode, self.street_number, self.resources
+            )
+        katwijk = ["katwijk"]
+        if self.location in katwijk:
+            self.data = KatwijkAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         middendrenthe = ["midden-drenthe"]
