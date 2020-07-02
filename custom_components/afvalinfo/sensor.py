@@ -8,6 +8,7 @@ ToDo: Fix all the next year problems
 ToDo: Add the following gemeenten:
 PDF: #####################################################################################################
 Bergen Limburg                  bergen.nl/home/afval_44490/item/afvalkalender-2020_38953.html (PDF)
+Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin (PDF)
 Delfzijl                        https://www.delfzijl.nl/inwoners/afvalkalender_43586/ (PDF)
 Edam-Volendam                   https://www.edam-volendam.nl/portal-home/inzamelkalender_43466/ (PDF)
 Eemnes                          https://www.eemnes.nl/inwoners/Afval/Afvalwijzer (PDF)
@@ -39,8 +40,6 @@ Schiermonnikoog                 Geen kalender
 ############################################################################################################
 ToDo / doable: #############################################################################################
 Amsterdam                       https://www.amsterdam.nl/afval-en-hergebruik/afvalwijzer/?adres=De%20Wittenkade%2047
-Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
-Westerwolde                     https://www.westerwolde.nl/trash-removal-calendar/9697SM/41 9697SM 41
 #############################################################################################################
 Dubbeling:
 Beekdaelen = RD4 en MijnAfvalWijzer
@@ -120,6 +119,7 @@ from .location.beesel import BeeselAfval
 from .location.hoekschewaard import HoekscheWaardAfval
 from .location.katwijk import KatwijkAfval
 from .location.uden import UdenAfval
+from .location.westerwolde import WesterwoldeAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -332,7 +332,7 @@ class AfvalinfoData(object):
             self.data = MijnAfvalWijzerAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        omrin = ["achtkarspelen", "ameland", "appingedam", "harlingen", "heerenveen", "het hogeland", "leeuwarden", "noardeast fryslan", "ooststellingwerf", "opsterland", "terschelling", "tietjerksteradeel", "waadhoeke", "weststellingwerf"]
+        omrin = ["achtkarspelen", "ameland", "appingedam", "dantumadeel f", "harlingen", "heerenveen", "het hogeland", "leeuwarden", "noardeast fryslan", "ooststellingwerf", "opsterland", "terschelling", "tietjerksteradeel", "waadhoeke", "weststellingwerf"]
         if self.location in omrin:
             self.data = OmrinAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
@@ -411,6 +411,11 @@ class AfvalinfoData(object):
         westerkwartier = ["westerkwartier"]
         if self.location in westerkwartier:
             self.data = WesterkwartierAfval().get_data(
+                self.location, self.postcode, self.street_number, self.resources
+            )
+        westerwolde = ["westerwolde"]
+        if self.location in westerwolde:
+            self.data = WesterwoldeAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         westland = ["westland"]

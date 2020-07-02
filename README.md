@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'gemeenten' in The Netherlands: 324 of 352 = 92,04%
+### Number of supported 'gemeenten' in The Netherlands: 325,5 of 352 = 92,47%
 
 ### Warning! Breaking change from version 0.4.x (or lower) to 0.5.x! Change city (city/village) -> location (gemeente)
 ## Changed city
@@ -40,6 +40,7 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 ##### -- Venray
 ##### -- Waalre
 ##### -- Westerkwartier
+##### -- Westerwolde
 ##### -- Westland
 ##### --(Afvalstoffendienstkalender) Haaren, Heusden, Oisterwijk, s-Hertogenbosch, Vught
 ##### --(Avalex) Delft, Leidschendam-Voorburg, Midden-Delfland, Pijnacker-Nootdorp, Rijswijk, Wassenaar
@@ -54,7 +55,7 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 ##### --(HVC) Alblasserdam, Bergen, Beverwijk, Den Helder, Dordrecht, Drechterland, Enkhuizen, Hendrik-Ido-Ambacht, Heemskerk, Hollands Kroon, Hoorn, Koggenland, Lelystad, Medemblik, Noordoostpolder, Opmeer, Papendrecht, Schagen, Stede Broec, Velsen, Wormerland, Zaanstad, Zeewolde, Zwijndrecht
 ##### --(Irado) Capelle aan den IJssel, Schiedam, Vlaardingen
 ##### --(MijnAfvalWijzer) AA en Hunze, Alphen-Chaam, Assen, Altena, Amstelveen, Baarle-Nassau, Barneveld, Beek, Beekdaelen, Beesel, Bergeijk, Bergen op Zoom, Bernheze, Best, Bladel, Borger-Odoorn, Boxtel, Breda, Brielle, Castricum, De Ronde Venen, De Wolden, De Bilt, Doetinchem, Dongen, Dronten, Duiven, Eersel, Eindhoven, Elburg, Ermelo, Etten-Leur, Geertruidenberg, Geldrop-Mierlo, Gilze en Rijen, Goirle, Halderberge, Harderwijk, Heerhugowaard, Heiloo, Hilvarenbeek, Horst aan de Maas, Houten, Kampen, Krimpen aan den IJssel, Langedijk, Lansingerland, Leiden, Leiderdorp, Leudal, Leusden, Lingewaard, Loon op Zand, Lopik, Maasgouw, Meierijstad, Midden-Groningen, Moerdijk, Nijkerk, Noordenveld, Nunspeet, Oirschot, Oldambt, Oldebroek, Oosterhout, Oss, Oude IJsselstreek, Oude Pekela, Putten, Oudewater, Overbetuwe, Rheden, Rhenen, Rijssen-Holten, Roerdalen, Roermond, Roosendaal, Rotterdam, Rucphen, Scherpenzeel, Sint-Michielsgestel, Sittard-Geleen, Smallingerland, Stadskanaal, Stein, Stichtse Vecht, Teylingen, Tilburg, Tynaarlo, Uitgeest, Utrecht, Utrechtse Heuvelrug, Valkenswaard, Veendam, Waalwijk, Waterland, Wijk bij Duurstede, Westervoort, Westvoorne, Woensdrecht, Woerden, Zevenaar, Zoetermeer, Zoeterwoude  ###### WARNING! Might not work well at the end of the year / beginning of the next year
-##### --(Omrin) Achtkarspelen, Ameland, Appingedam, Harlingen, Heerenveen, Het Hogeland(De Marne, Eemsmond), Leeuwarden, Noardeast Fryslan, Ooststellingwerf, Opsterland, Terschelling, Tietjerksteradeel, Waadhoeke, Weststellingwerf
+##### --(Omrin) Achtkarspelen, Ameland, Appingedam, Dantumadeel(Ferwerderadiel), Harlingen, Heerenveen, Het Hogeland(De Marne, Eemsmond), Leeuwarden, Noardeast Fryslan, Ooststellingwerf, Opsterland, Terschelling, Tietjerksteradeel, Waadhoeke, Weststellingwerf
 ##### --(Rd4) Beekdaelen, Brunssum, Eijsden-Margraten, Gulpen-Wittem, Heerlen, Kerkrade, Landgraaf, Maastricht, Meerssen, Simpelveld, Vaals, Valkenburg aan de Geul, Voerendaal  ###### WARNING! Might not work well at the end of the year / beginning of the next year
 ##### --(Rmn) Baarn, Bunnik, IJsselstein, Nieuwegein, Soest, Zeist
 ##### --(Rova) Aalten, Amersfoort, Bunschoten, Dalfsen, Dinkelland, Hardenberg, Hattem, Heerde, Olst-Wijhe, Ommen, Oost Gelre, Raalte, Staphorst, Steenwijkerland, Tubbergen, Twenterand, Urk, Westerveld, Winterswijk, Woudenberg, Zwartewaterland, Zwolle  ###### WARNING! Might not work well at the end of the year / beginning of the next year

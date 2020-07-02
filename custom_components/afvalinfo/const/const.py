@@ -73,6 +73,7 @@ SENSOR_LOCATIONS_TO_URL = {
         "https://afvalkalender.waalre.nl/rest/adressen/{0}/kalender/{1}"
     ],
     "westerkwartier": ["https://www.afvalalert.nl/kalender/{0}/{1}/?web=1"],
+    "westerwolde": ["https://www.westerwolde.nl/trash-removal-calendar/{0}/{1}"],
     "westland": ["https://huisvuilkalender.gemeentewestland.nl/huisvuilkalender/Huisvuilkalender/get-huisvuilkalender-ajax"],
     "ximmio": [
         "https://wasteapi.ximmio.com/api/FetchAdress",
