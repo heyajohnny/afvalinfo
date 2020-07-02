@@ -121,3 +121,4 @@ Version: 0.5.16 20200701 - Added Katwijk
 Version: 0.5.17 20200701 - Added Uden
 Version: 0.5.18 20200702 - Bug fix + cleaning + added some locations to afvalstoffendienstkalender
 Version: 0.5.19 20200702 - Added Westerwolde + Dantumadeel(Ferwerderadiel)
+Version: 0.5.20 20200702 - Removed duplicates

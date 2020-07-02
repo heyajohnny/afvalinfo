@@ -29,22 +29,17 @@ Vlissingen                      https://www.vlissingen.nl/inwoner/afval-en-milie
 Zundert                         https://www.zundert.nl/afval-en-milieustraat/afvalkalender-2020.html (PDF)
 Steenbergen                     https://www.gemeente-steenbergen.nl/inwoners_overzicht/afval/ (PDF)
 Vlieland                        https://www.vlieland.nl/v-zelf-regelen/producten_42533/product/afval-huishoudelijk-afval_17.html (PDF)
-############################################################################################################
-Buurt / dorp indeling of geen kalender: #############################################################################
+#############################################################################################################
+Buurt / dorp indeling of geen kalender: #####################################################################
 Weert                           https://www.weert.nl/huisvuil-duobak-en-ophaaldagen
 Texel                           https://www.texel.nl/mozard/!suite86.scherm0325?mVrg=5059
 Maassluis                       https://www.maassluis.nl/wonen-verkeer-en-veiligheid/afvalinzameling_43871/
 Voorschoten                     https://www.voorschotenmaakthetverschil.nl/ 2251dn 121
 Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
+Amsterdam                       Geen kalender, alleen inleverpunten
 Schiermonnikoog                 Geen kalender
 ############################################################################################################
-ToDo / doable: #############################################################################################
-Amsterdam                       https://www.amsterdam.nl/afval-en-hergebruik/afvalwijzer/?adres=De%20Wittenkade%2047
-#############################################################################################################
-Dubbeling:
-Beekdaelen = RD4 en MijnAfvalWijzer
-Beesel = Beesel en MijnAfvalWijzer
-Helmond = Blink en deafvalapp
+############################################################################################################
 """
 
 import voluptuous as vol
@@ -232,7 +227,7 @@ class AfvalinfoData(object):
             self.data = BerkellandAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        blink = ["asten", "deurne", "gemert-bakel", "heeze-leende", "helmond", "laarbeek", "nuenen", "someren"]
+        blink = ["asten", "deurne", "gemert-bakel", "heeze-leende", "laarbeek", "nuenen", "someren"]
         if self.location in blink:
             self.data = BlinkAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
@@ -323,7 +318,7 @@ class AfvalinfoData(object):
             self.data = MiddenDrentheAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        mijnafvalwijzer = ["aa en hunze", "alphen-chaam", "assen", "altena", "amstelveen", "baarle-nassau", "barneveld", "beek", "beekdaelen", "beesel", "bergeijk", "bergen op zoom", "bernheze", "best", "bladel", "borger-odoorn", "boxtel", "breda", "brielle", "castricum", "de ronde venen", "de wolden", "de bilt",
+        mijnafvalwijzer = ["aa en hunze", "alphen-chaam", "assen", "altena", "amstelveen", "baarle-nassau", "barneveld", "beek", "bergeijk", "bergen op zoom", "bernheze", "best", "bladel", "borger-odoorn", "boxtel", "breda", "brielle", "castricum", "de ronde venen", "de wolden", "de bilt",
         "doetinchem", "dongen", "dronten", "duiven", "eersel", "eindhoven", "elburg", "ermelo", "etten-leur", "geertruidenberg", "geldrop-mierlo", "gilze en rijen", "goirle", "halderberge", "harderwijk", "heerhugowaard", "heiloo", "hilvarenbeek", "horst aan de maas", "houten", "kampen", "krimpen aan den ijssel",
         "langedijk", "lansingerland", "leiden", "leiderdorp", "leudal", "leusden", "lingewaard", "loon op zand", "lopik", "maasgouw", "meierijstad", " midden-groningen", "moerdijk", "nijkerk", "noordenveld", "nunspeet", "oirschot", "oldambt", "oldebroek", "oosterhout", "oss", "oude ijsselstreek", "oude pekela",
         "putten", "oudewater", "overbetuwe", "rheden", "rhenen", "rijssen-holten", "roerdalen", "roermond", "roosendaal", "rotterdam", "rucphen", "scherpenzeel", "sint-michielsgestel", "sittard-geleen", "smallingerland", "stadskanaal", "stein", "stichtse vecht", "teylingen", "tilburg", "tynaarlo", "uitgeest",
