@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'gemeenten' in The Netherlands: 325 of 352 = 92,32%
+### Number of supported 'gemeenten' in The Netherlands: 324 of 352 = 92,04%
 
 ### Warning! Breaking change from version 0.4.x (or lower) to 0.5.x! Change city (city/village) -> location (gemeente)
 ## Changed city
@@ -41,7 +41,7 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 ##### -- Waalre
 ##### -- Westerkwartier
 ##### -- Westland
-##### --(Afvalstoffendienstkalender) Haaren, Oisterwijk, Vught
+##### --(Afvalstoffendienstkalender) Haaren, Heusden, Oisterwijk, s-Hertogenbosch, Vught
 ##### --(Avalex) Delft, Leidschendam-Voorburg, Midden-Delfland, Pijnacker-Nootdorp, Rijswijk, Wassenaar
 ##### --(Blink) Asten, Deurne, Gemert-Bakel, Heeze-Leende, Helmond, Laarbeek, Nuenen, Someren
 ##### --(Circulus-Berkel) Apeldoorn, Bronckhorst, Brummen, Deventer, Doesburg, Epe, Lochem, Voorst, Zutphen

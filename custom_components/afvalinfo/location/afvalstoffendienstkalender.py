@@ -41,9 +41,15 @@ class AfvalstoffendienstkalenderAfval(object):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
-            url = SENSOR_LOCATIONS_TO_URL["afvalstoffendienstkalender"][0].format(
-                city, postcode, street_number
-            )
+            # different url for "s-hertogenbosch"
+            if city == "s-hertogenbosch":
+                url = SENSOR_LOCATIONS_TO_URL["afvalstoffendienstkalender-s-hertogenbosch"][0].format(
+                    postcode, street_number
+                )
+            else:
+                url = SENSOR_LOCATIONS_TO_URL["afvalstoffendienstkalender"][0].format(
+                    city, postcode, street_number
+                )
             req = urllib.request.Request(url=url)
             f = urllib.request.urlopen(req)
             html = f.read().decode("utf-8")

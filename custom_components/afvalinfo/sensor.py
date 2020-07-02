@@ -3,22 +3,6 @@
 Sensor component for Afvalinfo
 Author: Johnny Visser
 
-with zipcode and housenumber you can get the bagID:
-https://apps.hvcgroep.nl/rest/adressen/ 5" …zipcode…"-"…housenumber…"
-example: https://apps.hvcgroep.nl/rest/adressen/3328DB-37 4
-
-output looks like
-
-[{"bagId":"0505200000092263","postcode":"3328LN","huisnummer":35,"huisletter":"","huisnummerToevoeging":"","openbareRuimteNaam":"Moestuin","woonplaatsNaam":"Dordrecht","latitude":51.7701971,"longitude":4.6597255,"woonplaatsId":2351,"gemeenteId":505}]
-find bagid:0505200000092263
-
-get data:
-https://apps.hvcgroep.nl/rest/adressen/ 5" …myBagId … “/kalender/” … myYear
-url looks like:
-https://apps.hvcgroep.nl/rest/adressen/0505200000092263/kalender/2019 5
-
-
-ToDo: Add the old municities: Bedum, Winsum (Het Hogeland). https://gemeente.groningen.nl/afvalwijzer/
 ToDo: Add huisnummer toevoeging
 ToDo: Fix all the next year problems
 ToDo: Add the following gemeenten:
@@ -45,20 +29,23 @@ Zundert                         https://www.zundert.nl/afval-en-milieustraat/afv
 Steenbergen                     https://www.gemeente-steenbergen.nl/inwoners_overzicht/afval/ (PDF)
 Vlieland                        https://www.vlieland.nl/v-zelf-regelen/producten_42533/product/afval-huishoudelijk-afval_17.html (PDF)
 ############################################################################################################
-Buurt / dorp of geen kalender: #############################################################################
+Buurt / dorp indeling of geen kalender: #############################################################################
 Weert                           https://www.weert.nl/huisvuil-duobak-en-ophaaldagen
 Texel                           https://www.texel.nl/mozard/!suite86.scherm0325?mVrg=5059
 Maassluis                       https://www.maassluis.nl/wonen-verkeer-en-veiligheid/afvalinzameling_43871/
+Voorschoten                     https://www.voorschotenmaakthetverschil.nl/ 2251dn 121
+Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
 Schiermonnikoog                 Geen kalender
 ############################################################################################################
 ToDo / doable: #############################################################################################
 Amsterdam                       https://www.amsterdam.nl/afval-en-hergebruik/afvalwijzer/?adres=De%20Wittenkade%2047
 Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin
-'s-Hertogenbosch                https://www.afvalstoffendienst.nl/login
-Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
-Voorschoten                     https://www.voorschotenmaakthetverschil.nl/
-Westerwolde                     https://www.westerwolde.nl/trash-removal-calendar
+Westerwolde                     https://www.westerwolde.nl/trash-removal-calendar/9697SM/41 9697SM 41
 #############################################################################################################
+Dubbeling:
+Beekdaelen = RD4 en MijnAfvalWijzer
+Beesel = Beesel en MijnAfvalWijzer
+Helmond = Blink en deafvalapp
 """
 
 import voluptuous as vol
@@ -215,7 +202,7 @@ class AfvalinfoData(object):
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
         _LOGGER.debug("Updating Waste collection dates")
-        afvalstoffendienstkalender = ["haaren", "oisterwijk", "vught"]
+        afvalstoffendienstkalender = ["haaren", "heusden", "oisterwijk", "s-hertogenbosch", "vught"]
         if self.location in afvalstoffendienstkalender:
             self.data = AfvalstoffendienstkalenderAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
