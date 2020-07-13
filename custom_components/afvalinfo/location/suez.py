@@ -8,6 +8,7 @@ from datetime import timedelta
 from bs4 import BeautifulSoup
 import urllib.request
 import urllib.error
+import ssl
 
 
 class SuezAfval(object):
@@ -35,7 +36,9 @@ class SuezAfval(object):
                 postcode, street_number
             )
             req = urllib.request.Request(url=url)
-            f = urllib.request.urlopen(req)
+
+            gcontext = ssl.SSLContext()
+            f = urllib.request.urlopen(req, context=gcontext)
             html = f.read().decode("utf-8")
 
             soup = BeautifulSoup(html, "html.parser")
