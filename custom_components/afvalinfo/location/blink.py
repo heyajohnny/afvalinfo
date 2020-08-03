@@ -49,6 +49,8 @@ class BlinkAfval(object):
             # find afvalstroom/78 = gft
             if "gft" in resources:
                 waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 78, "gft")
+            if len(waste_dict["gft"]) == 0:
+                waste_dict["gft"] = self.get_date_from_afvaltype(ophaaldata, 75, "gft")
             # find afvalstroom/1 = papier
             if "papier" in resources:
                 waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 1, "papier")
