@@ -124,3 +124,4 @@ Version: 0.5.19 20200702 - Added Westerwolde + Dantumadeel(Ferwerderadiel)
 Version: 0.5.20 20200702 - Removed duplicates
 Version: 0.5.21 20200713 - SSL fix for Suez
 Version: 0.5.22 20200803 - Fix for Blink (Deurne)
+Version: 0.5.23 20200807 - Fix for Omrin
