@@ -148,17 +148,18 @@ class OmrinAfval(object):
                     if omrinNextYear and len(extratuinafval) == 0:
                         extratuinafval = self.get_date_from_afvaltype(nextYear, omrinNextYear, "Extra Tuinafval", "gft")
 
-                if len(tuinafval) != 0 or len(extratuinafval) != 0:
-                    if len(tuinafval) != 0 and len(extratuinafval) == 0:
-                        waste_dict["gft"] = tuinafval
-                    if len(tuinafval) == 0 and len(extratuinafval) != 0:
-                        waste_dict["gft"] = extratuinafval
-                    if len(tuinafval) != 0 and len(extratuinafval) != 0:
-                        if tuinafval < extratuinafval:
+                    if len(tuinafval) != 0 or len(extratuinafval) != 0:
+                        if len(tuinafval) != 0 and len(extratuinafval) == 0:
                             waste_dict["gft"] = tuinafval
-                        if extratuinafval < tuinafval:
+                        if len(tuinafval) == 0 and len(extratuinafval) != 0:
                             waste_dict["gft"] = extratuinafval
-
+                        if len(tuinafval) != 0 and len(extratuinafval) != 0:
+                            if tuinafval < extratuinafval:
+                                waste_dict["gft"] = tuinafval
+                            if extratuinafval < tuinafval:
+                                waste_dict["gft"] = extratuinafval
+                #For certain locations there is an 'Extra' pickup date... see which one is earlier
+                if len(waste_dict["gft"]) == 0:
                     if len(waste_dict["gft"]) == 0:
                         tuinafval = self.get_date_from_afvaltype(thisYear, omrinThisYear, "Biobak", "gft")
                     if omrinNextYear and len(tuinafval) == 0:
@@ -168,16 +169,16 @@ class OmrinAfval(object):
                     if omrinNextYear and len(extratuinafval) == 0:
                         extratuinafval = self.get_date_from_afvaltype(nextYear, omrinNextYear, "Biobak extra data", "gft")
 
-                if len(tuinafval) != 0 or len(extratuinafval) != 0:
-                    if len(tuinafval) != 0 and len(extratuinafval) == 0:
-                        waste_dict["gft"] = tuinafval
-                    if len(tuinafval) == 0 and len(extratuinafval) != 0:
-                        waste_dict["gft"] = extratuinafval
-                    if len(tuinafval) != 0 and len(extratuinafval) != 0:
-                        if tuinafval < extratuinafval:
+                    if len(tuinafval) != 0 or len(extratuinafval) != 0:
+                        if len(tuinafval) != 0 and len(extratuinafval) == 0:
                             waste_dict["gft"] = tuinafval
-                        if extratuinafval < tuinafval:
+                        if len(tuinafval) == 0 and len(extratuinafval) != 0:
                             waste_dict["gft"] = extratuinafval
+                        if len(tuinafval) != 0 and len(extratuinafval) != 0:
+                            if tuinafval < extratuinafval:
+                                waste_dict["gft"] = tuinafval
+                            if extratuinafval < tuinafval:
+                                waste_dict["gft"] = extratuinafval
 
 
             #papier = Oud papier en karton.. or Oud papier en karton
