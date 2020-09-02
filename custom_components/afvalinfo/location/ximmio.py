@@ -122,9 +122,6 @@ class XimmioAfval(object):
                     if data["_pickupTypeText"] == "PACKAGES":
                         waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
                     if "pbd" not in waste_dict:
-                        if data["_pickupTypeText"] == "GREY":
-                            waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
-                    if "pbd" not in waste_dict:
                         if data["_pickupTypeText"] == "PLASTIC":
                             waste_dict["pbd"] = data["pickupDates"][0].split("T")[0]
                     if "pbd" not in waste_dict or len(waste_dict["pbd"]) == 0:
