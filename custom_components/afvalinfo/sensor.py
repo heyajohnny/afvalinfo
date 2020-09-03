@@ -318,7 +318,7 @@ class AfvalinfoData(object):
             self.data = MiddenDrentheAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        mijnafvalwijzer = ["aa en hunze", "alphen-chaam", "assen", "altena", "amstelveen", "baarle-nassau", "barneveld", "beek", "bergeijk", "bergen op zoom", "bernheze", "best", "bladel", "borger-odoorn", "boxtel", "breda", "brielle", "castricum", "de ronde venen", "de wolden", "de bilt",
+        mijnafvalwijzer = ["aa en hunze", "alphen-chaam", "assen", "altena", "amstelveen", "baarle-nassau", "barneveld", "beek", "beekdaelen", "bergeijk", "bergen op zoom", "bernheze", "best", "bladel", "borger-odoorn", "boxtel", "breda", "brielle", "castricum", "de ronde venen", "de wolden", "de bilt",
         "doetinchem", "dongen", "dronten", "duiven", "eersel", "eindhoven", "elburg", "ermelo", "etten-leur", "geertruidenberg", "geldrop-mierlo", "gilze en rijen", "goirle", "halderberge", "harderwijk", "heerhugowaard", "heiloo", "hilvarenbeek", "horst aan de maas", "houten", "kampen", "krimpen aan den ijssel",
         "langedijk", "lansingerland", "leiden", "leiderdorp", "leudal", "leusden", "lingewaard", "loon op zand", "lopik", "maasgouw", "meierijstad", " midden-groningen", "moerdijk", "nijkerk", "noordenveld", "nunspeet", "oirschot", "oldambt", "oldebroek", "oosterhout", "oss", "oude ijsselstreek", "oude pekela",
         "putten", "oudewater", "overbetuwe", "rheden", "rhenen", "rijssen-holten", "roerdalen", "roermond", "roosendaal", "rotterdam", "rucphen", "scherpenzeel", "sint-michielsgestel", "sittard-geleen", "smallingerland", "stadskanaal", "stein", "stichtse vecht", "teylingen", "tilburg", "tynaarlo", "uitgeest",
@@ -342,7 +342,7 @@ class AfvalinfoData(object):
             self.data = PurmerendAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        rd4 = ["beekdaelen", "brunssum", "eijsden-margraten", "gulpen-wittem", "heerlen", "kerkrade", "landgraaf", "maastricht", "meerssen", "simpelveld", "vaals", "valkenburg aan de geul", "voerendaal"]
+        rd4 = ["brunssum", "eijsden-margraten", "gulpen-wittem", "heerlen", "kerkrade", "landgraaf", "maastricht", "meerssen", "simpelveld", "vaals", "valkenburg aan de geul", "voerendaal"]
         if self.location in rd4:
             self.data = Rd4Afval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
