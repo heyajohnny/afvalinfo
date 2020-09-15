@@ -69,6 +69,8 @@ class MijnAfvalWijzerAfval(object):
             # find papier
             if "papier" in resources:
                 waste_dict["papier"] = self.get_date_from_afvaltype(jaaroverzicht, "papier", "papier")
+                if len(waste_dict["papier"]) == 0:
+                    waste_dict["papier"] = self.get_date_from_afvaltype(jaaroverzicht, "dhm", "papier")
             # find pbd. In some locations it's 'pd' and in other locations it's 'pmb' or 'plastic'
             if "pbd" in resources:
                 waste_dict["pbd"] = self.get_date_from_afvaltype(jaaroverzicht, "pd", "pbd")
@@ -76,6 +78,8 @@ class MijnAfvalWijzerAfval(object):
                     waste_dict["pbd"] = self.get_date_from_afvaltype(jaaroverzicht, "pmd", "pbd")
                 if len(waste_dict["pbd"]) == 0:
                     waste_dict["pbd"] = self.get_date_from_afvaltype(jaaroverzicht, "plastic", "pbd")
+                if len(waste_dict["pbd"]) == 0:
+                    waste_dict["pbd"] = self.get_date_from_afvaltype(jaaroverzicht, "dhm", "pbd")
             # find restafval. In some locations it's 'restafval' and in other locations it's 'restgft'
             if "restafval" in resources:
                 waste_dict["restafval"] = self.get_date_from_afvaltype(jaaroverzicht, "restafval", "restafval")
