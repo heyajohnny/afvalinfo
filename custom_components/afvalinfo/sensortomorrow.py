@@ -46,4 +46,4 @@ class AfvalInfoTomorrowSensor(Entity):
             if entity.device_state_attributes.get(ATTR_YEAR_MONTH_DAY_DATE) == tomorrow:
                 self._state = (self._state + " " + entity.name.split()[1]).strip().lower()
         if self._state == "":
-            self._state = "none"
+            self._state = "Geen"
