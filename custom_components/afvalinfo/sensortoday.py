@@ -40,10 +40,18 @@ class AfvalInfoTodaySensor(Entity):
     def update(self):
         self.data.update()
         self._last_update = datetime.today().strftime("%d-%m-%Y %H:%M")
-        self._state = ""  # reset the state
+        #use a tempState to change the real state only on a change...
+        tempState = "none"
+        numberOfMatches = 0
         today = str(date.today().strftime("%Y-%m-%d"))
         for entity in self._entities:
             if entity.device_state_attributes.get(ATTR_YEAR_MONTH_DAY_DATE) == today:
-                self._state = (self._state + " " + entity.name.split()[1]).strip().lower()
-        if self._state == "":
-            self._state = "none"
+                #reset tempState to empty string
+                if numberOfMatches == 0:
+                    tempState = ""
+                numberOfMatches = numberOfMatches + 1
+                #add trash name to string
+                tempState = (tempState + " " + entity.name.split()[1]).strip().lower()
+        #only change state if the new state is different than the last state
+        if tempState != self._state:
+            self._state = tempState
