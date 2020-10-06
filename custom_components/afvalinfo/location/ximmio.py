@@ -37,7 +37,7 @@ class XimmioAfval(object):
             hellendoorn = ["hellendoorn"]
             if city in hellendoorn:
                 location = "hellendoorn"
-            meerlanden = ["aalsmeer", "bloemendaal", "diemen", "haarlemmermeer", "heemstede", "hillegom", "lisse", "noordwijk"]
+            meerlanden = ["aalsmeer", "bloemendaal", "diemen", "haarlemmermeer", "heemstede", "hillegom", "lisse", "noordwijk", "zwanenburg"]
             if city in meerlanden:
                 location = "meerlanden"
             meppel = ["meppel"]
