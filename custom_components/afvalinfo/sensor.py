@@ -419,7 +419,7 @@ class AfvalinfoData(object):
                 self.location, self.postcode, self.street_number, self.resources
             )
         ximmio = ["aalsmeer", "albrandswaard", "almelo", "almere", "barendrecht", "bloemendaal", "borne", "coevorden", "diemen", "ede", "emmen", "enschede", "gorinchem", "haaksbergen", "haarlemmermeer", "hardinxveld-giessendam", "heemstede", "hellendoorn",
-        "hengelo", "hillegom", "hof van twente", "hoogeveen", "lisse", "losser", "meppel", "molenlanden", "nissewaard", "noordwijk", "oldenzaal", "renkum", "renswoude", "ridderkerk", "veenendaal", "vijfheerenlanden", "wageningen", "wierden"]
+        "hengelo", "hillegom", "hof van twente", "hoogeveen", "lisse", "losser", "meppel", "molenlanden", "nissewaard", "noordwijk", "oldenzaal", "renkum", "renswoude", "ridderkerk", "veenendaal", "vijfheerenlanden", "wageningen", "wierden", "zwanenburg"]
         if self.location in ximmio:
             self.data = XimmioAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
