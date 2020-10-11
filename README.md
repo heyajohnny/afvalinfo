@@ -72,7 +72,7 @@ Example config:
         - pbd
         - trash_type_today
       location: sliedrecht             (required, default = sliedrecht) name of the 'gemeente'
-      postcode: 33361AB                (required, default = 3361AB)
+      postcode: 3361AB                 (required, default = 3361AB)
       streetnumber: 1                  (required, default = 1)
       dateformat: '%d-%m-%Y'           (optional, default = %d-%m-%Y) day-month-year
       locale: 'nl'                     (optional, default = 'en')
@@ -97,12 +97,12 @@ So if you only specify -pbd and -trash_type_today under your resources, you will
         - trash_type_today
         - trash_type_tomorrow
       location: sliedrecht
-      postcode: 33361AB
+      postcode: 3361AB
       streetnumber: 1
 ```
 These resources will return one or more (seperated with a space) of the following results (gft, papier, pbd, restafval, textiel).
-- trash_type_today                     (gives the result "none" if none of the normal resources dates is today)
-- trash_type_tomorrow                  (gives the result "none" if none of the normal resources dates is tomorrow)
+- trash_type_today                      (gives the result "none" if none of the normal resources dates is today)
+- trash_type_tomorrow                   (gives the result "none" if none of the normal resources dates is tomorrow)
 
 ### Date format
 ```yaml
