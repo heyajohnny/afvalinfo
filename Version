@@ -130,3 +130,4 @@ Version: 0.5.25 20200902 - Fix for Ximmio (Emmen)
 Version: 0.5.26 20200903 - Fix for Beekdaelen
 Version: 0.5.27 20200915 - Fix for Tilburg (MijnAfvalwijzer)
 Version: 0.5.28 20200927 - Fix for Today and Tomorrow sensor
+Vresion: 0.5.29 20201011 - Added id option for custom naming

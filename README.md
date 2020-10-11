@@ -2,16 +2,6 @@
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 ### Number of supported 'gemeenten' in The Netherlands: 325,5 of 352 = 92,47%
 
-### Warning! Breaking change from version 0.4.x (or lower) to 0.5.x! Change city (city/village) -> location (gemeente)
-## Changed city
-```
-    city: sliedrecht             (name of the city/village)
-```
-## to location (gemeente)
-```
-    location: berkelland         (name of the 'gemeente', default = sliedrecht)
-```
-
 If you like my work, please buy me a coffee. This will keep me awake :)
 
 <a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
@@ -77,6 +67,7 @@ Example config:
 ```Configuration.yaml:
   sensor:
     - platform: afvalinfo
+      id: einde van de straat          (optional, default = '') add some extra naming to make identification of multiple afvalinfo sensors easier
       resources:                       (at least 1 required)
         - pbd
         - trash_type_today

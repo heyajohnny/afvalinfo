@@ -60,6 +60,7 @@ from .const.const import (
     CONF_DATE_FORMAT,
     CONF_TIMESPAN_IN_DAYS,
     CONF_LOCALE,
+    CONF_ID,
     SENSOR_PREFIX,
     ATTR_LAST_UPDATE,
     ATTR_HIDDEN,
@@ -137,6 +138,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Optional(CONF_DATE_FORMAT, default = "%d-%m-%Y"): cv.string,
         vol.Optional(CONF_TIMESPAN_IN_DAYS, default="365"): cv.string,
         vol.Optional(CONF_LOCALE, default = "en"): cv.string,
+        vol.Optional(CONF_ID, default = ""): cv.string,
     }
 )
 
@@ -152,6 +154,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     date_format = config.get(CONF_DATE_FORMAT).strip()
     timespan_in_days = config.get(CONF_TIMESPAN_IN_DAYS)
     locale = config.get(CONF_LOCALE)
+    id_name = config.get(CONF_ID)
 
     try:
         resourcesMinusTodayAndTomorrow = config[CONF_RESOURCES].copy()
@@ -172,15 +175,15 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
 
         #if sensor_type not in SENSOR_TYPES:
         if sensor_type.title().lower() != "trash_type_today" and sensor_type.title().lower() != "trash_type_tomorrow":
-            entities.append(AfvalinfoSensor(data, sensor_type, date_format, timespan_in_days, locale))
+            entities.append(AfvalinfoSensor(data, sensor_type, date_format, timespan_in_days, locale, id_name))
 
         #Add sensor -trash_type_today
         if sensor_type.title().lower() == "trash_type_today":
-            today = AfvalInfoTodaySensor(data, sensor_type, entities)
+            today = AfvalInfoTodaySensor(data, sensor_type, entities, id_name)
             entities.append(today)
         #Add sensor -trash_type_tomorrow
         if sensor_type.title().lower() == "trash_type_tomorrow":
-            tomorrow = AfvalInfoTomorrowSensor(data, sensor_type, entities)
+            tomorrow = AfvalInfoTomorrowSensor(data, sensor_type, entities, id_name)
             entities.append(tomorrow)
 
     add_entities(entities)
@@ -436,13 +439,13 @@ class AfvalinfoData(object):
             )
 
 class AfvalinfoSensor(Entity):
-    def __init__(self, data, sensor_type, date_format, timespan_in_days, locale):
+    def __init__(self, data, sensor_type, date_format, timespan_in_days, locale, id_name):
         self.data = data
         self.type = sensor_type
         self.date_format = date_format
         self.timespan_in_days = timespan_in_days
         self.locale = locale
-        self._name = SENSOR_PREFIX + SENSOR_TYPES[sensor_type][0]
+        self._name = SENSOR_PREFIX + (id_name + " " if len(id_name) > 0  else "") + SENSOR_TYPES[sensor_type][0]
         self._icon = SENSOR_TYPES[sensor_type][1]
         self._hidden = False
         self._state = None
