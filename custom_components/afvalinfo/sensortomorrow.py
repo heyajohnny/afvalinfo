@@ -51,7 +51,7 @@ class AfvalInfoTomorrowSensor(Entity):
                     tempState = ""
                 numberOfMatches = numberOfMatches + 1
                 #add trash name to string
-                tempState = (tempState + " " + entity.name.split()[1]).strip().lower()
+                tempState = (tempState + " " + entity.name.split()[len(entity.name.split())-1]).strip().lower()
         #only change state if the new state is different than the last state
         if tempState != self._state:
             self._state = tempState
