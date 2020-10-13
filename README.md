@@ -67,7 +67,7 @@ Example config:
 ```Configuration.yaml:
   sensor:
     - platform: afvalinfo
-      id: einde van de straat          (optional, default = '') add some extra naming to make identification of multiple afvalinfo sensors easier
+      id: huis van ouders              (optional, default = '') add some extra naming to make identification of multiple afvalinfo sensors easier
       resources:                       (at least 1 required)
         - pbd
         - trash_type_today
