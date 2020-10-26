@@ -137,10 +137,38 @@ There are 3 important attributes:
 - is_collection_date_today.      This will return true if the collection date is today and false if the collection date is not today.
 - hidden.                        This will return true on error or if the date is outside of range of the 'timespanindays' value. On any other occasion it will return true.
 
-Example for usage of attributes. This example creates a new sensor with the attribute value 'days_until_collection_date' of the sensor 'sensor.afvalinfo_papier':
+Example for usage of attributes.
+This example creates a new sensor with the attribute value 'days_until_collection_date' of the sensor 'sensor.afvalinfo_papier':
 ```yaml
 - platform: template
     sensors:
       paper_days_until_collection:
         value_template: "{{ state_attr('sensor.afvalinfo_papier', 'days_until_collection_date') }}"
+```
+
+And another template example to only show the first upcoming trashtype and pickup date.
+```yaml
+- platform: template
+  sensors:
+    next_trash_type_and_date:
+      value_template: >
+        {%- set gft = state_attr('sensor.afvalinfo_gft', 'days_until_collection_date') | float -%}
+        {%- set pbd = state_attr('sensor.afvalinfo_pbd', 'days_until_collection_date') | float -%}
+        {%- set papier = state_attr('sensor.afvalinfo_papier', 'days_until_collection_date') | float -%}
+        {%- set restafval = state_attr('sensor.afvalinfo_restafval', 'days_until_collection_date') | float -%}
+        {%- set textiel = state_attr('sensor.afvalinfo_textiel', 'days_until_collection_date') | float -%}
+        {%- set minimum = (gft,pbd,papier,restafval,textiel)|min -%}
+        {% if gft == minimum  %}
+          gft · {{ states('sensor.afvalinfo_gft') }}
+        {% elif pbd == minimum  %}
+          pbd · {{ states('sensor.afvalinfo_pbd') }}
+        {% elif papier == minimum  %}
+          papier · {{ states('sensor.afvalinfo_papier') }}
+        {% elif restafval == minimum  %}
+          restafval · {{ states('sensor.afvalinfo_restafval') }}
+        {% elif textiel == minimum  %}
+          textiel - {{ states('sensor.afvalinfo_textiel') }}
+        {% else %}
+          n/a
+        {% endif %}
 ```
