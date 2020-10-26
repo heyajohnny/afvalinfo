@@ -50,7 +50,7 @@ class IradoAfval(object):
                 "appointment_zipcode_suffix": postcode[4:],
                 "appointment_housenumber": street_number,
                 "appointment_housenumber_suffix": "",
-                "wsa_calendar": "364b570c83"
+                "wsa_calendar": "e7ad65e902"
             }
 
             postdata = urllib.parse.urlencode(data).encode()
