@@ -306,7 +306,7 @@ class AfvalinfoData(object):
             self.data = HvcAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        irado = ["capelle aan den ijssel", "rozenburg", "schiedam", "vlaardingen"]
+        irado = ["capelle aan den ijssel", "rotterdam rozenburg", "schiedam", "vlaardingen"]
         if self.location in irado:
             self.data = IradoAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
