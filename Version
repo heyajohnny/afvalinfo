@@ -133,3 +133,4 @@ Version: 0.5.28 20200927 - Fix for Today and Tomorrow sensor
 Version: 0.5.29 20201011 - Added id option for custom naming
 Version: 0.5.30 20201023 - Moved Beekdaelen from MijnAfvalwijzer to RD4
 Version: 0.5.31 20201101 - Added Rotterdam Rozenburg (Thx! lkeijser)
+Version: 0.5.32 20201101 - Added Montferland

@@ -116,6 +116,7 @@ from .location.hoekschewaard import HoekscheWaardAfval
 from .location.katwijk import KatwijkAfval
 from .location.uden import UdenAfval
 from .location.westerwolde import WesterwoldeAfval
+from .location.montferland import MontferlandAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -328,6 +329,11 @@ class AfvalinfoData(object):
         "utrecht", "utrechtse heuvelrug", "valkenswaard", "veendam", "waalwijk", "waterland", "wijk bij duurstede", "westervoort", "westvoorne", "woensdrecht", "woerden", "zevenaar", "zoetermeer", "zoeterwoude"]
         if self.location in mijnafvalwijzer:
             self.data = MijnAfvalWijzerAfval().get_data(
+                self.location, self.postcode, self.street_number, self.resources
+            )
+        montferland = ["montferland"]
+        if self.location in montferland:
+            self.data = MontferlandAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         omrin = ["achtkarspelen", "ameland", "appingedam", "dantumadeel f", "harlingen", "heerenveen", "het hogeland", "leeuwarden", "noardeast fryslan", "ooststellingwerf", "opsterland", "terschelling", "tietjerksteradeel", "waadhoeke", "weststellingwerf"]

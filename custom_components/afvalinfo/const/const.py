@@ -54,6 +54,10 @@ SENSOR_LOCATIONS_TO_URL = {
         "https://www.middendrenthe.nl/website/!suite86.scherm0325?mPag=6523&mAlle=J",
         "https://www.middendrenthe.nl/website/!ctm_afval.Kalender"],
     "mijnafvalwijzer": ["https://www.mijnafvalwijzer.nl/nl/{0}/{1}/"],
+    "montferland": [
+        "https://www.montferland.afvalwijzer.net/",
+        "https://www.montferland.afvalwijzer.net/aanmelden.aspx"
+        ],
     "peelenmaas": ["https://afvalkalender.peelenmaas.nl/adres/{0}:{1}"],
     "omrin": ["https://www.omrin.nl/bij-mij-thuis/afval-regelen/afvalkalender"],
     "purmerend": ["https://afvalkalender.purmerend.nl/adres/{0}:{1}"],
