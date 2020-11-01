@@ -1,6 +1,6 @@
 ## Home Assistant sensor component for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-### Number of supported 'gemeenten' in The Netherlands: 325,5 of 352 = 92,47%
+### Number of supported 'gemeenten' in The Netherlands: 326,5 of 352 = 92,75%
 
 If you like my work, please buy me a coffee. This will keep me awake :)
 
