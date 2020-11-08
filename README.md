@@ -71,8 +71,13 @@ Example config:
     - platform: afvalinfo
       id: huis van ouders              (optional, default = '') add some extra naming to make identification of multiple afvalinfo sensors easier
       resources:                       (at least 1 required)
+        - gft
         - pbd
+        - papier
+        - restafval
+        - textiel
         - trash_type_today
+        - trash_type_tomorrow
       location: sliedrecht             (required, default = sliedrecht) name of the 'gemeente'
       postcode: 3361AB                 (required, default = 3361AB)
       streetnumber: 1                  (required, default = 1)
