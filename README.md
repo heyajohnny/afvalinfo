@@ -65,7 +65,8 @@ If there are any problems with the component, don't hesitate to create an issue 
 ### Install:
 - Copy the files in the /custom_components/afvalinfo/ folder to: [homeassistant]/config/custom_components/afvalinfo/
 
-Example config:
+Example config: 
+#### Don't forget to remove the comments from the example config (everything between and after the parentheses)
 ```Configuration.yaml:
   sensor:
     - platform: afvalinfo
