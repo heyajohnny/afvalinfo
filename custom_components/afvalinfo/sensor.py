@@ -331,11 +331,11 @@ class AfvalinfoData(object):
             self.data = MijnAfvalWijzerAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        montferland = ["montferland"]
+        '''montferland = ["montferland"]
         if self.location in montferland:
             self.data = MontferlandAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
-            )
+            )'''
         omrin = ["achtkarspelen", "ameland", "appingedam", "dantumadeel f", "harlingen", "heerenveen", "het hogeland", "leeuwarden", "noardeast fryslan", "ooststellingwerf", "opsterland", "terschelling", "tietjerksteradeel", "waadhoeke", "weststellingwerf"]
         if self.location in omrin:
             self.data = OmrinAfval().get_data(
