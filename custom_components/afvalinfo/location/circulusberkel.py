@@ -55,6 +55,8 @@ class CirculusBerkelAfval(object):
             # find afvalstroom/4 = papier
             if "papier" in resources:
                 waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 4, "papier")
+            if len(waste_dict["papier"]) == 0:
+                waste_dict["papier"] = self.get_date_from_afvaltype(ophaaldata, 84, "papier")
             # find afvalstroom/11 = pbd
             if "pbd" in resources:
                 waste_dict["pbd"] = self.get_date_from_afvaltype(ophaaldata, 11, "pbd")
