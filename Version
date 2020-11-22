@@ -136,3 +136,4 @@ Version: 0.5.31 20201101 - Added Rotterdam Rozenburg (Thx! lkeijser)
 Version: 0.5.32 20201101 - Added Montferland
 Version: 0.5.33 20201108 - Disabled Montferland, because they've put up some security I can't seem to figure out
 Version: 0.5.34 20201114 - Fix for Circulus-Berkel (Papier)
+Version: 0.5.35 20201122 - Fix 2 for Circulus-Berkel (Papier)
