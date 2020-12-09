@@ -53,7 +53,7 @@ SENSOR_LOCATIONS_TO_URL = {
     "middendrenthe": [
         "https://www.middendrenthe.nl/website/!suite86.scherm0325?mPag=6523&mAlle=J",
         "https://www.middendrenthe.nl/website/!ctm_afval.Kalender"],
-    "mijnafvalwijzer": ["https://www.mijnafvalwijzer.nl/nl/{0}/{1}/"],
+    "mijnafvalwijzer": ["http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}"],
     "montferland": [
         "https://www.montferland.afvalwijzer.net/",
         "https://www.montferland.afvalwijzer.net/aanmelden.aspx"
