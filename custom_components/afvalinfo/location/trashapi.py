@@ -26,6 +26,8 @@ class TrashApiAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
 
+            #_LOGGER.warning(dataList)
+
             for data in dataList:
 
                 # find gft.

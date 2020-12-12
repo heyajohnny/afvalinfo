@@ -141,3 +141,4 @@ Version: 0.5.36 20201209 - Fix for MijnAfvalWijzer (moved to trashapi)
 Version: 0.5.37 20201210 - Fix for Circulus-Berkel (moved to trashapi)
 Version: 0.5.38 20201212 - Fix for deafvalapp (slowly starting to migrate to trashapi)... Still need to see if it's fast / reliable enough.
 Version: 0.5.39 20201212 - Fix for Omrin (moved to trashapi)
+Version: 0.6.0  20201212 - Moved a lot of locations to TrashAPI
