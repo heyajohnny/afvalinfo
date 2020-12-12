@@ -137,6 +137,7 @@ Version: 0.5.32 20201101 - Added Montferland
 Version: 0.5.33 20201108 - Disabled Montferland, because they've put up some security I can't seem to figure out
 Version: 0.5.34 20201114 - Fix for Circulus-Berkel (Papier)
 Version: 0.5.35 20201122 - Fix 2 for Circulus-Berkel (Papier)
-Version: 0.5.36 20201209 - Fix for MijnAfvalWijzer
-Version: 0.5.37 20201210 - Fix for Circulus-Berkel
+Version: 0.5.36 20201209 - Fix for MijnAfvalWijzer (moved to trashapi)
+Version: 0.5.37 20201210 - Fix for Circulus-Berkel (moved to trashapi)
 Version: 0.5.38 20201212 - Fix for deafvalapp (slowly starting to migrate to trashapi)... Still need to see if it's fast / reliable enough.
+Version: 0.5.39 20201212 - Fix for Omrin (moved to trashapi)

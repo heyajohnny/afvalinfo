@@ -81,7 +81,6 @@ from .location.alkmaar import AlkmaarAfval
 from .location.alphenaandenrijn import AlphenAanDenRijnAfval
 from .location.trashapi import TrashApiAfval
 from .location.suez import SuezAfval
-from .location.omrin import OmrinAfval
 from .location.defriesemeren import DeFrieseMerenAfval
 from .location.veldhoven import VeldhovenAfval
 from .location.venray import VenrayAfval
@@ -321,11 +320,6 @@ class AfvalinfoData(object):
             self.data = MontferlandAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )'''
-        omrin = ["achtkarspelen", "ameland", "appingedam", "dantumadeel f", "harlingen", "heerenveen", "het hogeland", "leeuwarden", "noardeast fryslan", "ooststellingwerf", "opsterland", "terschelling", "tietjerksteradeel", "waadhoeke", "weststellingwerf"]
-        if self.location in omrin:
-            self.data = OmrinAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
-            )
         peelenmaas = ["peel en maas"]
         if self.location in peelenmaas:
             self.data = PeelEnMaasAfval().get_data(
@@ -376,7 +370,8 @@ class AfvalinfoData(object):
         "deventer", "doesburg", "doetinchem", "dongen", "dronten", "duiven", "eersel", "eindhoven", "elburg", "epe", "ermelo", "etten-leur", "geertruidenberg", "geldrop-mierlo", "gilze en rijen", "goirle", "halderberge", "harderwijk", "heerhugowaard", "heiloo", "hilvarenbeek", "horst aan de maas", "houten", "kampen", "krimpen aan den ijssel",
         "langedijk", "lansingerland", "leiden", "leiderdorp", "leudal", "leusden", "lingewaard", "lochem", "loon op zand", "lopik", "maasdriel", "maasgouw", "meierijstad", " midden-groningen", "moerdijk", "neder-betuwe", "nijkerk", "noordenveld", "nunspeet", "oirschot", "oldambt", "oldebroek", "oosterhout", "oss", "oude ijsselstreek", "oude pekela",
         "putten", "oudewater", "overbetuwe", "rheden", "rhenen", "rijssen-holten", "roerdalen", "roermond", "roosendaal", "rotterdam", "rucphen", "scherpenzeel", "sint-michielsgestel", "sittard-geleen", "smallingerland", "stadskanaal", "stein", "stichtse vecht", "teylingen", "tiel", "tilburg", "tynaarlo", "uitgeest",
-        "utrecht", "utrechtse heuvelrug", "valkenswaard", "veendam", "voorst", "waalwijk", "waterland", "west betuwe", "west maas en waal", "wijk bij duurstede", "westervoort", "westvoorne", "woensdrecht", "woerden", "zaltbommel", "zevenaar", "zoetermeer", "zoeterwoude", "zutphen"]
+        "utrecht", "utrechtse heuvelrug", "valkenswaard", "veendam", "voorst", "waalwijk", "waterland", "west betuwe", "west maas en waal", "wijk bij duurstede", "westervoort", "westvoorne", "woensdrecht", "woerden", "zaltbommel", "zevenaar", "zoetermeer", "zoeterwoude", "zutphen",
+        "achtkarspelen", "ameland", "appingedam", "dantumadeel f", "harlingen", "heerenveen", "het hogeland", "leeuwarden", "noardeast fryslan", "ooststellingwerf", "opsterland", "terschelling", "tietjerksteradeel", "waadhoeke", "weststellingwerf"]
         if self.location in trashapi:
             self.data = TrashApiAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources

@@ -57,7 +57,6 @@ SENSOR_LOCATIONS_TO_URL = {
         "https://www.montferland.afvalwijzer.net/aanmelden.aspx"
         ],
     "peelenmaas": ["https://afvalkalender.peelenmaas.nl/adres/{0}:{1}"],
-    "omrin": ["https://www.omrin.nl/bij-mij-thuis/afval-regelen/afvalkalender"],
     "purmerend": ["https://afvalkalender.purmerend.nl/adres/{0}:{1}"],
     "rd4": ["https://www.rd4info.nl/NSI/Burger/Aspx/afvalkalender_public_text.aspx?pc={0}&nr={1}&t="],
     "rmn": ["https://inzamelschema.rmn.nl/adres/{0}:{1}"],
