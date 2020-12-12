@@ -79,7 +79,7 @@ from .location.venlo import VenloAfval
 from .location.hvc import HvcAfval
 from .location.alkmaar import AlkmaarAfval
 from .location.alphenaandenrijn import AlphenAanDenRijnAfval
-from .location.mijnafvalwijzer import MijnAfvalWijzerAfval
+from .location.trashapi import TrashApiAfval
 from .location.suez import SuezAfval
 from .location.omrin import OmrinAfval
 from .location.defriesemeren import DeFrieseMerenAfval
@@ -90,7 +90,6 @@ from .location.zuidwestfriesland import ZuidWestFrieslandAfval
 from .location.blink import BlinkAfval
 from .location.spaarnelanden import SpaarnelandenAfval
 from .location.cyclus import CyclusAfval
-from .location.circulusberkel import CirculusBerkelAfval
 from .location.irado import IradoAfval
 from .location.rd4 import Rd4Afval
 from .location.dar import DarAfval
@@ -241,11 +240,6 @@ class AfvalinfoData(object):
             self.data = BorseleAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        circulusberkel = ["apeldoorn", "bronckhorst", "brummen", "deventer", "doesburg", "epe", "lochem", "voorst", "zutphen"]
-        if self.location in circulusberkel:
-            self.data = CirculusBerkelAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
-            )
         cranendonck = ["cranendonck"]
         if self.location in cranendonck:
             self.data = CranendonckAfval().get_data(
@@ -261,7 +255,7 @@ class AfvalinfoData(object):
             self.data = DarAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        deafvalapp = ["boekel", "boxmeer", "buren", "cuijk", "culemborg", "echt-susteren", "grave", "helmond", "maasdriel", "mill en sint hubert", "neder-betuwe", "sint anthonis", "son en breugel", "terneuzen", "tiel", "west betuwe", "west maas en waal", "zaltbommel"]
+        deafvalapp = ["boekel", "boxmeer", "cuijk", "echt-susteren", "grave", "helmond", "mill en sint hubert", "sint anthonis", "son en breugel", "terneuzen"]
         if self.location in deafvalapp:
             self.data = DeAfvalAppAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
@@ -322,15 +316,6 @@ class AfvalinfoData(object):
             self.data = MiddenDrentheAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
-        mijnafvalwijzer = ["aa en hunze", "alphen-chaam", "assen", "altena", "amstelveen", "baarle-nassau", "barneveld", "beek", "bergeijk", "bergen op zoom", "bernheze", "best", "bladel", "borger-odoorn", "boxtel", "breda", "brielle", "castricum", "de ronde venen", "de wolden", "de bilt",
-        "doetinchem", "dongen", "dronten", "duiven", "eersel", "eindhoven", "elburg", "ermelo", "etten-leur", "geertruidenberg", "geldrop-mierlo", "gilze en rijen", "goirle", "halderberge", "harderwijk", "heerhugowaard", "heiloo", "hilvarenbeek", "horst aan de maas", "houten", "kampen", "krimpen aan den ijssel",
-        "langedijk", "lansingerland", "leiden", "leiderdorp", "leudal", "leusden", "lingewaard", "loon op zand", "lopik", "maasgouw", "meierijstad", " midden-groningen", "moerdijk", "nijkerk", "noordenveld", "nunspeet", "oirschot", "oldambt", "oldebroek", "oosterhout", "oss", "oude ijsselstreek", "oude pekela",
-        "putten", "oudewater", "overbetuwe", "rheden", "rhenen", "rijssen-holten", "roerdalen", "roermond", "roosendaal", "rotterdam", "rucphen", "scherpenzeel", "sint-michielsgestel", "sittard-geleen", "smallingerland", "stadskanaal", "stein", "stichtse vecht", "teylingen", "tilburg", "tynaarlo", "uitgeest",
-        "utrecht", "utrechtse heuvelrug", "valkenswaard", "veendam", "waalwijk", "waterland", "wijk bij duurstede", "westervoort", "westvoorne", "woensdrecht", "woerden", "zevenaar", "zoetermeer", "zoeterwoude"]
-        if self.location in mijnafvalwijzer:
-            self.data = MijnAfvalWijzerAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
-            )
         '''montferland = ["montferland"]
         if self.location in montferland:
             self.data = MontferlandAfval().get_data(
@@ -385,6 +370,15 @@ class AfvalinfoData(object):
         suez = ["arnhem"]
         if self.location in suez:
             self.data = SuezAfval().get_data(
+                self.location, self.postcode, self.street_number, self.resources
+            )
+        trashapi = ["aa en hunze", "alphen-chaam", "apeldoorn", "assen", "altena", "amstelveen", "baarle-nassau", "barneveld", "beek", "bergeijk", "bergen op zoom", "bernheze", "best", "bladel", "borger-odoorn", "boxtel", "breda", "brielle", "bronckhorst", "brummen", "buren", "castricum", "culemborg", "de ronde venen", "de wolden", "de bilt",
+        "deventer", "doesburg", "doetinchem", "dongen", "dronten", "duiven", "eersel", "eindhoven", "elburg", "epe", "ermelo", "etten-leur", "geertruidenberg", "geldrop-mierlo", "gilze en rijen", "goirle", "halderberge", "harderwijk", "heerhugowaard", "heiloo", "hilvarenbeek", "horst aan de maas", "houten", "kampen", "krimpen aan den ijssel",
+        "langedijk", "lansingerland", "leiden", "leiderdorp", "leudal", "leusden", "lingewaard", "lochem", "loon op zand", "lopik", "maasdriel", "maasgouw", "meierijstad", " midden-groningen", "moerdijk", "neder-betuwe", "nijkerk", "noordenveld", "nunspeet", "oirschot", "oldambt", "oldebroek", "oosterhout", "oss", "oude ijsselstreek", "oude pekela",
+        "putten", "oudewater", "overbetuwe", "rheden", "rhenen", "rijssen-holten", "roerdalen", "roermond", "roosendaal", "rotterdam", "rucphen", "scherpenzeel", "sint-michielsgestel", "sittard-geleen", "smallingerland", "stadskanaal", "stein", "stichtse vecht", "teylingen", "tiel", "tilburg", "tynaarlo", "uitgeest",
+        "utrecht", "utrechtse heuvelrug", "valkenswaard", "veendam", "voorst", "waalwijk", "waterland", "west betuwe", "west maas en waal", "wijk bij duurstede", "westervoort", "westvoorne", "woensdrecht", "woerden", "zaltbommel", "zevenaar", "zoetermeer", "zoeterwoude", "zutphen"]
+        if self.location in trashapi:
+            self.data = TrashApiAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
         uden = ["uden"]

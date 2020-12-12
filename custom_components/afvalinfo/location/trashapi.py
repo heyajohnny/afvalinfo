@@ -11,12 +11,12 @@ import urllib.error
 import requests
 
 
-class MijnAfvalWijzerAfval(object):
+class TrashApiAfval(object):
     def get_data(self, location, postcode, street_number, resources):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
-            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["mijnafvalwijzer"][0].format(
+            API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["trashapi"][0].format(
                 location, postcode, street_number
             )
 

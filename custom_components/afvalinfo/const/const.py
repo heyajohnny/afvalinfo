@@ -24,7 +24,6 @@ SENSOR_LOCATIONS_TO_URL = {
     "berkelland": ["https://afvalkalender.gemeenteberkelland.nl/adres/{0}:{1}"],
     "blink": ["https://mijnblink.nl/adres/{0}:{1}"],
     "borsele": ["https://afvalkalender.borsele.nl/afval/afvalkalender/{0}/{1}"],
-    "circulusberkel": ["http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}"],
     "cranendonck": ["https://afvalkalender.cranendonck.nl/adres/{0}:{1}"],
     "cyclus": ["https://afvalkalender.cyclusnv.nl/adres/{0}:{1}"],
     "dar": ["https://afvalkalender.dar.nl/adres/{0}:{1}"],
@@ -53,7 +52,6 @@ SENSOR_LOCATIONS_TO_URL = {
     "middendrenthe": [
         "https://www.middendrenthe.nl/website/!suite86.scherm0325?mPag=6523&mAlle=J",
         "https://www.middendrenthe.nl/website/!ctm_afval.Kalender"],
-    "mijnafvalwijzer": ["http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}"],
     "montferland": [
         "https://www.montferland.afvalwijzer.net/",
         "https://www.montferland.afvalwijzer.net/aanmelden.aspx"
@@ -68,6 +66,7 @@ SENSOR_LOCATIONS_TO_URL = {
     "sliedrecht": ["https://sliedrecht.afvalinfo.nl/adres/{0}:{1}"],
     "spaarnelanden": ["https://afvalwijzer.spaarnelanden.nl/adres/{0}:{1}"],
     "suez": ["https://inzamelwijzer.suez.nl/adres/{0}:{1}"],
+    "trashapi": ["http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}"],
     "uden": ["https://www.uden.nl/inwoners/afval/ophaaldagen-afval/{0}-{1}.html"],
     "veldhoven": ["https://www.veldhoven.nl/afvalkalender/{0}-{1}"],
     "venlo": ["https://www.venlo.nl/trash-removal-calendar/{0}/{1}"],
