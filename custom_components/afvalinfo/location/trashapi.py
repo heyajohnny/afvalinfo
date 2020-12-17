@@ -33,6 +33,9 @@ class TrashApiAfval(object):
                 # find gft.
                 if "gft" in resources and data["name"].lower() == "gft":
                     waste_dict["gft"] = data["date"].split("T")[0]
+                # find kerstboom.
+                if "kerstboom" in resources and data["name"].lower() == "kerstboom":
+                    waste_dict["kerstboom"] = data["date"].split("T")[0]
                 # find papier
                 if "papier" in resources and data["name"].lower() == "papier":
                     waste_dict["papier"] = data["date"].split("T")[0]

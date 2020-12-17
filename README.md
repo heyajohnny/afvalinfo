@@ -38,6 +38,7 @@ Example config:
       id: huis van ouders              (optional, default = '') add some extra naming to make identification of multiple afvalinfo sensors easier
       resources:                       (at least 1 required)
         - gft
+        - kerstboom
         - pbd
         - papier
         - restafval
@@ -54,6 +55,7 @@ Example config:
 
 Above example has 1 normal resource and one special resource. Here is a complete list of available waste fractions:
 - gft                                  (groente, fruit, tuinafval)
+- kerstboom                            (supported in +- 50% of the waste collectors)
 - papier
 - pbd                                  (plastic, blik, drinkpakken)
 - restafval
@@ -124,6 +126,7 @@ And another template example to only show the first upcoming trashtype and picku
     next_trash_type_and_date:
       value_template: >
         {%- set gft = state_attr('sensor.afvalinfo_gft', 'days_until_collection_date') | float -%}
+        {%- set kerstboom = state_attr('sensor.afvalinfo_kerstboom', 'days_until_collection_date') | float -%}
         {%- set pbd = state_attr('sensor.afvalinfo_pbd', 'days_until_collection_date') | float -%}
         {%- set papier = state_attr('sensor.afvalinfo_papier', 'days_until_collection_date') | float -%}
         {%- set restafval = state_attr('sensor.afvalinfo_restafval', 'days_until_collection_date') | float -%}
@@ -131,6 +134,8 @@ And another template example to only show the first upcoming trashtype and picku
         {%- set minimum = (gft,pbd,papier,restafval,textiel)|min -%}
         {% if gft == minimum  %}
           gft · {{ states('sensor.afvalinfo_gft') }}
+        {% elif kerstboom == minimum  %}
+          kerstboom · {{ states('sensor.afvalinfo_kerstboom') }}
         {% elif pbd == minimum  %}
           pbd · {{ states('sensor.afvalinfo_pbd') }}
         {% elif papier == minimum  %}
