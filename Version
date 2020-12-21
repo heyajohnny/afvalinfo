@@ -145,3 +145,4 @@ Version: 0.6.0  20201212 - Moved a lot of locations to TrashAPI
 Version: 0.6.1  20201217 - Added trash type kerstboom
 Version: 0.6.2  20201220 - Added Montferland
 Version: 0.6.3  20201221 - Moved De Friese Meren to Trashapi
+Version: 0.6.4  20201221 - Moved Westerkwartier to Trashapi
