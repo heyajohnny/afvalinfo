@@ -53,3 +53,7 @@ class TrashApiAfval(object):
         except urllib.error.URLError as exc:
             _LOGGER.error("Error occurred while fetching data: %r", exc.reason)
             return False
+        except Exception as exc:
+            _LOGGER.error("""Error occurred. Please check the address with postcode: %r and huisnummer: %r on the website of your local waste collector in the gemeente: %r. It's probably a faulty address or the website of the waste collector is unreachable. If the address is working on the website of the local waste collector and this error still occured, please report the issue in the Github repository https://github.com/heyajohnny/afvalinfo with details of the location that isn't working""",
+            postcode, street_number, location)
+            return False
