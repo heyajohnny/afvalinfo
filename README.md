@@ -117,7 +117,7 @@ This example creates a new sensor with the attribute value 'days_until_collectio
         value_template: "{{ state_attr('sensor.afvalinfo_papier', 'days_until_collection_date') }}"
 ```
 
-And another template example to only show the first upcoming trashtype and pickup date (Special thanks to @jaydouble)
+And another template example to only show the first upcoming trashtype and pickup date (Special thanks to <a href="https://github.com/jaydouble" target="_blank">jaydouble</a>)
 ```yaml
 - platform: template
   sensors:
