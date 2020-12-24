@@ -121,28 +121,20 @@ And another template example to only show the first upcoming trashtype and picku
 ```yaml
 - platform: template
   sensors:
-    next_trash_type_and_date:
+    afvalinfo_next_trash_type_and_date:
       value_template: >
-        {%- set gft = state_attr('sensor.afvalinfo_gft', 'days_until_collection_date') | float -%}
-        {%- set kerstboom = state_attr('sensor.afvalinfo_kerstboom', 'days_until_collection_date') | float -%}
-        {%- set pbd = state_attr('sensor.afvalinfo_pbd', 'days_until_collection_date') | float -%}
-        {%- set papier = state_attr('sensor.afvalinfo_papier', 'days_until_collection_date') | float -%}
-        {%- set restafval = state_attr('sensor.afvalinfo_restafval', 'days_until_collection_date') | float -%}
-        {%- set textiel = state_attr('sensor.afvalinfo_textiel', 'days_until_collection_date') | float -%}
-        {%- set minimum = (gft,pbd,papier,restafval,textiel)|min -%}
-        {% if gft == minimum  %}
-          gft · {{ states('sensor.afvalinfo_gft') }}
-        {% elif kerstboom == minimum  %}
-          kerstboom · {{ states('sensor.afvalinfo_kerstboom') }}
-        {% elif pbd == minimum  %}
-          pbd · {{ states('sensor.afvalinfo_pbd') }}
-        {% elif papier == minimum  %}
-          papier · {{ states('sensor.afvalinfo_papier') }}
-        {% elif restafval == minimum  %}
-          restafval · {{ states('sensor.afvalinfo_restafval') }}
-        {% elif textiel == minimum  %}
-          textiel - {{ states('sensor.afvalinfo_textiel') }}
-        {% else %}
-          n/a
-        {% endif %}
+        {% set ns = namespace(minimum=365) %}
+        {% set list = ['gft', 'kerstboom', 'papier', 'pbd', 'restafval','textiel'] %}
+        {%- for l in list %}
+        {%- set days = state_attr('sensor.afvalinfo_' ~l, 'days_until_collection_date')%}
+        {%- if days != None and days < ns.minimum %}
+        {%- set ns.minimum = days %}
+        {%- endif %}
+        {%- endfor %}
+        {%- for l in list %}
+        {%- set days = state_attr('sensor.afvalinfo_' ~l, 'days_until_collection_date')%}
+        {%- if days == ns.minimum %}
+        {{l}} · {{ states('sensor.afvalinfo_' ~l) }}
+        {%- endif %}
+        {%- endfor %}
 ```
