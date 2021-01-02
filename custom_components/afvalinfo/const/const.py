@@ -13,7 +13,6 @@ SENSOR_TYPES = {
 }
 
 SENSOR_LOCATIONS_TO_URL = {
-    "hoekschewaard": ["https://www.radhw.nl/inwoners/ophaalschema?p={0}&h={1}"],
     "katwijk": ["https://afval.katwijk.nl/nc/afvalkalender/?tx_windwastecalendar_pi1%5Baction%5D=search"],
     "middendrenthe": [
         "https://www.middendrenthe.nl/website/!suite86.scherm0325?mPag=6523&mAlle=J",
