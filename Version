@@ -150,3 +150,4 @@ Version: 0.6.5  20201223 - Better error handling for Trashapi
 Version: 0.6.6  20201223 - Added Mook en Middelaar
 Version: 0.6.7  20201221 - Moved Hoeksche Waard to Trashapi
 Version: 0.6.8  20210103 - Merged "het hogeland (bedum, winsum)" and "het hogeland (de marne, eemsmond)" to "het hogeland"
+Version: 0.6.9  20210109 - Removed Appingedam, Haaren and Loppersum. Added Eemsdelta
