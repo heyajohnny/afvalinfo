@@ -7,6 +7,7 @@ If you like my work, please buy me a coffee. This will keep me awake :)
 <a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
 
 Please also take a look at the <a href="https://play.google.com/store/apps/details?id=com.viezegeitafval" target="_blank">Vieze Geit</a> Android app for trash pickup dates on your Android device.
+<a href="https://play.google.com/store/apps/details?id=com.viezegeitafval" target="_blank"><img src="https://play-lh.googleusercontent.com/XDN36FJ57iXugMeM9_OzQosB_aeLGVTeHvAeyE42bA1jHrrZLnuQf9oUxjxc5yqEIuQ=s180-rw"></a>
 
 #### Provides Home Assistant sensors for the Dutch waste collectors in:
 
