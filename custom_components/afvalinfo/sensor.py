@@ -4,36 +4,6 @@ Sensor component for Afvalinfo
 Author: Johnny Visser
 
 ToDo: Add huisnummer toevoeging
-ToDo: Add the following gemeenten:
-PDF: #####################################################################################################
-Bergen Limburg                  bergen.nl/home/afval_44490/item/afvalkalender-2020_38953.html (PDF)
-Dantumadeel                     https://www.dantumadiel.frl/afvalkalender Woont u in het voormalige Ferwerderadiel dan wordt het afval opgehaald door Omrin (PDF)
-Edam-Volendam                   https://www.edam-volendam.nl/portal-home/inzamelkalender_43466/ (PDF)
-Eemnes                          https://www.eemnes.nl/inwoners/Afval/Afvalwijzer (PDF)
-Gennep                          https://www.gennep.nl/document.php?m=28&fileid=98242&f=834a3177a76c30293e3e9d1c200729fb&attachment=0&c=34148 (PDF)
-Goes                            https://afvalkalender.goes.nl/4461AB-2.html (PDF)
-Landerd                         https://www.landerd.nl/inwoners-en-ondernemers/afval/afvalkalender/pdf/2020 (PDF)
-Landsmeer                       https://admin.sduconnect.nl/linked_links/1577977473Afvalkalender_2020_DEF.pdf (PDF)
-Middelburg                      https://www.middelburg.nl/Inwoners/Afval/Ophaaldagen_huisvuil (PDF)
-Oegstgeest                      https://www.oegstgeest.nl/fileadmin/editor/Documenten/Inwoners/Alles_over_afval/afvalkalender_2020_v8.pdf (PDF)
-Oostzaan                        https://www.oostzaan.nl/mozard/document/docnr/1182761/bijlage%20-%20afvalkalender%20Oostzaan%202020%20-%20met%20wijkindeling (PDF)
-Ouder-Amstel                    https://www.ouder-amstel.nl/Home/Nieuws_en_actualiteiten/Nieuws/Alle_nieuwsberichten_2020/April/Data_inzameling_afval (PDF)
-Rozendaal                       https://www.rozendaal.nl/dsresource?objectid=d7a004f0-ff97-490a-8837-1b66e5bc11e1&type=org (PDF)
-Uithoorn                        https://www.uithoorn.nl/Home/Afval/Afvalkalender (PDF)
-Vlissingen                      https://www.vlissingen.nl/inwoner/afval-en-milieu/afval/huishoudelijk-afval-en-afvalkalender.html (PDF)
-Steenbergen                     https://www.gemeente-steenbergen.nl/inwoners_overzicht/afval/ (PDF)
-Vlieland                        https://www.vlieland.nl/v-zelf-regelen/producten_42533/product/afval-huishoudelijk-afval_17.html (PDF)
-#############################################################################################################
-Buurt / dorp indeling of geen kalender: #####################################################################
-Weert                           https://www.weert.nl/huisvuil-duobak-en-ophaaldagen
-Texel                           https://www.texel.nl/mozard/!suite86.scherm0325?mVrg=5059
-Maassluis                       https://www.maassluis.nl/wonen-verkeer-en-veiligheid/afvalinzameling_43871/
-Voorschoten                     https://www.voorschotenmaakthetverschil.nl/ 2251dn 121
-Nederweert                      https://www.nederweert.nl/inwoners/huisvuil-2019_45554/
-Amsterdam                       Geen kalender, alleen inleverpunten
-Schiermonnikoog                 Geen kalender
-############################################################################################################
-############################################################################################################
 """
 
 import voluptuous as vol
@@ -71,7 +41,6 @@ from .location.uden import UdenAfval
 from .location.veldhoven import VeldhovenAfval
 from .location.venlo import VenloAfval
 from .location.westerwolde import WesterwoldeAfval
-from .location.westland import WestlandAfval
 
 from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
@@ -189,11 +158,6 @@ class AfvalinfoData(object):
         westerwolde = ["westerwolde"]
         if self.location in westerwolde:
             self.data = WesterwoldeAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
-            )
-        westland = ["westland"]
-        if self.location in westland:
-            self.data = WestlandAfval().get_data(
                 self.location, self.postcode, self.street_number, self.resources
             )
 

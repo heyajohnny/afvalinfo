@@ -22,13 +22,8 @@ SENSOR_LOCATIONS_TO_URL = {
     "veldhoven": ["https://www.veldhoven.nl/afvalkalender/{0}-{1}"],
     "venlo": ["https://www.venlo.nl/trash-removal-calendar/{0}/{1}"],
     "westerkwartier": ["https://www.afvalalert.nl/kalender/{0}/{1}/?web=1"],
-    "westerwolde": ["https://www.westerwolde.nl/trash-removal-calendar/{0}/{1}"],
-    "westland": ["https://huisvuilkalender.gemeentewestland.nl/huisvuilkalender/Huisvuilkalender/get-huisvuilkalender-ajax"]
-}
-
-SENSOR_LOCATIONS_TO_COMPANY_CODE = {
-    "westland": ["https://huisvuilkalender.gemeentewestland.nl/huisvuilkalender/Huisvuilkalender/get-huisvuilkalender-ajax"]
-}
+    "westerwolde": ["https://www.westerwolde.nl/trash-removal-calendar/{0}/{1}"]
+    }
 
 MONTH_TO_NUMBER = {
     "jan": "01",
