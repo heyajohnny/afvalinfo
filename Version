@@ -154,3 +154,4 @@ Version: 0.6.9  20210109 - Removed Appingedam, Haaren and Loppersum. Added Eemsd
 Version: 0.6.10 20210110 - Added hellevoetsluis, reusel-de mierden, zundert
 Version: 0.6.11 20210111 - Removed Westland (no support for 2021)
 Version: 0.6.12 20210111 - Added middelburg and vlissingen
+Version: 0.6.13 20210112 - Moved Katwijk and Midden-Drenthe to Trashapi

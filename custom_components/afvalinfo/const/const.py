@@ -13,10 +13,6 @@ SENSOR_TYPES = {
 }
 
 SENSOR_LOCATIONS_TO_URL = {
-    "katwijk": ["https://afval.katwijk.nl/nc/afvalkalender/?tx_windwastecalendar_pi1%5Baction%5D=search"],
-    "middendrenthe": [
-        "https://www.middendrenthe.nl/website/!suite86.scherm0325?mPag=6523&mAlle=J",
-        "https://www.middendrenthe.nl/website/!ctm_afval.Kalender"],
     "trashapi": ["http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}"],
     "uden": ["https://www.uden.nl/inwoners/afval/ophaaldagen-afval/{0}-{1}.html"],
     "veldhoven": ["https://www.veldhoven.nl/afvalkalender/{0}-{1}"],
