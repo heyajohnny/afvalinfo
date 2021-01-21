@@ -13,12 +13,7 @@ SENSOR_TYPES = {
 }
 
 SENSOR_LOCATIONS_TO_URL = {
-    "trashapi": ["http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}"],
-    "uden": ["https://www.uden.nl/inwoners/afval/ophaaldagen-afval/{0}-{1}.html"],
-    "veldhoven": ["https://www.veldhoven.nl/afvalkalender/{0}-{1}"],
-    "venlo": ["https://www.venlo.nl/trash-removal-calendar/{0}/{1}"],
-    "westerkwartier": ["https://www.afvalalert.nl/kalender/{0}/{1}/?web=1"],
-    "westerwolde": ["https://www.westerwolde.nl/trash-removal-calendar/{0}/{1}"]
+    "trashapi": ["http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}"]
     }
 
 MONTH_TO_NUMBER = {
