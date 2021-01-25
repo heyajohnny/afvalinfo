@@ -43,6 +43,7 @@ Example config:
       locale: 'nl'                     (optional, default = 'en')
       timespanindays: 365              (optional, default = 365) number of days to look into the future
 ```
+Or copy paste the values from this [configuration.yaml](https://github.com/heyajohnny/afvalinfo/blob/master/example/configuration.yaml)
 
 Above example has 1 normal resource and one special resource. Here is a complete list of available waste fractions:
 - gft                                  (groente, fruit, tuinafval)
