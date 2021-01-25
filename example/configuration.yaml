@@ -1,0 +1,40 @@
+sensor:
+  - platform: afvalinfo
+    resources:
+      - gft
+      - kerstboom
+      - pbd
+      - papier
+      - restafval
+      - textiel
+      - trash_type_today
+      - trash_type_tomorrow
+    location: midden-drenthe
+    postcode: 9423NA
+    streetnumber: 1
+    dateformat: "%d-%m-%Y"
+    locale: "nl"
+    timespanindays: 365
+  - platform: template
+    sensors:
+      paper_days_until_collection:
+        value_template: "{{ state_attr('sensor.afvalinfo_papier', 'days_until_collection_date') }}"
+
+  - platform: template
+    sensors:
+      afvalinfo_next_trash_type_and_date:
+        value_template: >
+          {% set ns = namespace(minimum=365) %}
+          {% set list = ['gft', 'kerstboom', 'papier', 'pbd', 'restafval','textiel'] %}
+          {%- for l in list %}
+          {%- set days = state_attr('sensor.afvalinfo_' ~l, 'days_until_collection_date')%}
+          {%- if days != None and days < ns.minimum %}
+          {%- set ns.minimum = days %}
+          {%- endif %}
+          {%- endfor %}
+          {%- for l in list %}
+          {%- set days = state_attr('sensor.afvalinfo_' ~l, 'days_until_collection_date')%}
+          {%- if days == ns.minimum %}
+          {{l}} · {{ states('sensor.afvalinfo_' ~l) }}
+          {%- endif %}
+          {%- endfor %}
