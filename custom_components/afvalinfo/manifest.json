@@ -1,6 +1,7 @@
 {
   "domain": "afvalinfo",
   "name": "Afvalinfo",
+  "version": "0.7.2",
   "documentation": "https://github.com/heyajohnny/afvalinfo",
   "dependencies": [],
   "codeowners": [
