@@ -158,3 +158,4 @@ Version: 0.6.13 20210112 - Moved Katwijk and Midden-Drenthe to Trashapi
 Version: 0.7.0  20210121 - Added Eemnes, Goes, Landerd, Voorschoten and moved everything to TrashAPI
 Version: 0.7.1  20210125 - Added Westland
 Version: 0.7.2  20210308 - Added version to manifest.json
+Version: 0.8.0  20210322 - Added street number suffix

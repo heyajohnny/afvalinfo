@@ -12,12 +12,12 @@ import requests
 
 
 class TrashApiAfval(object):
-    def get_data(self, location, postcode, street_number, resources):
+    def get_data(self, location, postcode, street_number, street_number_suffix, resources):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
             API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["trashapi"][0].format(
-                location, postcode, street_number
+                location, postcode, street_number, street_number_suffix
             )
 
             r = requests.get(url=API_ENDPOINT)

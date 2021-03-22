@@ -39,6 +39,7 @@ Example config:
       location: sliedrecht             (required, default = sliedrecht) name of the 'gemeente'
       postcode: 3361AB                 (required, default = 3361AB)
       streetnumber: 1                  (required, default = 1)
+      streetnumbersuffix: ''           (optional, default = '')
       dateformat: '%d-%m-%Y'           (optional, default = %d-%m-%Y) day-month-year
       locale: 'nl'                     (optional, default = 'en')
       timespanindays: 365              (optional, default = 365) number of days to look into the future

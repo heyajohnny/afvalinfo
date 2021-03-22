@@ -12,6 +12,7 @@ sensor:
     location: midden-drenthe
     postcode: 9423NA
     streetnumber: 1
+    streetnumbersuffix: ""
     dateformat: "%d-%m-%Y"
     locale: "nl"
     timespanindays: 365

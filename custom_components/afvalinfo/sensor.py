@@ -21,6 +21,7 @@ from .const.const import (
     CONF_LOCATION,
     CONF_POSTCODE,
     CONF_STREET_NUMBER,
+    CONF_STREET_NUMBER_SUFFIX,
     CONF_DATE_FORMAT,
     CONF_TIMESPAN_IN_DAYS,
     CONF_LOCALE,
@@ -53,6 +54,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Optional(CONF_LOCATION, default="sliedrecht"): cv.string,
         vol.Required(CONF_POSTCODE, default="3361AB"): cv.string,
         vol.Required(CONF_STREET_NUMBER, default="1"): cv.string,
+        vol.Optional(CONF_STREET_NUMBER_SUFFIX, default=""): cv.string,
         vol.Optional(CONF_DATE_FORMAT, default = "%d-%m-%Y"): cv.string,
         vol.Optional(CONF_TIMESPAN_IN_DAYS, default="365"): cv.string,
         vol.Optional(CONF_LOCALE, default = "en"): cv.string,
@@ -69,6 +71,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
         location = config.get(CONF_LOCATION).lower().strip()
     postcode = config.get(CONF_POSTCODE).strip()
     street_number = config.get(CONF_STREET_NUMBER)
+    street_number_suffix = config.get(CONF_STREET_NUMBER_SUFFIX)
     date_format = config.get(CONF_DATE_FORMAT).strip()
     timespan_in_days = config.get(CONF_TIMESPAN_IN_DAYS)
     locale = config.get(CONF_LOCALE)
@@ -81,7 +84,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
         if "trash_type_tomorrow" in resourcesMinusTodayAndTomorrow:
             resourcesMinusTodayAndTomorrow.remove("trash_type_tomorrow")
 
-        data = AfvalinfoData(location, postcode, street_number, resourcesMinusTodayAndTomorrow)
+        data = AfvalinfoData(location, postcode, street_number, street_number_suffix, resourcesMinusTodayAndTomorrow)
     except urllib.error.HTTPError as error:
         _LOGGER.error(error.reason)
         return False
@@ -108,11 +111,12 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
 
 
 class AfvalinfoData(object):
-    def __init__(self, location, postcode, street_number, resources):
+    def __init__(self, location, postcode, street_number, street_number_suffix, resources):
         self.data = None
         self.location = location
         self.postcode = postcode
         self.street_number = street_number
+        self.street_number_suffix = street_number_suffix
         self.resources = resources
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
@@ -121,7 +125,7 @@ class AfvalinfoData(object):
         trashapi = ["aa en hunze", "aalsmeer", "aalten", "achtkarspelen", "alblasserdam", "albrandswaard", "alkmaar", "almelo", "almere", "alphen aan den rijn", "alphen-chaam", "altena", "ameland", "amersfoort", "amstelveen", "apeldoorn", "arnhem", "assen", "asten", "baarle-nassau", "baarn", "barendrecht", "barneveld", "beek", "beekdaelen", "beemster", "beesel", "berg en dal", "bergeijk", "bergen op zoom", "bergen", "berkelland", "bernheze", "best", "beuningen", "beverwijk", "bladel", "blaricum", "bloemendaal", "bodegraven-reeuwijk", "boekel", "borger-odoorn", "borne", "borsele", "boxmeer", "boxtel", "breda", "brielle", "bronckhorst", "brummen", "brunssum", "bunnik", "bunschoten", "buren", "capelle aan den ijssel", "castricum", "coevorden", "cranendonck", "cuijk", "culemborg", "dalfsen", "dantumadeel f", "de bilt", "de friese meren", "de ronde venen", "de wolden", "delft", "den haag", "den helder", "deurne", "deventer", "diemen", "dinkelland", "doesburg", "doetinchem", "dongen", "dordrecht", "drechterland", "drimmelen", "dronten", "druten", "duiven", "echt-susteren", "ede", "eemnes", "eemsdelta", "eersel", "eijsden-margraten", "eindhoven", "elburg", "emmen", "enkhuizen", "enschede", "epe", "ermelo", "etten-leur", "geertruidenberg", "geldrop-mierlo", "gemert-bakel", "gilze en rijen", "goeree-overflakkee", "goes", "goirle", "gooise meren", "gorinchem", "gouda", "grave", "groningen", "gulpen-wittem", "haaksbergen", "haarlem", "haarlemmermeer", "halderberge", "hardenberg", "harderwijk", "hardinxveld-giessendam", "harlingen", "hattem", "heemskerk", "heemstede", "heerde", "heerenveen", "heerhugowaard", "heerlen", "heeze-leende", "heiloo", "hellendoorn", "hellevoetsluis", "helmond", "hendrik-ido-ambacht", "hengelo", "het hogeland", "heumen", "heusden", "hillegom", "hilvarenbeek", "hilversum", "hoeksche waard", "hof van twente", "hollands kroon", "hoogeveen", "hoorn", "horst aan de maas", "houten", "huizen", "hulst", "ijsselstein", "kaag en braassem", "kampen", "kapelle", "katwijk", "kerkrade", "koggenland", "krimpen aan den ijssel", "krimpenerwaard", "laarbeek", "landerd", "landgraaf", "langedijk", "lansingerland", "laren", "leeuwarden", "leiden", "leiderdorp", "leidschendam-voorburg", "lelystad", "leudal", "leusden", "lingewaard", "lisse", "lochem", "loon op zand", "lopik", "losser", "maasdriel", "maasgouw", "maastricht", "medemblik", "meerssen", "meierijstad", "meppel", "middelburg", "midden-delfland", "midden-drenthe", "midden-groningen", "mill en sint hubert", "moerdijk", "molenlanden", "montferland", "montfoort", "mook en middelaar", "neder-betuwe", "nieuwegein", "nieuwkoop", "nijkerk", "nijmegen", "nissewaard", "noardeast fryslan", "noord-beveland", "noordenveld", "noordoostpolder", "noordwijk", "nuenen", "nunspeet", "oirschot", "oisterwijk", "oldambt", "oldebroek", "oldenzaal", "olst-wijhe", "ommen", "oost gelre", "oosterhout", "ooststellingwerf", "opmeer", "opsterland", "oss", "oude ijsselstreek", "oude pekela", "oudewater", "overbetuwe", "papendrecht", "peel en maas", "pijnacker-nootdorp", "purmerend", "putten", "raalte", "reimerswaal", "renkum", "renswoude", "reusel-de mierden", "rheden", "rhenen", "ridderkerk", "rijssen-holten", "rijswijk", "roerdalen", "roermond", "roosendaal", "rotterdam rozenburg", "rotterdam", "rucphen", "s-hertogenbosch", "schagen", "scherpenzeel", "schiedam", "schouwen-duiveland", "simpelveld", "sint anthonis", "sint-michielsgestel", "sittard-geleen", "sliedrecht", "sluis", "smallingerland", "soest", "someren", "son en breugel", "stadskanaal", "staphorst", "stede broec", "steenwijkerland", "stein", "stichtse vecht", "terneuzen", "terschelling", "teylingen", "tholen", "tiel", "tietjerksteradeel", "tilburg", "tubbergen", "twenterand", "tynaarlo", "uden", "uitgeest", "urk", "utrecht", "utrechtse heuvelrug", "vaals", "valkenburg aan de geul", "valkenswaard", "veendam", "veenendaal", "veere", "veldhoven", "velsen", "venlo", "venray", "vijfheerenlanden", "vlaardingen", "vlissingen", "voerendaal", "voorschoten", "voorst", "vught", "waadhoeke", "waalre", "waalwijk", "waddinxveen", "wageningen", "wassenaar", "waterland", "weesp", "west betuwe", "west maas en waal", "westerkwartier", "westerveld", "westervoort", "westerwolde", "westland", "weststellingwerf", "westvoorne", "wierden", "wijchen", "wijdemeren", "wijk bij duurstede", "winterswijk", "woensdrecht", "woerden", "wormerland", "woudenberg", "zaanstad", "zaltbommel", "zandvoort", "zeewolde", "zeist", "zevenaar", "zoetermeer", "zoeterwoude", "zuidplas", "zuidwest-friesland", "zundert", "zutphen", "zwartewaterland", "zwijndrecht", "zwolle"]
         if self.location in trashapi:
             self.data = TrashApiAfval().get_data(
-                self.location, self.postcode, self.street_number, self.resources
+                self.location, self.postcode, self.street_number, self.street_number_suffix, self.resources
             )
 
 class AfvalinfoSensor(Entity):
