@@ -33,6 +33,7 @@ Example config:
         - pbd
         - papier
         - restafval
+        - takken                       (only supported in a small amount of locations)
         - textiel
         - trash_type_today
         - trash_type_tomorrow

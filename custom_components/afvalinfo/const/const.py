@@ -7,6 +7,7 @@ SENSOR_TYPES = {
     "papier": ["Papier", "mdi:recycle"],
     "pbd": ["PBD", "mdi:recycle"],
     "restafval": ["Restafval", "mdi:recycle"],
+    "takken": ["Takken", "mdi:recycle"],
     "textiel": ["Textiel", "mdi:recycle"],
     "trash_type_today": ["Today", "mdi:recycle"],
     "trash_type_tomorrow": ["Tomorrow", "mdi:recycle"]

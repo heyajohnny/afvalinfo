@@ -45,6 +45,9 @@ class TrashApiAfval(object):
                 # find restafval.
                 if "restafval" in resources and data["name"].lower() == "restafval":
                     waste_dict["restafval"] = data["date"].split("T")[0]
+                # find takken
+                if "takken" in resources and data["name"].lower() == "takken":
+                    waste_dict["takken"] = data["date"].split("T")[0]
                 # find textiel
                 if "textiel" in resources and data["name"].lower() == "textiel":
                     waste_dict["textiel"] = data["date"].split("T")[0]
