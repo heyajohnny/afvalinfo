@@ -3,12 +3,12 @@
   "name": "Afvalinfo",
   "version": "0.8.1",
   "documentation": "https://github.com/heyajohnny/afvalinfo",
+  "issue_tracker": "https://github.com/heyajohnny/afvalinfo/issues",
   "dependencies": [],
   "codeowners": [
     "@heyajohnny"
   ],
   "requirements": [
-    "beautifulsoup4==4.9.0",
     "Babel==2.8.0",
     "python-dateutil==2.8.1"
   ]

@@ -3,9 +3,7 @@ from ..const.const import (
     SENSOR_LOCATIONS_TO_URL,
     _LOGGER,
 )
-from datetime import datetime
-from datetime import timedelta
-from bs4 import BeautifulSoup
+from datetime import datetime, timedelta
 import urllib.request
 import urllib.error
 import requests
