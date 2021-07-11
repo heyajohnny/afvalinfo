@@ -161,3 +161,4 @@ Version: 0.7.2  20210308 - Added version to manifest.json
 Version: 0.8.0  20210322 - Added street number suffix
 Version: 0.8.1  20210327 - Added support for 'takken' to a small amount of locations
 Version: 0.8.2  20210420 - Added issue tracker and removed old imports. Thnx to https://github.com/hmmbob
+Version: 0.8.3  20210711 - Added steenbergen
