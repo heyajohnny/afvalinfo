@@ -33,7 +33,7 @@ class AfvalInfoTodaySensor(Entity):
         return self._state
 
     @property
-    def device_state_attributes(self):
+    def extra_state_attributes(self):
         return {ATTR_LAST_UPDATE: self._last_update}
 
     @Throttle(timedelta(minutes=1))
@@ -45,7 +45,7 @@ class AfvalInfoTodaySensor(Entity):
         numberOfMatches = 0
         today = str(date.today().strftime("%Y-%m-%d"))
         for entity in self._entities:
-            if entity.device_state_attributes.get(ATTR_YEAR_MONTH_DAY_DATE) == today:
+            if entity.extra_state_attributes.get(ATTR_YEAR_MONTH_DAY_DATE) == today:
                 #reset tempState to empty string
                 if numberOfMatches == 0:
                     tempState = ""
