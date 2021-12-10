@@ -136,6 +136,7 @@ class AfvalinfoSensor(Entity):
         self.timespan_in_days = timespan_in_days
         self.locale = locale
         self._name = SENSOR_PREFIX + (id_name + " " if len(id_name) > 0  else "") + SENSOR_TYPES[sensor_type][0]
+        self._attr_unique_id = SENSOR_PREFIX + (id_name + " " if len(id_name) > 0  else "") + SENSOR_TYPES[sensor_type][0]
         self._icon = SENSOR_TYPES[sensor_type][1]
         self._hidden = False
         self._state = None
