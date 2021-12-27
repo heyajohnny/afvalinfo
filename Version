@@ -163,3 +163,4 @@ Version: 0.8.1  20210327 - Added support for 'takken' to a small amount of locat
 Version: 0.8.2  20210420 - Added issue tracker and removed old imports. Thnx to https://github.com/hmmbob
 Version: 0.8.3  20210711 - Added steenbergen
 Version: 0.8.4  20211205 - Changed depricated 'device_state_attributes' to 'extra_state_attributes'
+Version: 0.8.5  20211227 - Unique Id
