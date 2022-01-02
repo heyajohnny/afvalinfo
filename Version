@@ -164,3 +164,4 @@ Version: 0.8.2  20210420 - Added issue tracker and removed old imports. Thnx to 
 Version: 0.8.3  20210711 - Added steenbergen
 Version: 0.8.4  20211205 - Changed depricated 'device_state_attributes' to 'extra_state_attributes'
 Version: 0.8.5  20211227 - Unique Id
+Version: 0.8.6  20220102 - Merged Landerd, Uden --> Maashorst
