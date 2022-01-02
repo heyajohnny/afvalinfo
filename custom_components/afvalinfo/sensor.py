@@ -163,7 +163,6 @@ class AfvalinfoData(object):
             "barneveld",
             "beek",
             "beekdaelen",
-            "beemster",
             "beesel",
             "berg en dal",
             "bergeijk",

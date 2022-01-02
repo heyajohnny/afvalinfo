@@ -166,3 +166,4 @@ Version: 0.8.4  20211205 - Changed depricated 'device_state_attributes' to 'extr
 Version: 0.8.5  20211227 - Unique Id
 Version: 0.8.6  20220102 - Merged Landerd, Uden --> Maashorst
 Version: 0.8.7  20220102 - Merged Heerhugowaard, Langedijk --> Dijk en Waard
+Version: 0.8.8  20220102 - Removed Beemster
