@@ -237,6 +237,7 @@ class AfvalinfoData(object):
             "geertruidenberg",
             "geldrop-mierlo",
             "gemert-bakel",
+            "gennep",
             "gilze en rijen",
             "goeree-overflakkee",
             "goes",
