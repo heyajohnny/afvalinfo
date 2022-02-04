@@ -22,6 +22,7 @@ If there are any problems with the integration, don't hesitate to create an issu
 - Copy the files in the /custom_components/afvalinfo/ folder to: [homeassistant]/config/custom_components/afvalinfo/
 
 Example config:
+(Or use the lazy and easier route and just copy paste the values from this [configuration.yaml](https://github.com/heyajohnny/afvalinfo/blob/master/example/configuration.yaml))
 #### Don't forget to remove the comments from the example config (everything between and after the parentheses)
 ```Configuration.yaml:
   sensor:
@@ -54,7 +55,6 @@ Example config:
       locale: 'nl'                     (optional, default = 'en')
       timespanindays: 365              (optional, default = 365) number of days to look into the future
 ```
-Or copy paste the values from this [configuration.yaml](https://github.com/heyajohnny/afvalinfo/blob/master/example/configuration.yaml)
 
 Above example has 1 normal resource and one special resource. Here is a complete list of available waste types:
 - gft                                  (groente, fruit, tuinafval)
