@@ -1,4 +1,4 @@
-## Home Assistant sensor component for waste collectors in the Netherlands
+## Home Assistant sensor component/integration for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 ### Number of supported 'gemeenten' in The Netherlands (without Bonaire, Sint Eustatius and Saba): 331 of 342 = 97%
 
@@ -16,7 +16,7 @@ Please also take a look at the <a href="https://play.google.com/store/apps/detai
 ### Add 'gemeente'
 The code is designed to add new 'gemeenten' relatively easy.
 Please create an issue in https://github.com/heyajohnny/afvalinfo/issues to request a new 'gemeente'.
-If there are any problems with the component, don't hesitate to create an issue here: https://github.com/heyajohnny/afvalinfo/issues
+If there are any problems with the integration, don't hesitate to create an issue here: https://github.com/heyajohnny/afvalinfo/issues
 
 ### Install:
 - Copy the files in the /custom_components/afvalinfo/ folder to: [homeassistant]/config/custom_components/afvalinfo/
@@ -148,3 +148,6 @@ And another template example to only show the first upcoming trashtype and picku
         {%- endif %}
         {%- endfor %}
 ```
+
+### Lovelace UI
+Please take a look @ <a href="https://github.com/bafplus/HA-afvalinfo-card" target="_blank">bafplus</a>. He made some awesome Lovelace cards for Afvalinfo.
