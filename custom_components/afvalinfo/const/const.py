@@ -10,12 +10,14 @@ SENSOR_TYPES = {
     "takken": ["Takken", "mdi:recycle"],
     "textiel": ["Textiel", "mdi:recycle"],
     "trash_type_today": ["Today", "mdi:recycle"],
-    "trash_type_tomorrow": ["Tomorrow", "mdi:recycle"]
+    "trash_type_tomorrow": ["Tomorrow", "mdi:recycle"],
 }
 
 SENSOR_LOCATIONS_TO_URL = {
-    "trashapi": ["http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}&HouseNumberSuffix={3}"]
-    }
+    "trashapi": [
+        "http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}&HouseNumberSuffix={3}"
+    ]
+}
 
 MONTH_TO_NUMBER = {
     "jan": "01",
@@ -74,6 +76,7 @@ ATTR_HIDDEN = "hidden"
 ATTR_IS_COLLECTION_DATE_TODAY = "is_collection_date_today"
 ATTR_DAYS_UNTIL_COLLECTION_DATE = "days_until_collection_date"
 ATTR_YEAR_MONTH_DAY_DATE = "year_month_day_date"
+ATTR_FRIENDLY_NAME = "friendly_name"
 
 _LOGGER = logging.getLogger(__name__)
 

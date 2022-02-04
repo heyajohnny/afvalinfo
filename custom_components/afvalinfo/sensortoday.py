@@ -3,6 +3,7 @@ from datetime import datetime, date, timedelta
 from .const.const import (
     _LOGGER,
     ATTR_LAST_UPDATE,
+    ATTR_FRIENDLY_NAME,
     ATTR_YEAR_MONTH_DAY_DATE,
     SENSOR_TYPES,
     SENSOR_PREFIX,
@@ -12,9 +13,10 @@ from homeassistant.util import Throttle
 
 
 class AfvalInfoTodaySensor(Entity):
-    def __init__(self, data, sensor_type, entities, id_name):
+    def __init__(self, data, sensor_type, sensor_friendly_name, entities, id_name):
         self.data = data
         self.type = sensor_type
+        self.friendly_name = sensor_friendly_name
         self._last_update = None
         self._name = (
             SENSOR_PREFIX
@@ -60,16 +62,16 @@ class AfvalInfoTodaySensor(Entity):
                 if numberOfMatches == 0:
                     tempState = ""
                 numberOfMatches = numberOfMatches + 1
-                # add trash name to string
+                # add trash friendly name or if no friendly name is provided, trash type to string
                 tempState = (
                     (
                         tempState
-                        + " "
-                        + entity.name.split()[len(entity.name.split()) - 1]
+                        + ", "
+                        + entity.extra_state_attributes.get(ATTR_FRIENDLY_NAME)
                     )
-                    .strip()
-                    .lower()
-                )
+                ).strip()
+        if tempState.startswith(", "):
+            tempState = tempState[2:]
         # only change state if the new state is different than the last state
         if tempState != self._state:
             self._state = tempState

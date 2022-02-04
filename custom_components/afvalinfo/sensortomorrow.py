@@ -3,6 +3,7 @@ from datetime import datetime, date, timedelta
 from .const.const import (
     _LOGGER,
     ATTR_LAST_UPDATE,
+    ATTR_FRIENDLY_NAME,
     ATTR_YEAR_MONTH_DAY_DATE,
     SENSOR_TYPES,
     SENSOR_PREFIX,
@@ -12,9 +13,10 @@ from homeassistant.util import Throttle
 
 
 class AfvalInfoTomorrowSensor(Entity):
-    def __init__(self, data, sensor_type, entities, id_name):
+    def __init__(self, data, sensor_type, sensor_friendly_name, entities, id_name):
         self.data = data
         self.type = sensor_type
+        self.friendly_name = sensor_friendly_name
         self._last_update = None
         self._name = (
             SENSOR_PREFIX
@@ -53,7 +55,7 @@ class AfvalInfoTomorrowSensor(Entity):
         # use a tempState to change the real state only on a change...
         tempState = "none"
         numberOfMatches = 0
-        tomorrow = str((date.today() + timedelta(days=1)).strftime("%Y-%m-%d"))
+        tomorrow = str((date.today() + timedelta(days=3)).strftime("%Y-%m-%d"))
         for entity in self._entities:
             if entity.extra_state_attributes.get(ATTR_YEAR_MONTH_DAY_DATE) == tomorrow:
                 # reset tempState to empty string
@@ -64,12 +66,12 @@ class AfvalInfoTomorrowSensor(Entity):
                 tempState = (
                     (
                         tempState
-                        + " "
-                        + entity.name.split()[len(entity.name.split()) - 1]
+                        + ", "
+                        + entity.extra_state_attributes.get(ATTR_FRIENDLY_NAME)
                     )
-                    .strip()
-                    .lower()
-                )
+                ).strip()
+        if tempState.startswith(", "):
+            tempState = tempState[2:]
         # only change state if the new state is different than the last state
         if tempState != self._state:
             self._state = tempState

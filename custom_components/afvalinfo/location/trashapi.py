@@ -10,7 +10,9 @@ import requests
 
 
 class TrashApiAfval(object):
-    def get_data(self, location, postcode, street_number, street_number_suffix, resources):
+    def get_data(
+        self, location, postcode, street_number, street_number_suffix, resources
+    ):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
@@ -24,7 +26,7 @@ class TrashApiAfval(object):
             # Place all possible values in the dictionary even if they are not necessary
             waste_dict = {}
 
-            #_LOGGER.warning(dataList)
+            # _LOGGER.warning(dataList)
 
             for data in dataList:
 
@@ -55,6 +57,10 @@ class TrashApiAfval(object):
             _LOGGER.error("Error occurred while fetching data: %r", exc.reason)
             return False
         except Exception as exc:
-            _LOGGER.error("""Error occurred. Please check the address with postcode: %r and huisnummer: %r on the website of your local waste collector in the gemeente: %r. It's probably a faulty address or the website of the waste collector is unreachable. If the address is working on the website of the local waste collector and this error still occured, please report the issue in the Github repository https://github.com/heyajohnny/afvalinfo with details of the location that isn't working""",
-            postcode, street_number, location)
+            _LOGGER.error(
+                """Error occurred. Please check the address with postcode: %r and huisnummer: %r on the website of your local waste collector in the gemeente: %r. It's probably a faulty address or the website of the waste collector is unreachable. If the address is working on the website of the local waste collector and this error still occured, please report the issue in the Github repository https://github.com/heyajohnny/afvalinfo with details of the location that isn't working""",
+                postcode,
+                street_number,
+                location,
+            )
             return False

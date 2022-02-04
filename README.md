@@ -26,17 +26,26 @@ Example config:
 ```Configuration.yaml:
   sensor:
     - platform: afvalinfo
-      id: huis van ouders              (optional, default = '') add some extra naming to make identification of multiple afvalinfo sensors easier
+      id: vakantiehuis                 (optional, default = '') add some extra naming to make identification of multiple afvalinfo sensors easier
       resources:                       (at least 1 required)
-        - gft
-        - kerstboom
-        - pbd
-        - papier
-        - restafval
-        - takken                       (only supported in a small amount of locations)
-        - textiel
-        - trash_type_today
-        - trash_type_tomorrow
+        - type: restafval              (type is required)
+          friendly_name: Restafval     (friendly_name is optional)
+        - type: takken
+          friendly_name: Takken
+        - type: textiel
+          friendly_name: Oude Kleding
+        - type: gft
+          friendly_name: Groente Fruit en Tuinafval
+        - type: kerstboom
+          friendly_name: Kerstboom
+        - type: pbd
+          friendly_name: Plastic Blik en Drankpakken
+        - type: papier
+          friendly_name: Papier
+        - type: trash_type_today
+          friendly_name: Afval voor vandaag
+        - type: trash_type_tomorrow
+          friendly_name: Afval voor morgen
       location: sliedrecht             (required, default = sliedrecht) name of the 'gemeente'
       postcode: 3361AB                 (required, default = 3361AB)
       streetnumber: 1                  (required, default = 1)
@@ -47,31 +56,36 @@ Example config:
 ```
 Or copy paste the values from this [configuration.yaml](https://github.com/heyajohnny/afvalinfo/blob/master/example/configuration.yaml)
 
-Above example has 1 normal resource and one special resource. Here is a complete list of available waste fractions:
+Above example has 1 normal resource and one special resource. Here is a complete list of available waste types:
 - gft                                  (groente, fruit, tuinafval)
 - kerstboom                            (supported in +- 50% of the waste collectors)
 - papier
 - pbd                                  (plastic, blik, drinkpakken)
 - restafval
+- takken                               (supported by a small amount of waste collectors)
 - textiel
 
 Here is a complete list of special resources. To make these resources work, you also need to specify one or more of the normal resources from above.
+These resources will return one or more (seperated with a comma) of the following results (gft, kerstboom, papier, pbd, restafval, takken, textiel) or if you specified a friendly_name, it will return one or more of the friendly_name values
+- trash_type_today                      (gives the result "none" if none of the normal resources dates is today)
+- trash_type_tomorrow                   (gives the result "none" if none of the normal resources dates is tomorrow)
+
 So if you only specify -pbd and -trash_type_today under your resources, you will only get a result if the trash type 'pbd' has the same date as today. If you also want to know if -gft has the same date as today, you also need to specify - gft under resources, as shown below.
 ```Configuration.yaml:
   sensor:
     - platform: afvalinfo
       resources:
-        - pbd
-        - gft
-        - trash_type_today
-        - trash_type_tomorrow
+        - type: pbd
+          friendly_name: Plastic Blik en Drankpakken
+        - type: gft
+          friendly_name: Groente Fruit en Tuinafval
+        - type: trash_type_today
+          friendly_name: Afval voor vandaag
       location: sliedrecht
       postcode: 3361AB
       streetnumber: 1
 ```
-These resources will return one or more (seperated with a space) of the following results (gft, papier, pbd, restafval, textiel).
-- trash_type_today                      (gives the result "none" if none of the normal resources dates is today)
-- trash_type_tomorrow                   (gives the result "none" if none of the normal resources dates is tomorrow)
+
 
 ### Date format
 ```yaml
@@ -120,7 +134,7 @@ And another template example to only show the first upcoming trashtype and picku
     afvalinfo_next_trash_type_and_date:
       value_template: >
         {% set ns = namespace(minimum=365) %}
-        {% set list = ['gft', 'kerstboom', 'papier', 'pbd', 'restafval','textiel'] %}
+        {% set list = ['gft', 'kerstboom', 'papier', 'pbd', 'restafval', 'takken', 'textiel'] %}
         {%- for l in list %}
         {%- set days = state_attr('sensor.afvalinfo_' ~l, 'days_until_collection_date')%}
         {%- if days != None and days < ns.minimum %}

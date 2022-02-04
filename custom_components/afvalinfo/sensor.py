@@ -2,8 +2,6 @@
 """
 Sensor component for Afvalinfo
 Author: Johnny Visser
-
-ToDo: Add huisnummer toevoeging
 """
 
 import voluptuous as vol
@@ -32,6 +30,7 @@ from .const.const import (
     ATTR_DAYS_UNTIL_COLLECTION_DATE,
     ATTR_IS_COLLECTION_DATE_TODAY,
     ATTR_YEAR_MONTH_DAY_DATE,
+    ATTR_FRIENDLY_NAME,
     SENSOR_TYPES,
 )
 
@@ -47,9 +46,7 @@ from homeassistant.helpers.entity import Entity
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     {
-        vol.Required(CONF_RESOURCES, default=[]): vol.All(
-            cv.ensure_list, [vol.In(SENSOR_TYPES)]
-        ),
+        vol.Required(CONF_RESOURCES, default=[]): vol.All(cv.ensure_list),
         vol.Optional(CONF_CITY, default=""): cv.string,
         vol.Optional(CONF_LOCATION, default="sliedrecht"): cv.string,
         vol.Required(CONF_POSTCODE, default="3361AB"): cv.string,
@@ -78,7 +75,14 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     id_name = config.get(CONF_ID)
 
     try:
-        resourcesMinusTodayAndTomorrow = config[CONF_RESOURCES].copy()
+        resources = config[CONF_RESOURCES].copy()
+
+        # filter the types from the dict if it's a dictionary
+        if isinstance(resources[0], dict):
+            resourcesMinusTodayAndTomorrow = [obj["type"] for obj in resources]
+        else:
+            resourcesMinusTodayAndTomorrow = resources
+
         if "trash_type_today" in resourcesMinusTodayAndTomorrow:
             resourcesMinusTodayAndTomorrow.remove("trash_type_today")
         if "trash_type_tomorrow" in resourcesMinusTodayAndTomorrow:
@@ -98,7 +102,18 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     entities = []
 
     for resource in config[CONF_RESOURCES]:
-        sensor_type = resource.lower()
+        # old way, before 20220204
+        if type(resource) == str:
+            sensor_type = resource.lower()
+            sensor_friendly_name = sensor_type
+        # new way
+        else:
+            sensor_type = resource["type"].lower()
+            if "friendly_name" in resource.keys():
+                sensor_friendly_name = resource["friendly_name"]
+            else:
+                # If no friendly name is provided, use the sensor_type as friendly name
+                sensor_friendly_name = sensor_type
 
         # if sensor_type not in SENSOR_TYPES:
         if (
@@ -107,17 +122,27 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
         ):
             entities.append(
                 AfvalinfoSensor(
-                    data, sensor_type, date_format, timespan_in_days, locale, id_name
+                    data,
+                    sensor_type,
+                    sensor_friendly_name,
+                    date_format,
+                    timespan_in_days,
+                    locale,
+                    id_name,
                 )
             )
 
         # Add sensor -trash_type_today
         if sensor_type.title().lower() == "trash_type_today":
-            today = AfvalInfoTodaySensor(data, sensor_type, entities, id_name)
+            today = AfvalInfoTodaySensor(
+                data, sensor_type, sensor_friendly_name, entities, id_name
+            )
             entities.append(today)
         # Add sensor -trash_type_tomorrow
         if sensor_type.title().lower() == "trash_type_tomorrow":
-            tomorrow = AfvalInfoTomorrowSensor(data, sensor_type, entities, id_name)
+            tomorrow = AfvalInfoTomorrowSensor(
+                data, sensor_type, sensor_friendly_name, entities, id_name
+            )
             entities.append(tomorrow)
 
     add_entities(entities)
@@ -137,355 +162,29 @@ class AfvalinfoData(object):
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
         _LOGGER.debug("Updating Waste collection dates")
-        trashapi = [
-            "aa en hunze",
-            "aalsmeer",
-            "aalten",
-            "achtkarspelen",
-            "alblasserdam",
-            "albrandswaard",
-            "alkmaar",
-            "almelo",
-            "almere",
-            "alphen aan den rijn",
-            "alphen-chaam",
-            "altena",
-            "ameland",
-            "amersfoort",
-            "amstelveen",
-            "apeldoorn",
-            "arnhem",
-            "assen",
-            "asten",
-            "baarle-nassau",
-            "baarn",
-            "barendrecht",
-            "barneveld",
-            "beek",
-            "beekdaelen",
-            "beesel",
-            "berg en dal",
-            "bergeijk",
-            "bergen op zoom",
-            "bergen",
-            "berkelland",
-            "bernheze",
-            "best",
-            "beuningen",
-            "beverwijk",
-            "bladel",
-            "blaricum",
-            "bloemendaal",
-            "bodegraven-reeuwijk",
-            "boekel",
-            "borger-odoorn",
-            "borne",
-            "borsele",
-            "boxtel",
-            "breda",
-            "brielle",
-            "bronckhorst",
-            "brummen",
-            "brunssum",
-            "bunnik",
-            "bunschoten",
-            "buren",
-            "capelle aan den ijssel",
-            "castricum",
-            "coevorden",
-            "cranendonck",
-            "culemborg",
-            "dalfsen",
-            "dantumadeel f",
-            "de bilt",
-            "de friese meren",
-            "de ronde venen",
-            "de wolden",
-            "delft",
-            "den haag",
-            "den helder",
-            "deurne",
-            "deventer",
-            "diemen",
-            "dijk en waard",
-            "dinkelland",
-            "doesburg",
-            "doetinchem",
-            "dongen",
-            "dordrecht",
-            "drechterland",
-            "drimmelen",
-            "dronten",
-            "druten",
-            "duiven",
-            "echt-susteren",
-            "ede",
-            "eemnes",
-            "eemsdelta",
-            "eersel",
-            "eijsden-margraten",
-            "eindhoven",
-            "elburg",
-            "emmen",
-            "enkhuizen",
-            "enschede",
-            "epe",
-            "ermelo",
-            "etten-leur",
-            "geertruidenberg",
-            "geldrop-mierlo",
-            "gemert-bakel",
-            "gennep",
-            "gilze en rijen",
-            "goeree-overflakkee",
-            "goes",
-            "goirle",
-            "gooise meren",
-            "gorinchem",
-            "gouda",
-            "groningen",
-            "gulpen-wittem",
-            "haaksbergen",
-            "haarlem",
-            "haarlemmermeer",
-            "halderberge",
-            "hardenberg",
-            "harderwijk",
-            "hardinxveld-giessendam",
-            "harlingen",
-            "hattem",
-            "heemskerk",
-            "heemstede",
-            "heerde",
-            "heerenveen",
-            "heerlen",
-            "heeze-leende",
-            "heiloo",
-            "hellendoorn",
-            "hellevoetsluis",
-            "helmond",
-            "hendrik-ido-ambacht",
-            "hengelo",
-            "het hogeland",
-            "heumen",
-            "heusden",
-            "hillegom",
-            "hilvarenbeek",
-            "hilversum",
-            "hoeksche waard",
-            "hof van twente",
-            "hollands kroon",
-            "hoogeveen",
-            "hoorn",
-            "horst aan de maas",
-            "houten",
-            "huizen",
-            "hulst",
-            "ijsselstein",
-            "kaag en braassem",
-            "kampen",
-            "kapelle",
-            "katwijk",
-            "kerkrade",
-            "koggenland",
-            "krimpen aan den ijssel",
-            "krimpenerwaard",
-            "laarbeek",
-            "landgraaf",
-            "land van cuijk",
-            "lansingerland",
-            "laren",
-            "leeuwarden",
-            "leiden",
-            "leiderdorp",
-            "leidschendam-voorburg",
-            "lelystad",
-            "leudal",
-            "leusden",
-            "lingewaard",
-            "lisse",
-            "lochem",
-            "loon op zand",
-            "lopik",
-            "losser",
-            "maasdriel",
-            "maasgouw",
-            "maashorst",
-            "maastricht",
-            "medemblik",
-            "meerssen",
-            "meierijstad",
-            "meppel",
-            "middelburg",
-            "midden-delfland",
-            "midden-drenthe",
-            "midden-groningen",
-            "moerdijk",
-            "molenlanden",
-            "montferland",
-            "montfoort",
-            "mook en middelaar",
-            "neder-betuwe",
-            "nieuwegein",
-            "nieuwkoop",
-            "nijkerk",
-            "nijmegen",
-            "nissewaard",
-            "noardeast fryslan",
-            "noord-beveland",
-            "noordenveld",
-            "noordoostpolder",
-            "noordwijk",
-            "nuenen",
-            "nunspeet",
-            "oirschot",
-            "oisterwijk",
-            "oldambt",
-            "oldebroek",
-            "oldenzaal",
-            "olst-wijhe",
-            "ommen",
-            "oost gelre",
-            "oosterhout",
-            "ooststellingwerf",
-            "opmeer",
-            "opsterland",
-            "oss",
-            "oude ijsselstreek",
-            "oude pekela",
-            "oudewater",
-            "overbetuwe",
-            "papendrecht",
-            "peel en maas",
-            "pijnacker-nootdorp",
-            "purmerend",
-            "putten",
-            "raalte",
-            "reimerswaal",
-            "renkum",
-            "renswoude",
-            "reusel-de mierden",
-            "rheden",
-            "rhenen",
-            "ridderkerk",
-            "rijssen-holten",
-            "rijswijk",
-            "roerdalen",
-            "roermond",
-            "roosendaal",
-            "rotterdam rozenburg",
-            "rotterdam",
-            "rucphen",
-            "s-hertogenbosch",
-            "schagen",
-            "scherpenzeel",
-            "schiedam",
-            "schouwen-duiveland",
-            "simpelveld",
-            "sint-michielsgestel",
-            "sittard-geleen",
-            "sliedrecht",
-            "sluis",
-            "smallingerland",
-            "soest",
-            "someren",
-            "son en breugel",
-            "stadskanaal",
-            "staphorst",
-            "stede broec",
-            "steenbergen",
-            "steenwijkerland",
-            "stein",
-            "stichtse vecht",
-            "terneuzen",
-            "terschelling",
-            "teylingen",
-            "tholen",
-            "tiel",
-            "tietjerksteradeel",
-            "tilburg",
-            "tubbergen",
-            "twenterand",
-            "tynaarlo",
-            "uitgeest",
-            "urk",
-            "utrecht",
-            "utrechtse heuvelrug",
-            "vaals",
-            "valkenburg aan de geul",
-            "valkenswaard",
-            "veendam",
-            "veenendaal",
-            "veere",
-            "veldhoven",
-            "velsen",
-            "venlo",
-            "venray",
-            "vijfheerenlanden",
-            "vlaardingen",
-            "vlissingen",
-            "voerendaal",
-            "voorschoten",
-            "voorst",
-            "vught",
-            "waadhoeke",
-            "waalre",
-            "waalwijk",
-            "waddinxveen",
-            "wageningen",
-            "wassenaar",
-            "waterland",
-            "weesp",
-            "west betuwe",
-            "west maas en waal",
-            "westerkwartier",
-            "westerveld",
-            "westervoort",
-            "westerwolde",
-            "westland",
-            "weststellingwerf",
-            "westvoorne",
-            "wierden",
-            "wijchen",
-            "wijdemeren",
-            "wijk bij duurstede",
-            "winterswijk",
-            "woensdrecht",
-            "woerden",
-            "wormerland",
-            "woudenberg",
-            "zaanstad",
-            "zaltbommel",
-            "zandvoort",
-            "zeewolde",
-            "zeist",
-            "zevenaar",
-            "zoetermeer",
-            "zoeterwoude",
-            "zuidplas",
-            "zuidwest-friesland",
-            "zundert",
-            "zutphen",
-            "zwartewaterland",
-            "zwijndrecht",
-            "zwolle",
-        ]
-        if self.location in trashapi:
-            self.data = TrashApiAfval().get_data(
-                self.location,
-                self.postcode,
-                self.street_number,
-                self.street_number_suffix,
-                self.resources,
-            )
+        self.data = TrashApiAfval().get_data(
+            self.location,
+            self.postcode,
+            self.street_number,
+            self.street_number_suffix,
+            self.resources,
+        )
 
 
 class AfvalinfoSensor(Entity):
     def __init__(
-        self, data, sensor_type, date_format, timespan_in_days, locale, id_name
+        self,
+        data,
+        sensor_type,
+        sensor_friendly_name,
+        date_format,
+        timespan_in_days,
+        locale,
+        id_name,
     ):
         self.data = data
         self.type = sensor_type
+        self.friendly_name = sensor_friendly_name
         self.date_format = date_format
         self.timespan_in_days = timespan_in_days
         self.locale = locale
@@ -522,6 +221,7 @@ class AfvalinfoSensor(Entity):
     @property
     def extra_state_attributes(self):
         return {
+            ATTR_FRIENDLY_NAME: self.friendly_name,
             ATTR_YEAR_MONTH_DAY_DATE: self._year_month_day_date,
             ATTR_LAST_UPDATE: self._last_update,
             ATTR_HIDDEN: self._hidden,

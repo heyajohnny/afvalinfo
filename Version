@@ -169,3 +169,4 @@ Version: 0.8.7  20220102 - Merged Heerhugowaard, Langedijk --> Dijk en Waard
 Version: 0.8.8  20220102 - Removed Beemster
 Version: 0.8.9  20220103 - Added Gennep
 Version: 0.9.0  20220104 - Merged Boxmeer, Cuijk, Grave, Mill en Sint Hubert, Sint Anthonis --> Land van Cuijk
+Version: 1.0.0  20220204 - Changed resources in configuration.yaml from a list to a dictionary
