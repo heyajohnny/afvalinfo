@@ -55,7 +55,7 @@ class AfvalInfoTomorrowSensor(Entity):
         # use a tempState to change the real state only on a change...
         tempState = "none"
         numberOfMatches = 0
-        tomorrow = str((date.today() + timedelta(days=3)).strftime("%Y-%m-%d"))
+        tomorrow = str((date.today() + timedelta(days=1)).strftime("%Y-%m-%d"))
         for entity in self._entities:
             if entity.extra_state_attributes.get(ATTR_YEAR_MONTH_DAY_DATE) == tomorrow:
                 # reset tempState to empty string
