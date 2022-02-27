@@ -188,15 +188,7 @@ class AfvalinfoSensor(Entity):
         self.date_format = date_format
         self.timespan_in_days = timespan_in_days
         self.locale = locale
-        self._name = (
-            (
-                SENSOR_PREFIX
-                + (id_name + " " if len(id_name) > 0 else "")
-                + SENSOR_TYPES[sensor_type][0]
-            )
-            if SENSOR_TYPES[sensor_type][0].lower() == sensor_friendly_name.lower()
-            else sensor_friendly_name
-        )
+        self._name = sensor_friendly_name
         self._attr_unique_id = (
             SENSOR_PREFIX
             + (id_name + " " if len(id_name) > 0 else "")

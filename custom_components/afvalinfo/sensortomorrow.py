@@ -18,15 +18,7 @@ class AfvalInfoTomorrowSensor(Entity):
         self.type = sensor_type
         self.friendly_name = sensor_friendly_name
         self._last_update = None
-        self._name = (
-            (
-                SENSOR_PREFIX
-                + (id_name + " " if len(id_name) > 0 else "")
-                + SENSOR_TYPES[sensor_type][0]
-            )
-            if SENSOR_TYPES[sensor_type][0].lower() == sensor_friendly_name.lower()
-            else sensor_friendly_name
-        )
+        self._name = sensor_friendly_name
         self._attr_unique_id = (
             SENSOR_PREFIX
             + (id_name + " " if len(id_name) > 0 else "")
