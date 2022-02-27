@@ -21,12 +21,12 @@ class AfvalInfoTomorrowSensor(Entity):
         self._name = (
             SENSOR_PREFIX
             + (id_name + " " if len(id_name) > 0 else "")
-            + SENSOR_TYPES[sensor_type][0]
+            + sensor_friendly_name
         )
         self._attr_unique_id = (
             SENSOR_PREFIX
             + (id_name + " " if len(id_name) > 0 else "")
-            + SENSOR_TYPES[sensor_type][0]
+            + sensor_friendly_name
         )
         self._state = None
         self._icon = SENSOR_TYPES[sensor_type][1]
