@@ -172,3 +172,4 @@ Version: 0.9.0  20220104 - Merged Boxmeer, Cuijk, Grave, Mill en Sint Hubert, Si
 Version: 1.0.0  20220204 - Changed resources in configuration.yaml from a list to a dictionary
 Version: 1.0.1  20220205 - Fix for tomorrow sensor
 Version: 1.0.2  20220227 - Fix for friendly names of sensors
+Version: 1.0.3  20220227 - 2nd fix for friendly names of sensors
