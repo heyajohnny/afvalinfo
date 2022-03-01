@@ -19,6 +19,15 @@ class AfvalInfoTodaySensor(Entity):
         self.friendly_name = sensor_friendly_name
         self._last_update = None
         self._name = sensor_friendly_name
+        self.entity_id = "sensor." + (
+            (
+                SENSOR_PREFIX
+                + (id_name + " " if len(id_name) > 0 else "")
+                + sensor_friendly_name
+            )
+            .lower()
+            .replace(" ", "_")
+        )
         self._attr_unique_id = (
             SENSOR_PREFIX
             + (id_name + " " if len(id_name) > 0 else "")
