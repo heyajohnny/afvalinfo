@@ -26,6 +26,7 @@ sensor:
     dateformat: "%d-%m-%Y"
     locale: "nl"
     timespanindays: 365
+    notrashtext: "geen"
   - platform: template
     sensors:
       paper_days_until_collection:

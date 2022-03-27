@@ -22,6 +22,7 @@ from .const.const import (
     CONF_STREET_NUMBER_SUFFIX,
     CONF_DATE_FORMAT,
     CONF_TIMESPAN_IN_DAYS,
+    CONF_NO_TRASH_TEXT,
     CONF_LOCALE,
     CONF_ID,
     SENSOR_PREFIX,
@@ -56,6 +57,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Optional(CONF_TIMESPAN_IN_DAYS, default="365"): cv.string,
         vol.Optional(CONF_LOCALE, default="en"): cv.string,
         vol.Optional(CONF_ID, default=""): cv.string,
+        vol.Optional(CONF_NO_TRASH_TEXT, default="none"): cv.string,
     }
 )
 
@@ -73,6 +75,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     timespan_in_days = config.get(CONF_TIMESPAN_IN_DAYS)
     locale = config.get(CONF_LOCALE)
     id_name = config.get(CONF_ID)
+    no_trash_text = config.get(CONF_NO_TRASH_TEXT)
 
     try:
         resources = config[CONF_RESOURCES].copy()
@@ -135,13 +138,23 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
         # Add sensor -trash_type_today
         if sensor_type.title().lower() == "trash_type_today":
             today = AfvalInfoTodaySensor(
-                data, sensor_type, sensor_friendly_name, entities, id_name
+                data,
+                sensor_type,
+                sensor_friendly_name,
+                entities,
+                id_name,
+                no_trash_text,
             )
             entities.append(today)
         # Add sensor -trash_type_tomorrow
         if sensor_type.title().lower() == "trash_type_tomorrow":
             tomorrow = AfvalInfoTomorrowSensor(
-                data, sensor_type, sensor_friendly_name, entities, id_name
+                data,
+                sensor_type,
+                sensor_friendly_name,
+                entities,
+                id_name,
+                no_trash_text,
             )
             entities.append(tomorrow)
 

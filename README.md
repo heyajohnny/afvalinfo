@@ -54,6 +54,7 @@ Example config:
       dateformat: '%d-%m-%Y'           (optional, default = %d-%m-%Y) day-month-year
       locale: 'nl'                     (optional, default = 'en')
       timespanindays: 365              (optional, default = 365) number of days to look into the future
+      notrashtext: 'geen'              (Optional, default = 'none') the text to show for the today and tomorrow sensor when there is no trash to collect
 ```
 
 Above example has 1 normal resource and one special resource. Here is a complete list of available waste types:
