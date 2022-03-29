@@ -40,7 +40,7 @@ Example config:
         - type: kerstboom
           friendly_name: Kerstboom
         - type: pbd
-          friendly_name: Plastic Blik en Drankpakken
+          friendly_name: Plastic Blik en Drankkartons
         - type: papier
           friendly_name: Papier
         - type: trash_type_today
@@ -77,7 +77,7 @@ So if you only specify -pbd and -trash_type_today under your resources, you will
     - platform: afvalinfo
       resources:
         - type: pbd
-          friendly_name: Plastic Blik en Drankpakken
+          friendly_name: Plastic Blik en Drankkartons
         - type: gft
           friendly_name: Groente Fruit en Tuinafval
         - type: trash_type_today
@@ -135,7 +135,7 @@ And another template example to only show the first upcoming trashtype and picku
     afvalinfo_next_trash_type_and_date:
       value_template: >
         {% set ns = namespace(minimum=365) %}
-        {% set list = ['gft', 'kerstboom', 'papier', 'pbd', 'restafval', 'takken', 'textiel'] %}
+        {% set list = ['groente_fruit_en_tuinafval', 'kerstboom', 'papier', 'plastic_blik_en_drankkartons', 'restafval', 'takken', 'oude_kleding'] %}
         {%- for l in list %}
         {%- set days = state_attr('sensor.afvalinfo_' ~l, 'days_until_collection_date')%}
         {%- if days != None and days < ns.minimum %}
