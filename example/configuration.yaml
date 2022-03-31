@@ -37,7 +37,8 @@ sensor:
       afvalinfo_next_trash_type_and_date:
         value_template: >
           {% set ns = namespace(minimum=365) %}
-          {% set list = ['groente_fruit_en_tuinafval', 'kerstboom', 'papier', 'plastic_blik_en_drankkartons', 'restafval', 'takken', 'oude_kleding'] %}
+          {% set list = ['groente_fruit_en_tuinafval', 'kerstboom', 'plastic_blik_en_drankkartons', 'papier', 'restafval', 'takken', 'oude_kleding'] %}
+          {% set friendly_list = ['Groente Fruit en Tuinafval', 'Kerstboom', 'Plastic Blik en Drankkartons', 'Papier', 'Restafval', 'Takken', 'Oude Kleding'] %}
           {%- for l in list %}
           {%- set days = state_attr('sensor.afvalinfo_' ~l, 'days_until_collection_date')%}
           {%- if days != None and days < ns.minimum %}
@@ -47,6 +48,6 @@ sensor:
           {%- for l in list %}
           {%- set days = state_attr('sensor.afvalinfo_' ~l, 'days_until_collection_date')%}
           {%- if days == ns.minimum %}
-          {{l}} · {{ states('sensor.afvalinfo_' ~l) }}
+          {{friendly_list[loop.index0]}} · {{ states('sensor.afvalinfo_' ~l) }}
           {%- endif %}
           {%- endfor %}

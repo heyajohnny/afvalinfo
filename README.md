@@ -29,20 +29,20 @@ Example config:
     - platform: afvalinfo
       id: vakantiehuis                 (optional, default = '') add some extra naming to make identification of multiple afvalinfo sensors easier
       resources:                       (at least 1 required)
-        - type: restafval              (type is required)
-          friendly_name: Restafval     (friendly_name is optional)
-        - type: takken
-          friendly_name: Takken
-        - type: textiel
-          friendly_name: Oude Kleding
-        - type: gft
-          friendly_name: Groente Fruit en Tuinafval
+        - type: gft                                   (type is required)
+          friendly_name: Groente Fruit en Tuinafval   (friendly_name is optional)
         - type: kerstboom
           friendly_name: Kerstboom
         - type: pbd
           friendly_name: Plastic Blik en Drankkartons
         - type: papier
           friendly_name: Papier
+        - type: restafval
+          friendly_name: Restafval
+        - type: takken
+          friendly_name: Takken
+        - type: textiel
+          friendly_name: Oude Kleding
         - type: trash_type_today
           friendly_name: Afval voor vandaag
         - type: trash_type_tomorrow
@@ -135,7 +135,8 @@ And another template example to only show the first upcoming trashtype and picku
     afvalinfo_next_trash_type_and_date:
       value_template: >
         {% set ns = namespace(minimum=365) %}
-        {% set list = ['groente_fruit_en_tuinafval', 'kerstboom', 'papier', 'plastic_blik_en_drankkartons', 'restafval', 'takken', 'oude_kleding'] %}
+        {% set list = ['groente_fruit_en_tuinafval', 'kerstboom', 'plastic_blik_en_drankkartons', 'papier', 'restafval', 'takken', 'oude_kleding'] %}
+        {% set friendly_list = ['Groente Fruit en Tuinafval', 'Kerstboom', 'Plastic Blik en Drankkartons', 'Papier', 'Restafval', 'Takken', 'Oude Kleding'] %}
         {%- for l in list %}
         {%- set days = state_attr('sensor.afvalinfo_' ~l, 'days_until_collection_date')%}
         {%- if days != None and days < ns.minimum %}
@@ -145,7 +146,7 @@ And another template example to only show the first upcoming trashtype and picku
         {%- for l in list %}
         {%- set days = state_attr('sensor.afvalinfo_' ~l, 'days_until_collection_date')%}
         {%- if days == ns.minimum %}
-        {{l}} · {{ states('sensor.afvalinfo_' ~l) }}
+        {{friendly_list[loop.index0]}} · {{ states('sensor.afvalinfo_' ~l) }}
         {%- endif %}
         {%- endfor %}
 ```
