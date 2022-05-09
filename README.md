@@ -18,6 +18,10 @@ The code is designed to add new 'gemeenten' relatively easy.
 Please create an issue in https://github.com/heyajohnny/afvalinfo/issues to request a new 'gemeente'.
 If there are any problems with the integration, don't hesitate to create an issue here: https://github.com/heyajohnny/afvalinfo/issues
 
+### For 2022 I cannot support these 'gemeenten'
+Because these 'gemeenten' won't provide waste collection data through 'postcode' level, I cannot provide reliable data for these 'gemeenten' in 2022.
+###### "noardeast-fryslan"/"noordoost-friesland", "oegstgeest"
+
 ### Install:
 - Copy the files in the /custom_components/afvalinfo/ folder to: [homeassistant]/config/custom_components/afvalinfo/
 
