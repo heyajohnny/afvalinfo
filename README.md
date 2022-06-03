@@ -1,5 +1,5 @@
 ## Home Assistant sensor component/integration for waste collectors in the Netherlands
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/hacs/integration)
 ### Number of supported 'gemeenten' in The Netherlands (without Bonaire, Sint Eustatius and Saba): 332 of 342 = 97%
 
 If you like my work, please buy me a coffee. This will keep me awake :)
