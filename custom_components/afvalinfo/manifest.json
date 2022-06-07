@@ -1,7 +1,7 @@
 {
   "domain": "afvalinfo",
   "name": "Afvalinfo",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "documentation": "https://github.com/heyajohnny/afvalinfo",
   "issue_tracker": "https://github.com/heyajohnny/afvalinfo/issues",
   "dependencies": [],

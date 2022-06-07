@@ -3,7 +3,7 @@ from ..const.const import (
     SENSOR_LOCATIONS_TO_URL,
     _LOGGER,
 )
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 import urllib.request
 import urllib.error
 import requests
@@ -11,13 +11,19 @@ import requests
 
 class TrashApiAfval(object):
     def get_data(
-        self, location, postcode, street_number, street_number_suffix, resources
+        self,
+        location,
+        postcode,
+        street_number,
+        street_number_suffix,
+        diftar_code,
+        resources,
     ):
         _LOGGER.debug("Updating Waste collection dates")
 
         try:
             API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["trashapi"][0].format(
-                location, postcode, street_number, street_number_suffix
+                location, postcode, street_number, street_number_suffix, diftar_code
             )
 
             r = requests.get(url=API_ENDPOINT)
@@ -44,7 +50,16 @@ class TrashApiAfval(object):
                     waste_dict["pbd"] = data["date"].split("T")[0]
                 # find restafval.
                 if "restafval" in resources and data["name"].lower() == "restafval":
-                    waste_dict["restafval"] = data["date"].split("T")[0]
+                    if (
+                        date.today()
+                        < datetime.strptime(
+                            data["date"].split("T")[0], "%Y-%m-%d"
+                        ).date()
+                    ):
+                        waste_dict["restafval"] = data["date"].split("T")[0]
+                    else:
+                        waste_dict["restafvaldiftardate"] = data["date"].split("T")[0]
+                        waste_dict["restafvaldiftarcollections"] = data["totalThisYear"]
                 # find takken
                 if "takken" in resources and data["name"].lower() == "takken":
                     waste_dict["takken"] = data["date"].split("T")[0]
@@ -58,9 +73,10 @@ class TrashApiAfval(object):
             return False
         except Exception as exc:
             _LOGGER.error(
-                """Error occurred. Please check the address with postcode: %r and huisnummer: %r on the website of your local waste collector in the gemeente: %r. It's probably a faulty address or the website of the waste collector is unreachable. If the address is working on the website of the local waste collector and this error still occured, please report the issue in the Github repository https://github.com/heyajohnny/afvalinfo with details of the location that isn't working""",
+                """Error occurred. Please check the address with postcode: %r and huisnummer: %r%r on the website of your local waste collector in the gemeente: %r. It's probably a faulty address or the website of the waste collector is unreachable. If the address is working on the website of the local waste collector and this error still occured, please report the issue in the Github repository https://github.com/heyajohnny/afvalinfo with details of the location that isn't working""",
                 postcode,
                 street_number,
+                street_number_suffix,
                 location,
             )
             return False

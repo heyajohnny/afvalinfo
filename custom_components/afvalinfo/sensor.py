@@ -23,6 +23,7 @@ from .const.const import (
     CONF_DATE_FORMAT,
     CONF_TIMESPAN_IN_DAYS,
     CONF_NO_TRASH_TEXT,
+    CONF_DIFTAR_CODE,
     CONF_LOCALE,
     CONF_ID,
     SENSOR_PREFIX,
@@ -32,6 +33,8 @@ from .const.const import (
     ATTR_IS_COLLECTION_DATE_TODAY,
     ATTR_YEAR_MONTH_DAY_DATE,
     ATTR_FRIENDLY_NAME,
+    ATTR_LAST_COLLECTION_DATE,
+    ATTR_TOTAL_COLLECTIONS_THIS_YEAR,
     SENSOR_TYPES,
 )
 
@@ -58,6 +61,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Optional(CONF_LOCALE, default="en"): cv.string,
         vol.Optional(CONF_ID, default=""): cv.string,
         vol.Optional(CONF_NO_TRASH_TEXT, default="none"): cv.string,
+        vol.Optional(CONF_DIFTAR_CODE, default=""): cv.string,
     }
 )
 
@@ -76,6 +80,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     locale = config.get(CONF_LOCALE)
     id_name = config.get(CONF_ID)
     no_trash_text = config.get(CONF_NO_TRASH_TEXT)
+    diftar_code = config.get(CONF_DIFTAR_CODE)
 
     try:
         resources = config[CONF_RESOURCES].copy()
@@ -96,6 +101,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
             postcode,
             street_number,
             street_number_suffix,
+            diftar_code,
             resourcesMinusTodayAndTomorrow,
         )
     except urllib.error.HTTPError as error:
@@ -163,13 +169,20 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
 
 class AfvalinfoData(object):
     def __init__(
-        self, location, postcode, street_number, street_number_suffix, resources
+        self,
+        location,
+        postcode,
+        street_number,
+        street_number_suffix,
+        diftar_code,
+        resources,
     ):
         self.data = None
         self.location = location
         self.postcode = postcode
         self.street_number = street_number
         self.street_number_suffix = street_number_suffix
+        self.diftar_code = diftar_code
         self.resources = resources
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
@@ -180,6 +193,7 @@ class AfvalinfoData(object):
             self.postcode,
             self.street_number,
             self.street_number_suffix,
+            self.diftar_code,
             self.resources,
         )
 
@@ -223,6 +237,8 @@ class AfvalinfoSensor(Entity):
         self._days_until_collection_date = None
         self._is_collection_date_today = False
         self._year_month_day_date = None
+        self._last_collection_date = None
+        self._total_collections_this_year = None
 
     @property
     def name(self):
@@ -245,6 +261,8 @@ class AfvalinfoSensor(Entity):
             ATTR_HIDDEN: self._hidden,
             ATTR_DAYS_UNTIL_COLLECTION_DATE: self._days_until_collection_date,
             ATTR_IS_COLLECTION_DATE_TODAY: self._is_collection_date_today,
+            ATTR_LAST_COLLECTION_DATE: self._last_collection_date,
+            ATTR_TOTAL_COLLECTIONS_THIS_YEAR: self._total_collections_this_year,
         }
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
@@ -268,6 +286,19 @@ class AfvalinfoSensor(Entity):
 
                         # Is the collection date today?
                         self._is_collection_date_today = date.today() == collection_date
+
+                        if (
+                            self.type == "restafval"
+                            and "restafvaldiftardate" in waste_data
+                        ):
+                            self._last_collection_date = str(
+                                datetime.strptime(
+                                    waste_data["restafvaldiftardate"], "%Y-%m-%d"
+                                ).date()
+                            )
+                            self._total_collections_this_year = waste_data[
+                                "restafvaldiftarcollections"
+                            ]
 
                         # Days until collection date
                         delta = collection_date - date.today()
@@ -331,4 +362,6 @@ class AfvalinfoSensor(Entity):
             self._days_until_collection_date = None
             self._year_month_day_date = None
             self._is_collection_date_today = False
+            self._last_collection_date = None
+            self._total_collections_this_year = None
             self._last_update = datetime.today().strftime("%d-%m-%Y %H:%M")

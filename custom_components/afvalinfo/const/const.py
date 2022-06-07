@@ -15,7 +15,7 @@ SENSOR_TYPES = {
 
 SENSOR_LOCATIONS_TO_URL = {
     "trashapi": [
-        "http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}&HouseNumberSuffix={3}"
+        "http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}&HouseNumberSuffix={3}&DiftarCode={4}"
     ]
 }
 
@@ -71,6 +71,7 @@ CONF_TIMESPAN_IN_DAYS = "timespanindays"
 CONF_LOCALE = "locale"
 CONF_ID = "id"
 CONF_NO_TRASH_TEXT = "notrashtext"
+CONF_DIFTAR_CODE = "diftarcode"
 SENSOR_PREFIX = "Afvalinfo "
 ATTR_LAST_UPDATE = "last_update"
 ATTR_HIDDEN = "hidden"
@@ -78,6 +79,8 @@ ATTR_IS_COLLECTION_DATE_TODAY = "is_collection_date_today"
 ATTR_DAYS_UNTIL_COLLECTION_DATE = "days_until_collection_date"
 ATTR_YEAR_MONTH_DAY_DATE = "year_month_day_date"
 ATTR_FRIENDLY_NAME = "friendly_name"
+ATTR_LAST_COLLECTION_DATE = "last_collection_date"
+ATTR_TOTAL_COLLECTIONS_THIS_YEAR = "total_collections_this_year"
 
 _LOGGER = logging.getLogger(__name__)
 

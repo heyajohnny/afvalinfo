@@ -50,6 +50,7 @@ Example config:
       location: sliedrecht             (required, default = sliedrecht) name of the 'gemeente'
       postcode: 3361AB                 (required, default = 3361AB)
       streetnumber: 1                  (required, default = 1)
+      diftarcode: 12345678             (optional, default = '')
       streetnumbersuffix: ''           (optional, default = '')
       dateformat: '%d-%m-%Y'           (optional, default = %d-%m-%Y) day-month-year
       locale: 'nl'                     (optional, default = 'en')
@@ -57,7 +58,7 @@ Example config:
       notrashtext: 'geen'              (Optional, default = 'none') the text to show for the today and tomorrow sensor when there is no trash to collect
 ```
 
-Above example has 1 normal resource and one special resource. Here is a complete list of available waste types:
+Here is the complete list of available waste types:
 - gft                                  (groente, fruit, tuinafval)
 - kerstboom                            (supported in +- 50% of the waste collectors)
 - papier
@@ -66,7 +67,7 @@ Above example has 1 normal resource and one special resource. Here is a complete
 - takken                               (supported by a small amount of waste collectors)
 - textiel
 
-Here is a complete list of special resources. To make these resources work, you also need to specify one or more of the normal resources from above.
+Here is a complete list of special resources. To make these resources work, you also need to specify one or more of the normal resources (waste types) from above.
 These resources will return one or more (seperated with a comma) of the following results (gft, kerstboom, papier, pbd, restafval, takken, textiel) or if you specified a friendly_name, it will return one or more of the friendly_name values
 - trash_type_today                      (gives the result "none" if none of the normal resources dates is today)
 - trash_type_tomorrow                   (gives the result "none" if none of the normal resources dates is tomorrow)
@@ -118,6 +119,10 @@ There are 3 important attributes:
 - days_until_collection_date.    This will return the number of days between today and the collection date.
 - is_collection_date_today.      This will return true if the collection date is today and false if the collection date is not today.
 - hidden.                        This will return true on error or if the date is outside of range of the 'timespanindays' value. On any other occasion it will return true.
+
+If your location supports diftar and you've specified a diftarcode, these attributes are also available:
+- last_collection_date.          This wil return the last diftar collection date.
+- total_collections_this_year    This will return the total number of diftar collections for the current year
 
 Example for usage of attributes.
 This example creates a new sensor with the attribute value 'days_until_collection_date' of the sensor 'sensor.afvalinfo_papier':
