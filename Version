@@ -177,3 +177,4 @@ Version: 1.0.4  20220227 - 3rd fix for friendly names of sensors
 Version: 1.0.5  20220301 - Seperated the entity_id from the name
 Version: 1.0.6  20220327 - Added notrashtext for when there is no trash to collect for the today and tomorrow sensors
 Version: 1.0.7  20220607 - Added diftar support
+Version: 1.0.8  20220801 - Restafval fix

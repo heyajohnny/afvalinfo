@@ -52,7 +52,7 @@ class TrashApiAfval(object):
                 if "restafval" in resources and data["name"].lower() == "restafval":
                     if (
                         date.today()
-                        < datetime.strptime(
+                        <= datetime.strptime(
                             data["date"].split("T")[0], "%Y-%m-%d"
                         ).date()
                     ):
