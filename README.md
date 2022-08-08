@@ -43,7 +43,7 @@ Example config:
           friendly_name: Papier
         - type: restafval
           friendly_name: Restafval
-        - type: takken
+      - type: takken                  (also matches 'GFT in emmers' for some 'gemeenten')
           friendly_name: Takken
         - type: textiel
           friendly_name: Oude Kleding
@@ -68,7 +68,7 @@ Here is the complete list of available waste types:
 - papier
 - pbd                                  (plastic, blik, drinkpakken)
 - restafval
-- takken                               (supported by a small amount of waste collectors)
+- takken                               (supported by a small amount of waste collectors) (also matches 'GFT in emmers' for some 'gemeenten')
 - textiel
 
 Here is a complete list of special resources. To make these resources work, you also need to specify one or more of the normal resources (waste types) from above.
