@@ -27,6 +27,7 @@ from .const.const import (
     CONF_LOCALE,
     CONF_ID,
     SENSOR_PREFIX,
+    ATTR_ERROR,
     ATTR_LAST_UPDATE,
     ATTR_HIDDEN,
     ATTR_DAYS_UNTIL_COLLECTION_DATE,
@@ -232,6 +233,7 @@ class AfvalinfoSensor(Entity):
         )
         self._icon = SENSOR_TYPES[sensor_type][1]
         self._hidden = False
+        self._error = False
         self._state = None
         self._last_update = None
         self._days_until_collection_date = None
@@ -255,6 +257,7 @@ class AfvalinfoSensor(Entity):
     @property
     def extra_state_attributes(self):
         return {
+            ATTR_ERROR: self._error,
             ATTR_FRIENDLY_NAME: self.friendly_name,
             ATTR_YEAR_MONTH_DAY_DATE: self._year_month_day_date,
             ATTR_LAST_UPDATE: self._last_update,
@@ -269,6 +272,7 @@ class AfvalinfoSensor(Entity):
     def update(self):
         self.data.update()
         waste_data = self.data.data
+        self._error = False
 
         try:
             if waste_data:
@@ -357,11 +361,12 @@ class AfvalinfoSensor(Entity):
             else:
                 raise ValueError()
         except ValueError:
-            self._state = None
-            self._hidden = True
-            self._days_until_collection_date = None
-            self._year_month_day_date = None
-            self._is_collection_date_today = False
-            self._last_collection_date = None
-            self._total_collections_this_year = None
+            self._error = True
+            # self._state = None
+            # self._hidden = True
+            # self._days_until_collection_date = None
+            # self._year_month_day_date = None
+            # self._is_collection_date_today = False
+            # self._last_collection_date = None
+            # self._total_collections_this_year = None
             self._last_update = datetime.today().strftime("%d-%m-%Y %H:%M")

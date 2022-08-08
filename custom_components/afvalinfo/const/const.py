@@ -73,6 +73,7 @@ CONF_ID = "id"
 CONF_NO_TRASH_TEXT = "notrashtext"
 CONF_DIFTAR_CODE = "diftarcode"
 SENSOR_PREFIX = "Afvalinfo "
+ATTR_ERROR = "error"
 ATTR_LAST_UPDATE = "last_update"
 ATTR_HIDDEN = "hidden"
 ATTR_IS_COLLECTION_DATE_TODAY = "is_collection_date_today"
@@ -84,4 +85,4 @@ ATTR_TOTAL_COLLECTIONS_THIS_YEAR = "total_collections_this_year"
 
 _LOGGER = logging.getLogger(__name__)
 
-MIN_TIME_BETWEEN_UPDATES = timedelta(hours=1)
+MIN_TIME_BETWEEN_UPDATES = timedelta(hours=2, minutes=30)
