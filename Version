@@ -179,3 +179,4 @@ Version: 1.0.6  20220327 - Added notrashtext for when there is no trash to colle
 Version: 1.0.7  20220607 - Added diftar support
 Version: 1.0.8  20220801 - Restafval fix
 Version: 1.0.9  20220808 - Fewer requests (every 2.5 hours) to the api + added error attribute
+version: 1.0.10 20230125 - Added parameter for districts (maassluis)

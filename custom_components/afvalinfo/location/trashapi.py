@@ -16,6 +16,7 @@ class TrashApiAfval(object):
         postcode,
         street_number,
         street_number_suffix,
+        district,
         diftar_code,
         resources,
     ):
@@ -23,7 +24,12 @@ class TrashApiAfval(object):
 
         try:
             API_ENDPOINT = SENSOR_LOCATIONS_TO_URL["trashapi"][0].format(
-                location, postcode, street_number, street_number_suffix, diftar_code
+                location,
+                postcode,
+                street_number,
+                street_number_suffix,
+                district,
+                diftar_code,
             )
 
             r = requests.get(url=API_ENDPOINT)

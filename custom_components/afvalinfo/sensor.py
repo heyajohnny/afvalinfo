@@ -16,6 +16,7 @@ from .const.const import (
     MIN_TIME_BETWEEN_UPDATES,
     _LOGGER,
     CONF_CITY,
+    CONF_DISTRICT,
     CONF_LOCATION,
     CONF_POSTCODE,
     CONF_STREET_NUMBER,
@@ -57,6 +58,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Required(CONF_POSTCODE, default="3361AB"): cv.string,
         vol.Required(CONF_STREET_NUMBER, default="1"): cv.string,
         vol.Optional(CONF_STREET_NUMBER_SUFFIX, default=""): cv.string,
+        vol.Optional(CONF_DISTRICT, default=""): cv.string,
         vol.Optional(CONF_DATE_FORMAT, default="%d-%m-%Y"): cv.string,
         vol.Optional(CONF_TIMESPAN_IN_DAYS, default="365"): cv.string,
         vol.Optional(CONF_LOCALE, default="en"): cv.string,
@@ -76,6 +78,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     postcode = config.get(CONF_POSTCODE).strip()
     street_number = config.get(CONF_STREET_NUMBER)
     street_number_suffix = config.get(CONF_STREET_NUMBER_SUFFIX)
+    district = config.get(CONF_DISTRICT)
     date_format = config.get(CONF_DATE_FORMAT).strip()
     timespan_in_days = config.get(CONF_TIMESPAN_IN_DAYS)
     locale = config.get(CONF_LOCALE)
@@ -102,6 +105,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
             postcode,
             street_number,
             street_number_suffix,
+            district,
             diftar_code,
             resourcesMinusTodayAndTomorrow,
         )
@@ -175,6 +179,7 @@ class AfvalinfoData(object):
         postcode,
         street_number,
         street_number_suffix,
+        district,
         diftar_code,
         resources,
     ):
@@ -183,6 +188,7 @@ class AfvalinfoData(object):
         self.postcode = postcode
         self.street_number = street_number
         self.street_number_suffix = street_number_suffix
+        self.district = district
         self.diftar_code = diftar_code
         self.resources = resources
 
@@ -194,6 +200,7 @@ class AfvalinfoData(object):
             self.postcode,
             self.street_number,
             self.street_number_suffix,
+            self.district,
             self.diftar_code,
             self.resources,
         )

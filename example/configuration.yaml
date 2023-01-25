@@ -24,6 +24,7 @@ sensor:
     postcode: 9423NA
     streetnumber: 1
     streetnumbersuffix: ""
+    district: ""
     dateformat: "%d-%m-%Y"
     locale: "nl"
     timespanindays: 365
