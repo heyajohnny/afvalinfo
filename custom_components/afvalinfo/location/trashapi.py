@@ -18,6 +18,7 @@ class TrashApiAfval(object):
         street_number_suffix,
         district,
         diftar_code,
+        get_whole_year,
         resources,
     ):
         _LOGGER.debug("Updating Waste collection dates")
@@ -30,30 +31,33 @@ class TrashApiAfval(object):
                 street_number_suffix,
                 district,
                 diftar_code,
+                get_whole_year,
             )
 
             r = requests.get(url=API_ENDPOINT)
             dataList = r.json()
 
             # Place all possible values in the dictionary even if they are not necessary
-            waste_dict = {}
+            waste_array = []
 
             # _LOGGER.warning(dataList)
 
             for data in dataList:
 
-                # find gft.
-                if "gft" in resources and data["name"].lower() == "gft":
-                    waste_dict["gft"] = data["date"].split("T")[0]
-                # find kerstboom.
-                if "kerstboom" in resources and data["name"].lower() == "kerstboom":
-                    waste_dict["kerstboom"] = data["date"].split("T")[0]
-                # find papier
-                if "papier" in resources and data["name"].lower() == "papier":
-                    waste_dict["papier"] = data["date"].split("T")[0]
-                # find pbd.
-                if "pbd" in resources and data["name"].lower() == "pbd":
-                    waste_dict["pbd"] = data["date"].split("T")[0]
+                # find gft, kerstboom, papier, pbd, takken or textiel
+                if (
+                    ("gft" in resources and data["name"].lower() == "gft")
+                    or (
+                        "kerstboom" in resources and data["name"].lower() == "kerstboom"
+                    )
+                    or ("papier" in resources and data["name"].lower() == "papier")
+                    or ("pbd" in resources and data["name"].lower() == "pbd")
+                    or ("takken" in resources and data["name"].lower() == "takken")
+                    or ("textiel" in resources and data["name"].lower() == "textiel")
+                ):
+                    waste_array.append(
+                        {data["name"].lower(): data["date"].split("T")[0]}
+                    )
                 # find restafval.
                 if "restafval" in resources and data["name"].lower() == "restafval":
                     if (
@@ -62,18 +66,20 @@ class TrashApiAfval(object):
                             data["date"].split("T")[0], "%Y-%m-%d"
                         ).date()
                     ):
-                        waste_dict["restafval"] = data["date"].split("T")[0]
+                        waste_array.append(
+                            {data["name"].lower(): data["date"].split("T")[0]}
+                        )
                     else:
-                        waste_dict["restafvaldiftardate"] = data["date"].split("T")[0]
-                        waste_dict["restafvaldiftarcollections"] = data["totalThisYear"]
-                # find takken
-                if "takken" in resources and data["name"].lower() == "takken":
-                    waste_dict["takken"] = data["date"].split("T")[0]
-                # find textiel
-                if "textiel" in resources and data["name"].lower() == "textiel":
-                    waste_dict["textiel"] = data["date"].split("T")[0]
+                        waste_array.append(
+                            {"restafvaldiftardate": data["date"].split("T")[0]}
+                        )
+                        waste_array.append(
+                            {"restafvaldiftarcollections": data["totalThisYear"]}
+                        )
 
-            return waste_dict
+            # _LOGGER.warning(waste_array)
+
+            return waste_array
         except urllib.error.URLError as exc:
             _LOGGER.error("Error occurred while fetching data: %r", exc.reason)
             return False

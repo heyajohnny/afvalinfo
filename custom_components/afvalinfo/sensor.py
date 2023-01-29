@@ -21,6 +21,7 @@ from .const.const import (
     CONF_POSTCODE,
     CONF_STREET_NUMBER,
     CONF_STREET_NUMBER_SUFFIX,
+    CONF_GET_WHOLE_YEAR,
     CONF_DATE_FORMAT,
     CONF_TIMESPAN_IN_DAYS,
     CONF_NO_TRASH_TEXT,
@@ -65,6 +66,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Optional(CONF_ID, default=""): cv.string,
         vol.Optional(CONF_NO_TRASH_TEXT, default="none"): cv.string,
         vol.Optional(CONF_DIFTAR_CODE, default=""): cv.string,
+        vol.Optional(CONF_GET_WHOLE_YEAR, default="false"): cv.string,
     }
 )
 
@@ -85,6 +87,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     id_name = config.get(CONF_ID)
     no_trash_text = config.get(CONF_NO_TRASH_TEXT)
     diftar_code = config.get(CONF_DIFTAR_CODE)
+    get_whole_year = config.get(CONF_GET_WHOLE_YEAR)
 
     try:
         resources = config[CONF_RESOURCES].copy()
@@ -107,6 +110,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
             street_number_suffix,
             district,
             diftar_code,
+            get_whole_year,
             resourcesMinusTodayAndTomorrow,
         )
     except urllib.error.HTTPError as error:
@@ -181,6 +185,7 @@ class AfvalinfoData(object):
         street_number_suffix,
         district,
         diftar_code,
+        get_whole_year,
         resources,
     ):
         self.data = None
@@ -190,6 +195,7 @@ class AfvalinfoData(object):
         self.street_number_suffix = street_number_suffix
         self.district = district
         self.diftar_code = diftar_code
+        self.get_whole_year = get_whole_year
         self.resources = resources
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
@@ -202,6 +208,7 @@ class AfvalinfoData(object):
             self.street_number_suffix,
             self.district,
             self.diftar_code,
+            self.get_whole_year,
             self.resources,
         )
 
@@ -278,93 +285,108 @@ class AfvalinfoSensor(Entity):
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
         self.data.update()
-        waste_data = self.data.data
+        waste_array = self.data.data
         self._error = False
 
+        # ToDo: Loop through all values if self.get_whole_year is true
+        # And put the date values in a new state attribute (something like ATTR_WHOLE_YEAR_DATES)
+        # for waste_data in waste_array:
+        # if self.type in waste_data:
+        # _LOGGER.warning(waste_data)
+
         try:
-            if waste_data:
-                if self.type in waste_data:
-                    collection_date = datetime.strptime(
-                        waste_data[self.type], "%Y-%m-%d"
-                    ).date()
+            if waste_array:
+                for waste_data in waste_array:
+                    if self.type in waste_data:
+                        collection_date = datetime.strptime(
+                            waste_data[self.type], "%Y-%m-%d"
+                        ).date()
 
-                    # Date in date format "%Y-%m-%d"
-                    self._year_month_day_date = str(collection_date)
+                        # Date in date format "%Y-%m-%d"
+                        self._year_month_day_date = str(collection_date)
 
-                    if collection_date:
-                        # Set the values of the sensor
-                        self._last_update = datetime.today().strftime("%d-%m-%Y %H:%M")
-
-                        # Is the collection date today?
-                        self._is_collection_date_today = date.today() == collection_date
-
-                        if (
-                            self.type == "restafval"
-                            and "restafvaldiftardate" in waste_data
-                        ):
-                            self._last_collection_date = str(
-                                datetime.strptime(
-                                    waste_data["restafvaldiftardate"], "%Y-%m-%d"
-                                ).date()
+                        if collection_date:
+                            # Set the values of the sensor
+                            self._last_update = datetime.today().strftime(
+                                "%d-%m-%Y %H:%M"
                             )
-                            self._total_collections_this_year = waste_data[
-                                "restafvaldiftarcollections"
-                            ]
 
-                        # Days until collection date
-                        delta = collection_date - date.today()
-                        self._days_until_collection_date = delta.days
+                            # Is the collection date today?
+                            self._is_collection_date_today = (
+                                date.today() == collection_date
+                            )
 
-                        # Only show the value if the date is lesser than or equal to (today + timespan_in_days)
-                        if collection_date <= date.today() + relativedelta(
-                            days=int(self.timespan_in_days)
-                        ):
-                            # if the date does not contain a named day or month, return the date as normal
                             if (
-                                self.date_format.find("a") == -1
-                                and self.date_format.find("A") == -1
-                                and self.date_format.find("b") == -1
-                                and self.date_format.find("B") == -1
+                                self.type == "restafval"
+                                and "restafvaldiftardate" in waste_data
                             ):
-                                self._state = collection_date.strftime(self.date_format)
-                            # else convert the named values to the locale names
+                                self._last_collection_date = str(
+                                    datetime.strptime(
+                                        waste_data["restafvaldiftardate"], "%Y-%m-%d"
+                                    ).date()
+                                )
+                                self._total_collections_this_year = waste_data[
+                                    "restafvaldiftarcollections"
+                                ]
+
+                            # Days until collection date
+                            delta = collection_date - date.today()
+                            self._days_until_collection_date = delta.days
+
+                            # Only show the value if the date is lesser than or equal to (today + timespan_in_days)
+                            if collection_date <= date.today() + relativedelta(
+                                days=int(self.timespan_in_days)
+                            ):
+                                # if the date does not contain a named day or month, return the date as normal
+                                if (
+                                    self.date_format.find("a") == -1
+                                    and self.date_format.find("A") == -1
+                                    and self.date_format.find("b") == -1
+                                    and self.date_format.find("B") == -1
+                                ):
+                                    self._state = collection_date.strftime(
+                                        self.date_format
+                                    )
+                                # else convert the named values to the locale names
+                                else:
+                                    edited_date_format = self.date_format.replace(
+                                        "%a", "EEE"
+                                    )
+                                    edited_date_format = edited_date_format.replace(
+                                        "%A", "EEEE"
+                                    )
+                                    edited_date_format = edited_date_format.replace(
+                                        "%b", "MMM"
+                                    )
+                                    edited_date_format = edited_date_format.replace(
+                                        "%B", "MMMM"
+                                    )
+
+                                    # half babel, half date string... something like EEEE 04-MMMM-2020
+                                    half_babel_half_date = collection_date.strftime(
+                                        edited_date_format
+                                    )
+
+                                    # replace the digits with qquoted digits 01 --> '01'
+                                    half_babel_half_date = re.sub(
+                                        r"(\d+)", r"'\1'", half_babel_half_date
+                                    )
+                                    # transform the EEE, EEEE etc... to a real locale date, with babel
+                                    locale_date = format_date(
+                                        collection_date,
+                                        half_babel_half_date,
+                                        locale=self.locale,
+                                    )
+
+                                    self._state = locale_date
+                                break  # we have a result, break the loop
                             else:
-                                edited_date_format = self.date_format.replace(
-                                    "%a", "EEE"
-                                )
-                                edited_date_format = edited_date_format.replace(
-                                    "%A", "EEEE"
-                                )
-                                edited_date_format = edited_date_format.replace(
-                                    "%b", "MMM"
-                                )
-                                edited_date_format = edited_date_format.replace(
-                                    "%B", "MMMM"
-                                )
-
-                                # half babel, half date string... something like EEEE 04-MMMM-2020
-                                half_babel_half_date = collection_date.strftime(
-                                    edited_date_format
-                                )
-
-                                # replace the digits with qquoted digits 01 --> '01'
-                                half_babel_half_date = re.sub(
-                                    r"(\d+)", r"'\1'", half_babel_half_date
-                                )
-                                # transform the EEE, EEEE etc... to a real locale date, with babel
-                                locale_date = format_date(
-                                    collection_date,
-                                    half_babel_half_date,
-                                    locale=self.locale,
-                                )
-
-                                self._state = locale_date
+                                self._hidden = True
                         else:
-                            self._hidden = True
-                    else:
-                        raise ValueError()
-                else:
-                    raise ValueError()
+                            # collection_date empty
+                            raise ValueError()
+                    # else:
+                    # No matching result data for current waste type, no problem
             else:
                 raise ValueError()
         except ValueError:

@@ -56,13 +56,14 @@ Example config:
       location: sliedrecht             (required, default = sliedrecht) name of the 'gemeente'
       postcode: 3361AB                 (required, default = 3361AB)
       streetnumber: 1                  (required, default = 1)
-      diftarcode: 12345678             (optional, default = '')
       streetnumbersuffix: ''           (optional, default = '')
       district: ''                     (optional, default = '') only needed for location maassluis
+      diftarcode: 12345678             (optional, default = '') some 'gemeentes' have diftar codes
       dateformat: '%d-%m-%Y'           (optional, default = %d-%m-%Y) day-month-year
       locale: 'nl'                     (optional, default = 'en')
       timespanindays: 365              (optional, default = 365) number of days to look into the future
       notrashtext: 'geen'              (Optional, default = 'none') the text to show for the today and tomorrow sensor when there is no trash to collect
+      getwholeyear: false              (Optional, default = false) returns trash dates for the whole year instead of only the next trash date
 ```
 
 Here are the supported districts for the 'gemeente' maassluis (These are not case sensitive):

@@ -15,7 +15,7 @@ SENSOR_TYPES = {
 
 SENSOR_LOCATIONS_TO_URL = {
     "trashapi": [
-        "http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}&HouseNumberSuffix={3}&District={4}&DiftarCode={5}"
+        "http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}&HouseNumberSuffix={3}&District={4}&DiftarCode={5}&ShowWholeYear={6}"
     ]
 }
 
@@ -67,6 +67,7 @@ CONF_POSTCODE = "postcode"
 CONF_STREET_NUMBER = "streetnumber"
 CONF_STREET_NUMBER_SUFFIX = "streetnumbersuffix"
 CONF_DISTRICT = "district"
+CONF_GET_WHOLE_YEAR = "getwholeyear"
 CONF_DATE_FORMAT = "dateformat"
 CONF_TIMESPAN_IN_DAYS = "timespanindays"
 CONF_LOCALE = "locale"
