@@ -38,6 +38,7 @@ from .const.const import (
     ATTR_FRIENDLY_NAME,
     ATTR_LAST_COLLECTION_DATE,
     ATTR_TOTAL_COLLECTIONS_THIS_YEAR,
+    ATTR_WHOLE_YEAR_DATES,
     SENSOR_TYPES,
 )
 
@@ -147,6 +148,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
                     timespan_in_days,
                     locale,
                     id_name,
+                    get_whole_year,
                 )
             )
 
@@ -223,6 +225,7 @@ class AfvalinfoSensor(Entity):
         timespan_in_days,
         locale,
         id_name,
+        get_whole_year,
     ):
         self.data = data
         self.type = sensor_type
@@ -231,6 +234,7 @@ class AfvalinfoSensor(Entity):
         self.timespan_in_days = timespan_in_days
         self.locale = locale
         self._name = sensor_friendly_name
+        self._get_whole_year = get_whole_year
         self.entity_id = "sensor." + (
             (
                 SENSOR_PREFIX
@@ -255,6 +259,7 @@ class AfvalinfoSensor(Entity):
         self._year_month_day_date = None
         self._last_collection_date = None
         self._total_collections_this_year = None
+        self._whole_year_dates = None
 
     @property
     def name(self):
@@ -280,6 +285,7 @@ class AfvalinfoSensor(Entity):
             ATTR_IS_COLLECTION_DATE_TODAY: self._is_collection_date_today,
             ATTR_LAST_COLLECTION_DATE: self._last_collection_date,
             ATTR_TOTAL_COLLECTIONS_THIS_YEAR: self._total_collections_this_year,
+            ATTR_WHOLE_YEAR_DATES: self._whole_year_dates,
         }
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
@@ -288,11 +294,16 @@ class AfvalinfoSensor(Entity):
         waste_array = self.data.data
         self._error = False
 
-        # ToDo: Loop through all values if self.get_whole_year is true
-        # And put the date values in a new state attribute (something like ATTR_WHOLE_YEAR_DATES)
-        # for waste_data in waste_array:
-        # if self.type in waste_data:
-        # _LOGGER.warning(waste_data)
+        # Loop through all the dates to put the dates in the whole_year_dates attribute
+        if self._get_whole_year == "True":
+            whole_year_dates = []
+            for waste_data in waste_array:
+                if self.type in waste_data:
+                    whole_year_dates.append(
+                        datetime.strptime(waste_data[self.type], "%Y-%m-%d").date()
+                    )
+
+            self._whole_year_dates = whole_year_dates
 
         try:
             if waste_array:
@@ -398,4 +409,5 @@ class AfvalinfoSensor(Entity):
             # self._is_collection_date_today = False
             # self._last_collection_date = None
             # self._total_collections_this_year = None
+            # self._whole_year_dates = None
             self._last_update = datetime.today().strftime("%d-%m-%Y %H:%M")

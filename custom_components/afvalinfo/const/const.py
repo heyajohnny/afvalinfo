@@ -84,6 +84,7 @@ ATTR_YEAR_MONTH_DAY_DATE = "year_month_day_date"
 ATTR_FRIENDLY_NAME = "friendly_name"
 ATTR_LAST_COLLECTION_DATE = "last_collection_date"
 ATTR_TOTAL_COLLECTIONS_THIS_YEAR = "total_collections_this_year"
+ATTR_WHOLE_YEAR_DATES = "whole_year_dates"
 
 _LOGGER = logging.getLogger(__name__)
 
