@@ -22,7 +22,7 @@ Please also take a look at the <a href="https://play.google.com/store/apps/detai
 ### Add 'gemeente'
 The code is designed to add new 'gemeenten' relatively easy.
 Please create an issue in https://github.com/heyajohnny/afvalinfo/issues to request a new 'gemeente'.
-If there are any problems with the integration, don't hesitate to create an issue here: https://github.com/heyajohnny/afvalinfo/issues
+If there are any problems with the integration, please test your address on http://4fv4l.nl. If it works there, you've done something wrong in your configuration.yaml. Otherwise create an issue here: https://github.com/heyajohnny/afvalinfo/issues
 
 ### Install:
 - Copy the files in the /custom_components/afvalinfo/ folder to: [homeassistant]/config/custom_components/afvalinfo/
