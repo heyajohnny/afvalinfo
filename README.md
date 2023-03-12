@@ -2,7 +2,9 @@
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/hacs/integration)
 ### Number of supported 'gemeenten' in The Netherlands (without Bonaire, Sint Eustatius and Saba): 332 of 339 = 98%
 
-If you like my work, please buy me a coffee or donate some crypto currencies. This will keep me awake :)
+Before you use this integration you can test if your address is supported and working over [here](https://4fv4l.nl)
+
+If you like my work, please buy me a coffee or donate some crypto currencies. This will keep me awake, asleep, or whatever :wink:
 
 <a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a><details>
   <summary>Crypto currency addresses</summary>
@@ -22,7 +24,7 @@ Please also take a look at the <a href="https://play.google.com/store/apps/detai
 ### Add 'gemeente'
 The code is designed to add new 'gemeenten' relatively easy.
 Please create an issue in https://github.com/heyajohnny/afvalinfo/issues to request a new 'gemeente'.
-If there are any problems with the integration, please test your address on http://4fv4l.nl. If it works there, you've done something wrong in your configuration.yaml. Otherwise create an issue here: https://github.com/heyajohnny/afvalinfo/issues
+If there are any problems with the integration, please first test your address over [here](https://4fv4l.nl). If it works there, you've done something wrong in your configuration.yaml. Otherwise create an issue here: https://github.com/heyajohnny/afvalinfo/issues
 
 ### Install:
 - Copy the files in the /custom_components/afvalinfo/ folder to: [homeassistant]/config/custom_components/afvalinfo/
