@@ -69,7 +69,7 @@ Example config:
 ```
 
 Here are the supported districts for the 'gemeente' maassluis (These are not case sensitive):
-"binnenstad/centrum", "Componistenwijk", "Dalenbuurt", "Dichtersbuurt", "Drevenbuurt", "Koningshoek", "Maasdijk", "Molenwijk", "Oranjewijk", "Sluispolder Oost",
+"Binnenstad/centrum", "Componistenwijk", "Dalenbuurt", "Dichtersbuurt", "Drevenbuurt", "Koningshoek", "Maasdijk", "Molenwijk", "Oranjewijk", "Sluispolder Oost",
 "Vertowijk", "Vogelwijk", "Weverskade", "Wijk 't Hoofd", "Wilgenrijk", "Zeeheldenbuurt", "Zuidbuurt"
 
 Here is the complete list of available waste types:
@@ -131,7 +131,7 @@ timespanindays: 2
 There are 3 important attributes:
 - days_until_collection_date.    This will return the number of days between today and the collection date.
 - is_collection_date_today.      This will return true if the collection date is today and false if the collection date is not today.
-- hidden.                        This will return true on error or if the date is outside of range of the 'timespanindays' value. On any other occasion it will return true.
+- hidden.                        This will return true on error or if the date is outside of range of the 'timespanindays' value. On any other occasion it will return false.
 - whole_year_dates.              This will return all the dates from today to the end of the year when 'getwholeyear' is set to true
 
 If your location supports diftar and you've specified a diftarcode, these attributes are also available:
