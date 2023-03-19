@@ -47,7 +47,7 @@ Example config:
           friendly_name: Papier
         - type: restafval
           friendly_name: Restafval
-      - type: takken                  (also matches 'GFT in emmers' for some 'gemeenten')
+        - type: takken                  (also matches 'GFT in emmers' for some 'gemeenten')
           friendly_name: Takken
         - type: textiel
           friendly_name: Oude Kleding
