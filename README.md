@@ -27,10 +27,14 @@ Please create an issue in https://github.com/heyajohnny/afvalinfo/issues to requ
 If there are any problems with the integration, please first test your address over [here](https://4fv4l.nl). If it works there, you've done something wrong in your configuration.yaml. Otherwise create an issue here: https://github.com/heyajohnny/afvalinfo/issues
 
 ### Install:
-- Copy the files in the /custom_components/afvalinfo/ folder to: [homeassistant]/config/custom_components/afvalinfo/
+There are 2 ways to install afvalinfo:
+1. Download 'afvalinfo' from the HACS store
+2. Copy the files in the /custom_components/afvalinfo/ folder to: [homeassistant]/config/custom_components/afvalinfo/
 
-Example config:
-(Or use the lazy and easier route and just copy paste the values from this [configuration.yaml](https://github.com/heyajohnny/afvalinfo/blob/master/example/configuration.yaml))
+The next step is to add afvalinfo to your configuration.yaml. You can do that in multiple ways:
+1. Copy and paste the values from this [configuration.yaml](https://github.com/heyajohnny/afvalinfo/blob/master/example/configuration.yaml) and adjust it according to your address
+2. Generate your configuration.yaml [here](https://4fv4l.nl/ha)
+3. Copy and paste the values from the configutation you see next
 #### Don't forget to remove the comments from the example config (everything between and after the parentheses)
 ```Configuration.yaml:
   sensor:
@@ -68,7 +72,7 @@ Example config:
       getwholeyear: false              (Optional, default = false) (if supported by gemeente) sets the trash dates for the whole year in the 'whole_year_dates' attribute when true
 ```
 
-Here are the supported districts for the 'gemeente' maassluis (These are not case sensitive):
+For the 'gemeente' maassluis you need to use the 'district' property. Here you can see the supported districts (These are not case sensitive):
 "Binnenstad/centrum", "Componistenwijk", "Dalenbuurt", "Dichtersbuurt", "Drevenbuurt", "Koningshoek", "Maasdijk", "Molenwijk", "Oranjewijk", "Sluispolder Oost",
 "Vertowijk", "Vogelwijk", "Weverskade", "Wijk 't Hoofd", "Wilgenrijk", "Zeeheldenbuurt", "Zuidbuurt"
 
