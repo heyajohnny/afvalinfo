@@ -200,4 +200,4 @@ And another template example to only show the first upcoming trashtype and picku
 Please take a look @ <a href="https://github.com/bafplus/HA-afvalinfo-card" target="_blank">bafplus</a>. He made some awesome Lovelace cards for Afvalinfo.
 
 ### Issues
-If there are any problems with the integration, please first test your address over [here](https://4fv4l.nl). If it works there, you've done something wrong in your configuration.yaml. You can try generating a new config over (here)[https://4fv4l.nl/ha]. Otherwise create an issue (here)[https://github.com/heyajohnny/afvalinfo/issues]
+If there are any problems with the integration, please first test your address over [here](https://4fv4l.nl). If it works there, you've done something wrong in your configuration.yaml. You can try generating a new config over [here](https://4fv4l.nl/ha). Otherwise create an issue [here](https://github.com/heyajohnny/afvalinfo/issues)
