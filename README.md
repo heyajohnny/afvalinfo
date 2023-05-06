@@ -63,7 +63,6 @@ The next step is to add afvalinfo to your configuration.yaml. You can do that in
       diftarcode: 12345678             (optional, default = '') some 'gemeentes' have diftar codes
       dateformat: '%d-%m-%Y'           (optional, default = %d-%m-%Y) day-month-year
       locale: 'nl'                     (optional, default = 'en')
-      timespanindays: 365              (optional, default = 365) number of days to look into the future
       notrashtext: 'geen'              (Optional, default = 'none') the text to show for the today and tomorrow sensor when there is no trash to collect
       getwholeyear: false              (Optional, default = false) (if supported by gemeente) sets the trash dates for the whole year in the 'whole_year_dates' attribute when true
 ```
@@ -145,21 +144,12 @@ With locale you can present the date in any language you want (this only works f
 ```yaml
 zaterdag 21 september 2019
 ```
-### Timespan in days
-```yaml
-timespanindays:
-```
-If you only want to see data 2 days ahead of today. You can do it using the timespanindays option. (The default value is 365 days)
-```yaml
-timespanindays: 2
-```
 
 ### Attributes
 There are 3 important attributes:
 ```
 - days_until_collection_date.    This will return the number of days between today and the collection date.
 - is_collection_date_today.      This will return true if the collection date is today and false if the collection date is not today.
-- hidden.                        This will return true on error or if the date is outside of range of the 'timespanindays' value. On any other occasion it will return false.
 - whole_year_dates.              This will return all the dates from today to the end of the year when 'getwholeyear' is set to true
 ```
 

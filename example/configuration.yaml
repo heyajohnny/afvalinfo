@@ -27,7 +27,6 @@ sensor:
     district: ""
     dateformat: "%d-%m-%Y"
     locale: "nl"
-    timespanindays: 365
     notrashtext: "geen"
     getwholeyear: false
   - platform: template

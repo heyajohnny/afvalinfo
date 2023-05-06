@@ -181,3 +181,4 @@ Version: 1.0.8  20220801 - Restafval fix
 Version: 1.0.9  20220808 - Fewer requests (every 2.5 hours) to the api + added error attribute
 version: 1.0.10 20230125 - Added parameter for districts (maassluis)
 version: 1.1.0  20230129 - Added attribute 'whole_year_dates' that contains all the dates from now to end of year
+version: 1.1.1  20230506 - Removed attribute 'hidden' and 'timespanindays' + added extra check on empty array
