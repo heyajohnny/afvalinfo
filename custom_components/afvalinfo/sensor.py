@@ -23,6 +23,7 @@ from .const.const import (
     CONF_STREET_NUMBER_SUFFIX,
     CONF_GET_WHOLE_YEAR,
     CONF_DATE_FORMAT,
+    CONF_TIMESPAN_IN_DAYS,
     CONF_NO_TRASH_TEXT,
     CONF_DIFTAR_CODE,
     CONF_LOCALE,
@@ -62,6 +63,9 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Optional(CONF_DATE_FORMAT, default="%d-%m-%Y"): cv.string,
         vol.Optional(CONF_LOCALE, default="en"): cv.string,
         vol.Optional(CONF_ID, default=""): cv.string,
+        vol.Optional(
+            CONF_TIMESPAN_IN_DAYS, default="365"
+        ): cv.string,  # Not used anymore 20230507, but gives errors in configs that still has the timespanindays set
         vol.Optional(CONF_NO_TRASH_TEXT, default="none"): cv.string,
         vol.Optional(CONF_DIFTAR_CODE, default=""): cv.string,
         vol.Optional(CONF_GET_WHOLE_YEAR, default="false"): cv.string,
