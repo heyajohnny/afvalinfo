@@ -199,8 +199,10 @@ class AfvalinfoData(object):
         self.get_whole_year = get_whole_year
         self.resources = resources
 
-    @Throttle(MIN_TIME_BETWEEN_UPDATES)
-    def update(self):
+        # To retrieve the data at startup
+        self.getDataFromAPI()
+
+    def getDataFromAPI(self):
         _LOGGER.debug("Updating Waste collection dates")
         self.data = TrashApiAfval().get_data(
             self.location,
@@ -212,6 +214,10 @@ class AfvalinfoData(object):
             self.get_whole_year,
             self.resources,
         )
+
+    @Throttle(MIN_TIME_BETWEEN_UPDATES)
+    def update(self):
+        self.getDataFromAPI()
 
 
 class AfvalinfoSensor(Entity):
