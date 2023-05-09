@@ -73,7 +73,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 )
 
 
-def setup_platform(hass, config, add_entities, discovery_info=None):
+async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
     _LOGGER.debug("Setup Afvalinfo sensor")
 
     location = config.get(CONF_CITY).lower().strip()
@@ -114,6 +114,10 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
             get_whole_year,
             resourcesMinusTodayAndTomorrow,
         )
+
+        # Initial trigger for updating data
+        await data.async_update()
+
     except urllib.error.HTTPError as error:
         _LOGGER.error(error.reason)
         return False
@@ -174,7 +178,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
             )
             entities.append(tomorrow)
 
-    add_entities(entities)
+    async_add_entities(entities)
 
 
 class AfvalinfoData(object):
@@ -199,12 +203,11 @@ class AfvalinfoData(object):
         self.get_whole_year = get_whole_year
         self.resources = resources
 
-        # To retrieve the data at startup
-        self.getDataFromAPI()
-
-    def getDataFromAPI(self):
-        _LOGGER.debug("Updating Waste collection dates")
-        self.data = TrashApiAfval().get_data(
+    # This will make sure that we can't execute it more often
+    # than the MIN_TIME_BETWEEN_UPDATES
+    @Throttle(MIN_TIME_BETWEEN_UPDATES)
+    async def async_update(self):
+        self.data = await TrashApiAfval().get_data(
             self.location,
             self.postcode,
             self.street_number,
@@ -214,10 +217,6 @@ class AfvalinfoData(object):
             self.get_whole_year,
             self.resources,
         )
-
-    @Throttle(MIN_TIME_BETWEEN_UPDATES)
-    def update(self):
-        self.getDataFromAPI()
 
 
 class AfvalinfoSensor(Entity):
@@ -289,11 +288,13 @@ class AfvalinfoSensor(Entity):
             ATTR_WHOLE_YEAR_DATES: self._whole_year_dates,
         }
 
-    @Throttle(
-        MIN_TIME_BETWEEN_UPDATES,
-    )
-    def update(self):
-        self.data.update()
+    # Run this every minute
+    @Throttle(timedelta(minutes=1))
+    async def async_update(self):
+        """We are calling this often,
+        but the @Throttle on the data.async_update
+        will limit the times it will be executed"""
+        await self.data.async_update()
         waste_array = self.data.data
         self._error = False
 
@@ -356,6 +357,7 @@ class AfvalinfoSensor(Entity):
                                 and self.date_format.find("B") == -1
                             ):
                                 self._state = collection_date.strftime(self.date_format)
+                                break  # we have a result, break the loop
                             # else convert the named values to the locale names
                             else:
                                 edited_date_format = self.date_format.replace(
@@ -398,11 +400,4 @@ class AfvalinfoSensor(Entity):
                 raise ValueError()
         except ValueError:
             self._error = True
-            # self._state = None
-            # self._days_until_collection_date = None
-            # self._year_month_day_date = None
-            # self._is_collection_date_today = False
-            # self._last_collection_date = None
-            # self._total_collections_this_year = None
-            # self._whole_year_dates = None
             self._last_update = datetime.today().strftime("%d-%m-%Y %H:%M")

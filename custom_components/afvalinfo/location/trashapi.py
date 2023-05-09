@@ -1,5 +1,4 @@
 from ..const.const import (
-    MONTH_TO_NUMBER,
     SENSOR_LOCATIONS_TO_URL,
     _LOGGER,
 )
@@ -7,10 +6,11 @@ from datetime import date, datetime, timedelta
 import urllib.request
 import urllib.error
 import requests
+import asyncio
 
 
 class TrashApiAfval(object):
-    def get_data(
+    async def get_data(
         self,
         location,
         postcode,
@@ -34,7 +34,11 @@ class TrashApiAfval(object):
                 get_whole_year,
             )
 
-            r = requests.get(url=API_ENDPOINT)
+            loop = asyncio.get_event_loop()
+            future = loop.run_in_executor(None, requests.get, API_ENDPOINT)
+            r = await future
+
+            # r = await requests.get(url=API_ENDPOINT, timeout=10)
             dataList = r.json()
 
             # Place all possible values in the dictionary even if they are not necessary
@@ -43,7 +47,6 @@ class TrashApiAfval(object):
             # _LOGGER.warning(dataList)
 
             for data in dataList:
-
                 # find gft, kerstboom, papier, pbd, takken or textiel
                 if (
                     ("gft" in resources and data["name"].lower() == "gft")
