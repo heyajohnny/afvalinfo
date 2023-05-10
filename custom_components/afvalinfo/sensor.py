@@ -332,18 +332,22 @@ class AfvalinfoSensor(Entity):
                                 date.today() == collection_date
                             )
 
-                            if (
-                                self.type == "restafval"
-                                and "restafvaldiftardate" in waste_data
-                            ):
-                                self._last_collection_date = str(
-                                    datetime.strptime(
-                                        waste_data["restafvaldiftardate"], "%Y-%m-%d"
-                                    ).date()
-                                )
-                                self._total_collections_this_year = waste_data[
-                                    "restafvaldiftarcollections"
-                                ]
+                            # Get the diftar data
+                            if self.type == "restafval":
+                                for obj in waste_array:
+                                    if "restafvaldiftardate" in obj:
+                                        self._last_collection_date = str(
+                                            datetime.strptime(
+                                                obj["restafvaldiftardate"], "%Y-%m-%d"
+                                            ).date()
+                                        )
+                                        break
+                                for obj in waste_array:
+                                    if "restafvaldiftarcollections" in obj:
+                                        self._total_collections_this_year = obj[
+                                            "restafvaldiftarcollections"
+                                        ]
+                                        break
 
                             # Days until collection date
                             delta = collection_date - date.today()
