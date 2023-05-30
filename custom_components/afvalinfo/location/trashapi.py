@@ -20,6 +20,7 @@ class TrashApiAfval(object):
         diftar_code,
         get_whole_year,
         resources,
+        get_cleanprofs_data,
     ):
         _LOGGER.debug("Updating Waste collection dates")
 
@@ -32,6 +33,7 @@ class TrashApiAfval(object):
                 district,
                 diftar_code,
                 get_whole_year,
+                get_cleanprofs_data,
             )
 
             loop = asyncio.get_event_loop()
@@ -47,9 +49,16 @@ class TrashApiAfval(object):
             # _LOGGER.warning(dataList)
 
             for data in dataList:
-                # find gft, kerstboom, papier, pbd, takken or textiel
                 if (
-                    ("gft" in resources and data["name"].lower() == "gft")
+                    (
+                        "cleanprofsgft" in resources
+                        and data["name"].lower() == "cleanprofsgft"
+                    )
+                    or (
+                        "cleanprofsrestafval" in resources
+                        and data["name"].lower() == "cleanprofsrestafval"
+                    )
+                    or ("gft" in resources and data["name"].lower() == "gft")
                     or (
                         "kerstboom" in resources and data["name"].lower() == "kerstboom"
                     )
@@ -61,7 +70,7 @@ class TrashApiAfval(object):
                     waste_array.append(
                         {data["name"].lower(): data["date"].split("T")[0]}
                     )
-                # find restafval.
+                # find restafval and diftar.
                 if "restafval" in resources and data["name"].lower() == "restafval":
                     if (
                         date.today()

@@ -2,6 +2,8 @@ import logging
 from datetime import timedelta
 
 SENSOR_TYPES = {
+    "cleanprofsgft": ["CleanprofsGft", "mdi:recycle"],
+    "cleanprofsrestafval": ["CleanprofsRestafval", "mdi:recycle"],
     "gft": ["GFT", "mdi:recycle"],
     "kerstboom": ["Kerstboom", "mdi:recycle"],
     "papier": ["Papier", "mdi:recycle"],
@@ -15,7 +17,7 @@ SENSOR_TYPES = {
 
 SENSOR_LOCATIONS_TO_URL = {
     "trashapi": [
-        "http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}&HouseNumberSuffix={3}&District={4}&DiftarCode={5}&ShowWholeYear={6}"
+        "http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}&HouseNumberSuffix={3}&District={4}&DiftarCode={5}&ShowWholeYear={6}&GetCleanprofsData={7}"
     ]
 }
 

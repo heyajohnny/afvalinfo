@@ -104,6 +104,15 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         if "trash_type_tomorrow" in resourcesMinusTodayAndTomorrow:
             resourcesMinusTodayAndTomorrow.remove("trash_type_tomorrow")
 
+        # Check if resources contain cleanprofsgft or cleanprofsrestafval
+        if (
+            "cleanprofsgft" in resourcesMinusTodayAndTomorrow
+            or "cleanprofsrestafval" in resourcesMinusTodayAndTomorrow
+        ):
+            get_cleanprofs_data = True
+        else:
+            get_cleanprofs_data = False
+
         data = AfvalinfoData(
             location,
             postcode,
@@ -113,6 +122,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
             diftar_code,
             get_whole_year,
             resourcesMinusTodayAndTomorrow,
+            get_cleanprofs_data,
         )
 
         # Initial trigger for updating data
@@ -192,6 +202,7 @@ class AfvalinfoData(object):
         diftar_code,
         get_whole_year,
         resources,
+        get_cleanprofs_data,
     ):
         self.data = None
         self.location = location
@@ -202,6 +213,7 @@ class AfvalinfoData(object):
         self.diftar_code = diftar_code
         self.get_whole_year = get_whole_year
         self.resources = resources
+        self.get_cleanprofs_data = get_cleanprofs_data
 
     # This will make sure that we can't execute it more often
     # than the MIN_TIME_BETWEEN_UPDATES
@@ -216,6 +228,7 @@ class AfvalinfoData(object):
             self.diftar_code,
             self.get_whole_year,
             self.resources,
+            self.get_cleanprofs_data,
         )
 
 

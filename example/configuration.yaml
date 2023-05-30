@@ -1,6 +1,10 @@
 sensor:
   - platform: afvalinfo
     resources:
+      #- type: cleanprofsgft
+      #  friendly_name: Reiniging Gft
+      #- type: cleanprofsrestafval
+      #  friendly_name: Reiniging Restafval
       - type: gft
         friendly_name: Groente Fruit en Tuinafval
       - type: kerstboom
