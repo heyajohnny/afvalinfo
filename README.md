@@ -101,6 +101,7 @@ Here is the complete list of available waste types (resources):
 ```
 - cleanprofsgft                        (cleaning of the gft bin by Cleanprofs)
 - cleanprofsrestafval                  (cleaning of the restafval bin by Cleanprofs)
+- cleanprofspbd                        (cleaning of the plastic bin by Cleanprofs)
 - gft                                  (groente, fruit, tuinafval)
 - kerstboom                            (supported in +- 50% of the waste collectors)
 - papier
