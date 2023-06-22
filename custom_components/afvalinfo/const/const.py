@@ -3,8 +3,11 @@ from datetime import timedelta
 
 SENSOR_TYPES = {
     "cleanprofsgft": ["CleanprofsGft", "mdi:recycle"],
+    "cleanprofspbd": ["CleanprofsPbd", "mdi:recycle"],
     "cleanprofsrestafval": ["CleanprofsRestafval", "mdi:recycle"],
     "gft": ["GFT", "mdi:recycle"],
+    "grofvuil": ["Grofvuil", "mdi:recycle"],
+    "kca": ["KCA", "mdi:recycle"],
     "kerstboom": ["Kerstboom", "mdi:recycle"],
     "papier": ["Papier", "mdi:recycle"],
     "pbd": ["PBD", "mdi:recycle"],

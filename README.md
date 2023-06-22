@@ -42,6 +42,10 @@ The next step is to add afvalinfo to your configuration.yaml. You can do that in
       resources:                       (at least 1 required)
         - type: gft                                   (type is required)
           friendly_name: Groente Fruit en Tuinafval   (friendly_name is optional)
+        - type: grofvuil
+          friendly_name: Grofvuil
+        - type: kca
+          friendly_name: Klein chemisch afval
         - type: kerstboom
           friendly_name: Kerstboom
         - type: pbd
@@ -103,11 +107,13 @@ Here is the complete list of available waste types (resources):
 - cleanprofsrestafval                  (cleaning of the restafval bin by Cleanprofs)
 - cleanprofspbd                        (cleaning of the plastic bin by Cleanprofs)
 - gft                                  (groente, fruit, tuinafval)
+- grofvuil                             (supported by a small amount of waste collectors)
+- kca                                  (klein chemisch afval. supported by a small amount of waste collectors)
 - kerstboom                            (supported in +- 50% of the waste collectors)
 - papier
 - pbd                                  (plastic, blik, drinkpakken)
 - restafval
-- takken                               (supported by a small amount of waste collectors) (also matches 'GFT in emmers' for some 'gemeenten')
+- takken                               (supported by a small amount of waste collectors)
 - textiel
 ```
 

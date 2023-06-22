@@ -55,10 +55,16 @@ class TrashApiAfval(object):
                         and data["name"].lower() == "cleanprofsgft"
                     )
                     or (
+                        "cleanprofspbd" in resources
+                        and data["name"].lower() == "cleanprofspbd"
+                    )
+                    or (
                         "cleanprofsrestafval" in resources
                         and data["name"].lower() == "cleanprofsrestafval"
                     )
                     or ("gft" in resources and data["name"].lower() == "gft")
+                    or ("grofvuil" in resources and data["name"].lower() == "grofvuil")
+                    or ("kca" in resources and data["name"].lower() == "kca")
                     or (
                         "kerstboom" in resources and data["name"].lower() == "kerstboom"
                     )
