@@ -1,0 +1,76 @@
+{
+	"entity": {
+		"sensor": {
+			"afvalinfo_gft": {
+				"name": "GFT"
+			},
+			"afvalinfo_pbd": {
+				"name": "PMD"
+			},
+			"afvalinfo_papier": {
+				"name": "Papier"
+			},
+			"afvalinfo_restafval": {
+				"name": "Restafval" 
+			},
+			"afvalinfo_grofvuil": {
+				"name": "Grofvuil"
+			},
+			"afvalinfo_trash_type_today": {
+				"name": "Afval voor vandaag"
+			},
+			"afvalinfo_trash_type_tomorrow": {
+				"name": "Afval voor morgen"
+			}
+		}
+	},
+	"config": {
+		"step": {
+			"user": {
+				"title": "Voeg nieuwe Afval info toe",
+				"description": "Voeg een nieuwe afval info toe",
+				"data": {
+					"city": "Stad",
+					"location": "Lokatie",
+					"postcode": "Postcode",
+					"streetnumber": "Huisnummer",
+					"streetnumbersuffix": "Huisnummer toevoeging",
+					"district": "District",
+					"dateformat": "Datum formaat",
+					"locale": "Taal",
+					"id": "Identifier",
+					"timespanindays": "Tijdsduur in days",
+					"notrashtext": "Geen afval text",
+					"diftarcode": "Diftar code",
+					"getwholeyear": "Gebruik heel jaar",
+					"sensors": "Sensors types voor activatie"
+				}
+			}
+		},
+		"abort": {
+			"already_configured": "[%key:common::config_flow::abort::already_configured_service%]"
+		},
+		"error": {
+			"cannot_connect": "[%key:common::config_flow::error::cannot_connect%]"
+		},
+	"selector": {
+		"sensorselect": {
+			"options": {
+				"cleanprofsgft": "Cleanprofs Gft",
+				"cleanprofspbd": "Cleanprofs Pbd",
+				"cleanprofsrestafval": "Cleanprofs Restafval",
+				"gft": "GFT",
+				"grofvuil": "Grofvuil",
+				"kca": "Klein chemisch afval",
+				"kerstboom": "Kerstboom",
+				"papier": "Papier",
+				"pbd": "PMD",
+				"restafval": "Restafval",
+				"takken": "Takken",
+				"textiel": "Textiel",
+				"trash_type_today": "Trash type today",
+				"trash_type_tomorrow": "Trash type tomorrow"
+			}
+		}
+	}
+}

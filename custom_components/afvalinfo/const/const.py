@@ -1,6 +1,8 @@
 import logging
 from datetime import timedelta
 
+DOMAIN = "afvalinfo"
+
 SENSOR_TYPES = {
     "cleanprofsgft": ["CleanprofsGft", "mdi:recycle"],
     "cleanprofspbd": ["CleanprofsPbd", "mdi:recycle"],
@@ -66,6 +68,7 @@ NUMBER_TO_MONTH = {
     12: "december",
 }
 
+CONF_ENABLED_SENSORS = "sensors"
 CONF_CITY = "city"
 CONF_LOCATION = "location"
 CONF_POSTCODE = "postcode"

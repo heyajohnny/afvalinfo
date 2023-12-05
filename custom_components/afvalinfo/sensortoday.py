@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from datetime import datetime, date, timedelta
 from .const.const import (
-    _LOGGER,
     ATTR_LAST_UPDATE,
     ATTR_FRIENDLY_NAME,
     ATTR_YEAR_MONTH_DAY_DATE,
@@ -13,6 +12,9 @@ from homeassistant.util import Throttle
 
 
 class AfvalInfoTodaySensor(Entity):
+    _attr_has_entity_name = True
+    _attr_translation_key = "afvalinfo_trash_type_today"
+
     def __init__(
         self, data, sensor_type, sensor_friendly_name, entities, id_name, no_trash_text
     ):
@@ -20,7 +22,6 @@ class AfvalInfoTodaySensor(Entity):
         self.type = sensor_type
         self.friendly_name = sensor_friendly_name
         self._last_update = None
-        self._name = sensor_friendly_name
         self.entity_id = "sensor." + (
             (
                 SENSOR_PREFIX
@@ -40,9 +41,7 @@ class AfvalInfoTodaySensor(Entity):
         self._icon = SENSOR_TYPES[sensor_type][1]
         self._entities = entities
 
-    @property
-    def name(self):
-        return self._name
+  
 
     @property
     def icon(self):

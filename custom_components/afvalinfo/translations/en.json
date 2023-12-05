@@ -1,0 +1,71 @@
+{
+	"entity": {
+		"sensor": {
+			"afvalinfo_gft": {
+				"name": "GFT"
+			},
+			"afvalinfo_pbd": {
+				"name": "PMD"
+			},
+			"afvalinfo_papier": {
+				"name": "Paper"
+			},
+			"afvalinfo_restafval": {
+				"name": "Restafval"
+			},
+			"afvalinfo_grofvuil": {
+				"name": "Grofvuil"
+			}
+		}
+	},
+	"config": {
+		"step": {
+			"user": {
+				"title": "Add Group",
+				"description": "Some description",
+				"data": {
+					"city": "City",
+					"location": "Location",
+					"postcode": "Zip code",
+					"streetnumber": "House number",
+					"streetnumbersuffix": "House number suffix",
+					"district": "District",
+					"dateformat": "Date format",
+					"locale": "Locale",
+					"id": "Identifier",
+					"timespanindays": "Timespan in days",
+					"notrashtext": "No trash text",
+					"diftarcode": "Diftar code",
+					"getwholeyear": "Get whole year",
+					"sensors": "Sensors to activate"
+				}
+			}
+		},
+		"abort": {
+			"already_configured": "[%key:common::config_flow::abort::already_configured_service%]"
+		},
+		"error": {
+			"cannot_connect": "[%key:common::config_flow::error::cannot_connect%]"
+		}
+	},
+	"selector": {
+		"sensorselect": {
+			"options": {
+				"cleanprofsgft": "Cleanprofs Gft",
+				"cleanprofspbd": "Cleanprofs Pbd",
+				"cleanprofsrestafval": "Cleanprofs Restafval",
+				"gft": "GFT",
+				"grofvuil": "Grofvuil",
+				"kca": "Klein chemisch afval",
+				"kerstboom": "Kerstboom",
+				"papier": "Papier",
+				"pbd": "PMD",
+				"restafval": "Restafval",
+				"takken": "Takken",
+				"textiel": "Textiel",
+				"trash_type_today": "Trash type today",
+				"trash_type_tomorrow": "Trash type tomorrow"
+			}
+		}
+	}
+}
