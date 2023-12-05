@@ -1,6 +1,7 @@
 {
 	"entity": {
 		"sensor": {
+			
 			"afvalinfo_cleanprofsgft" : {
 				"name": "Clean Profs GFT"
 			},
@@ -38,18 +39,18 @@
 				"name": "Textiel"
 			},
 			"afvalinfo_trash_type_today": {
-				"name": "Trash type today"
+				"name": "Afval type vandaag"
 			},
 			"afvalinfo_trash_type_tomorrow": {
-				"name": "Trash type tomorrow"
+				"name": "Afval type morgen"
 			}
 		}
 	},
 	"config": {
 		"step": {
 			"user": {
-				"title": "Add Group",
-				"description": "Some description",
+				"title": "Add new location",
+				"description": "Config flow for afvalinfo",
 				"data": {
 					"city": "City",
 					"location": "Location",
