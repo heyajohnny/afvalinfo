@@ -188,3 +188,4 @@ version: 1.2.0  20230509 - Bug fix for date when 'getwholeyear' = true. + Change
 version: 1.2.1  20230510 - Fix for diftar
 version: 1.3.0  20230530 - Added Cleanprofs support
 version: 1.3.1  20230622 - Added KCA and Grofvuil for some gemeentes
+version: 2.0.0  20231205 - Merge pull request from https://github.com/jasperslits. Works with 2023.12 release of HA
