@@ -15,6 +15,7 @@ import re
 from .const.const import (
     MIN_TIME_BETWEEN_UPDATES,
     _LOGGER,
+    CONF_ENABLED_SENSORS,
     CONF_CITY,
     CONF_DISTRICT,
     CONF_LOCATION,
@@ -50,12 +51,123 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.const import CONF_RESOURCES
 from homeassistant.util import Throttle
 from homeassistant.helpers.entity import Entity
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
+async def async_setup_entry(
+    hass: HomeAssistant,
+    config_entry: ConfigEntry,
+    async_add_entities: AddEntitiesCallback,
+) -> None:
+    config = config_entry.data
+
+    location = config.get(CONF_CITY).lower().strip()
+    if len(location) == 0:
+        location = config.get(CONF_LOCATION).lower().strip()
+    postcode = config.get(CONF_POSTCODE).strip()
+    street_number = config.get(CONF_STREET_NUMBER)
+    street_number_suffix = config.get(CONF_STREET_NUMBER_SUFFIX)
+    district = config.get(CONF_DISTRICT)
+    date_format = config.get(CONF_DATE_FORMAT).strip()
+    locale = config.get(CONF_LOCALE)
+    id_name = config.get(CONF_ID)
+    no_trash_text = config.get(CONF_NO_TRASH_TEXT)
+    diftar_code = config.get(CONF_DIFTAR_CODE)
+    get_whole_year = config.get(CONF_GET_WHOLE_YEAR)
+
+   
+    resources = config[CONF_ENABLED_SENSORS].copy()
+
+    # filter the types from the dict if it's a dictionary
+    if isinstance(resources[0], dict):
+            resourcesMinusTodayAndTomorrow = [obj["type"] for obj in resources]
+    else:
+            resourcesMinusTodayAndTomorrow = resources
+
+    if "trash_type_today" in resourcesMinusTodayAndTomorrow:
+            resourcesMinusTodayAndTomorrow.remove("trash_type_today")
+    
+    if "trash_type_tomorrow" in resourcesMinusTodayAndTomorrow:
+            resourcesMinusTodayAndTomorrow.remove("trash_type_tomorrow")
+
+    if (
+            "cleanprofsgft" in resourcesMinusTodayAndTomorrow
+            or "cleanprofsrestafval" in resourcesMinusTodayAndTomorrow
+        ):
+            get_cleanprofs_data = True
+    else:
+            get_cleanprofs_data = False
+
+    data = AfvalinfoData(
+            location,
+            postcode,
+            street_number,
+            street_number_suffix,
+            district,
+            diftar_code,
+            get_whole_year,
+            resourcesMinusTodayAndTomorrow,
+            get_cleanprofs_data,
+        )
+    
+    await data.async_update()
+
+    entities = []
+
+    for resource in config[CONF_ENABLED_SENSORS]:
+    
+        sensor_friendly_name = resource
+        sensor_type = resource
+        if (
+            resource != "trash_type_today"
+            and resource != "trash_type_tomorrow"
+        ):
+            entities.append(
+                AfvalinfoSensor(
+                    data,
+                    sensor_type,
+                    sensor_friendly_name,
+                    date_format,
+                    locale,
+                    id_name,
+                    get_whole_year,
+                )
+            )
+        
+        # Add sensor -trash_type_today
+        if resource == "trash_type_today":
+            today = AfvalInfoTodaySensor(
+                data,
+                sensor_type,
+                sensor_friendly_name,
+                entities,
+                id_name,
+                no_trash_text,
+            )
+            entities.append(today)
+        # Add sensor -trash_type_tomorrow
+        if resource == "trash_type_tomorrow":
+            tomorrow = AfvalInfoTomorrowSensor(
+                data,
+                sensor_type,
+                sensor_friendly_name,
+                entities,
+                id_name,
+                no_trash_text,
+            )
+            entities.append(tomorrow)
+
+
+
+    async_add_entities(entities)
+
+"""
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     {
         vol.Required(CONF_RESOURCES, default=[]): vol.All(cv.ensure_list),
         vol.Optional(CONF_CITY, default=""): cv.string,
-        vol.Optional(CONF_LOCATION, default="sliedrecht"): cv.string,
+        vol.Optional(CONF_LOCATION, default=""): cv.string,
         vol.Required(CONF_POSTCODE, default="3361AB"): cv.string,
         vol.Required(CONF_STREET_NUMBER, default="1"): cv.string,
         vol.Optional(CONF_STREET_NUMBER_SUFFIX, default=""): cv.string,
@@ -72,123 +184,8 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     }
 )
 
-
-async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
-    _LOGGER.debug("Setup Afvalinfo sensor")
-
-    location = config.get(CONF_CITY).lower().strip()
-    if len(location) == 0:
-        location = config.get(CONF_LOCATION).lower().strip()
-    postcode = config.get(CONF_POSTCODE).strip()
-    street_number = config.get(CONF_STREET_NUMBER)
-    street_number_suffix = config.get(CONF_STREET_NUMBER_SUFFIX)
-    district = config.get(CONF_DISTRICT)
-    date_format = config.get(CONF_DATE_FORMAT).strip()
-    locale = config.get(CONF_LOCALE)
-    id_name = config.get(CONF_ID)
-    no_trash_text = config.get(CONF_NO_TRASH_TEXT)
-    diftar_code = config.get(CONF_DIFTAR_CODE)
-    get_whole_year = config.get(CONF_GET_WHOLE_YEAR)
-
-    try:
-        resources = config[CONF_RESOURCES].copy()
-
-        # filter the types from the dict if it's a dictionary
-        if isinstance(resources[0], dict):
-            resourcesMinusTodayAndTomorrow = [obj["type"] for obj in resources]
-        else:
-            resourcesMinusTodayAndTomorrow = resources
-
-        if "trash_type_today" in resourcesMinusTodayAndTomorrow:
-            resourcesMinusTodayAndTomorrow.remove("trash_type_today")
-        if "trash_type_tomorrow" in resourcesMinusTodayAndTomorrow:
-            resourcesMinusTodayAndTomorrow.remove("trash_type_tomorrow")
-
-        # Check if resources contain cleanprofsgft or cleanprofsrestafval
-        if (
-            "cleanprofsgft" in resourcesMinusTodayAndTomorrow
-            or "cleanprofsrestafval" in resourcesMinusTodayAndTomorrow
-        ):
-            get_cleanprofs_data = True
-        else:
-            get_cleanprofs_data = False
-
-        data = AfvalinfoData(
-            location,
-            postcode,
-            street_number,
-            street_number_suffix,
-            district,
-            diftar_code,
-            get_whole_year,
-            resourcesMinusTodayAndTomorrow,
-            get_cleanprofs_data,
-        )
-
-        # Initial trigger for updating data
-        await data.async_update()
-
-    except urllib.error.HTTPError as error:
-        _LOGGER.error(error.reason)
-        return False
-
-    entities = []
-
-    for resource in config[CONF_RESOURCES]:
-        # old way, before 20220204
-        if type(resource) == str:
-            sensor_type = resource.lower()
-            sensor_friendly_name = sensor_type
-        # new way
-        else:
-            sensor_type = resource["type"].lower()
-            if "friendly_name" in resource.keys():
-                sensor_friendly_name = resource["friendly_name"]
-            else:
-                # If no friendly name is provided, use the sensor_type as friendly name
-                sensor_friendly_name = sensor_type
-
-        # if sensor_type not in SENSOR_TYPES:
-        if (
-            sensor_type.title().lower() != "trash_type_today"
-            and sensor_type.title().lower() != "trash_type_tomorrow"
-        ):
-            entities.append(
-                AfvalinfoSensor(
-                    data,
-                    sensor_type,
-                    sensor_friendly_name,
-                    date_format,
-                    locale,
-                    id_name,
-                    get_whole_year,
-                )
-            )
-
-        # Add sensor -trash_type_today
-        if sensor_type.title().lower() == "trash_type_today":
-            today = AfvalInfoTodaySensor(
-                data,
-                sensor_type,
-                sensor_friendly_name,
-                entities,
-                id_name,
-                no_trash_text,
-            )
-            entities.append(today)
-        # Add sensor -trash_type_tomorrow
-        if sensor_type.title().lower() == "trash_type_tomorrow":
-            tomorrow = AfvalInfoTomorrowSensor(
-                data,
-                sensor_type,
-                sensor_friendly_name,
-                entities,
-                id_name,
-                no_trash_text,
-            )
-            entities.append(tomorrow)
-
-    async_add_entities(entities)
+PLATFORM_SCHEMA = None
+"""
 
 
 class AfvalinfoData(object):
@@ -233,6 +230,9 @@ class AfvalinfoData(object):
 
 
 class AfvalinfoSensor(Entity):
+    _attr_has_entity_name = True
+
+
     def __init__(
         self,
         data,
@@ -245,9 +245,11 @@ class AfvalinfoSensor(Entity):
     ):
         self.data = data
         self.type = sensor_type
-        self.friendly_name = sensor_friendly_name
+    
         self.date_format = date_format
         self.locale = locale
+        self.friendly_name = sensor_friendly_name
+        
         self._name = sensor_friendly_name
         self._get_whole_year = get_whole_year
         self.entity_id = "sensor." + (
@@ -264,6 +266,10 @@ class AfvalinfoSensor(Entity):
             + (id_name + " " if len(id_name) > 0 else "")
             + sensor_friendly_name
         )
+
+        self._attr_translation_key = "afvalinfo_" + sensor_friendly_name
+        _LOGGER.debug("Setting translation key to " + self._attr_translation_key)
+
         self._icon = SENSOR_TYPES[sensor_type][1]
         self._error = False
         self._state = None
@@ -274,10 +280,6 @@ class AfvalinfoSensor(Entity):
         self._last_collection_date = None
         self._total_collections_this_year = None
         self._whole_year_dates = None
-
-    @property
-    def name(self):
-        return self._name
 
     @property
     def icon(self):
