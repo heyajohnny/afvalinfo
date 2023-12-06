@@ -1,42 +1,42 @@
 {
 	"entity": {
 		"sensor": {
-				"afvalinfo_cleanprofsgft" : {
-					"name": "Clean Profs GFT"
-				},
-				"afvalinfo_cleanprofspbd": {
-					"name": "Clean Profs PBD"
-				},
-				"afvalinfo_cleanprofsrestafval": {
-					"name": "Clean Profs Restafval"
-				},
-				"afvalinfo_gft": {
-					"name": "GFT"
-				},
-				"afvalinfo_grofvuil": {
-					"name": "Grofvuil"
-				},
-				"afvalinfo_kca": {
-					"name": "KCA"
-				},
-				"afvalinfo_kerstboom": {
-					"name": "Kerstboom"
-				},	
-				"afvalinfo_papier": {
-					"name": "Papier"
-				},	
-				"afvalinfo_pbd": {
-					"name": "PBD"
-				},	
-				"afvalinfo_restafval": {
-					"name": "Papier"
-				},	
-				"afvalinfo_takken": {
-					"name": "Takken"
-				},
-				"afvalinfo_textiel": {
-					"name": "Textiel"
-				},
+			"afvalinfo_cleanprofsgft": {
+				"name": "Cleanprofs GFT"
+			},
+			"afvalinfo_cleanprofspbd": {
+				"name": "Cleanprofs PBD"
+			},
+			"afvalinfo_cleanprofsrestafval": {
+				"name": "Cleanprofs Restafval"
+			},
+			"afvalinfo_gft": {
+				"name": "GFT"
+			},
+			"afvalinfo_grofvuil": {
+				"name": "Grofvuil"
+			},
+			"afvalinfo_kca": {
+				"name": "KCA"
+			},
+			"afvalinfo_kerstboom": {
+				"name": "Kerstboom"
+			},
+			"afvalinfo_papier": {
+				"name": "Papier"
+			},
+			"afvalinfo_pbd": {
+				"name": "PBD"
+			},
+			"afvalinfo_restafval": {
+				"name": "Papier"
+			},
+			"afvalinfo_takken": {
+				"name": "Takken"
+			},
+			"afvalinfo_textiel": {
+				"name": "Textiel"
+			},
 			"afvalinfo_trash_type_today": {
 				"name": "Afval voor vandaag"
 			},
@@ -51,20 +51,18 @@
 				"title": "Voeg nieuwe Afval info toe",
 				"description": "Voeg een nieuwe afval info toe",
 				"data": {
-					"city": "Stad",
-					"location": "Lokatie",
+					"location": "Gemeente",
 					"postcode": "Postcode",
 					"streetnumber": "Huisnummer",
 					"streetnumbersuffix": "Huisnummer toevoeging",
-					"district": "District",
-					"dateformat": "Datum formaat",
-					"locale": "Taal",
-					"id": "Lokatie identificatie",
-					"timespanindays": "Tijdsduur in days",
-					"notrashtext": "Geen afval text",
+					"district": "Buurt",
+					"dateformat": "Datum format",
+					"locale": "Taal (landcode)",
+					"id": "Locatie identificatie",
+					"notrashtext": "Geen afval tekst",
 					"diftarcode": "Diftar code",
-					"getwholeyear": "Gebruik heel jaar",
-					"sensors": "Sensors types voor activatie"
+					"getwholeyear": "Data voor het gehele jaar?",
+					"sensors": "Sensoren"
 				}
 			}
 		},
@@ -78,20 +76,20 @@
 	"selector": {
 		"sensorselect": {
 			"options": {
-				"cleanprofsgft": "Cleanprofs Gft",
-				"cleanprofspbd": "Cleanprofs Pbd",
+				"cleanprofsgft": "Cleanprofs GFT",
+				"cleanprofspbd": "Cleanprofs PBD",
 				"cleanprofsrestafval": "Cleanprofs Restafval",
 				"gft": "GFT",
 				"grofvuil": "Grofvuil",
 				"kca": "Klein chemisch afval",
 				"kerstboom": "Kerstboom",
 				"papier": "Papier",
-				"pbd": "PMD",
+				"pbd": "PBD",
 				"restafval": "Restafval",
 				"takken": "Takken",
 				"textiel": "Textiel",
-				"trash_type_today": "Trash type today",
-				"trash_type_tomorrow": "Trash type tomorrow"
+				"trash_type_today": "Afvaltype vandaag",
+				"trash_type_tomorrow": "Afvaltype morgen"
 			}
 		}
 	}

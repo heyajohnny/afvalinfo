@@ -1,59 +1,25 @@
 sensor:
-  - platform: afvalinfo
-    resources:
-      #- type: cleanprofsgft
-      #  friendly_name: Reiniging Gft
-      #- type: cleanprofsrestafval
-      #  friendly_name: Reiniging Restafval
-      - type: gft
-        friendly_name: Groente Fruit en Tuinafval
-      - type: kerstboom
-        friendly_name: Kerstboom
-      - type: pbd
-        friendly_name: Plastic Blik en Drankkartons
-      - type: papier
-        friendly_name: Papier
-      - type: restafval
-        friendly_name: Restafval
-      - type: takken
-        friendly_name: Takken
-      - type: textiel
-        friendly_name: Oude Kleding
-      - type: trash_type_today
-        friendly_name: Afval voor vandaag
-      - type: trash_type_tomorrow
-        friendly_name: Afval voor morgen
-    diftarcode: ""
-    location: midden-drenthe
-    postcode: 9423NA
-    streetnumber: 1
-    streetnumbersuffix: ""
-    district: ""
-    dateformat: "%d-%m-%Y"
-    locale: "nl"
-    notrashtext: "geen"
-    getwholeyear: false
   - platform: template
     sensors:
       paper_days_until_collection:
-        value_template: "{{ state_attr('sensor.afvalinfo_papier', 'days_until_collection_date') }}"
+        value_template: "{{ state_attr('sensor.afvalinfo_home_papier', 'days_until_collection_date') }}"
 
   - platform: template
     sensors:
-      afvalinfo_next_trash_type_and_date:
+      afvalinfo_home_next_trash_type_and_date:
         value_template: >
           {% set ns = namespace(minimum=365) %}
           {% set list = ['groente_fruit_en_tuinafval', 'kerstboom', 'plastic_blik_en_drankkartons', 'papier', 'restafval', 'takken', 'oude_kleding'] %}
           {% set friendly_list = ['Groente Fruit en Tuinafval', 'Kerstboom', 'Plastic Blik en Drankkartons', 'Papier', 'Restafval', 'Takken', 'Oude Kleding'] %}
           {%- for l in list %}
-          {%- set days = state_attr('sensor.afvalinfo_' ~l, 'days_until_collection_date')%}
+          {%- set days = state_attr('sensor.afvalinfo_home_' ~l, 'days_until_collection_date')%}
           {%- if days != None and days < ns.minimum %}
           {%- set ns.minimum = days %}
           {%- endif %}
           {%- endfor %}
           {%- for l in list %}
-          {%- set days = state_attr('sensor.afvalinfo_' ~l, 'days_until_collection_date')%}
+          {%- set days = state_attr('sensor.afvalinfo_home_' ~l, 'days_until_collection_date')%}
           {%- if days == ns.minimum %}
-          {{friendly_list[loop.index0]}} · {{ states('sensor.afvalinfo_' ~l) }}
+          {{friendly_list[loop.index0]}} · {{ states('sensor.afvalinfo_home_' ~l) }}
           {%- endif %}
           {%- endfor %}

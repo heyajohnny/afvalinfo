@@ -1,14 +1,14 @@
 {
 	"entity": {
 		"sensor": {
-			"afvalinfo_cleanprofsgft" : {
-				"name": "Clean Profs GFT"
+			"afvalinfo_cleanprofsgft": {
+				"name": "Cleanprofs GFT"
 			},
 			"afvalinfo_cleanprofspbd": {
-				"name": "Clean Profs PBD"
+				"name": "Cleanprofs PBD"
 			},
 			"afvalinfo_cleanprofsrestafval": {
-				"name": "Clean Profs Restafval"
+				"name": "Cleanprofs Restafval"
 			},
 			"afvalinfo_gft": {
 				"name": "GFT"
@@ -21,16 +21,16 @@
 			},
 			"afvalinfo_kerstboom": {
 				"name": "Kerstboom"
-			},	
+			},
 			"afvalinfo_papier": {
 				"name": "Papier"
-			},	
+			},
 			"afvalinfo_pbd": {
 				"name": "PBD"
-			},	
+			},
 			"afvalinfo_restafval": {
 				"name": "Papier"
-			},	
+			},
 			"afvalinfo_takken": {
 				"name": "Takken"
 			},
@@ -51,8 +51,7 @@
 				"title": "Add Group",
 				"description": "Some description",
 				"data": {
-					"city": "City",
-					"location": "Location",
+					"location": "Municipality",
 					"postcode": "Zip code",
 					"streetnumber": "House number",
 					"streetnumbersuffix": "House number suffix",
@@ -60,11 +59,10 @@
 					"dateformat": "Date format",
 					"locale": "Locale",
 					"id": "Identifier",
-					"timespanindays": "Timespan in days",
 					"notrashtext": "No trash text",
 					"diftarcode": "Diftar code",
-					"getwholeyear": "Get whole year",
-					"sensors": "Sensors to activate"
+					"getwholeyear": "Get data for the whole year?",
+					"sensors": "Sensors"
 				}
 			}
 		},
@@ -78,15 +76,15 @@
 	"selector": {
 		"sensorselect": {
 			"options": {
-				"cleanprofsgft": "Cleanprofs Gft",
-				"cleanprofspbd": "Cleanprofs Pbd",
+				"cleanprofsgft": "Cleanprofs GFT",
+				"cleanprofspbd": "Cleanprofs PBD",
 				"cleanprofsrestafval": "Cleanprofs Restafval",
 				"gft": "GFT",
 				"grofvuil": "Grofvuil",
 				"kca": "Klein chemisch afval",
 				"kerstboom": "Kerstboom",
 				"papier": "Papier",
-				"pbd": "PMD",
+				"pbd": "PBD",
 				"restafval": "Restafval",
 				"takken": "Takken",
 				"textiel": "Textiel",

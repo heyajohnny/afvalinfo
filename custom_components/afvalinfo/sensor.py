@@ -16,7 +16,6 @@ from .const.const import (
     MIN_TIME_BETWEEN_UPDATES,
     _LOGGER,
     CONF_ENABLED_SENSORS,
-    CONF_CITY,
     CONF_DISTRICT,
     CONF_LOCATION,
     CONF_POSTCODE,
@@ -24,7 +23,6 @@ from .const.const import (
     CONF_STREET_NUMBER_SUFFIX,
     CONF_GET_WHOLE_YEAR,
     CONF_DATE_FORMAT,
-    CONF_TIMESPAN_IN_DAYS,
     CONF_NO_TRASH_TEXT,
     CONF_DIFTAR_CODE,
     CONF_LOCALE,
@@ -62,9 +60,7 @@ async def async_setup_entry(
 ) -> None:
     config = config_entry.data
 
-    location = config.get(CONF_CITY).lower().strip()
-    if len(location) == 0:
-        location = config.get(CONF_LOCATION).lower().strip()
+    location = config.get(CONF_LOCATION).lower().strip()
     postcode = config.get(CONF_POSTCODE).strip()
     street_number = config.get(CONF_STREET_NUMBER)
     street_number_suffix = config.get(CONF_STREET_NUMBER_SUFFIX)
@@ -76,7 +72,7 @@ async def async_setup_entry(
     diftar_code = config.get(CONF_DIFTAR_CODE)
     get_whole_year = config.get(CONF_GET_WHOLE_YEAR)
 
-   
+
     resources = config[CONF_ENABLED_SENSORS].copy()
 
     # filter the types from the dict if it's a dictionary
@@ -87,7 +83,7 @@ async def async_setup_entry(
 
     if "trash_type_today" in resourcesMinusTodayAndTomorrow:
             resourcesMinusTodayAndTomorrow.remove("trash_type_today")
-    
+
     if "trash_type_tomorrow" in resourcesMinusTodayAndTomorrow:
             resourcesMinusTodayAndTomorrow.remove("trash_type_tomorrow")
 
@@ -110,13 +106,13 @@ async def async_setup_entry(
             resourcesMinusTodayAndTomorrow,
             get_cleanprofs_data,
         )
-    
+
     await data.async_update()
 
     entities = []
 
     for resource in config[CONF_ENABLED_SENSORS]:
-    
+
         sensor_friendly_name = resource
         sensor_type = resource
         if (
@@ -134,7 +130,7 @@ async def async_setup_entry(
                     get_whole_year,
                 )
             )
-        
+
         # Add sensor -trash_type_today
         if resource == "trash_type_today":
             today = AfvalInfoTodaySensor(
@@ -245,11 +241,11 @@ class AfvalinfoSensor(Entity):
     ):
         self.data = data
         self.type = sensor_type
-    
+
         self.date_format = date_format
         self.locale = locale
         self.friendly_name = sensor_friendly_name
-        
+
         self._name = sensor_friendly_name
         self._get_whole_year = get_whole_year
         self.entity_id = "sensor." + (

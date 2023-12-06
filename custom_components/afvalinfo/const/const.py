@@ -69,7 +69,6 @@ NUMBER_TO_MONTH = {
 }
 
 CONF_ENABLED_SENSORS = "sensors"
-CONF_CITY = "city"
 CONF_LOCATION = "location"
 CONF_POSTCODE = "postcode"
 CONF_STREET_NUMBER = "streetnumber"
@@ -77,7 +76,6 @@ CONF_STREET_NUMBER_SUFFIX = "streetnumbersuffix"
 CONF_DISTRICT = "district"
 CONF_GET_WHOLE_YEAR = "getwholeyear"
 CONF_DATE_FORMAT = "dateformat"
-CONF_TIMESPAN_IN_DAYS = "timespanindays"
 CONF_LOCALE = "locale"
 CONF_ID = "id"
 CONF_NO_TRASH_TEXT = "notrashtext"

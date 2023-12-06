@@ -12,7 +12,6 @@ from .const.const import (
     DOMAIN,
     SENSOR_TYPES,
     CONF_ENABLED_SENSORS,
-    CONF_CITY,
     CONF_DISTRICT,
     CONF_LOCATION,
     CONF_POSTCODE,
@@ -20,12 +19,10 @@ from .const.const import (
     CONF_STREET_NUMBER_SUFFIX,
     CONF_GET_WHOLE_YEAR,
     CONF_DATE_FORMAT,
-    CONF_TIMESPAN_IN_DAYS,
     CONF_NO_TRASH_TEXT,
     CONF_DIFTAR_CODE,
     CONF_LOCALE,
-    CONF_ID,
-    SENSOR_PREFIX
+    CONF_ID
 )
 
 import voluptuous as vol
@@ -35,7 +32,7 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_user(self, info):
         if info is not None:
-         
+
             await self.async_set_unique_id(info["id"])
             self._abort_if_unique_id_configured()
             return self.async_create_entry(
@@ -50,15 +47,12 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         vol.Required(CONF_POSTCODE, default="3361AB"): str,
         vol.Required(CONF_STREET_NUMBER, default="1"): cv.positive_int,
         vol.Optional(CONF_STREET_NUMBER_SUFFIX, default=""): str,
-        vol.Optional(CONF_CITY, default=""): str,
         vol.Optional(CONF_LOCATION, default=""): str,
-     
+
         vol.Optional(CONF_DISTRICT, default=""): str,
         vol.Optional(CONF_DATE_FORMAT, default="%d-%m-%Y"): str,
-        vol.Optional(CONF_LOCALE, default="en"): vol.In(["nl","en"]),  
-        vol.Optional(
-            CONF_TIMESPAN_IN_DAYS, default="365"): cv.positive_int,
-        vol.Optional(CONF_NO_TRASH_TEXT, default="none"): str,
+        vol.Optional(CONF_LOCALE, default="nl"): vol.In(["nl","en"]),
+        vol.Optional(CONF_NO_TRASH_TEXT, default="geen"): str,
         vol.Optional(CONF_DIFTAR_CODE, default=""): str,
         vol.Optional(CONF_GET_WHOLE_YEAR, default="false"): cv.boolean,
         vol.Required(CONF_ENABLED_SENSORS,default=[]): selector({
