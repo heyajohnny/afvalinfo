@@ -191,3 +191,4 @@ version: 1.3.1  20230622 - Added KCA and Grofvuil for some gemeentes
 version: 2.0.0  20231205 - Merge pull request from https://github.com/jasperslits. Works with 2023.12 release of HA
 version: 2.0.1  20231206 - Updated translations + removed some old stuff
 version: 2.0.2  20231207 - Make Zip code and House number optional
+version: 2.0.3  20231207 - Default value fix for boolean

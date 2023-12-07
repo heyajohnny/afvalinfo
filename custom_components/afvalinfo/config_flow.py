@@ -54,7 +54,7 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         vol.Optional(CONF_LOCALE, default="nl"): vol.In(["nl","en"]),
         vol.Optional(CONF_NO_TRASH_TEXT, default="geen"): str,
         vol.Optional(CONF_DIFTAR_CODE, default=""): str,
-        vol.Optional(CONF_GET_WHOLE_YEAR, default="false"): cv.boolean,
+        vol.Optional(CONF_GET_WHOLE_YEAR, default=False): cv.boolean,
         vol.Required(CONF_ENABLED_SENSORS,default=[]): selector({
                 "select": {
                     "options": options,
