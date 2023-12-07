@@ -1,6 +1,10 @@
 ## Home Assistant sensor component/integration for waste collectors in the Netherlands
+
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/hacs/integration)
 ### Supported in 98% of the Dutch 'gemeenten'
+
+## Breaking changes for upgrading from v1.x.x to v2.x.x
+If you've just updated from v1.x.x to v2.x.x please remove the afvalinfo sensor from your configuration.yaml and follow [Installation step 2](#installation-step-2)
 
 Before you use this integration you can test if your address is supported and working over [here](https://4fv4l.nl).
 If you like my work, please buy me a coffee or donate some crypto currencies. This will keep me awake, asleep, or whatever :wink:
@@ -16,65 +20,49 @@ If you like my work, please buy me a coffee or donate some crypto currencies. Th
 Please also take a look at the <a href="https://play.google.com/store/apps/details?id=com.viezegeitafval" target="_blank">Vieze Geit</a> Android app for trash pickup dates on your Android device.
 <a href="https://play.google.com/store/apps/details?id=com.viezegeitafval" target="_blank"></a>
 
-#### Supported gemeenten in the Netherlands:
+#### Supported gemeenten in the Netherlands
 
-###### "aa en hunze", "aalsmeer", "aalten", "achtkarspelen", "alblasserdam", "albrandswaard", "alkmaar", "almelo", "almere", "alphen aan den rijn", "alphen-chaam", "altena", "ameland", "amersfoort", "amstelveen", "apeldoorn", "arnhem", "assen", "asten", "baarle-nassau", "baarn", "barendrecht", "barneveld", "beek", "beekdaelen", "beesel", "berg en dal", "bergeijk", "bergen op zoom", "bergen", "berkelland", "bernheze", "best", "beuningen", "beverwijk", "bladel", "blaricum", "bloemendaal", "bodegraven-reeuwijk", "boekel", "borger-odoorn", "borne", "borsele", "boxtel", "breda", "bronckhorst", "brummen", "brunssum", "bunnik", "bunschoten", "buren", "capelle aan den ijssel", "castricum", "coevorden", "cranendonck", "culemborg", "dalfsen", "dantumadiel", "de bilt", "de friese meren", "de fryske marren", "de ronde venen", "de wolden", "delft", "den haag", "den helder", "deurne", "deventer", "diemen", "dijk en waard", "dinkelland", "doesburg", "doetinchem", "dongen", "dordrecht", "drechterland", "drimmelen", "dronten", "druten", "duiven", "echt-susteren", "ede", "eemnes", "eemsdelta", "eersel", "eijsden-margraten", "eindhoven", "elburg", "emmen", "enkhuizen", "enschede", "epe", "ermelo", "etten-leur", "geertruidenberg", "geldrop-mierlo", "gemert-bakel", "gennep", "gilze en rijen", "goeree-overflakkee", "goes", "goirle", "gooise meren", "gorinchem", "gouda", "groningen", "gulpen-wittem", "haarlem", "haarlemmermeer", "halderberge", "hardenberg", "harderwijk", "hardinxveld-giessendam", "harlingen", "hattem", "heemskerk", "heemstede", "heerde", "heerenveen", "heerlen", "heeze-leende", "heiloo", "hellendoorn", "helmond", "hendrik-ido-ambacht", "hengelo", "het hogeland", "heumen", "heusden", "hillegom", "hilvarenbeek", "hilversum", "hoeksche waard", "hof van twente", "hollands kroon", "hoogeveen", "hoorn", "horst aan de maas", "houten", "huizen", "hulst", "ijsselstein", "kaag en braassem", "kampen", "kapelle", "katwijk", "kerkrade", "koggenland", "krimpen aan den ijssel", "krimpenerwaard", "laarbeek", "landgraaf", "landsmeer", "land van cuijk", "lansingerland", "laren", "leeuwarden", "leiden", "leiderdorp", "leidschendam-voorburg", "lelystad", "leudal", "leusden", "lingewaard", "lisse", "lochem", "loon op zand", "lopik", "losser", "maasdriel", "maasgouw", "maashorst", "maassluis", "maastricht", "medemblik", "meerssen", "meierijstad", "meppel", "middelburg", "midden-delfland", "midden-drenthe", "midden-groningen", "moerdijk", "molenlanden", "montferland", "montfoort", "mook en middelaar", "neder-betuwe", "nederweert", "nieuwegein", "nieuwkoop", "nijkerk", "nijmegen", "nissewaard", "noardeast-fryslan", "noord-beveland", "noordenveld", "noordoostpolder", "noordwijk", "nuenen", "nunspeet", "oirschot", "oisterwijk", "oldambt", "oldebroek", "oldenzaal", "olst-wijhe", "ommen", "oost gelre", "oosterhout", "ooststellingwerf", "opmeer", "opsterland", "oss", "oude ijsselstreek", "ouder-amstel", "oudewater", "overbetuwe", "papendrecht", "peel en maas", "pekela", "pijnacker-nootdorp", "purmerend", "putten", "raalte", "reimerswaal", "renkum", "renswoude", "reusel-de mierden", "rheden", "rhenen", "ridderkerk", "rijssen-holten", "rijswijk", "roerdalen", "roermond", "roosendaal", "rotterdam rozenburg", "rotterdam", "rucphen", "s-hertogenbosch", "schagen", "scherpenzeel", "schiedam", "schouwen-duiveland", "simpelveld", "sint-michielsgestel", "sittard-geleen", "sliedrecht", "sluis", "smallingerland", "soest", "someren", "son en breugel", "stadskanaal", "staphorst", "stede broec", "steenbergen", "steenwijkerland", "stein", "stichtse vecht", "sudwest-fryslan", "terneuzen", "terschelling", "teylingen", "tholen", "tiel", "tietjerksteradeel", "tilburg", "tubbergen", "twenterand", "tynaarlo", "tytsjerksteradiel", "uitgeest", "uithoorn", "urk", "utrecht", "utrechtse heuvelrug", "vaals", "valkenburg aan de geul", "valkenswaard", "veendam", "veenendaal", "veere", "veldhoven", "velsen", "venlo", "venray", "vijfheerenlanden", "vlaardingen", "vlissingen", "voerendaal", "voorne aan zee", "voorschoten", "voorst", "vught", "waadhoeke", "waalre", "waalwijk", "waddinxveen", "wageningen", "wassenaar", "waterland", "weesp", "west betuwe", "west maas en waal", "westerkwartier", "westerveld", "westervoort", "westerwolde", "westland", "weststellingwerf", "wierden", "wijchen", "wijdemeren", "wijk bij duurstede", "winterswijk", "woensdrecht", "woerden", "wormerland", "woudenberg", "zaanstad", "zaltbommel", "zandvoort", "zeewolde", "zeist", "zevenaar", "zoetermeer", "zoeterwoude", "zuidplas", "zundert", "zutphen", "zwartewaterland", "zwijndrecht", "zwolle"
-
-### Important Info:
-This integration supports Diftar data and Cleanprofs cleaning dates
-
-### Installation step 1:
-There are 2 ways to install afvalinfo:
-1. Download 'afvalinfo' from the HACS store
-2. Copy the files in the /custom_components/afvalinfo/ folder to: [homeassistant]/config/custom_components/afvalinfo/
-
-### Installation step 2:
-The next step is to add afvalinfo to your configuration.yaml. You can do that in multiple ways:
-1. Copy and paste the values from this [configuration.yaml example](https://github.com/heyajohnny/afvalinfo/blob/master/example/configuration.yaml) and adjust it according to your address
-2. Generate your configuration.yaml [here](https://4fv4l.nl/ha)
-3. Copy and paste the values (and adjust according to your address) from the configutation you see next
-
-#### Don't forget to remove the comments from the example config (everything between and after the parentheses)
-```Configuration.yaml:
-  sensor:
-    - platform: afvalinfo
-      id: vakantiehuis                 (optional, default = '') add some extra naming to make identification of multiple afvalinfo sensors easier
-      resources:                       (at least 1 required)
-        - type: gft                                   (type is required)
-          friendly_name: Groente Fruit en Tuinafval   (friendly_name is optional)
-        - type: grofvuil
-          friendly_name: Grofvuil
-        - type: kca
-          friendly_name: Klein chemisch afval
-        - type: kerstboom
-          friendly_name: Kerstboom
-        - type: pbd
-          friendly_name: Plastic Blik en Drankkartons
-        - type: papier
-          friendly_name: Papier
-        - type: restafval
-          friendly_name: Restafval
-        - type: takken                  (also matches 'GFT in emmers' for some 'gemeenten')
-          friendly_name: Takken
-        - type: textiel
-          friendly_name: Oude Kleding
-        - type: trash_type_today
-          friendly_name: Afval voor vandaag
-        - type: trash_type_tomorrow
-          friendly_name: Afval voor morgen
-      location: sliedrecht             (required, default = sliedrecht) name of the 'gemeente'
-      postcode: 3361AB                 (required, default = 3361AB)
-      streetnumber: 1                  (required, default = 1)
-      streetnumbersuffix: ''           (optional, default = '')
-      district: ''                     (optional, default = '') only needed for locations maassluis, ouder-amstel
-      diftarcode: 12345678             (optional, default = '') some 'gemeentes' have diftar codes
-      dateformat: '%d-%m-%Y'           (optional, default = %d-%m-%Y) day-month-year
-      locale: 'nl'                     (optional, default = 'en')
-      notrashtext: 'geen'              (Optional, default = 'none') the text to show for the today and tomorrow sensor when there is no trash to collect
-      getwholeyear: false              (Optional, default = false) (if supported by gemeente) sets the trash dates for the whole year in the 'whole_year_dates' attribute when true
+```
+"aa en hunze", "aalsmeer", "aalten", "achtkarspelen", "alblasserdam", "albrandswaard", "alkmaar", "almelo", "almere", "alphen aan den rijn", "alphen-chaam", "altena", "ameland", "amersfoort", "amstelveen", "apeldoorn", "arnhem", "assen", "asten", "baarle-nassau", "baarn", "barendrecht", "barneveld", "beek", "beekdaelen", "beesel", "berg en dal", "bergeijk", "bergen op zoom", "bergen", "berkelland", "bernheze", "best", "beuningen", "beverwijk", "bladel", "blaricum", "bloemendaal", "bodegraven-reeuwijk", "boekel", "borger-odoorn", "borne", "borsele", "boxtel", "breda", "bronckhorst", "brummen", "brunssum", "bunnik", "bunschoten", "buren", "capelle aan den ijssel", "castricum", "coevorden", "cranendonck", "culemborg", "dalfsen", "dantumadiel", "de bilt", "de friese meren", "de fryske marren", "de ronde venen", "de wolden", "delft", "den haag", "den helder", "deurne", "deventer", "diemen", "dijk en waard", "dinkelland", "doesburg", "doetinchem", "dongen", "dordrecht", "drechterland", "drimmelen", "dronten", "druten", "duiven", "echt-susteren", "ede", "eemnes", "eemsdelta", "eersel", "eijsden-margraten", "eindhoven", "elburg", "emmen", "enkhuizen", "enschede", "epe", "ermelo", "etten-leur", "geertruidenberg", "geldrop-mierlo", "gemert-bakel", "gennep", "gilze en rijen", "goeree-overflakkee", "goes", "goirle", "gooise meren", "gorinchem", "gouda", "groningen", "gulpen-wittem", "haarlem", "haarlemmermeer", "halderberge", "hardenberg", "harderwijk", "hardinxveld-giessendam", "harlingen", "hattem", "heemskerk", "heemstede", "heerde", "heerenveen", "heerlen", "heeze-leende", "heiloo", "hellendoorn", "helmond", "hendrik-ido-ambacht", "hengelo", "het hogeland", "heumen", "heusden", "hillegom", "hilvarenbeek", "hilversum", "hoeksche waard", "hof van twente", "hollands kroon", "hoogeveen", "hoorn", "horst aan de maas", "houten", "huizen", "hulst", "ijsselstein", "kaag en braassem", "kampen", "kapelle", "katwijk", "kerkrade", "koggenland", "krimpen aan den ijssel", "krimpenerwaard", "laarbeek", "landgraaf", "landsmeer", "land van cuijk", "lansingerland", "laren", "leeuwarden", "leiden", "leiderdorp", "leidschendam-voorburg", "lelystad", "leudal", "leusden", "lingewaard", "lisse", "lochem", "loon op zand", "lopik", "losser", "maasdriel", "maasgouw", "maashorst", "maassluis", "maastricht", "medemblik", "meerssen", "meierijstad", "meppel", "middelburg", "midden-delfland", "midden-drenthe", "midden-groningen", "moerdijk", "molenlanden", "montferland", "montfoort", "mook en middelaar", "neder-betuwe", "nederweert", "nieuwegein", "nieuwkoop", "nijkerk", "nijmegen", "nissewaard", "noardeast-fryslan", "noord-beveland", "noordenveld", "noordoostpolder", "noordwijk", "nuenen", "nunspeet", "oirschot", "oisterwijk", "oldambt", "oldebroek", "oldenzaal", "olst-wijhe", "ommen", "oost gelre", "oosterhout", "ooststellingwerf", "opmeer", "opsterland", "oss", "oude ijsselstreek", "ouder-amstel", "oudewater", "overbetuwe", "papendrecht", "peel en maas", "pekela", "pijnacker-nootdorp", "purmerend", "putten", "raalte", "reimerswaal", "renkum", "renswoude", "reusel-de mierden", "rheden", "rhenen", "ridderkerk", "rijssen-holten", "rijswijk", "roerdalen", "roermond", "roosendaal", "rotterdam rozenburg", "rotterdam", "rucphen", "s-hertogenbosch", "schagen", "scherpenzeel", "schiedam", "schouwen-duiveland", "simpelveld", "sint-michielsgestel", "sittard-geleen", "sliedrecht", "sluis", "smallingerland", "soest", "someren", "son en breugel", "stadskanaal", "staphorst", "stede broec", "steenbergen", "steenwijkerland", "stein", "stichtse vecht", "sudwest-fryslan", "terneuzen", "terschelling", "teylingen", "tholen", "tiel", "tietjerksteradeel", "tilburg", "tubbergen", "twenterand", "tynaarlo", "tytsjerksteradiel", "uitgeest", "uithoorn", "urk", "utrecht", "utrechtse heuvelrug", "vaals", "valkenburg aan de geul", "valkenswaard", "veendam", "veenendaal", "veere", "veldhoven", "velsen", "venlo", "venray", "vijfheerenlanden", "vlaardingen", "vlissingen", "voerendaal", "voorne aan zee", "voorschoten", "voorst", "vught", "waadhoeke", "waalre", "waalwijk", "waddinxveen", "wageningen", "wassenaar", "waterland", "weesp", "west betuwe", "west maas en waal", "westerkwartier", "westerveld", "westervoort", "westerwolde", "westland", "weststellingwerf", "wierden", "wijchen", "wijdemeren", "wijk bij duurstede", "winterswijk", "woensdrecht", "woerden", "wormerland", "woudenberg", "zaanstad", "zaltbommel", "zandvoort", "zeewolde", "zeist", "zevenaar", "zoetermeer", "zoeterwoude", "zuidplas", "zundert", "zutphen", "zwartewaterland", "zwijndrecht", "zwolle"
 ```
 
-For the gemeente maassluis you need to use the 'district' instead of the 'postcode' + 'streetnumber' + 'streetnumbersuffix' properties. Here you can see the supported districts (Not case sensitive):
+### Important Info
+This integration supports Diftar data and Cleanprofs cleaning dates
+
+### Installation step 1
+There are 2 ways to install afvalinfo:
+1. Download 'afvalinfo' from the HACS store (this is the easiest and preferred way)
+2. Copy the files in the /custom_components/afvalinfo/ folder to: [homeassistant]/config/custom_components/afvalinfo/
+
+### Installation step 2
+The next step is to add afvalinfo sensors to your Home Assistant:
+1. Browse to your Home Assistant config page
+2. Press Settings --> Devices & Services
+
+![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/b5c9eb17-dd4d-418c-b47e-420de6baf416)
+
+3. Press 'Add Integration' and search for 'afvalinfo' and select the 'afvalinfo' integration
+
+![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/02f56b0f-1c01-4d42-b94e-529469545a0d)
+
+4. Fill in the form with your address details. 
+(Only fill in the Municipality and District and leave Zip code and House number empty when you live in the municipality ['maassluis'](#maassluis) or ['ouder-amstel'](#ouder-amstel))
+
+![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/84c52c53-564a-4f40-abf4-a3a79d4f7759)
+
+And at the bottom of the page, add the sensors you'd like to see
+
+![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/a724a27b-d238-4ac1-9cf0-0e24c9960d90)
+
+These 2 sensors are special sensors
+
+![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/7fb50d3f-6100-419a-8ef2-b79c1c2178f2)
+
+To make these sensors work, you also need to specify one or more of the normal sensors.
+These sensors will return one or more (seperated with a comma) of the other sensor names, something like this: 'GFT,Papier'
+
+### maassluis
+For the gemeente maassluis you need to use the 'district'. Here you can see the supported districts (Not case sensitive):
 ```
 "Binnenstad/centrum"
 "Componistenwijk"
@@ -94,51 +82,14 @@ For the gemeente maassluis you need to use the 'district' instead of the 'postco
 "Zeeheldenbuurt"
 "Zuidbuurt"
 ```
-For the gemeente ouder-amstel you need to use the 'district' instead of the 'postcode' + 'streetnumber' + 'streetnumbersuffix' properties. Here you can see the supported districts (Not case sensitive):
+### ouder-amstel
+For the gemeente ouder-amstel you need to use the 'district'. Here you can see the supported districts (Not case sensitive):
 ```
 "Bebouwde kom"
 "Buitengebied"
 ```
 
-### Resources:
-Here is the complete list of available waste types (resources):
-```
-- cleanprofsgft                        (cleaning of the gft bin by Cleanprofs)
-- cleanprofsrestafval                  (cleaning of the restafval bin by Cleanprofs)
-- cleanprofspbd                        (cleaning of the plastic bin by Cleanprofs)
-- gft                                  (groente, fruit, tuinafval)
-- grofvuil                             (supported by a small amount of waste collectors)
-- kca                                  (klein chemisch afval. supported by a small amount of waste collectors)
-- kerstboom                            (supported in +- 50% of the waste collectors)
-- papier
-- pbd                                  (plastic, blik, drinkpakken)
-- restafval
-- takken                               (supported by a small amount of waste collectors)
-- textiel
-```
-
-Here is a complete list of special resources. To make these resources work, you also need to specify one or more of the normal resources (waste types) from above.
-These resources will return one or more (seperated with a comma) of the following results (gft, kerstboom, papier, pbd, restafval, takken, textiel) or if you specified a friendly_name, it will return one or more of the friendly_name values
-```
-- trash_type_today                      (gives the result "none" if none of the normal resources dates is today)
-- trash_type_tomorrow                   (gives the result "none" if none of the normal resources dates is tomorrow)
-```
-
-So if you only specify -pbd and -trash_type_today under your resources, you will only get a result if the trash type 'pbd' has the same date as today. If you also want to know if -gft has the same date as today, you also need to specify - gft under resources, as shown below.
-```Configuration.yaml:
-  sensor:
-    - platform: afvalinfo
-      resources:
-        - type: pbd
-          friendly_name: Plastic Blik en Drankkartons
-        - type: gft
-          friendly_name: Groente Fruit en Tuinafval
-        - type: trash_type_today
-          friendly_name: Afval voor vandaag
-      location: sliedrecht
-      postcode: 3361AB
-      streetnumber: 1
-```
+So if you only added PBD and Trash type today under your sensors, you will only get a result if the trash type PBD has the same date as today. 
 
 ### Date format
 ```yaml
@@ -177,28 +128,28 @@ This example creates a new sensor with the attribute value 'days_until_collectio
 - platform: template
     sensors:
       paper_days_until_collection:
-        value_template: "{{ state_attr('sensor.afvalinfo_papier', 'days_until_collection_date') }}"
+        value_template: "{{ state_attr('sensor.afvalinfo_home_papier', 'days_until_collection_date') }}"
 ```
 
 And another template example to only show the first upcoming trashtype and pickup date (Special thanks to <a href="https://github.com/jaydouble" target="_blank">jaydouble</a>)
 ```yaml
 - platform: template
   sensors:
-    afvalinfo_next_trash_type_and_date:
+    afvalinfo_home_next_trash_type_and_date:
       value_template: >
         {% set ns = namespace(minimum=365) %}
-        {% set list = ['groente_fruit_en_tuinafval', 'kerstboom', 'plastic_blik_en_drankkartons', 'papier', 'restafval', 'takken', 'oude_kleding'] %}
+        {% set list = ['groente_fruit_en_tuinafval', 'kerstboom', 'plastic_blik_en_drankkartons', 'papier', 'restafval', 'takken', 'textiel'] %}
         {% set friendly_list = ['Groente Fruit en Tuinafval', 'Kerstboom', 'Plastic Blik en Drankkartons', 'Papier', 'Restafval', 'Takken', 'Oude Kleding'] %}
         {%- for l in list %}
-        {%- set days = state_attr('sensor.afvalinfo_' ~l, 'days_until_collection_date')%}
+        {%- set days = state_attr('sensor.afvalinfo_home_' ~l, 'days_until_collection_date')%}
         {%- if days != None and days < ns.minimum %}
         {%- set ns.minimum = days %}
         {%- endif %}
         {%- endfor %}
         {%- for l in list %}
-        {%- set days = state_attr('sensor.afvalinfo_' ~l, 'days_until_collection_date')%}
+        {%- set days = state_attr('sensor.afvalinfo_home_' ~l, 'days_until_collection_date')%}
         {%- if days == ns.minimum %}
-        {{friendly_list[loop.index0]}} · {{ states('sensor.afvalinfo_' ~l) }}
+        {{friendly_list[loop.index0]}} · {{ states('sensor.afvalinfo_home_' ~l) }}
         {%- endif %}
         {%- endfor %}
 ```
