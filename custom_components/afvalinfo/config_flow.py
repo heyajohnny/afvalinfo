@@ -44,8 +44,8 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         afvalinfo_schema = vol.Schema({
         vol.Required(CONF_ID, default="home"): str,
-        vol.Required(CONF_POSTCODE, default="3361AB"): str,
-        vol.Required(CONF_STREET_NUMBER, default="1"): cv.positive_int,
+        vol.Optional(CONF_POSTCODE, default="3361AB"): str,
+        vol.Optional(CONF_STREET_NUMBER, default="1"): cv.positive_int,
         vol.Optional(CONF_STREET_NUMBER_SUFFIX, default=""): str,
         vol.Optional(CONF_LOCATION, default=""): str,
 
