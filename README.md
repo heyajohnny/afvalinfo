@@ -59,7 +59,10 @@ These 2 sensors are special sensors
 ![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/7fb50d3f-6100-419a-8ef2-b79c1c2178f2)
 
 To make these sensors work, you also need to specify one or more of the normal sensors.
-These sensors will return one or more (seperated with a comma) of the other sensor names, something like this: 'GFT,Papier'
+These sensors will return one or more (seperated with a comma) of the other sensor names, if of course these trash types will be picked up today/tomorrow. The value of these sensors could be something like this: 'GFT,Papier' or if there is no trash to pick up it will be the this value
+
+![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/ecd5e4a5-6678-44f2-ba60-de7cbcffeb6f)
+
 
 ### maassluis
 For the gemeente maassluis you need to use the 'district'. Here you can see the supported districts (Not case sensitive):
