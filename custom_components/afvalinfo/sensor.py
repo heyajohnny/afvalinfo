@@ -310,7 +310,7 @@ class AfvalinfoSensor(Entity):
         self._error = False
 
         # Loop through all the dates to put the dates in the whole_year_dates attribute
-        if self._get_whole_year == "True":
+        if self._get_whole_year == True:
             whole_year_dates = []
             if waste_array:
                 for waste_data in waste_array:

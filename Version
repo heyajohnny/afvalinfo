@@ -193,3 +193,4 @@ version: 2.0.1  20231206 - Updated translations + removed some old stuff
 version: 2.0.2  20231207 - Make Zip code and House number optional
 version: 2.0.3  20231207 - Default value fix for boolean
 version: 2.0.4  20231208 - Fix for restafval mapping
+version: 2.0.5  20231213 - Fix for whole_year_dates attribute
