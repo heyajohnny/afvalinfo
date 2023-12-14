@@ -2,40 +2,40 @@
 	"entity": {
 		"sensor": {
 			"afvalinfo_cleanprofsgft": {
-				"name": "Cleanprofs GFT"
+				"name": "Cleanprofs Biodegradable waste"
 			},
 			"afvalinfo_cleanprofspbd": {
-				"name": "Cleanprofs PBD"
+				"name": "Cleanprofs Plastic cans and drink cartons"
 			},
 			"afvalinfo_cleanprofsrestafval": {
-				"name": "Cleanprofs Restafval"
+				"name": "Cleanprofs Residual waste"
 			},
 			"afvalinfo_gft": {
-				"name": "GFT"
+				"name": "Biodegradable waste"
 			},
 			"afvalinfo_grofvuil": {
-				"name": "Grofvuil"
+				"name": "Bulky waste"
 			},
 			"afvalinfo_kca": {
-				"name": "KCA"
+				"name": "Small toxic waste"
 			},
 			"afvalinfo_kerstboom": {
-				"name": "Kerstboom"
+				"name": "Christmas tree"
 			},
 			"afvalinfo_papier": {
-				"name": "Papier"
+				"name": "Paper"
 			},
 			"afvalinfo_pbd": {
-				"name": "PBD"
+				"name": "Plastic cans and drink cartons"
 			},
 			"afvalinfo_restafval": {
-				"name": "Restafval"
+				"name": "Residual waste"
 			},
 			"afvalinfo_takken": {
-				"name": "Takken"
+				"name": "Branches"
 			},
 			"afvalinfo_textiel": {
-				"name": "Textiel"
+				"name": "Textile"
 			},
 			"afvalinfo_trash_type_today": {
 				"name": "Trash type today"
@@ -76,18 +76,18 @@
 	"selector": {
 		"sensorselect": {
 			"options": {
-				"cleanprofsgft": "Cleanprofs GFT",
-				"cleanprofspbd": "Cleanprofs PBD",
-				"cleanprofsrestafval": "Cleanprofs Restafval",
-				"gft": "GFT",
-				"grofvuil": "Grofvuil",
-				"kca": "Klein chemisch afval",
-				"kerstboom": "Kerstboom",
-				"papier": "Papier",
-				"pbd": "PBD",
-				"restafval": "Restafval",
-				"takken": "Takken",
-				"textiel": "Textiel",
+				"cleanprofsgft": "Cleanprofs Biodegradable waste",
+				"cleanprofspbd": "Cleanprofs Plastic cans and drink cartons",
+				"cleanprofsrestafval": "Cleanprofs Residual waste",
+				"gft": "Biodegradable waste",
+				"grofvuil": "Bulky waste",
+				"kca": "Small toxic waste",
+				"kerstboom": "Christmas tree",
+				"papier": "Paper",
+				"pbd": "Plastic cans and drink cartons",
+				"restafval": "Residual waste",
+				"takken": "Branches",
+				"textiel": "Textile",
 				"trash_type_today": "Trash type today",
 				"trash_type_tomorrow": "Trash type tomorrow"
 			}
