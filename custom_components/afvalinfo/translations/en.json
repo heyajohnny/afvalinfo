@@ -48,8 +48,8 @@
 	"config": {
 		"step": {
 			"user": {
-				"title": "Add Group",
-				"description": "Some description",
+				"title": "Afvalinfo",
+				"description": "Add new location",
 				"data": {
 					"location": "Municipality",
 					"postcode": "Zip code",

@@ -195,3 +195,4 @@ version: 2.0.3  20231207 - Default value fix for boolean
 version: 2.0.4  20231208 - Fix for restafval mapping
 version: 2.0.5  20231213 - Fix for whole_year_dates attribute
 version: 2.0.6  20231214 - Updated translations
+version: 2.0.7  20231214 - Updated translations
