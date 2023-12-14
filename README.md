@@ -70,7 +70,7 @@ If you want to change the friendly name of the sensors (and also the names you s
 
 ![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/19759df4-a0b5-49d1-8b03-8af4afa1f8ec)
 
-3.Select the sensor whose friendly name you want to change
+3. Select the sensor whose friendly name you want to change
 
 ![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/5d415e80-f80f-4969-a48b-aab88f64f0f5)
 
