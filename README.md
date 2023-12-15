@@ -1,10 +1,9 @@
 ## Home Assistant sensor component/integration for waste collectors in the Netherlands
-
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/hacs/integration)
-### Supported in 98% of the Dutch 'gemeenten'
-
 ## Breaking changes for upgrading from v1.x.x to v2.x.x
 If you've just updated from v1.x.x to v2.x.x please remove the afvalinfo sensor from your configuration.yaml and follow [Installation step 2](#installation-step-2)
+
+### Supported in 98% of the Dutch 'gemeenten'
 
 Before you use this integration you can test if your address is supported and working over [here](https://4fv4l.nl).
 If you like my work, please buy me a coffee or donate some crypto currencies. This will keep me awake, asleep, or whatever :wink:
@@ -45,8 +44,9 @@ The next step is to add afvalinfo sensors to your Home Assistant:
 
 ![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/02f56b0f-1c01-4d42-b94e-529469545a0d)
 
-4. Fill in the form with your address details.
-(Only fill in the Municipality and District and leave Zip code and House number empty when you live in the municipality ['maassluis'](#maassluis) or ['ouder-amstel'](#ouder-amstel))
+4. Fill in the form with your address details (Zip code + House Number (+ House number suffix))
+
+(When you live in the municipality <strong>maassluis</strong> or <strong>ouder-amstel</strong> only fill in the Municipality + District and leave Zip code + House number + House number suffix empty. You can find the districts for <strong>ouder-amstel</strong> [here](#ouder-amstel) and the districts for <strong>maassluis</strong> [here](maassluis))
 
 ![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/84c52c53-564a-4f40-abf4-a3a79d4f7759)
 
