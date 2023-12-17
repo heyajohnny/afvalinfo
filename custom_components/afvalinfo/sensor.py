@@ -112,8 +112,6 @@ async def async_setup_entry(
     entities = []
 
     for resource in config[CONF_ENABLED_SENSORS]:
-
-        sensor_friendly_name = resource
         sensor_type = resource
         if (
             resource != "trash_type_today"
@@ -123,7 +121,6 @@ async def async_setup_entry(
                 AfvalinfoSensor(
                     data,
                     sensor_type,
-                    sensor_friendly_name,
                     date_format,
                     locale,
                     id_name,
@@ -137,7 +134,6 @@ async def async_setup_entry(
                 hass,
                 data,
                 sensor_type,
-                sensor_friendly_name,
                 entities,
                 id_name,
                 no_trash_text,
@@ -149,7 +145,6 @@ async def async_setup_entry(
                 hass,
                 data,
                 sensor_type,
-                sensor_friendly_name,
                 entities,
                 id_name,
                 no_trash_text,
@@ -208,7 +203,6 @@ class AfvalinfoSensor(Entity):
         self,
         data,
         sensor_type,
-        sensor_friendly_name,
         date_format,
         locale,
         id_name,
@@ -216,18 +210,17 @@ class AfvalinfoSensor(Entity):
     ):
         self.data = data
         self.type = sensor_type
+        self.friendly_name = sensor_type
 
         self.date_format = date_format
         self.locale = locale
-        self.friendly_name = sensor_friendly_name
 
-        self._name = sensor_friendly_name
         self._get_whole_year = get_whole_year
         self.entity_id = "sensor." + (
             (
                 SENSOR_PREFIX
                 + (id_name + " " if len(id_name) > 0 else "")
-                + sensor_friendly_name
+                + sensor_type
             )
             .lower()
             .replace(" ", "_")
@@ -235,10 +228,10 @@ class AfvalinfoSensor(Entity):
         self._attr_unique_id = (
             SENSOR_PREFIX
             + (id_name + " " if len(id_name) > 0 else "")
-            + sensor_friendly_name
+            + sensor_type
         )
 
-        self._attr_translation_key = "afvalinfo_" + sensor_friendly_name
+        self._attr_translation_key = "afvalinfo_" + sensor_type
         _LOGGER.debug("Setting translation key to " + self._attr_translation_key)
 
         self._icon = SENSOR_TYPES[sensor_type][1]

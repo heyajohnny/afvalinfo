@@ -16,18 +16,18 @@ class AfvalInfoTomorrowSensor(Entity):
     _attr_translation_key = "afvalinfo_trash_type_tomorrow"
 
     def __init__(
-        self, hass, data, sensor_type, sensor_friendly_name, entities, id_name, no_trash_text
+        self, hass, data, sensor_type, entities, id_name, no_trash_text
     ):
         self._hass = hass
         self.data = data
         self.type = sensor_type
-        self.friendly_name = sensor_friendly_name
+        self.friendly_name = sensor_type
         self._last_update = None
         self.entity_id = "sensor." + (
             (
                 SENSOR_PREFIX
                 + (id_name + " " if len(id_name) > 0 else "")
-                + sensor_friendly_name
+                + sensor_type
             )
             .lower()
             .replace(" ", "_")
@@ -35,7 +35,7 @@ class AfvalInfoTomorrowSensor(Entity):
         self._attr_unique_id = (
             SENSOR_PREFIX
             + (id_name + " " if len(id_name) > 0 else "")
-            + sensor_friendly_name
+            + sensor_type
         )
         self._no_trash_text = no_trash_text
         self._state = None
@@ -52,7 +52,10 @@ class AfvalInfoTomorrowSensor(Entity):
 
     @property
     def extra_state_attributes(self):
-        return {ATTR_LAST_UPDATE: self._last_update}
+        return {
+            ATTR_LAST_UPDATE: self._last_update,
+            ATTR_FRIENDLY_NAME: self.friendly_name,
+        }
 
     @Throttle(timedelta(minutes=1))
     async def async_update(self):
