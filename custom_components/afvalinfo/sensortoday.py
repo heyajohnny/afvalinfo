@@ -16,8 +16,9 @@ class AfvalInfoTodaySensor(Entity):
     _attr_translation_key = "afvalinfo_trash_type_today"
 
     def __init__(
-        self, data, sensor_type, sensor_friendly_name, entities, id_name, no_trash_text
+        self, hass, data, sensor_type, sensor_friendly_name, entities, id_name, no_trash_text
     ):
+        self._hass = hass
         self.data = data
         self.type = sensor_type
         self.friendly_name = sensor_friendly_name
@@ -40,8 +41,6 @@ class AfvalInfoTodaySensor(Entity):
         self._state = None
         self._icon = SENSOR_TYPES[sensor_type][1]
         self._entities = entities
-
-  
 
     @property
     def icon(self):
@@ -72,12 +71,12 @@ class AfvalInfoTodaySensor(Entity):
                 if numberOfMatches == 0:
                     tempState = ""
                 numberOfMatches = numberOfMatches + 1
-                # add trash friendly name or if no friendly name is provided, trash type to string
+                # add trash friendly_name to string
                 tempState = (
                     (
                         tempState
                         + ", "
-                        + entity.extra_state_attributes.get(ATTR_FRIENDLY_NAME)
+                        + self._hass.states.get(entity.entity_id).attributes.get(ATTR_FRIENDLY_NAME)
                     )
                 ).strip()
         if tempState.startswith(", "):

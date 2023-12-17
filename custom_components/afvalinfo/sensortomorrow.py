@@ -5,7 +5,7 @@ from .const.const import (
     ATTR_FRIENDLY_NAME,
     ATTR_YEAR_MONTH_DAY_DATE,
     SENSOR_TYPES,
-    SENSOR_PREFIX,
+    SENSOR_PREFIX
 )
 from homeassistant.helpers.entity import Entity
 from homeassistant.util import Throttle
@@ -16,8 +16,9 @@ class AfvalInfoTomorrowSensor(Entity):
     _attr_translation_key = "afvalinfo_trash_type_tomorrow"
 
     def __init__(
-        self, data, sensor_type, sensor_friendly_name, entities, id_name, no_trash_text
+        self, hass, data, sensor_type, sensor_friendly_name, entities, id_name, no_trash_text
     ):
+        self._hass = hass
         self.data = data
         self.type = sensor_type
         self.friendly_name = sensor_friendly_name
@@ -40,7 +41,6 @@ class AfvalInfoTomorrowSensor(Entity):
         self._state = None
         self._icon = SENSOR_TYPES[sensor_type][1]
         self._entities = entities
-
 
     @property
     def icon(self):
@@ -71,12 +71,12 @@ class AfvalInfoTomorrowSensor(Entity):
                 if numberOfMatches == 0:
                     tempState = ""
                 numberOfMatches = numberOfMatches + 1
-                # add trash name to string
+                # add trash friendly_name to string
                 tempState = (
                     (
                         tempState
                         + ", "
-                        + entity.extra_state_attributes.get(ATTR_FRIENDLY_NAME)
+                        + self._hass.states.get(entity.entity_id).attributes.get(ATTR_FRIENDLY_NAME)
                     )
                 ).strip()
         if tempState.startswith(", "):

@@ -134,6 +134,7 @@ async def async_setup_entry(
         # Add sensor -trash_type_today
         if resource == "trash_type_today":
             today = AfvalInfoTodaySensor(
+                hass,
                 data,
                 sensor_type,
                 sensor_friendly_name,
@@ -145,6 +146,7 @@ async def async_setup_entry(
         # Add sensor -trash_type_tomorrow
         if resource == "trash_type_tomorrow":
             tomorrow = AfvalInfoTomorrowSensor(
+                hass,
                 data,
                 sensor_type,
                 sensor_friendly_name,
@@ -157,32 +159,6 @@ async def async_setup_entry(
 
 
     async_add_entities(entities)
-
-"""
-PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
-    {
-        vol.Required(CONF_RESOURCES, default=[]): vol.All(cv.ensure_list),
-        vol.Optional(CONF_CITY, default=""): cv.string,
-        vol.Optional(CONF_LOCATION, default=""): cv.string,
-        vol.Required(CONF_POSTCODE, default="3361AB"): cv.string,
-        vol.Required(CONF_STREET_NUMBER, default="1"): cv.string,
-        vol.Optional(CONF_STREET_NUMBER_SUFFIX, default=""): cv.string,
-        vol.Optional(CONF_DISTRICT, default=""): cv.string,
-        vol.Optional(CONF_DATE_FORMAT, default="%d-%m-%Y"): cv.string,
-        vol.Optional(CONF_LOCALE, default="en"): cv.string,
-        vol.Optional(CONF_ID, default=""): cv.string,
-        vol.Optional(
-            CONF_TIMESPAN_IN_DAYS, default="365"
-        ): cv.string,  # Not used anymore 20230507, but gives errors in configs that still has the timespanindays set
-        vol.Optional(CONF_NO_TRASH_TEXT, default="none"): cv.string,
-        vol.Optional(CONF_DIFTAR_CODE, default=""): cv.string,
-        vol.Optional(CONF_GET_WHOLE_YEAR, default="false"): cv.string,
-    }
-)
-
-PLATFORM_SCHEMA = None
-"""
-
 
 class AfvalinfoData(object):
     def __init__(
@@ -227,7 +203,6 @@ class AfvalinfoData(object):
 
 class AfvalinfoSensor(Entity):
     _attr_has_entity_name = True
-
 
     def __init__(
         self,
