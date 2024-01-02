@@ -1,5 +1,7 @@
 ## Home Assistant sensor component/integration for waste collectors in the Netherlands
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/hacs/integration)
+
+![icon_mini](https://github.com/heyajohnny/afvalinfo/assets/20553716/b777f12e-8847-40a8-b5e7-4728378c0a92)
 ## Breaking changes for upgrading from v1.x.x to v2.x.x
 If you've just updated from v1.x.x to v2.x.x please remove the afvalinfo sensor from your configuration.yaml and follow [Installation step 2](#installation-step-2)
 
