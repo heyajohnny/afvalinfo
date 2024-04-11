@@ -67,7 +67,8 @@
 			}
 		},
 		"abort": {
-			"already_configured": "[%key:common::config_flow::abort::already_configured_service%]"
+			"already_configured": "[%key:common::config_flow::abort::already_configured_service%]",
+			"reconfigure_successful": "Re-configuratie gelukt"
 		},
 		"error": {
 			"cannot_connect": "[%key:common::config_flow::error::cannot_connect%]"

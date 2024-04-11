@@ -40,6 +40,9 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         ) -> ConfigFlowResult:
         entry = self.hass.config_entries.async_get_entry(self.context["entry_id"])
         assert entry
+        if user_input:
+            return self.async_update_reload_and_abort(entry, data=user_input, reason="reconfigure_successful")
+
         return await self._redo_configuration(entry.data)
 
     async def _redo_configuration(
@@ -70,7 +73,7 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             })
         })
         return self.async_show_form(
-                         step_id="user", data_schema=afvalinfo_schema)
+                         step_id="reconfigure", data_schema=afvalinfo_schema)
 
 
     async def async_step_user(self, info):
