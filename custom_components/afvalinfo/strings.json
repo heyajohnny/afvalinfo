@@ -1,8 +1,7 @@
 {
 	"entity": {
 		"sensor": {
-			
-			"afvalinfo_cleanprofsgft" : {
+			"afvalinfo_cleanprofsgft": {
 				"name": "Clean Profs GFT"
 			},
 			"afvalinfo_cleanprofspbd": {
@@ -22,16 +21,16 @@
 			},
 			"afvalinfo_kerstboom": {
 				"name": "Kerstboom"
-			},	
+			},
 			"afvalinfo_papier": {
 				"name": "Papier"
-			},	
+			},
 			"afvalinfo_pbd": {
 				"name": "PBD"
-			},	
+			},
 			"afvalinfo_restafval": {
 				"name": "Papier"
-			},	
+			},
 			"afvalinfo_takken": {
 				"name": "Takken"
 			},
@@ -47,10 +46,6 @@
 		}
 	},
 	"config": {
-		"abort": {
-	  		"already_configured": "[%key:common::config_flow::abort::already_configured_account%]",
-      			"reconfigure_successful": "[%key:common::config_flow::abort::reconfigure_successful%]"	  
-		},
 		"step": {
 			"user": {
 				"title": "Add new location",
@@ -73,26 +68,25 @@
 				}
 			},
 			"reconfigure": {
-                                "title": "Update existing location",
-                                "description": "Config flow for afvalinfo",
-                                "data": {
-                                        "city": "City",
-                                        "location": "Location",
-                                        "postcode": "Zip code",
-                                        "streetnumber": "House number",
-                                        "streetnumbersuffix": "House number suffix",
-                                        "district": "District",
-                                        "dateformat": "Date format",
-                                        "locale": "Locale",
-                                        "id": "Identifier",
-                                        "timespanindays": "Timespan in days",
-                                        "notrashtext": "No trash text",
-                                        "diftarcode": "Diftar code",
-                                        "getwholeyear": "Get whole year",
-                                        "sensors": "Sensors to activate"
-                                }
-                        }
-
+				"title": "Update existing location",
+				"description": "Config flow for afvalinfo",
+				"data": {
+					"city": "City",
+					"location": "Location",
+					"postcode": "Zip code",
+					"streetnumber": "House number",
+					"streetnumbersuffix": "House number suffix",
+					"district": "District",
+					"dateformat": "Date format",
+					"locale": "Locale",
+					"id": "Identifier",
+					"timespanindays": "Timespan in days",
+					"notrashtext": "No trash text",
+					"diftarcode": "Diftar code",
+					"getwholeyear": "Get whole year",
+					"sensors": "Sensors to activate"
+				}
+			}
 		},
 		"abort": {
 			"already_configured": "[%key:common::config_flow::abort::already_configured_service%]",

@@ -65,25 +65,25 @@
 					"sensors": "Sensors"
 				}
 			},
-                        "reconfigure": {
-                                "title": "Afvalinfo",
-                                "description": "Update exsting location",
-                                "data": {
-                                        "location": "Municipality",
-                                        "postcode": "Zip code",
-                                        "streetnumber": "House number",
-                                        "streetnumbersuffix": "House number suffix",
-                                        "district": "District",
-                                        "dateformat": "Date format",
-                                        "locale": "Locale",
-                                        "id": "Identifier",
-                                        "notrashtext": "No trash text",
-                                        "diftarcode": "Diftar code",
-                                        "getwholeyear": "Get data for the whole year?",
-                                        "sensors": "Sensors"
-                                }
-                        }
-                },
+			"reconfigure": {
+				"title": "Afvalinfo",
+				"description": "Update existing location",
+				"data": {
+					"location": "Municipality",
+					"postcode": "Zip code",
+					"streetnumber": "House number",
+					"streetnumbersuffix": "House number suffix",
+					"district": "District",
+					"dateformat": "Date format",
+					"locale": "Locale",
+					"id": "Identifier",
+					"notrashtext": "No trash text",
+					"diftarcode": "Diftar code",
+					"getwholeyear": "Get data for the whole year?",
+					"sensors": "Sensors"
+				}
+			}
+		},
 		"abort": {
 			"already_configured": "[%key:common::config_flow::abort::already_configured_service%]",
 			"reconfigure_successful": "Re-configuration was successful"
