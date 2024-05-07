@@ -48,7 +48,7 @@ The next step is to add afvalinfo sensors to your Home Assistant:
 
 4. Fill in the form with your address details (Zip code + House Number (+ House number suffix))
 
-(When you live in the municipality <strong>maassluis</strong> or <strong>ouder-amstel</strong> only fill in the Municipality + District and leave Zip code + House number + House number suffix empty. You can find the districts for <strong>ouder-amstel</strong> [here](#ouder-amstel) and the districts for <strong>maassluis</strong> [here](maassluis))
+(When you live in the municipality <strong>maassluis</strong> or <strong>ouder-amstel</strong> only fill in the Municipality + District and leave Zip code + House number + House number suffix empty. You can find the districts for <strong>ouder-amstel</strong> [here](#ouder-amstel) and the districts for <strong>maassluis</strong> [here](#maassluis))
 
 ![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/84c52c53-564a-4f40-abf4-a3a79d4f7759)
 
