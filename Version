@@ -198,3 +198,4 @@ version: 2.0.6  20231214 - Updated translations
 version: 2.0.7  20231214 - Updated translations
 version: 2.0.8  20231217 - Use friendly name of other sensors in the today and tomorrow sensors
 version: 2.1.0  20240428 - Update existing sensor is now available (so you don't need to delete and re-add it)
+version: 2.1.1  20240603 - Possible fix for ConfigFlowResults error

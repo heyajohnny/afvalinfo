@@ -49,13 +49,13 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.const import CONF_RESOURCES
 from homeassistant.util import Throttle
 from homeassistant.helpers.entity import Entity
-from homeassistant.config_entries import ConfigEntry
+from homeassistant import config_entries
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    config_entry: ConfigEntry,
+    config_entry: config_entries.ConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     config = config_entry.data

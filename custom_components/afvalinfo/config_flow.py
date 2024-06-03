@@ -9,9 +9,7 @@ from collections.abc import Mapping
 from homeassistant.helpers.selector import selector
 from homeassistant.helpers import config_validation as cv
 from homeassistant import config_entries
-from homeassistant.config_entries import (
-    ConfigFlowResult
-)
+
 from .const.const import (
     _LOGGER,
     DOMAIN,
@@ -37,7 +35,7 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_reconfigure(
                     self, user_input: Mapping[str, Any] | None = None
-                        ) -> ConfigFlowResult:
+                        ) -> config_entries.ConfigFlowResult:
         entry = self.hass.config_entries.async_get_entry(self.context["entry_id"])
         assert entry
         if user_input:
@@ -47,7 +45,7 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def _redo_configuration(
                     self, entry_data: Mapping[str, Any]
-                        ) -> ConfigFlowResult:
+                        ) -> config_entries.ConfigFlowResult:
 
         options = list(SENSOR_TYPES.keys())
         
