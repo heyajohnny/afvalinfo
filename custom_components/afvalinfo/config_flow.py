@@ -33,9 +33,7 @@ import voluptuous as vol
 class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 1
 
-    async def async_step_reconfigure(
-                    self, user_input: Mapping[str, Any] | None = None
-                        ) -> config_entries.ConfigFlowResult:
+    async def async_step_reconfigure(self, user_input: Mapping[str, Any] | None = None):
         entry = self.hass.config_entries.async_get_entry(self.context["entry_id"])
         assert entry
         if user_input:
@@ -43,19 +41,17 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         return await self._redo_configuration(entry.data)
 
-    async def _redo_configuration(
-                    self, entry_data: Mapping[str, Any]
-                        ) -> config_entries.ConfigFlowResult:
+    async def _redo_configuration(self, entry_data: Mapping[str, Any]):
 
         options = list(SENSOR_TYPES.keys())
-        
+
         afvalinfo_schema = vol.Schema({
         vol.Required(CONF_ID, default=entry_data[CONF_ID]): str,
         vol.Optional(CONF_POSTCODE, default=entry_data[CONF_POSTCODE] ): str,
         vol.Optional(CONF_STREET_NUMBER, default=entry_data[CONF_STREET_NUMBER] ): cv.positive_int,
         vol.Optional(CONF_STREET_NUMBER_SUFFIX, default=entry_data[CONF_STREET_NUMBER_SUFFIX]): str,
         vol.Optional(CONF_LOCATION, default=entry_data[CONF_LOCATION]): str,
-        
+
         vol.Optional(CONF_DISTRICT, default=entry_data[CONF_DISTRICT]): str,
         vol.Optional(CONF_DATE_FORMAT, default=entry_data[CONF_DATE_FORMAT]): str,
         vol.Optional(CONF_LOCALE, default=entry_data[CONF_LOCALE]): vol.In(["nl","en"]),
