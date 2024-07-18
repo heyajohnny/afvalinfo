@@ -22,7 +22,7 @@ SENSOR_TYPES = {
 
 SENSOR_LOCATIONS_TO_URL = {
     "trashapi": [
-        "http://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}&HouseNumberSuffix={3}&District={4}&DiftarCode={5}&ShowWholeYear={6}&GetCleanprofsData={7}"
+        "https://trashapi.azurewebsites.net/trash?Location={0}&ZipCode={1}&HouseNumber={2}&HouseNumberSuffix={3}&District={4}&DiftarCode={5}&ShowWholeYear={6}&GetCleanprofsData={7}"
     ]
 }
 
