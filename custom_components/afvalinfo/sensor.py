@@ -53,6 +53,11 @@ from homeassistant import config_entries
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
+async def async_format_date(hass, collection_date, half_babel_half_date, locale):
+    return await hass.async_add_executor_job(
+        format_date, collection_date, half_babel_half_date, locale
+    )
+
 async def async_setup_entry(
     hass: HomeAssistant,
     config_entry: config_entries.ConfigEntry,
@@ -366,10 +371,11 @@ class AfvalinfoSensor(Entity):
                                     r"(\d+)", r"'\1'", half_babel_half_date
                                 )
                                 # transform the EEE, EEEE etc... to a real locale date, with babel
-                                locale_date = format_date(
+                                locale_date = await async_format_date(
+                                    self.hass,
                                     collection_date,
                                     half_babel_half_date,
-                                    locale=self.locale,
+                                    self.locale,
                                 )
 
                                 self._state = locale_date
