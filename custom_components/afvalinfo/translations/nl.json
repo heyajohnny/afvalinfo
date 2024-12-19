@@ -99,11 +99,11 @@
 			}
 		},
 		"abort": {
-			"already_configured": "[%key:common::config_flow::abort::already_configured_service%]",
-			"reconfigure_successful": "Re-configuratie gelukt"
+			"already_configured": "Een sensor met deze naam (Locatie identificatie) bestaat al",
+			"reconfigure_successful": "Herconfiguratie gelukt"
 		},
 		"error": {
-			"cannot_connect": "[%key:common::config_flow::error::cannot_connect%]"
+			"cannot_connect": "Error: Kan geen verbinding maken"
 		}
 	},
 	"selector": {

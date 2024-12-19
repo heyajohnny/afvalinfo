@@ -99,11 +99,11 @@
 			}
 		},
 		"abort": {
-			"already_configured": "[%key:common::config_flow::abort::already_configured_service%]",
+			"already_configured": "A sensor with this name (Identifier) already exists",
 			"reconfigure_successful": "Re-configuration was successful"
 		},
 		"error": {
-			"cannot_connect": "[%key:common::config_flow::error::cannot_connect%]"
+			"cannot_connect": "Error: cannot connect"
 		}
 	},
 	"selector": {

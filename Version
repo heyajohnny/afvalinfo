@@ -203,3 +203,4 @@ version: 2.1.2  20240713 - Fix config entry setup warning
 version: 2.1.3  20240718 - http -> https
 version: 2.1.4  20240913 - format_date fix
 version: 2.1.5  20241208 - Added help text in config flow
+version: 2.1.6  20241219 - Updated help text
