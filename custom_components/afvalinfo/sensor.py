@@ -50,6 +50,7 @@ from homeassistant.helpers.entity import Entity
 from homeassistant import config_entries
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers import entity_registry as er
 
 
 async def async_format_date(hass, collection_date, half_babel_half_date, locale):
@@ -120,7 +121,7 @@ async def async_setup_entry(
     await data.async_update()
 
     entities = []
-    entity_registry = hass.helpers.entity_registry.async_get()
+    entity_registry = er.async_get(hass)
 
     for resource in config[CONF_ENABLED_SENSORS]:
         sensor_type = resource

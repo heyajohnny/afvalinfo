@@ -205,3 +205,4 @@ version: 2.1.4  20240913 - format_date fix
 version: 2.1.5  20241208 - Added help text in config flow
 version: 2.1.6  20241219 - Updated help text
 version: 2.1.7  20241229 - Fix for reconfiguring
+version: 2.1.8  20241229 - Deprecation warning fix
