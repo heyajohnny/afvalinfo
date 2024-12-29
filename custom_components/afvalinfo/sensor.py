@@ -13,6 +13,7 @@ from babel.dates import format_date, format_datetime, format_time
 import re
 
 from .const.const import (
+    DOMAIN,
     MIN_TIME_BETWEEN_UPDATES,
     _LOGGER,
     CONF_ENABLED_SENSORS,
@@ -62,6 +63,12 @@ async def async_setup_entry(
     config_entry: config_entries.ConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
+    # Store the entities for this entry_id
+    if DOMAIN not in hass.data:
+        hass.data[DOMAIN] = {}
+    if config_entry.entry_id not in hass.data[DOMAIN]:
+        hass.data[DOMAIN][config_entry.entry_id] = {}
+
     config = config_entry.data
 
     location = config.get(CONF_LOCATION).lower().strip()
@@ -113,6 +120,7 @@ async def async_setup_entry(
     await data.async_update()
 
     entities = []
+    entity_registry = hass.helpers.entity_registry.async_get()
 
     for resource in config[CONF_ENABLED_SENSORS]:
         sensor_type = resource
@@ -151,7 +159,33 @@ async def async_setup_entry(
             )
             entities.append(tomorrow)
 
+    # Create a list of entities to remove
+    entities_to_remove = []
+    for entity_id, entity in entity_registry.entities.items():
+        if entity.config_entry_id == config_entry.entry_id:
+            # Extract sensor type from entity_id
+            sensor_type = (
+                entity.unique_id.replace(SENSOR_PREFIX, "")
+                .replace(f"{id_name} ", "")
+                .strip()
+            )
+            if sensor_type not in config[CONF_ENABLED_SENSORS]:
+                _LOGGER.debug(
+                    f"Marking entity {entity_id} for removal as it's no longer enabled"
+                )
+                entities_to_remove.append(entity_id)
+
+    # Remove the entities in a separate loop
+    for entity_id in entities_to_remove:
+        _LOGGER.debug(f"Removing entity {entity_id}")
+        entity_registry.async_remove(entity_id)
+
     async_add_entities(entities)
+
+    # Store the list of enabled sensors for future reference
+    hass.data[DOMAIN][config_entry.entry_id]["enabled_sensors"] = config[
+        CONF_ENABLED_SENSORS
+    ]
 
 
 class AfvalinfoData(object):

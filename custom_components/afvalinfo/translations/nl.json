@@ -68,7 +68,7 @@
 					"id": "Unieke naam voor de sensor",
 					"district": "Wanneer je in de gemeente Maassluis of Ouder-Amstel woont, vul dan alleen de Gemeente + Buurt in en laat Postcode + Huisnummer + Huisnummer toevoeging leeg. Je kunt de buurten voor Ouder-Amstel [hier](https://github.com/heyajohnny/afvalinfo/blob/master/README.md#ouder-amstel) vinden en de buurten voor Maassluis [hier](https://github.com/heyajohnny/afvalinfo/blob/master/README.md#maassluis).",
 					"dateformat": "Als je de manier waarop de datum wordt weergegeven wilt aanpassen, kun je dit doen met de dateformat-optie. Alle [python strftime-opties](https://strftime.org/) zouden moeten werken. Standaard is '%d-%m-%Y'.",
-					"locale": "Met locale kun je de datum in elke gewenste taal presenteren (dit werkt alleen voor de dag van de week (%a of %A) en de naam van de maand (%b of %B)). [Hier](https://www.localeplanet.com/icu/iso639.html) is een lijst van locales.",
+					"locale": "Met locale kun je de datum in elke gewenste taal presenteren (dit werkt alleen voor de dag van de week (%a of %A) en de naam van de maand (%b of %B)).",
 					"diftarcode": "Als jouw locatie diftar ondersteunt, kun je een diftarcode opgeven."
 				}
 			},
@@ -93,7 +93,7 @@
 					"id": "Unieke naam voor de sensor",
 					"district": "Wanneer je in de gemeente Maassluis of Ouder-Amstel woont, vul dan alleen de Gemeente + Buurt in en laat Postcode + Huisnummer + Huisnummer toevoeging leeg. Je kunt de buurten voor Ouder-Amstel [hier](https://github.com/heyajohnny/afvalinfo/blob/master/README.md#ouder-amstel) vinden en de buurten voor Maassluis [hier](https://github.com/heyajohnny/afvalinfo/blob/master/README.md#maassluis).",
 					"dateformat": "Als je de manier waarop de datum wordt weergegeven wilt aanpassen, kun je dit doen met de dateformat-optie. Alle [python strftime-opties](https://strftime.org/) zouden moeten werken. Standaard is '%d-%m-%Y'.",
-					"locale": "Met locale kun je de datum in elke gewenste taal presenteren (dit werkt alleen voor de dag van de week (%a of %A) en de naam van de maand (%b of %B)). [Hier](https://www.localeplanet.com/icu/iso639.html) is een lijst van locales.",
+					"locale": "Met locale kun je de datum in elke gewenste taal presenteren (dit werkt alleen voor de dag van de week (%a of %A) en de naam van de maand (%b of %B)).",
 					"diftarcode": "Als jouw locatie diftar ondersteunt, kun je een diftarcode opgeven."
 				}
 			}
@@ -103,7 +103,8 @@
 			"reconfigure_successful": "Herconfiguratie gelukt"
 		},
 		"error": {
-			"cannot_connect": "Error: Kan geen verbinding maken"
+			"cannot_connect": "Error: Kan geen verbinding maken",
+			"no_sensors_selected": "Selecteer minimaal 1 sensor"
 		}
 	},
 	"selector": {

@@ -103,7 +103,8 @@
 			"reconfigure_successful": "Re-configuration was successful"
 		},
 		"error": {
-			"cannot_connect": "Error: cannot connect"
+			"cannot_connect": "Error: cannot connect",
+			"no_sensors_selected": "Please select at least one sensor"
 		}
 	},
 	"selector": {
