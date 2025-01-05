@@ -42,19 +42,44 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
             try:
+                # First try to unload the entry
+                if not await self.hass.config_entries.async_unload(entry.entry_id):
+                    _LOGGER.error("Failed to unload entry")
+                    return self.async_abort(reason="cannot_unload")
+
+                # Convert Mapping to dict to make it mutable
+                user_input = dict(user_input)
+
+                # Ensure empty strings are preserved for these optional properties
+                if CONF_POSTCODE not in user_input:
+                    user_input[CONF_POSTCODE] = ""
+                if CONF_STREET_NUMBER not in user_input:
+                    user_input[CONF_STREET_NUMBER] = ""
+                if CONF_STREET_NUMBER_SUFFIX not in user_input:
+                    user_input[CONF_STREET_NUMBER_SUFFIX] = ""
+                if CONF_LOCATION not in user_input:
+                    user_input[CONF_LOCATION] = ""
+                if CONF_DISTRICT not in user_input:
+                    user_input[CONF_DISTRICT] = ""
+                if CONF_NO_TRASH_TEXT not in user_input:
+                    user_input[CONF_NO_TRASH_TEXT] = ""
+                if CONF_DIFTAR_CODE not in user_input:
+                    user_input[CONF_DIFTAR_CODE] = ""
+
                 # Validate that at least one sensor is selected
                 if not user_input.get(CONF_ENABLED_SENSORS):
                     return await self._redo_configuration(
                         entry.data, errors={"base": "no_sensors_selected"}
                     )
 
-                # First try to unload the entry
-                if not await self.hass.config_entries.async_unload(entry.entry_id):
-                    _LOGGER.error("Failed to unload entry")
-                    return self.async_abort(reason="cannot_unload")
+                # Create new data combining old entry data with new user input
+                new_data = {**entry.data, **user_input}
 
-                # Then update it
-                self.hass.config_entries.async_update_entry(entry, data=user_input)
+                # Then update it with cleaned input
+                self.hass.config_entries.async_update_entry(
+                    entry,
+                    data=new_data,
+                )
 
                 # Finally reload it
                 await self.hass.config_entries.async_reload(entry.entry_id)
@@ -72,16 +97,30 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         afvalinfo_schema = vol.Schema(
             {
                 vol.Required(CONF_ID, default=entry_data[CONF_ID]): str,
-                vol.Optional(CONF_POSTCODE, default=entry_data[CONF_POSTCODE]): str,
                 vol.Optional(
-                    CONF_STREET_NUMBER, default=entry_data[CONF_STREET_NUMBER]
+                    CONF_POSTCODE,
+                    description={"suggested_value": entry_data.get(CONF_POSTCODE, "")},
+                ): str,
+                vol.Optional(
+                    CONF_STREET_NUMBER,
+                    description={
+                        "suggested_value": entry_data.get(CONF_STREET_NUMBER, "")
+                    },
                 ): cv.positive_int,
                 vol.Optional(
                     CONF_STREET_NUMBER_SUFFIX,
-                    default=entry_data[CONF_STREET_NUMBER_SUFFIX],
+                    description={
+                        "suggested_value": entry_data.get(CONF_STREET_NUMBER_SUFFIX, "")
+                    },
                 ): str,
-                vol.Optional(CONF_LOCATION, default=entry_data[CONF_LOCATION]): str,
-                vol.Optional(CONF_DISTRICT, default=entry_data[CONF_DISTRICT]): str,
+                vol.Optional(
+                    CONF_LOCATION,
+                    description={"suggested_value": entry_data.get(CONF_LOCATION, "")},
+                ): str,
+                vol.Optional(
+                    CONF_DISTRICT,
+                    description={"suggested_value": entry_data.get(CONF_DISTRICT, "")},
+                ): str,
                 vol.Optional(
                     CONF_DATE_FORMAT, default=entry_data[CONF_DATE_FORMAT]
                 ): str,
@@ -89,10 +128,16 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     ["nl", "en"]
                 ),
                 vol.Optional(
-                    CONF_NO_TRASH_TEXT, default=entry_data[CONF_NO_TRASH_TEXT]
+                    CONF_NO_TRASH_TEXT,
+                    description={
+                        "suggested_value": entry_data.get(CONF_NO_TRASH_TEXT, "")
+                    },
                 ): str,
                 vol.Optional(
-                    CONF_DIFTAR_CODE, default=entry_data[CONF_DIFTAR_CODE]
+                    CONF_DIFTAR_CODE,
+                    description={
+                        "suggested_value": entry_data.get(CONF_DIFTAR_CODE, "")
+                    },
                 ): str,
                 vol.Optional(
                     CONF_GET_WHOLE_YEAR, default=entry_data[CONF_GET_WHOLE_YEAR]
