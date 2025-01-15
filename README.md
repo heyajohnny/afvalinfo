@@ -149,32 +149,34 @@ If your location supports diftar and you've specified a diftarcode, these attrib
 Example for usage of attributes.
 This example creates a new sensor with the attribute value 'days_until_collection_date' of the sensor 'sensor.afvalinfo_papier':
 ```yaml
-- platform: template
-    sensors:
-      paper_days_until_collection:
-        value_template: "{{ state_attr('sensor.afvalinfo_home_papier', 'days_until_collection_date') }}"
+template:
+  sensor:
+    - name: Days until paper collection
+      unique_id: paper_days_until_collection
+      state: "{{ state_attr('sensor.afvalinfo_home_papier', 'days_until_collection_date') }}"
 ```
 
 And another template example to only show the first upcoming trashtype and pickup date (Special thanks to <a href="https://github.com/jaydouble" target="_blank">jaydouble</a>)
 ```yaml
-- platform: template
-  sensors:
-    afvalinfo_home_next_trash_type_and_date:
-      value_template: >
+template:
+  sensor:
+    - name: Afval info volgende inzameling en datum
+      unique_id: afvalinfo_home_next_trash_type_and_date
+      state: >-
         {% set ns = namespace(minimum=365) %}
-        {% set list = ['groente_fruit_en_tuinafval', 'kerstboom', 'plastic_blik_en_drankkartons', 'papier', 'restafval', 'takken', 'textiel'] %}
-        {% set friendly_list = ['Groente Fruit en Tuinafval', 'Kerstboom', 'Plastic Blik en Drankkartons', 'Papier', 'Restafval', 'Takken', 'Oude Kleding'] %}
+        {% set list = ['gft', 'pbd', 'papier', 'restafval'] %}
+        {% set friendly_list = ['GFT', 'PBD', 'Oud Papier', 'Restafval'] %}
         {%- for l in list %}
-        {%- set days = state_attr('sensor.afvalinfo_home_' ~l, 'days_until_collection_date')%}
-        {%- if days != None and days < ns.minimum %}
-        {%- set ns.minimum = days %}
-        {%- endif %}
+          {%- set days = state_attr('sensor.afvalinfo_home_' ~l, 'days_until_collection_date')%}
+          {%- if days != None and days < ns.minimum %}
+            {%- set ns.minimum = days %}
+          {%- endif %}
         {%- endfor %}
         {%- for l in list %}
-        {%- set days = state_attr('sensor.afvalinfo_home_' ~l, 'days_until_collection_date')%}
-        {%- if days == ns.minimum %}
-        {{friendly_list[loop.index0]}} · {{ states('sensor.afvalinfo_home_' ~l) }}
-        {%- endif %}
+          {%- set days = state_attr('sensor.afvalinfo_home_' ~l, 'days_until_collection_date')%}
+          {%- if days == ns.minimum %}
+            {{friendly_list[loop.index0]}} · {{ states('sensor.afvalinfo_home_' ~l) }}
+          {%- endif %}
         {%- endfor %}
 ```
 
