@@ -164,8 +164,8 @@ template:
       unique_id: afvalinfo_home_next_trash_type_and_date
       state: >-
         {% set ns = namespace(minimum=365) %}
-        {% set list = ['gft', 'pbd', 'papier', 'restafval'] %}
-        {% set friendly_list = ['GFT', 'PBD', 'Oud Papier', 'Restafval'] %}
+        {% set list = ['groente_fruit_en_tuinafval', 'kerstboom', 'plastic_blik_en_drankkartons', 'papier', 'restafval', 'takken', 'textiel'] %}
+        {% set friendly_list = ['Groente Fruit en Tuinafval', 'Kerstboom', 'Plastic Blik en Drankkartons', 'Papier', 'Restafval', 'Takken', 'Oude Kleding'] %}
         {%- for l in list %}
           {%- set days = state_attr('sensor.afvalinfo_home_' ~l, 'days_until_collection_date')%}
           {%- if days != None and days < ns.minimum %}
