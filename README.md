@@ -23,7 +23,7 @@ Please also take a look at the <a href="https://play.google.com/store/apps/detai
 #### Not supported gemeenten in the Netherlands
 
 ```
-"edam-volendam", "haaksbergen", "oegstgeest", "oostzaan", "schiermonnikoog", "texel", "vlieland", "weert"
+"haaksbergen", "oegstgeest", "schiermonnikoog", "terneuzen", "texel", "vlieland", "weert"
 ```
 
 ### Important Info
