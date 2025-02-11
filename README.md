@@ -17,9 +17,6 @@ If you like my work, please buy me a coffee or donate some crypto currencies. Th
 <img width="164px" alt="ada" src="https://user-images.githubusercontent.com/20553716/210132510-b1106b55-c9e3-413d-b8e0-26ba4e24a5de.png">
 </details>
 
-Please also take a look at the <a href="https://play.google.com/store/apps/details?id=com.viezegeitafval" target="_blank">Vieze Geit</a> Android app for trash pickup dates on your Android device.
-<a href="https://play.google.com/store/apps/details?id=com.viezegeitafval" target="_blank"></a>
-
 #### Not supported gemeenten in the Netherlands
 
 ```
