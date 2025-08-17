@@ -113,12 +113,15 @@ async def async_setup_entry(
         street_number_suffix,
         district,
         diftar_code,
-        get_whole_year,
+        True,  # get_whole_year altijd True
         resourcesMinusTodayAndTomorrow,
         get_cleanprofs_data,
     )
 
     await data.async_update()
+
+    # Sla het data object op zodat de calendar het kan hergebruiken
+    hass.data[DOMAIN][config_entry.entry_id]["data"] = data
 
     entities = []
     entity_registry = er.async_get(hass)

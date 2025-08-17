@@ -61,8 +61,8 @@
 					"id": "Identifier",
 					"notrashtext": "No trash text",
 					"diftarcode": "Diftar code",
-					"getwholeyear": "Get data for the whole year?",
-					"sensors": "Sensors"
+					"sensors": "Sensors",
+					"calendar": "Add calendar entity (adds a calendar with all waste collection dates as events)"
 				},
 				"data_description": {
 					"id": "Unique name for the sensor",
@@ -86,8 +86,8 @@
 					"id": "Identifier",
 					"notrashtext": "No trash text",
 					"diftarcode": "Diftar code",
-					"getwholeyear": "Get data for the whole year?",
-					"sensors": "Sensors"
+					"sensors": "Sensors",
+					"calendar": "Add calendar entity (adds a calendar with all waste collection dates as events)"
 				},
 				"data_description": {
 					"id": "Unique name for the sensor",

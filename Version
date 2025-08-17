@@ -207,3 +207,4 @@ version: 2.1.6  20241219 - Updated help text
 version: 2.1.7  20241229 - Fix for reconfiguring
 version: 2.1.8  20241229 - Deprecation warning fix
 version: 2.1.9  20250105 - Fix for reconfiguring optional parameters
+version: 2.2.0  20250817 - Added calendar support
