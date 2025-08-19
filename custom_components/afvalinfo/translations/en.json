@@ -62,14 +62,16 @@
 					"notrashtext": "No trash text",
 					"diftarcode": "Diftar code",
 					"sensors": "Sensors",
-					"calendar": "Add calendar entity (adds a calendar with all waste collection dates as events)"
+					"calendar": "Add calendar entity (adds a calendar with all waste collection dates as events)",
+					"calendar_start_time": "Calendar start time"
 				},
 				"data_description": {
 					"id": "Unique name for the sensor",
 					"district": "When you live in the municipality of Maassluis or Ouder-Amstel, only fill in the Municipality + District and leave Zip code + House number + House number suffix empty. You can find the districts for Ouder-Amstel [here](https://github.com/heyajohnny/afvalinfo/blob/master/README.md#ouder-amstel) and the districts for Maassluis [here](https://github.com/heyajohnny/afvalinfo/blob/master/README.md#maassluis).",
 					"dateformat": "If you want to adjust the way the date is presented, you can do it using the dateformat option. All [python strftime options](https://strftime.org/) should work. Default is '%d-%m-%Y'.",
 					"locale": "With locale, you can present the date in any language you want (this only works for the day of the week (%a or %A) and the name of the month (%b or %B)). [Here](https://www.localeplanet.com/icu/iso639.html) is a list of locales.",
-					"diftarcode": "If your location supports diftar, you can specify a diftarcode."
+					"diftarcode": "If your location supports diftar, you can specify a diftarcode.",
+					"calendar_start_time": "Start time of the calendar items"
 				}
 			},
 			"reconfigure": {
@@ -87,14 +89,16 @@
 					"notrashtext": "No trash text",
 					"diftarcode": "Diftar code",
 					"sensors": "Sensors",
-					"calendar": "Add calendar entity (adds a calendar with all waste collection dates as events)"
+					"calendar": "Add calendar entity (adds a calendar with all waste collection dates as events)",
+					"calendar_start_time": "Calendar start time"
 				},
 				"data_description": {
 					"id": "Unique name for the sensor",
 					"district": "When you live in the municipality of Maassluis or Ouder-Amstel, only fill in the Municipality + District and leave Zip code + House number + House number suffix empty. You can find the districts for Ouder-Amstel [here](https://github.com/heyajohnny/afvalinfo/blob/master/README.md#ouder-amstel) and the districts for Maassluis [here](https://github.com/heyajohnny/afvalinfo/blob/master/README.md#maassluis).",
 					"dateformat": "If you want to adjust the way the date is presented, you can do it using the dateformat option. All [python strftime options](https://strftime.org/) should work. Default is '%d-%m-%Y'.",
 					"locale": "With locale, you can present the date in any language you want (this only works for the day of the week (%a or %A) and the name of the month (%b or %B)). [Here](https://www.localeplanet.com/icu/iso639.html) is a list of locales.",
-					"diftarcode": "If your location supports diftar, you can specify a diftarcode."
+					"diftarcode": "If your location supports diftar, you can specify a diftarcode.",
+					"calendar_start_time": "Start time of the calendar items"
 				}
 			}
 		},
@@ -104,7 +108,9 @@
 		},
 		"error": {
 			"cannot_connect": "Error: cannot connect",
-			"no_sensors_selected": "Please select at least one sensor"
+			"no_sensors_selected": "Please select at least one sensor",
+			"reconfigure_failed": "Re-configuration failed",
+			"no_sensors_or_calendar_selected": "Please select at least one sensor or enable the calendar"
 		}
 	},
 	"selector": {

@@ -27,6 +27,7 @@ from .const.const import (
     CONF_DIFTAR_CODE,
     CONF_LOCALE,
     CONF_ID,
+    CONF_CALENDAR_START_TIME,
 )
 
 import voluptuous as vol
@@ -67,6 +68,8 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     user_input[CONF_NO_TRASH_TEXT] = ""
                 if CONF_DIFTAR_CODE not in user_input:
                     user_input[CONF_DIFTAR_CODE] = ""
+                if CONF_CALENDAR_START_TIME not in user_input:
+                    user_input[CONF_CALENDAR_START_TIME] = "20:00"
 
                 # Validate that at least one sensor is selected
                 if not user_input.get(CONF_ENABLED_SENSORS) and not user_input.get(
@@ -85,13 +88,17 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     data=new_data,
                 )
 
-                # Finally reload it
-                await self.hass.config_entries.async_reload(entry.entry_id)
+                # Finally reload it using our custom reload function
+                from . import async_reload_entry
+
+                await async_reload_entry(self.hass, entry)
                 return self.async_abort(reason="reconfigure_successful")
 
             except Exception as ex:
-                _LOGGER.error("Error reconfiguring entry: %s", ex)
-                return self.async_abort(reason="reconfigure_failed")
+                _LOGGER.error("Error reconfiguring entry %s: %s", entry.entry_id, ex)
+                return await self._redo_configuration(
+                    entry.data, errors={"base": "reconfigure_failed"}
+                )
 
         return await self._redo_configuration(entry.data)
 
@@ -158,6 +165,10 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     CONF_CALENDAR,
                     default=entry_data.get(CONF_CALENDAR, False),
                 ): bool,
+                vol.Optional(
+                    CONF_CALENDAR_START_TIME,
+                    default=entry_data.get(CONF_CALENDAR_START_TIME, "20:00"),
+                ): str,
             }
         )
         return self.async_show_form(
@@ -207,6 +218,10 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     CONF_CALENDAR,
                     default=info.get(CONF_CALENDAR, False) if info else False,
                 ): bool,
+                vol.Optional(
+                    CONF_CALENDAR_START_TIME,
+                    default="20:00",
+                ): str,
             }
         )
 
