@@ -211,9 +211,11 @@ async def async_reload_entry(
     # Force Home Assistant to process the unload before reloading
     await hass.async_block_till_done()
 
-    # Now reload the entry
+    # Now reload the entry by using the config_entries API to properly reload
     try:
-        await async_setup_entry(hass, entry)
+        # Use the proper reload method instead of calling async_setup_entry directly
+        # This ensures the config entry state is properly managed
+        await hass.config_entries.async_reload(entry.entry_id)
         _LOGGER.info("Successfully reloaded entry %s", entry.entry_id)
 
         # Force Home Assistant to process the new setup
@@ -224,16 +226,46 @@ async def async_reload_entry(
 
     except Exception as e:
         _LOGGER.error("Failed to reload entry %s: %s", entry.entry_id, e)
-        # Try to recover by setting up at least the sensors
+        # Try to recover by doing a manual setup of the entry
         try:
+            # First ensure the entry is properly initialized in hass.data
+            hass.data.setdefault(DOMAIN, {})
+            hass.data[DOMAIN].setdefault("setup_time", {})
+            hass.data[DOMAIN][entry.entry_id] = {
+                "entry": entry,
+                "platforms_loaded": [],
+            }
+
+            # Then manually setup the platforms
             if Platform.SENSOR in platforms_to_unload:
-                await hass.config_entries.async_forward_entry_setups(
-                    entry, [Platform.SENSOR]
-                )
-                _LOGGER.info(
-                    "Recovered sensors for entry %s after reload failure",
-                    entry.entry_id,
-                )
+                try:
+                    await hass.config_entries.async_forward_entry_setups(
+                        entry, [Platform.SENSOR]
+                    )
+                    _LOGGER.info(
+                        "Recovered sensors for entry %s after reload failure",
+                        entry.entry_id,
+                    )
+                except Exception as setups_e:
+                    # Fallback to old API if new API fails due to state issues
+                    _LOGGER.warning(
+                        "async_forward_entry_setups failed, trying async_forward_entry_setup: %s",
+                        setups_e,
+                    )
+                    try:
+                        await hass.config_entries.async_forward_entry_setup(
+                            entry, Platform.SENSOR
+                        )
+                        _LOGGER.info(
+                            "Recovered sensors using fallback API for entry %s",
+                            entry.entry_id,
+                        )
+                    except Exception as fallback_e:
+                        _LOGGER.error(
+                            "Both setup methods failed for entry %s: %s",
+                            entry.entry_id,
+                            fallback_e,
+                        )
         except Exception as recovery_e:
             _LOGGER.error(
                 "Failed to recover sensors for entry %s: %s",
