@@ -56,7 +56,9 @@ async def async_setup_entry(
     sensors_loaded = False
     if Platform.SENSOR in platforms:
         try:
-            await hass.config_entries.async_forward_entry_setup(entry, Platform.SENSOR)
+            await hass.config_entries.async_forward_entry_setups(
+                entry, [Platform.SENSOR]
+            )
             _LOGGER.info("Sensors loaded successfully for entry: %s", entry.entry_id)
             sensors_loaded = True
             hass.data[DOMAIN][entry.entry_id]["platforms_loaded"].append(
@@ -73,8 +75,8 @@ async def async_setup_entry(
     calendar_loaded = False
     if Platform.CALENDAR in platforms:
         try:
-            await hass.config_entries.async_forward_entry_setup(
-                entry, Platform.CALENDAR
+            await hass.config_entries.async_forward_entry_setups(
+                entry, [Platform.CALENDAR]
             )
             _LOGGER.info("Calendar loaded successfully for entry: %s", entry.entry_id)
             calendar_loaded = True
@@ -202,7 +204,8 @@ async def async_reload_entry(
                 e,
             )
 
-    # Wait a moment to ensure cleanup is complete and Home Assistant processes the unload
+    # Wait a moment to ensure cleanup is complete and Home Assistant
+    # processes the unload
     await asyncio.sleep(0.5)
 
     # Force Home Assistant to process the unload before reloading
@@ -224,8 +227,8 @@ async def async_reload_entry(
         # Try to recover by setting up at least the sensors
         try:
             if Platform.SENSOR in platforms_to_unload:
-                await hass.config_entries.async_forward_entry_setup(
-                    entry, Platform.SENSOR
+                await hass.config_entries.async_forward_entry_setups(
+                    entry, [Platform.SENSOR]
                 )
                 _LOGGER.info(
                     "Recovered sensors for entry %s after reload failure",

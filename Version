@@ -210,3 +210,4 @@ version: 2.1.9  20250105 - Fix for reconfiguring optional parameters
 version: 2.2.0  20250817 - Added calendar support
 version: 2.2.1  20250819 - Added configuration option for calendar start time
 version: 2.2.2  20250822 - Fix for reconfiguration / reloading
+version: 2.2.3  20250822 - Fix for deprecated async_forward_entry_setup
