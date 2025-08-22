@@ -3,6 +3,7 @@ from .const.const import _LOGGER, DOMAIN
 from homeassistant import config_entries
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
+import asyncio
 
 PLATFORMS = [Platform.SENSOR, Platform.CALENDAR]
 
@@ -32,10 +33,18 @@ async def async_setup_entry(
             entry.entry_id,
         )
 
-    # Load platforms
-    await hass.config_entries.async_forward_entry_setups(
-        entry, [p.value for p in platforms]
-    )
+    # Load sensors first if present
+    if Platform.SENSOR in platforms:
+        await hass.config_entries.async_forward_entry_setup(entry, Platform.SENSOR)
+        _LOGGER.info("Sensors loaded for entry: %s", entry.entry_id)
+
+        # Wait a moment for sensors to initialize and create data
+        await asyncio.sleep(0.5)
+
+    # Load calendar after sensors if present
+    if Platform.CALENDAR in platforms:
+        await hass.config_entries.async_forward_entry_setup(entry, Platform.CALENDAR)
+        _LOGGER.info("Calendar loaded for entry: %s", entry.entry_id)
 
     _LOGGER.info(
         "Successfully loaded platforms for %s: %s",

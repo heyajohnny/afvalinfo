@@ -25,7 +25,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
         # Wacht tot de sensor het data object heeft aangemaakt
         data = None
-        for attempt in range(50):  # max 5 seconden wachten
+        for attempt in range(20):  # max 2 seconden wachten (verlaagd van 50 naar 20)
             data = hass.data.get(DOMAIN, {}).get(config_entry.entry_id, {}).get("data")
             if data is not None:
                 _LOGGER.info(
@@ -38,7 +38,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         else:
             # Alleen foutmelding als het echt niet lukt
             _LOGGER.error(
-                "[afvalinfo.calendar] No data object found after 50 attempts for entry: %s",
+                "[afvalinfo.calendar] No data object found after 20 attempts for entry: %s",
                 config_entry.entry_id,
             )
             return
@@ -76,9 +76,12 @@ class AfvalinfoCalendarEntity(CalendarEntity):
         self.calendar_start_time = calendar_start_time
 
     async def async_added_to_hass(self):
+        """Called when entity is added to hass."""
         await self.async_update()
-        # Force Home Assistant to recognize the calendar entity
+        # Force Home Assistant to recognize the calendar entity immediately
         self.async_write_ha_state()
+        # Trigger a state refresh to ensure UI updates
+        self.async_schedule_update_ha_state(True)
 
     @property
     def name(self):
