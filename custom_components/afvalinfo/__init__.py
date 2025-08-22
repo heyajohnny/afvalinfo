@@ -70,7 +70,40 @@ async def async_unload_entry(
     """Unload a config entry."""
     _LOGGER.info("Unloading Afvalinfo entry: %s", entry.entry_id)
 
-    unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
+    # Determine which platforms were actually loaded for this entry
+    platforms_to_unload = []
+    if entry.data.get("sensors", []):
+        platforms_to_unload.append(Platform.SENSOR)
+
+    if entry.data.get("calendar", False):
+        platforms_to_unload.append(Platform.CALENDAR)
+
+    # Fallback to sensor if no platforms were specified
+    if not platforms_to_unload:
+        platforms_to_unload = [Platform.SENSOR]
+
+    # Unload platforms individually to avoid "never loaded" errors
+    unload_ok = True
+    for platform in platforms_to_unload:
+        try:
+            platform_unload_ok = await hass.config_entries.async_unload_platforms(
+                entry, [platform]
+            )
+            if not platform_unload_ok:
+                unload_ok = False
+                _LOGGER.warning(
+                    "Failed to unload platform %s for entry %s",
+                    platform,
+                    entry.entry_id,
+                )
+        except Exception as e:
+            _LOGGER.warning(
+                "Error unloading platform %s for entry %s: %s",
+                platform,
+                entry.entry_id,
+                e,
+            )
+            unload_ok = False
 
     if unload_ok and DOMAIN in hass.data and entry.entry_id in hass.data[DOMAIN]:
         hass.data[DOMAIN].pop(entry.entry_id, None)
@@ -84,8 +117,29 @@ async def async_reload_entry(
     """Reload a config entry."""
     _LOGGER.info("Reloading Afvalinfo entry: %s", entry.entry_id)
 
-    # Unload and reload
-    await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
+    # Determine which platforms were actually loaded for this entry
+    platforms_to_unload = []
+    if entry.data.get("sensors", []):
+        platforms_to_unload.append(Platform.SENSOR)
+
+    if entry.data.get("calendar", False):
+        platforms_to_unload.append(Platform.CALENDAR)
+
+    # Fallback to sensor if no platforms were specified
+    if not platforms_to_unload:
+        platforms_to_unload = [Platform.SENSOR]
+
+    # Unload platforms individually to avoid "never loaded" errors
+    for platform in platforms_to_unload:
+        try:
+            await hass.config_entries.async_unload_platforms(entry, [platform])
+        except Exception as e:
+            _LOGGER.warning(
+                "Error unloading platform %s for entry %s during reload: %s",
+                platform,
+                entry.entry_id,
+                e,
+            )
 
     if DOMAIN in hass.data and entry.entry_id in hass.data[DOMAIN]:
         hass.data[DOMAIN].pop(entry.entry_id, None)
