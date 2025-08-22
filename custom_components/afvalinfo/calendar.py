@@ -77,6 +77,8 @@ class AfvalinfoCalendarEntity(CalendarEntity):
 
     async def async_added_to_hass(self):
         await self.async_update()
+        # Force Home Assistant to recognize the calendar entity
+        self.async_write_ha_state()
 
     @property
     def name(self):
