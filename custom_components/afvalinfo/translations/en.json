@@ -63,7 +63,8 @@
 					"diftarcode": "Diftar code",
 					"sensors": "Sensors",
 					"calendar": "Add calendar entity (adds a calendar with all waste collection dates as events)",
-					"calendar_start_time": "Calendar start time"
+					"calendar_start_time": "Calendar start time",
+					"calendar_all_day": "Calendar items for the entire day. (When enabled, calendar start time is ignored)"
 				},
 				"data_description": {
 					"id": "Unique name for the sensor",
@@ -90,7 +91,8 @@
 					"diftarcode": "Diftar code",
 					"sensors": "Sensors",
 					"calendar": "Add calendar entity (adds a calendar with all waste collection dates as events)",
-					"calendar_start_time": "Calendar start time"
+					"calendar_start_time": "Calendar start time",
+					"calendar_all_day": "Calendar items for the entire day. (When enabled, calendar start time is ignored)"
 				},
 				"data_description": {
 					"id": "Unique name for the sensor",

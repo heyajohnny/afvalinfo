@@ -28,6 +28,7 @@ from .const.const import (
     CONF_LOCALE,
     CONF_ID,
     CONF_CALENDAR_START_TIME,
+    CONF_CALENDAR_ALL_DAY,
 )
 
 import voluptuous as vol
@@ -70,6 +71,8 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     user_input[CONF_DIFTAR_CODE] = ""
                 if CONF_CALENDAR_START_TIME not in user_input:
                     user_input[CONF_CALENDAR_START_TIME] = "20:00"
+                if CONF_CALENDAR_ALL_DAY not in user_input:
+                    user_input[CONF_CALENDAR_ALL_DAY] = False
 
                 # Validate that at least one sensor is selected
                 if not user_input.get(CONF_ENABLED_SENSORS) and not user_input.get(
@@ -166,6 +169,10 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     default=entry_data.get(CONF_CALENDAR, False),
                 ): bool,
                 vol.Optional(
+                    CONF_CALENDAR_ALL_DAY,
+                    default=entry_data.get(CONF_CALENDAR_ALL_DAY, False),
+                ): bool,
+                vol.Optional(
                     CONF_CALENDAR_START_TIME,
                     default=entry_data.get(CONF_CALENDAR_START_TIME, "20:00"),
                 ): str,
@@ -219,10 +226,13 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     default=info.get(CONF_CALENDAR, False) if info else False,
                 ): bool,
                 vol.Optional(
+                    CONF_CALENDAR_ALL_DAY,
+                    default=info.get(CONF_CALENDAR_ALL_DAY, False) if info else False,
+                ): bool,
+                vol.Optional(
                     CONF_CALENDAR_START_TIME,
                     default="20:00",
                 ): str,
             }
         )
-
         return self.async_show_form(step_id="user", data_schema=self.afvalinfo_schema)

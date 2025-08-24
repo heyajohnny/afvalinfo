@@ -63,7 +63,8 @@
 					"diftarcode": "Diftar code",
 					"sensors": "Sensoren",
 					"calendar": "Kalender entity toevoegen (voegt een kalender toe met alle afvalophaaldata als events)",
-					"calendar_start_time": "Kalender starttijd"
+					"calendar_start_time": "Kalender starttijd",
+					"calendar_all_day": "Kalender items voor de gehele dag. (Indien ingeschakeld, wordt kalender starttijd genegeerd)"
 				},
 				"data_description": {
 					"id": "Unieke naam voor de sensor",
@@ -90,7 +91,8 @@
 					"diftarcode": "Diftar code",
 					"sensors": "Sensoren",
 					"calendar": "Kalender entity toevoegen (voegt een kalender toe met alle afvalophaaldata als events)",
-					"calendar_start_time": "Kalender starttijd"
+					"calendar_start_time": "Kalender starttijd",
+					"calendar_all_day": "Kalender items voor de gehele dag. (Indien ingeschakeld, wordt kalender starttijd genegeerd)"
 				},
 				"data_description": {
 					"id": "Unieke naam voor de sensor",
