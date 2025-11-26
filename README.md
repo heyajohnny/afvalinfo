@@ -181,4 +181,4 @@ template:
 Please take a look @ <a href="https://github.com/bafplus/HA-afvalinfo-card" target="_blank">bafplus</a>. He made some awesome Lovelace cards for Afvalinfo.
 
 ### Issues
-If there are any problems with the integration, please first test your address over [here](https://4fv4l.nl). If this also doesn't work feel free to create an issue [here](https://github.com/heyajohnny/afvalinfo/issues)
+If there are any problems with the integration, please first test your address over [here]([https://4fv4l.nl](https://trashapi.azurewebsites.net/index.html)) and try out the /Trash request. If this also doesn't work feel free to create an issue [here](https://github.com/heyajohnny/afvalinfo/issues)
