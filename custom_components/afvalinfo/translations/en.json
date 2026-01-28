@@ -64,7 +64,9 @@
 					"sensors": "Sensors",
 					"calendar": "Add calendar entity (adds a calendar with all waste collection dates as events)",
 					"calendar_start_time": "Calendar start time",
-					"calendar_all_day": "Calendar items for the entire day. (When enabled, calendar start time is ignored)"
+					"calendar_all_day": "Calendar items for the entire day. (When enabled, calendar start time is ignored)",
+					"manual_dates_enabled": "Enable manual dates",
+					"manual_dates": "Manual waste collection dates (JSON format)"
 				},
 				"data_description": {
 					"id": "Unique name for the sensor",
@@ -92,7 +94,9 @@
 					"sensors": "Sensors",
 					"calendar": "Add calendar entity (adds a calendar with all waste collection dates as events)",
 					"calendar_start_time": "Calendar start time",
-					"calendar_all_day": "Calendar items for the entire day. (When enabled, calendar start time is ignored)"
+					"calendar_all_day": "Calendar items for the entire day. (When enabled, calendar start time is ignored)",
+					"manual_dates_enabled": "Enable manual dates",
+					"manual_dates": "Manual waste collection dates (JSON format)"
 				},
 				"data_description": {
 					"id": "Unique name for the sensor",

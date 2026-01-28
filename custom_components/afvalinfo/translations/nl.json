@@ -64,7 +64,9 @@
 					"sensors": "Sensoren",
 					"calendar": "Kalender entity toevoegen (voegt een kalender toe met alle afvalophaaldata als events)",
 					"calendar_start_time": "Kalender starttijd",
-					"calendar_all_day": "Kalender items voor de gehele dag. (Indien ingeschakeld, wordt kalender starttijd genegeerd)"
+					"calendar_all_day": "Kalender items voor de gehele dag. (Indien ingeschakeld, wordt kalender starttijd genegeerd)",
+					"manual_dates_enabled": "Handmatige datums inschakelen",
+					"manual_dates": "Handmatige afvalophaaldata (JSON formaat)"
 				},
 				"data_description": {
 					"id": "Unieke naam voor de sensor",
@@ -92,7 +94,9 @@
 					"sensors": "Sensoren",
 					"calendar": "Kalender entity toevoegen (voegt een kalender toe met alle afvalophaaldata als events)",
 					"calendar_start_time": "Kalender starttijd",
-					"calendar_all_day": "Kalender items voor de gehele dag. (Indien ingeschakeld, wordt kalender starttijd genegeerd)"
+					"calendar_all_day": "Kalender items voor de gehele dag. (Indien ingeschakeld, wordt kalender starttijd genegeerd)",
+					"manual_dates_enabled": "Handmatige datums inschakelen",
+					"manual_dates": "Handmatige afvalophaaldata (JSON formaat)"
 				},
 				"data_description": {
 					"id": "Unieke naam voor de sensor",

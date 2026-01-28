@@ -1,11 +1,13 @@
-from .const.const import _LOGGER, DOMAIN
+from .const.const import _LOGGER, DOMAIN, CONF_MANUAL_DATES
 
 from homeassistant import config_entries
 from homeassistant.const import Platform
-from homeassistant.core import HomeAssistant
+from homeassistant.core import HomeAssistant, ServiceCall
+from homeassistant.helpers import config_validation as cv
 import asyncio
+import voluptuous as vol
 
-PLATFORMS = [Platform.SENSOR, Platform.CALENDAR]
+PLATFORMS = [Platform.CALENDAR, Platform.SENSOR]
 
 
 async def async_setup_entry(
@@ -104,6 +106,10 @@ async def async_setup_entry(
         "✓" if sensors_loaded else "✗",
         "✓" if calendar_loaded else "✗",
     )
+
+    # Registreer services voor handmatige datums
+    await _register_services(hass)
+
     return True
 
 
@@ -272,3 +278,172 @@ async def async_reload_entry(
                 entry.entry_id,
                 recovery_e,
             )
+
+
+async def _register_services(hass: HomeAssistant):
+    """Registreer services voor handmatige datums"""
+
+    async def add_manual_date(call: ServiceCall):
+        """Service om handmatige datum toe te voegen"""
+        entry_id = call.data.get("entry_id")
+        waste_type = call.data.get("waste_type")
+        date_str = call.data.get("date")
+
+        if not entry_id or not waste_type or not date_str:
+            _LOGGER.error("Missing required parameters for add_manual_date")
+            return
+
+        # Zoek de config entry
+        entry = hass.config_entries.async_get_entry(entry_id)
+        if not entry:
+            _LOGGER.error(f"Config entry {entry_id} not found")
+            return
+
+        # Haal huidige handmatige datums op
+        import json
+
+        manual_dates_str = entry.data.get(CONF_MANUAL_DATES, "{}")
+        try:
+            current_manual_dates = (
+                json.loads(manual_dates_str) if manual_dates_str else {}
+            )
+        except (json.JSONDecodeError, TypeError):
+            current_manual_dates = {}
+
+        # Voeg nieuwe datum toe
+        if waste_type not in current_manual_dates:
+            current_manual_dates[waste_type] = []
+
+        if date_str not in current_manual_dates[waste_type]:
+            current_manual_dates[waste_type].append(date_str)
+            current_manual_dates[waste_type].sort()
+
+            # Update de config entry
+            new_data = {
+                **entry.data,
+                CONF_MANUAL_DATES: json.dumps(current_manual_dates),
+            }
+            hass.config_entries.async_update_entry(entry, data=new_data)
+
+            # Herlaad de entry
+            await hass.config_entries.async_reload(entry.entry_id)
+
+            _LOGGER.info(f"Added manual date {date_str} for {waste_type}")
+        else:
+            _LOGGER.warning(f"Date {date_str} already exists for {waste_type}")
+
+    async def remove_manual_date(call: ServiceCall):
+        """Service om handmatige datum te verwijderen"""
+        entry_id = call.data.get("entry_id")
+        waste_type = call.data.get("waste_type")
+        date_str = call.data.get("date")
+
+        if not entry_id or not waste_type or not date_str:
+            _LOGGER.error("Missing required parameters for remove_manual_date")
+            return
+
+        # Zoek de config entry
+        entry = hass.config_entries.async_get_entry(entry_id)
+        if not entry:
+            _LOGGER.error(f"Config entry {entry_id} not found")
+            return
+
+        # Haal huidige handmatige datums op
+        import json
+
+        manual_dates_str = entry.data.get(CONF_MANUAL_DATES, "{}")
+        try:
+            current_manual_dates = (
+                json.loads(manual_dates_str) if manual_dates_str else {}
+            )
+        except (json.JSONDecodeError, TypeError):
+            current_manual_dates = {}
+
+        # Verwijder datum
+        if (
+            waste_type in current_manual_dates
+            and date_str in current_manual_dates[waste_type]
+        ):
+            current_manual_dates[waste_type].remove(date_str)
+
+            # Verwijder lege lijst
+            if not current_manual_dates[waste_type]:
+                del current_manual_dates[waste_type]
+
+            # Update de config entry
+            new_data = {
+                **entry.data,
+                CONF_MANUAL_DATES: json.dumps(current_manual_dates),
+            }
+            hass.config_entries.async_update_entry(entry, data=new_data)
+
+            # Herlaad de entry
+            await hass.config_entries.async_reload(entry.entry_id)
+
+            _LOGGER.info(f"Removed manual date {date_str} for {waste_type}")
+        else:
+            _LOGGER.warning(f"Date {date_str} not found for {waste_type}")
+
+    async def list_manual_dates(call: ServiceCall):
+        """Service om handmatige datums op te lijsten"""
+        entry_id = call.data.get("entry_id")
+
+        if not entry_id:
+            _LOGGER.error("Missing entry_id parameter for list_manual_dates")
+            return
+
+        # Zoek de config entry
+        entry = hass.config_entries.async_get_entry(entry_id)
+        if not entry:
+            _LOGGER.error(f"Config entry {entry_id} not found")
+            return
+
+        # Haal handmatige datums op
+        import json
+
+        manual_dates_str = entry.data.get(CONF_MANUAL_DATES, "{}")
+        try:
+            manual_dates = json.loads(manual_dates_str) if manual_dates_str else {}
+        except (json.JSONDecodeError, TypeError):
+            manual_dates = {}
+
+        _LOGGER.info(f"Manual dates for entry {entry_id}: {manual_dates}")
+        return manual_dates
+
+    # Registreer services
+    hass.services.async_register(
+        DOMAIN,
+        "add_manual_date",
+        add_manual_date,
+        schema=vol.Schema(
+            {
+                vol.Required("entry_id"): str,
+                vol.Required("waste_type"): str,
+                vol.Required("date"): str,
+            }
+        ),
+    )
+
+    hass.services.async_register(
+        DOMAIN,
+        "remove_manual_date",
+        remove_manual_date,
+        schema=vol.Schema(
+            {
+                vol.Required("entry_id"): str,
+                vol.Required("waste_type"): str,
+                vol.Required("date"): str,
+            }
+        ),
+    )
+
+    hass.services.async_register(
+        DOMAIN,
+        "list_manual_dates",
+        list_manual_dates,
+        schema=vol.Schema(
+            {
+                vol.Required("entry_id"): str,
+            }
+        ),
+    )

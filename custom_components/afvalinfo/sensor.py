@@ -17,7 +17,6 @@ from .const.const import (
     MIN_TIME_BETWEEN_UPDATES,
     _LOGGER,
     CONF_ENABLED_SENSORS,
-    CONF_DISTRICT,
     CONF_LOCATION,
     CONF_POSTCODE,
     CONF_STREET_NUMBER,
@@ -28,6 +27,8 @@ from .const.const import (
     CONF_DIFTAR_CODE,
     CONF_LOCALE,
     CONF_ID,
+    CONF_MANUAL_DATES,
+    CONF_MANUAL_DATES_ENABLED,
     SENSOR_PREFIX,
     ATTR_ERROR,
     ATTR_LAST_UPDATE,
@@ -81,13 +82,23 @@ async def async_setup_entry(
     postcode = config.get(CONF_POSTCODE).strip()
     street_number = config.get(CONF_STREET_NUMBER)
     street_number_suffix = config.get(CONF_STREET_NUMBER_SUFFIX)
-    district = config.get(CONF_DISTRICT)
     date_format = config.get(CONF_DATE_FORMAT).strip()
     locale = config.get(CONF_LOCALE)
     id_name = config.get(CONF_ID)
     no_trash_text = config.get(CONF_NO_TRASH_TEXT)
     diftar_code = config.get(CONF_DIFTAR_CODE)
     get_whole_year = config.get(CONF_GET_WHOLE_YEAR)
+    manual_dates_enabled = config.get(CONF_MANUAL_DATES_ENABLED, False)
+    manual_dates_str = config.get(CONF_MANUAL_DATES, "{}")
+
+    # Converteer JSON string naar dict
+    import json
+
+    try:
+        manual_dates = json.loads(manual_dates_str) if manual_dates_str else {}
+    except (json.JSONDecodeError, TypeError):
+        _LOGGER.warning("Invalid JSON in manual_dates, using empty dict")
+        manual_dates = {}
 
     resources = config[CONF_ENABLED_SENSORS].copy()
 
@@ -116,11 +127,12 @@ async def async_setup_entry(
         postcode,
         street_number,
         street_number_suffix,
-        district,
         diftar_code,
         True,  # get_whole_year altijd True
         resourcesMinusTodayAndTomorrow,
         get_cleanprofs_data,
+        manual_dates_enabled,
+        manual_dates,
     )
 
     await data.async_update()
@@ -215,38 +227,81 @@ class AfvalinfoData(object):
         postcode,
         street_number,
         street_number_suffix,
-        district,
         diftar_code,
         get_whole_year,
         resources,
         get_cleanprofs_data,
+        manual_dates_enabled=False,
+        manual_dates=None,
     ):
         self.data = None
         self.location = location
         self.postcode = postcode
         self.street_number = street_number
         self.street_number_suffix = street_number_suffix
-        self.district = district
         self.diftar_code = diftar_code
         self.get_whole_year = get_whole_year
         self.resources = resources
         self.get_cleanprofs_data = get_cleanprofs_data
+        self.manual_dates_enabled = manual_dates_enabled
+        self.manual_dates = manual_dates or {}
 
     # This will make sure that we can't execute it more often
     # than the MIN_TIME_BETWEEN_UPDATES
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     async def async_update(self):
-        self.data = await TrashApiAfval().get_data(
+        # Haal data op van de API
+        api_data = await TrashApiAfval().get_data(
             self.location,
             self.postcode,
             self.street_number,
             self.street_number_suffix,
-            self.district,
             self.diftar_code,
             self.get_whole_year,
             self.resources,
             self.get_cleanprofs_data,
         )
+
+        # Voeg handmatige datums toe als deze zijn ingeschakeld
+        if self.manual_dates_enabled and self.manual_dates:
+            self.data = self._merge_manual_dates(api_data)
+        else:
+            self.data = api_data
+
+    def _merge_manual_dates(self, api_data):
+        """Voeg handmatige datums toe aan de API data"""
+        if not api_data:
+            api_data = []
+
+        # Converteer handmatige datums naar het juiste formaat
+        manual_data = []
+        for waste_type, dates in self.manual_dates.items():
+            if isinstance(dates, list):
+                for date_str in dates:
+                    try:
+                        # Valideer datum formaat
+                        datetime.strptime(date_str, "%Y-%m-%d")
+                        manual_data.append({waste_type: date_str})
+                    except ValueError:
+                        _LOGGER.warning(
+                            f"Ongeldige datum format voor {waste_type}: {date_str}"
+                        )
+            elif isinstance(dates, str):
+                try:
+                    datetime.strptime(dates, "%Y-%m-%d")
+                    manual_data.append({waste_type: dates})
+                except ValueError:
+                    _LOGGER.warning(
+                        f"Ongeldige datum format voor {waste_type}: {dates}"
+                    )
+
+        # Combineer API data met handmatige data
+        combined_data = api_data + manual_data
+
+        # Sorteer op datum
+        combined_data.sort(key=lambda x: list(x.values())[0] if x else "9999-12-31")
+
+        return combined_data
 
 
 class AfvalinfoSensor(Entity):
