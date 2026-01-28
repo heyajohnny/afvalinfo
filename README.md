@@ -5,7 +5,7 @@
 ## Breaking changes for upgrading from v1.x.x to v2.x.x
 If you've just updated from v1.x.x to v2.x.x please remove the afvalinfo sensor from your configuration.yaml and follow [Installation step 2](#installation-step-2)
 
-### Supported in 98% of the Dutch 'gemeenten'
+### Supported in 99% of the Dutch 'gemeenten'
 
 Before you use this integration you can test if your address is supported and working over [here](https://4fv4l.nl).
 If you like my work, please buy me a coffee or donate some crypto currencies. This will keep me awake, asleep, or whatever :wink:
@@ -20,7 +20,7 @@ If you like my work, please buy me a coffee or donate some crypto currencies. Th
 #### Not supported gemeenten in the Netherlands
 
 ```
-"haaksbergen", "oegstgeest", "schiermonnikoog", "terneuzen", "texel", "vlieland", "weert"
+"oegstgeest", "schiermonnikoog", "texel", "vlieland"
 ```
 
 ### Important Info
@@ -44,8 +44,6 @@ The next step is to add afvalinfo sensors to your Home Assistant:
 
 4. Fill in the form with your address details (Zip code + House Number (+ House number suffix))
 
-(When you live in the municipality <strong>maassluis</strong> or <strong>ouder-amstel</strong> only fill in the Municipality + District and leave Zip code + House number + House number suffix empty. You can find the districts for <strong>ouder-amstel</strong> [here](#ouder-amstel) and the districts for <strong>maassluis</strong> [here](#maassluis))
-
 ![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/84c52c53-564a-4f40-abf4-a3a79d4f7759)
 
 And at the bottom of the page, add the sensors you'd like to see
@@ -57,7 +55,7 @@ These 2 sensors are special sensors
 ![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/7fb50d3f-6100-419a-8ef2-b79c1c2178f2)
 
 To make these sensors work, you also need to specify one or more of the normal sensors.
-These sensors will return one or more (seperated with a comma) of the other sensor friendly names, if of course these trash types will be picked up today/tomorrow. So if you only added PBD and Trash type today under your sensors, you will only get a result of 'PBD' if the trash type PBD has the same date as today. If there is no trash to pick up you'll gwt this value
+These sensors will return one or more (separated with a comma) of the other sensor friendly names, if of course these trash types will be picked up today/tomorrow. So if you only added PBD and Trash type today under your sensors, you will only get a result of 'PBD' if the trash type PBD has the same date as today. If there is no trash to pick up you'll gwt this value
 
 ![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/ecd5e4a5-6678-44f2-ba60-de7cbcffeb6f)
 
@@ -83,34 +81,6 @@ If you want to change the friendly name of the sensors (and also the names you s
 That's it! The friendly name should be changed
 
 ![image](https://github.com/heyajohnny/afvalinfo/assets/20553716/350f1bdc-4375-467b-8548-3103209c002c)
-
-### maassluis
-For the gemeente maassluis you need to use the 'district'. Here you can see the supported districts (Not case sensitive):
-```
-"Binnenstad/centrum"
-"Componistenwijk"
-"Dalenbuurt"
-"Dichtersbuurt"
-"Drevenbuurt"
-"Koningshoek"
-"Maasdijk"
-"Molenwijk"
-"Oranjewijk"
-"Sluispolder Oost"
-"Vertowijk"
-"Vogelwijk"
-"Weverskade"
-"Wijk 't Hoofd"
-"Wilgenrijk"
-"Zeeheldenbuurt"
-"Zuidbuurt"
-```
-### ouder-amstel
-For the gemeente ouder-amstel you need to use the 'district'. Here you can see the supported districts (Not case sensitive):
-```
-"Bebouwde kom"
-"Buitengebied"
-```
 
 ### Date format
 ```yaml
@@ -139,7 +109,7 @@ There are 3 important attributes:
 
 If your location supports diftar and you've specified a diftarcode, these attributes are also available:
 ```
-- last_collection_date.          This wil return the last diftar collection date.
+- last_collection_date.          This will return the last diftar collection date.
 - total_collections_this_year    This will return the total number of diftar collections for the current year
 ```
 

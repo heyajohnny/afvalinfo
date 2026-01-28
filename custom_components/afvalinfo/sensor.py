@@ -1,56 +1,50 @@
 #!/usr/bin/env python3
-"""
-Sensor component for Afvalinfo
+"""Sensor component for Afvalinfo
 Author: Johnny Visser
 """
 
-import voluptuous as vol
-from datetime import datetime, date, timedelta
-from dateutil.relativedelta import relativedelta
-import urllib.error
-from babel import Locale
-from babel.dates import format_date, format_datetime, format_time
+from datetime import date, datetime, timedelta
 import re
 
+from babel.dates import format_date
+
+from homeassistant import config_entries
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers import entity_registry as er
+from homeassistant.helpers.entity import Entity
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.util import Throttle
+
 from .const.const import (
-    DOMAIN,
-    MIN_TIME_BETWEEN_UPDATES,
     _LOGGER,
+    ATTR_DAYS_UNTIL_COLLECTION_DATE,
+    ATTR_ERROR,
+    ATTR_FRIENDLY_NAME,
+    ATTR_IS_COLLECTION_DATE_TODAY,
+    ATTR_LAST_COLLECTION_DATE,
+    ATTR_LAST_UPDATE,
+    ATTR_TOTAL_COLLECTIONS_THIS_YEAR,
+    ATTR_WHOLE_YEAR_DATES,
+    ATTR_YEAR_MONTH_DAY_DATE,
+    CONF_DATE_FORMAT,
+    CONF_DIFTAR_CODE,
     CONF_ENABLED_SENSORS,
-    CONF_DISTRICT,
+    CONF_GET_WHOLE_YEAR,
+    CONF_ID,
+    CONF_LOCALE,
     CONF_LOCATION,
+    CONF_NO_TRASH_TEXT,
     CONF_POSTCODE,
     CONF_STREET_NUMBER,
     CONF_STREET_NUMBER_SUFFIX,
-    CONF_GET_WHOLE_YEAR,
-    CONF_DATE_FORMAT,
-    CONF_NO_TRASH_TEXT,
-    CONF_DIFTAR_CODE,
-    CONF_LOCALE,
-    CONF_ID,
+    DOMAIN,
+    MIN_TIME_BETWEEN_UPDATES,
     SENSOR_PREFIX,
-    ATTR_ERROR,
-    ATTR_LAST_UPDATE,
-    ATTR_DAYS_UNTIL_COLLECTION_DATE,
-    ATTR_IS_COLLECTION_DATE_TODAY,
-    ATTR_YEAR_MONTH_DAY_DATE,
-    ATTR_FRIENDLY_NAME,
-    ATTR_LAST_COLLECTION_DATE,
-    ATTR_TOTAL_COLLECTIONS_THIS_YEAR,
-    ATTR_WHOLE_YEAR_DATES,
     SENSOR_TYPES,
 )
-
 from .location.trashapi import TrashApiAfval
-from .sensortomorrow import AfvalInfoTomorrowSensor
 from .sensortoday import AfvalInfoTodaySensor
-
-from homeassistant.util import Throttle
-from homeassistant.helpers.entity import Entity
-from homeassistant import config_entries
-from homeassistant.core import HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.helpers import entity_registry as er
+from .sensortomorrow import AfvalInfoTomorrowSensor
 
 
 async def async_format_date(hass, collection_date, half_babel_half_date, locale):
@@ -81,7 +75,6 @@ async def async_setup_entry(
     postcode = config.get(CONF_POSTCODE).strip()
     street_number = config.get(CONF_STREET_NUMBER)
     street_number_suffix = config.get(CONF_STREET_NUMBER_SUFFIX)
-    district = config.get(CONF_DISTRICT)
     date_format = config.get(CONF_DATE_FORMAT).strip()
     locale = config.get(CONF_LOCALE)
     id_name = config.get(CONF_ID)
@@ -116,7 +109,6 @@ async def async_setup_entry(
         postcode,
         street_number,
         street_number_suffix,
-        district,
         diftar_code,
         True,  # get_whole_year altijd True
         resourcesMinusTodayAndTomorrow,
@@ -208,14 +200,13 @@ async def async_setup_entry(
     ]
 
 
-class AfvalinfoData(object):
+class AfvalinfoData:
     def __init__(
         self,
         location,
         postcode,
         street_number,
         street_number_suffix,
-        district,
         diftar_code,
         get_whole_year,
         resources,
@@ -226,7 +217,6 @@ class AfvalinfoData(object):
         self.postcode = postcode
         self.street_number = street_number
         self.street_number_suffix = street_number_suffix
-        self.district = district
         self.diftar_code = diftar_code
         self.get_whole_year = get_whole_year
         self.resources = resources
@@ -236,12 +226,12 @@ class AfvalinfoData(object):
     # than the MIN_TIME_BETWEEN_UPDATES
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     async def async_update(self):
+        # Haal data op van de API
         self.data = await TrashApiAfval().get_data(
             self.location,
             self.postcode,
             self.street_number,
             self.street_number_suffix,
-            self.district,
             self.diftar_code,
             self.get_whole_year,
             self.resources,
@@ -319,7 +309,8 @@ class AfvalinfoSensor(Entity):
     async def async_update(self):
         """We are calling this often,
         but the @Throttle on the data.async_update
-        will limit the times it will be executed"""
+        will limit the times it will be executed
+        """
         await self.data.async_update()
         waste_array = self.data.data
         self._error = False
@@ -389,46 +380,44 @@ class AfvalinfoSensor(Entity):
                                 self._state = collection_date.strftime(self.date_format)
                                 break  # we have a result, break the loop
                             # else convert the named values to the locale names
-                            else:
-                                edited_date_format = self.date_format.replace(
-                                    "%a", "EEE"
-                                )
-                                edited_date_format = edited_date_format.replace(
-                                    "%A", "EEEE"
-                                )
-                                edited_date_format = edited_date_format.replace(
-                                    "%b", "MMM"
-                                )
-                                edited_date_format = edited_date_format.replace(
-                                    "%B", "MMMM"
-                                )
+                            edited_date_format = self.date_format.replace(
+                                "%a", "EEE"
+                            )
+                            edited_date_format = edited_date_format.replace(
+                                "%A", "EEEE"
+                            )
+                            edited_date_format = edited_date_format.replace(
+                                "%b", "MMM"
+                            )
+                            edited_date_format = edited_date_format.replace(
+                                "%B", "MMMM"
+                            )
 
-                                # half babel, half date string... something like EEEE 04-MMMM-2020
-                                half_babel_half_date = collection_date.strftime(
-                                    edited_date_format
-                                )
+                            # half babel, half date string... something like EEEE 04-MMMM-2020
+                            half_babel_half_date = collection_date.strftime(
+                                edited_date_format
+                            )
 
-                                # replace the digits with qquoted digits 01 --> '01'
-                                half_babel_half_date = re.sub(
-                                    r"(\d+)", r"'\1'", half_babel_half_date
-                                )
-                                # transform the EEE, EEEE etc... to a real locale date, with babel
-                                locale_date = await async_format_date(
-                                    self.hass,
-                                    collection_date,
-                                    half_babel_half_date,
-                                    self.locale,
-                                )
+                            # replace the digits with qquoted digits 01 --> '01'
+                            half_babel_half_date = re.sub(
+                                r"(\d+)", r"'\1'", half_babel_half_date
+                            )
+                            # transform the EEE, EEEE etc... to a real locale date, with babel
+                            locale_date = await async_format_date(
+                                self.hass,
+                                collection_date,
+                                half_babel_half_date,
+                                self.locale,
+                            )
 
-                                self._state = locale_date
-                                break  # we have a result, break the loop
-                        else:
-                            # collection_date empty
-                            raise ValueError()
+                            self._state = locale_date
+                            break  # we have a result, break the loop
+                        # collection_date empty
+                        raise ValueError
                     # else:
                     # No matching result data for current waste type, no problem
             else:
-                raise ValueError()
+                raise ValueError
         except ValueError:
             self._error = True
             self._last_update = datetime.today().strftime("%d-%m-%Y %H:%M")

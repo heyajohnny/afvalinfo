@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
+
 """
-Config flow component for Afvalinfo
+Config flow component for Afvalinfo.
+
 Author: Jasper Slits
 """
 
@@ -16,7 +18,6 @@ from .const.const import (
     DOMAIN,
     SENSOR_TYPES,
     CONF_ENABLED_SENSORS,
-    CONF_DISTRICT,
     CONF_LOCATION,
     CONF_POSTCODE,
     CONF_STREET_NUMBER,
@@ -63,8 +64,6 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     user_input[CONF_STREET_NUMBER_SUFFIX] = ""
                 if CONF_LOCATION not in user_input:
                     user_input[CONF_LOCATION] = ""
-                if CONF_DISTRICT not in user_input:
-                    user_input[CONF_DISTRICT] = ""
                 if CONF_NO_TRASH_TEXT not in user_input:
                     user_input[CONF_NO_TRASH_TEXT] = ""
                 if CONF_DIFTAR_CODE not in user_input:
@@ -130,10 +129,6 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 vol.Optional(
                     CONF_LOCATION,
                     description={"suggested_value": entry_data.get(CONF_LOCATION, "")},
-                ): str,
-                vol.Optional(
-                    CONF_DISTRICT,
-                    description={"suggested_value": entry_data.get(CONF_DISTRICT, "")},
                 ): str,
                 vol.Optional(
                     CONF_DATE_FORMAT, default=entry_data[CONF_DATE_FORMAT]
@@ -207,7 +202,6 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 vol.Optional(CONF_STREET_NUMBER, default="1"): cv.positive_int,
                 vol.Optional(CONF_STREET_NUMBER_SUFFIX, default=""): str,
                 vol.Optional(CONF_LOCATION, default=""): str,
-                vol.Optional(CONF_DISTRICT, default=""): str,
                 vol.Optional(CONF_DATE_FORMAT, default="%d-%m-%Y"): str,
                 vol.Optional(CONF_LOCALE, default="nl"): vol.In(["nl", "en"]),
                 vol.Optional(CONF_NO_TRASH_TEXT, default="geen"): str,

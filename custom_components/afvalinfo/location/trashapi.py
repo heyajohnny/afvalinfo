@@ -1,22 +1,20 @@
-from ..const.const import (
-    SENSOR_LOCATIONS_TO_URL,
-    _LOGGER,
-)
-from datetime import date, datetime, timedelta
-import urllib.request
-import urllib.error
-import requests
 import asyncio
+from datetime import date, datetime
+import urllib.error
+import urllib.request
+
+import requests
+
+from ..const.const import _LOGGER, SENSOR_LOCATIONS_TO_URL
 
 
-class TrashApiAfval(object):
+class TrashApiAfval:
     async def get_data(
         self,
         location,
         postcode,
         street_number,
         street_number_suffix,
-        district,
         diftar_code,
         get_whole_year,
         resources,
@@ -30,7 +28,6 @@ class TrashApiAfval(object):
                 postcode,
                 street_number,
                 street_number_suffix,
-                district,
                 diftar_code,
                 get_whole_year,
                 get_cleanprofs_data,
@@ -101,9 +98,9 @@ class TrashApiAfval(object):
         except urllib.error.URLError as exc:
             _LOGGER.error("Error occurred while fetching data: %r", exc.reason)
             return False
-        except Exception as exc:
+        except Exception:
             _LOGGER.error(
-                """Error occurred. Please check the address with postcode: %r and huisnummer: %r%r on the website of your local waste collector in the gemeente: %r. It's probably a faulty address or the website of the waste collector is unreachable. If the address is working on the website of the local waste collector and this error still occured, please report the issue in the Github repository https://github.com/heyajohnny/afvalinfo with details of the location that isn't working""",
+                """Error occurred. Please check the address with postcode: %r and huisnummer: %r%r on the website of your local waste collector in the gemeente: %r. It's probably a faulty address or the website of the waste collector is unreachable. If the address is working on the website of the local waste collector and this error still occurred, please report the issue in the Github repository https://github.com/heyajohnny/afvalinfo with details of the location that isn't working""",
                 postcode,
                 street_number,
                 street_number_suffix,
