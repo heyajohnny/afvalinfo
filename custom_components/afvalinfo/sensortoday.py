@@ -8,35 +8,25 @@ from .const.const import (
     SENSOR_PREFIX,
 )
 from homeassistant.helpers.entity import Entity
-from homeassistant.util import Throttle
+from homeassistant.util import Throttle, slugify
 
 
 class AfvalInfoTodaySensor(Entity):
     _attr_has_entity_name = True
     _attr_translation_key = "afvalinfo_trash_type_today"
 
-    def __init__(
-        self, hass, data, sensor_type, entities, id_name, no_trash_text
-    ):
+    def __init__(self, hass, data, sensor_type, entities, id_name, no_trash_text):
         self._hass = hass
         self.data = data
         self.type = sensor_type
         self.friendly_name = sensor_type
         self._last_update = None
+        id_slug = slugify(id_name) if id_name else ""
+        id_part = f"{id_slug} " if id_slug else ""
         self.entity_id = "sensor." + (
-            (
-                SENSOR_PREFIX
-                + (id_name + " " if len(id_name) > 0 else "")
-                + sensor_type
-            )
-            .lower()
-            .replace(" ", "_")
+            (SENSOR_PREFIX + id_part + sensor_type).lower().replace(" ", "_")
         )
-        self._attr_unique_id = (
-            SENSOR_PREFIX
-            + (id_name + " " if len(id_name) > 0 else "")
-            + sensor_type
-        )
+        self._attr_unique_id = SENSOR_PREFIX + id_part + sensor_type
         self._no_trash_text = no_trash_text
         self._state = None
         self._icon = SENSOR_TYPES[sensor_type][1]
@@ -76,10 +66,10 @@ class AfvalInfoTodaySensor(Entity):
                 numberOfMatches = numberOfMatches + 1
                 # add trash friendly_name to string
                 tempState = (
-                    (
-                        tempState
-                        + ", "
-                        + self._hass.states.get(entity.entity_id).attributes.get(ATTR_FRIENDLY_NAME)
+                    tempState
+                    + ", "
+                    + self._hass.states.get(entity.entity_id).attributes.get(
+                        ATTR_FRIENDLY_NAME
                     )
                 ).strip()
         if tempState.startswith(", "):

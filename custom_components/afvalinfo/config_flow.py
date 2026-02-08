@@ -11,6 +11,7 @@ from collections.abc import Mapping
 
 from homeassistant.helpers.selector import selector
 from homeassistant.helpers import config_validation as cv
+from homeassistant.util import slugify
 from homeassistant import config_entries
 
 from .const.const import (
@@ -109,7 +110,9 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         afvalinfo_schema = vol.Schema(
             {
-                vol.Required(CONF_ID, default=entry_data[CONF_ID]): str,
+                vol.Required(
+                    CONF_ID, default=entry_data.get(CONF_ID, "home")
+                ): cv.string,
                 vol.Optional(
                     CONF_POSTCODE,
                     description={"suggested_value": entry_data.get(CONF_POSTCODE, "")},
@@ -187,17 +190,22 @@ class AfvalWijzerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     errors={"base": "no_sensors_or_calendar_selected"},
                 )
 
-            await self.async_set_unique_id(info["id"])
+            # Use slugified id for duplicate detection; store original for display
+            identifier = (info.get("id") or "").strip() or "home"
+            unique_id = slugify(identifier) or "home"
+            await self.async_set_unique_id(unique_id)
             self._abort_if_unique_id_configured()
+            entry_data = {**info, CONF_ID: identifier}
             return self.async_create_entry(
-                title="Afvalinfo for " + info["id"], data=info
+                title="Afvalinfo for " + identifier, data=entry_data
             )
 
         options = list(SENSOR_TYPES.keys())
 
         self.afvalinfo_schema = vol.Schema(
             {
-                vol.Required(CONF_ID, default="home"): str,
+                # Accept any string including special characters (e.g. café, woon-wagen)
+                vol.Required(CONF_ID, default="home"): cv.string,
                 vol.Optional(CONF_POSTCODE, default="3361AB"): str,
                 vol.Optional(CONF_STREET_NUMBER, default="1"): cv.positive_int,
                 vol.Optional(CONF_STREET_NUMBER_SUFFIX, default=""): str,

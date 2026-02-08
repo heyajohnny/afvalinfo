@@ -13,7 +13,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.util import Throttle
+from homeassistant.util import Throttle, slugify
 
 from .const.const import (
     _LOGGER,
@@ -77,7 +77,7 @@ async def async_setup_entry(
     street_number_suffix = config.get(CONF_STREET_NUMBER_SUFFIX)
     date_format = config.get(CONF_DATE_FORMAT).strip()
     locale = config.get(CONF_LOCALE)
-    id_name = config.get(CONF_ID)
+    id_name = (config.get(CONF_ID) or "").strip()
     no_trash_text = config.get(CONF_NO_TRASH_TEXT)
     diftar_code = config.get(CONF_DIFTAR_CODE)
     get_whole_year = config.get(CONF_GET_WHOLE_YEAR)
@@ -167,12 +167,14 @@ async def async_setup_entry(
 
     # Create a list of entities to remove
     entities_to_remove = []
+    id_slug = slugify(id_name) or ""
+    id_slug_prefix = f"{id_slug} " if id_slug else ""
     for entity_id, entity in entity_registry.entities.items():
         if entity.config_entry_id == config_entry.entry_id:
-            # Extract sensor type from entity_id
+            # Extract sensor type from entity_id (unique_id uses slugified id)
             sensor_type = (
                 entity.unique_id.replace(SENSOR_PREFIX, "")
-                .replace(f"{id_name} ", "")
+                .replace(id_slug_prefix, "")
                 .strip()
             )
             if sensor_type not in config[CONF_ENABLED_SENSORS]:
@@ -259,14 +261,12 @@ class AfvalinfoSensor(Entity):
         self.locale = locale
 
         self._get_whole_year = get_whole_year
+        id_slug = slugify(id_name) or ""
+        id_part = f"{id_slug} " if id_slug else ""
         self.entity_id = "sensor." + (
-            (SENSOR_PREFIX + (id_name + " " if len(id_name) > 0 else "") + sensor_type)
-            .lower()
-            .replace(" ", "_")
+            (SENSOR_PREFIX + id_part + sensor_type).lower().replace(" ", "_")
         )
-        self._attr_unique_id = (
-            SENSOR_PREFIX + (id_name + " " if len(id_name) > 0 else "") + sensor_type
-        )
+        self._attr_unique_id = SENSOR_PREFIX + id_part + sensor_type
 
         self._attr_translation_key = "afvalinfo_" + sensor_type
         _LOGGER.debug("Setting translation key to " + self._attr_translation_key)
@@ -380,15 +380,11 @@ class AfvalinfoSensor(Entity):
                                 self._state = collection_date.strftime(self.date_format)
                                 break  # we have a result, break the loop
                             # else convert the named values to the locale names
-                            edited_date_format = self.date_format.replace(
-                                "%a", "EEE"
-                            )
+                            edited_date_format = self.date_format.replace("%a", "EEE")
                             edited_date_format = edited_date_format.replace(
                                 "%A", "EEEE"
                             )
-                            edited_date_format = edited_date_format.replace(
-                                "%b", "MMM"
-                            )
+                            edited_date_format = edited_date_format.replace("%b", "MMM")
                             edited_date_format = edited_date_format.replace(
                                 "%B", "MMMM"
                             )
