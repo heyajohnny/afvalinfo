@@ -2,12 +2,9 @@
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/hacs/integration)
 
 ![icon_mini](https://github.com/heyajohnny/afvalinfo/assets/20553716/b777f12e-8847-40a8-b5e7-4728378c0a92)
-## Breaking changes for upgrading from v1.x.x to v2.x.x
-If you've just updated from v1.x.x to v2.x.x please remove the afvalinfo sensor from your configuration.yaml and follow [Installation step 2](#installation-step-2)
-
 ### Supported in 99% of the Dutch 'gemeenten'
 
-Before you use this integration you can test if your address is supported and working over [here](https://4fv4l.nl).
+Before you use this integration you can test if your address is supported and working over [here](https://trashapi.azurewebsites.net/index.html) or through the [Vieze Geit](https://play.google.com/store/apps/details?id=com.viezegeitafval&pcampaignid=web_share) app.
 If you like my work, please buy me a coffee or donate some crypto currencies. This will keep me awake, asleep, or whatever :wink:
 
 <a href="https://www.buymeacoffee.com/1v3ckWD" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a><details>
