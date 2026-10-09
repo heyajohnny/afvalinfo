@@ -41,6 +41,10 @@ class AfvalInfoTodaySensor(Entity):
         return self._state
 
     @property
+    def available(self):
+        return self.data.available
+
+    @property
     def extra_state_attributes(self):
         return {
             ATTR_LAST_UPDATE: self._last_update,
@@ -53,6 +57,8 @@ class AfvalInfoTodaySensor(Entity):
         but the @Throttle on the data.async_update
         will limit the times it will be executed"""
         await self.data.async_update()
+        if not self.data.available:
+            return
         self._last_update = datetime.today().strftime("%d-%m-%Y %H:%M")
         # use a tempState to change the real state only on a change...
         tempState = self._no_trash_text

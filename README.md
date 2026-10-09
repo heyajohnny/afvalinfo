@@ -148,4 +148,8 @@ template:
 Please take a look @ <a href="https://github.com/bafplus/HA-afvalinfo-card" target="_blank">bafplus</a>. He made some awesome Lovelace cards for Afvalinfo.
 
 ### Issues
-If there are any problems with the integration, please first test your address over [here](https://trashapi.azurewebsites.net/index.html) and try out the /Trash request. If this also doesn't work feel free to create an issue [here](https://github.com/heyajohnny/afvalinfo/issues)
+If there are any problems with the integration, first check the entity's availability and the `error` attribute. Home Assistant diagnostics for the config entry include the provider status while redacting postcode, house number, suffix, and Diftar code.
+
+Most municipalities still use [TrashAPI](https://trashapi.azurewebsites.net/index.html). An HTTP error, timeout, or invalid response now leaves the entities unavailable while preserving the last successful collection data. This distinguishes an upstream outage from an empty collection calendar. Gooise Meren uses GAD's collection calendar directly and no longer depends on TrashAPI.
+
+If the error says that an address was not found, verify it on the local collector's website. For provider or response errors, retry later and include the redacted Home Assistant diagnostics when creating an issue [here](https://github.com/heyajohnny/afvalinfo/issues).
