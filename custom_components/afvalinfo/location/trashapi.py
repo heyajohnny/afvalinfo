@@ -139,6 +139,7 @@ class TrashApiAfval:
         years = [date.today().year]
         if get_whole_year:
             years.append(date.today().year + 1)
+        today = date.today()
 
         calendar_items = []
         for year in years:
@@ -165,6 +166,8 @@ class TrashApiAfval:
             )
             collection_date = item.get("ophaaldatum")
             if not self._is_iso_date(collection_date):
+                continue
+            if datetime.strptime(collection_date, "%Y-%m-%d").date() < today:
                 continue
             for resource in item_resources:
                 collection = (resource, collection_date)

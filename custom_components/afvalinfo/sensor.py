@@ -438,4 +438,9 @@ class AfvalinfoSensor(Entity):
                 raise ValueError
         except ValueError:
             self._error = True
+            self._state = None
+            self._year_month_day_date = None
+            self._days_until_collection_date = None
+            self._is_collection_date_today = False
+            self._whole_year_dates = []
             self._last_update = datetime.today().strftime("%d-%m-%Y %H:%M")

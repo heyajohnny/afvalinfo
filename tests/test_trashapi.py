@@ -2,6 +2,7 @@
 
 import asyncio
 import unittest
+from datetime import date
 from unittest.mock import patch
 
 import requests
@@ -42,6 +43,9 @@ class TrashApiTests(unittest.TestCase):
             ),
             FakeResponse(
                 [
+                    {"afvalstroom_id": 1, "ophaaldatum": "2026-01-23"},
+                    {"afvalstroom_id": 3, "ophaaldatum": "2026-01-15"},
+                    {"afvalstroom_id": 27, "ophaaldatum": "2026-07-17"},
                     {"afvalstroom_id": 1, "ophaaldatum": "2026-10-12"},
                     {"afvalstroom_id": 3, "ophaaldatum": "2026-10-13"},
                     {"afvalstroom_id": 27, "ophaaldatum": "2026-10-14"},
@@ -55,7 +59,10 @@ class TrashApiTests(unittest.TestCase):
         with patch(
             "custom_components.afvalinfo.location.trashapi.requests.get",
             side_effect=responses,
-        ) as request:
+        ) as request, patch(
+            "custom_components.afvalinfo.location.trashapi.date"
+        ) as mocked_date:
+            mocked_date.today.return_value = date(2026, 10, 9)
             result = self.run_async(
                 TrashApiAfval().get_data(
                     "Gooise Meren",
