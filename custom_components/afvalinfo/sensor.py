@@ -42,7 +42,7 @@ from .const.const import (
     SENSOR_PREFIX,
     SENSOR_TYPES,
 )
-from .location.trashapi import TrashApiAfval
+from .location.trashapi import AfvalinfoProviderError, TrashApiAfval
 from .sensortoday import AfvalInfoTodaySensor
 from .sensortomorrow import AfvalInfoTomorrowSensor
 
@@ -223,22 +223,40 @@ class AfvalinfoData:
         self.get_whole_year = get_whole_year
         self.resources = resources
         self.get_cleanprofs_data = get_cleanprofs_data
+        self.available = False
+        self.last_error = None
+        self.last_error_type = None
 
     # This will make sure that we can't execute it more often
     # than the MIN_TIME_BETWEEN_UPDATES
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     async def async_update(self):
-        # Haal data op van de API
-        self.data = await TrashApiAfval().get_data(
-            self.location,
-            self.postcode,
-            self.street_number,
-            self.street_number_suffix,
-            self.diftar_code,
-            self.get_whole_year,
-            self.resources,
-            self.get_cleanprofs_data,
-        )
+        try:
+            data = await TrashApiAfval().get_data(
+                self.location,
+                self.postcode,
+                self.street_number,
+                self.street_number_suffix,
+                self.diftar_code,
+                self.get_whole_year,
+                self.resources,
+                self.get_cleanprofs_data,
+            )
+        except AfvalinfoProviderError as exc:
+            self.available = False
+            self.last_error = str(exc)
+            self.last_error_type = exc.error_type
+            _LOGGER.error(
+                "Waste collection update failed for municipality %s: %s",
+                self.location,
+                exc,
+            )
+            return
+
+        self.data = data
+        self.available = True
+        self.last_error = None
+        self.last_error_type = None
 
 
 class AfvalinfoSensor(Entity):
@@ -291,9 +309,13 @@ class AfvalinfoSensor(Entity):
         return self._state
 
     @property
+    def available(self):
+        return self.data.available
+
+    @property
     def extra_state_attributes(self):
         return {
-            ATTR_ERROR: self._error,
+            ATTR_ERROR: self.data.last_error or self._error,
             ATTR_FRIENDLY_NAME: self.friendly_name,
             ATTR_YEAR_MONTH_DAY_DATE: self._year_month_day_date,
             ATTR_LAST_UPDATE: self._last_update,

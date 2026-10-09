@@ -101,11 +101,10 @@ class AfvalinfoCalendarEntity(CalendarEntity):
         return self._name
 
     async def async_update(self):
-        try:
-            await self.data.async_update()
+        await self.data.async_update()
+        self._attr_available = self.data.available
+        if self.data.available:
             self._events = self._get_events_from_data()
-        except Exception as ex:
-            _LOGGER.error("[afvalinfo.calendar] Error in async_update: %s", ex)
 
     def _get_events_from_data(self):
         events = []

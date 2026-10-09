@@ -5,5 +5,9 @@
 !README.md
 !custom_components/
 !custom_components/*
+!custom_components/afvalinfo/diagnostics.py
 !example/
 !example/*
+!tests/
+!tests/__init__.py
+!tests/test_trashapi.py
